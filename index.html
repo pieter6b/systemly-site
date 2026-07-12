@@ -76,10 +76,31 @@
   .btn:hover{background:var(--rust-deep);transform:translateY(-1px)}
   .btn .arr{transition:transform .25s ease}
   .btn:hover .arr{transform:translateX(3px)}
-  @media(max-width:760px){nav .navlink{display:none}.brand .tag{display:none}}
+  /* mobiel menu */
+  .menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;margin-left:6px}
+  .menu-btn span{display:block;width:22px;height:2px;background:var(--cream-text);margin:5px 0;border-radius:2px;transition:transform .3s ease,opacity .3s ease,background .4s ease}
+  header.scrolled .menu-btn span{background:var(--ink)}
+  header.menu-open .menu-btn span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  header.menu-open .menu-btn span:nth-child(2){opacity:0}
+  header.menu-open .menu-btn span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;z-index:49;
+    background:rgba(237,231,219,.97);backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(26,21,18,.1);
+    padding:18px 24px 24px;flex-direction:column;gap:4px}
+  .mobile-menu a{display:block;padding:14px 4px;color:var(--ink);text-decoration:none;
+    font-family:'Fraunces',serif;font-size:22px;border-bottom:1px solid rgba(26,21,18,.08)}
+  .mobile-menu a:last-child{border-bottom:none}
+  header.menu-open ~ .mobile-menu, .mobile-menu.open{display:flex}
+  @media(max-width:760px){
+    nav .navlink{display:none}
+    .brand .tag{display:none}
+    nav .btn{padding:10px 16px;font-size:14px}
+    .menu-btn{display:block}
+  }
 
   /* ---------- HERO SCROLL SCRUB ---------- */
   .hero{position:relative;min-height:100vh;height:100vh;overflow:hidden;background:#000}
+  @supports (height:100svh){.hero{min-height:100svh;height:100svh}}
   .hero-bg{position:absolute;inset:0;background-position:center;background-size:cover;background-repeat:no-repeat}
   .hero-bg.base{z-index:1}
   .hero-bg.reveal{z-index:2;pointer-events:none;
@@ -206,6 +227,7 @@
   .specs .item p{color:#5f574d;font-size:15.5px;line-height:1.6}
 
   /* ---------- scroll reveal ---------- */
+  section{scroll-margin-top:76px}
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease, transform .8s ease}
   .reveal.in{opacity:1;transform:none}
   .sec-eyebrow{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--rust);margin-bottom:26px}
@@ -319,8 +341,14 @@
     <a href="#hoe-het-werkt" class="navlink">Hoe het werkt</a>
     <a href="#contact" class="navlink">Contact</a>
     <a href="#contact" class="btn">Plan een kennismaking <span class="arr">→</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </nav>
 </header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#hoe-het-werkt">Hoe het werkt</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact">Plan een kennismaking →</a>
+</div>
 
 <section class="hero" id="hero">
   <div class="hero-bg base"   id="baseImg"></div>
@@ -435,6 +463,20 @@ window.addEventListener('mousemove', e=>{
   mx=e.clientX; my=e.clientY;
   if(!started){ sx=mx; sy=my; started=true; }   // snap on first move, no swoop
 });
+/* touch-ondersteuning: vinger over het beeld werkt als de muis-spotlight */
+function touchSpot(e){
+  if(!e.touches || !e.touches.length) return;
+  mx=e.touches[0].clientX; my=e.touches[0].clientY;
+  if(!started){ sx=mx; sy=my; started=true; }
+}
+const heroEl=document.getElementById('hero');
+heroEl.addEventListener('touchstart', touchSpot, {passive:true});
+heroEl.addEventListener('touchmove',  touchSpot, {passive:true});
+/* op touch-apparaten kloppende hint tonen */
+if(('ontouchstart' in window) || navigator.maxTouchPoints>0){
+  var tip=document.querySelector('.hovertip');
+  if(tip) tip.innerHTML='<span class="dot"></span>Beweeg uw vinger over het beeld';
+}
 function tick(){
   sx += (mx-sx)*0.12; sy += (my-sy)*0.12;
   reveal.style.setProperty('--mx', sx+'px');
@@ -499,12 +541,38 @@ function sendContact(e){
 }
 window.sendContact = sendContact;
 
-/* zorg dat de 360°-video blijft draaien (sommige browsers pauzeren bij tab-wissel) */
+/* zorg dat de 360°-video blijft draaien — ook op mobiel (autoplay-blokkades, spaarstand, tab-wissel) */
 (function(){
   var v=document.getElementById('spark360');
   if(!v) return;
-  document.addEventListener('visibilitychange', function(){ if(!document.hidden) v.play().catch(function(){}); });
-  v.addEventListener('pause', function(){ v.play().catch(function(){}); });
+  function tryPlay(){ var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
+  document.addEventListener('visibilitychange', function(){ if(!document.hidden) tryPlay(); });
+  v.addEventListener('pause', function(){ if(!document.hidden) tryPlay(); });
+  /* iOS spaarstand/autoplay-blokkade: start bij eerste aanraking of scroll */
+  ['touchstart','scroll','click'].forEach(function(ev){
+    window.addEventListener(ev, function once(){ tryPlay(); window.removeEventListener(ev, once); }, {passive:true});
+  });
+  /* speel zodra de video in beeld komt */
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting) tryPlay(); });
+    },{threshold:0.1}).observe(v);
+  }
+})();
+
+/* mobiel menu */
+(function(){
+  var btn=document.getElementById('menuBtn'), menu=document.getElementById('mobileMenu'), hdr=document.getElementById('header');
+  if(!btn||!menu) return;
+  function close(){ menu.classList.remove('open'); hdr.classList.remove('menu-open'); btn.setAttribute('aria-expanded','false'); }
+  btn.addEventListener('click', function(){
+    var open=menu.classList.toggle('open');
+    hdr.classList.toggle('menu-open', open);
+    if(open && !hdr.classList.contains('scrolled')) hdr.classList.add('scrolled');
+    btn.setAttribute('aria-expanded', open?'true':'false');
+    if(!open) onScroll();
+  });
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ close(); onScroll(); }); });
 })();
 </script>
 </body>
