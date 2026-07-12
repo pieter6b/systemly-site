@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Systemly — Uw kantoor. Uw data. Uw AI.</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#EDE7DB;
+    --cream-light:#F4EFE5;
+    --paper:#FBF7EE;
+    --dark:#1A1512;
+    --void:#100C0A;
+    --hero-void:#141315;
+    --rust:#BC5A33;
+    --rust-deep:#A24A28;
+    --ink:#1A1512;
+    --muted:#8A7E72;
+    --cream-text:#F2EAD9;
+    --cream-muted:#B7AC9C;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:auto}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--hero-void);
+    color:var(--cream-text);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .mono{font-family:'Space Mono',monospace;letter-spacing:.18em;text-transform:uppercase}
+  .serif{font-family:'Fraunces',serif}
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px clamp(20px,5vw,64px);
+    transition:background .4s ease, backdrop-filter .4s ease, border-color .4s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    background:rgba(237,231,219,.85);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(26,21,18,.08);
+  }
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand .logo{
+    font-family:'Fraunces',serif;font-weight:600;font-size:25px;letter-spacing:-.01em;
+    color:var(--cream-text);transition:color .4s ease;
+  }
+  .brand .tag{
+    font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--cream-muted);padding-left:14px;border-left:1px solid rgba(242,234,217,.25);
+    transition:color .4s ease,border-color .4s ease;
+  }
+  header.scrolled .brand .logo{color:var(--ink)}
+  header.scrolled .brand .tag{color:var(--muted);border-color:rgba(26,21,18,.2)}
+  nav{display:flex;align-items:center;gap:clamp(16px,3vw,40px)}
+  nav a{color:var(--cream-text);text-decoration:none;font-size:15px;font-weight:500;transition:color .4s ease,opacity .2s}
+  nav a:hover{opacity:.7}
+  header.scrolled nav a{color:var(--ink)}
+  .btn{
+    background:var(--rust);color:#fff;border:none;border-radius:999px;
+    padding:12px 24px;font-size:15px;font-weight:600;cursor:pointer;
+    display:inline-flex;align-items:center;gap:9px;text-decoration:none;
+    transition:background .25s ease,transform .25s ease;
+  }
+  .btn:hover{background:var(--rust-deep);transform:translateY(-1px)}
+  .btn .arr{transition:transform .25s ease}
+  .btn:hover .arr{transform:translateX(3px)}
+  @media(max-width:760px){nav .navlink{display:none}.brand .tag{display:none}}
+
+  /* ---------- HERO SCROLL SCRUB ---------- */
+  .hero{position:relative;min-height:100vh;height:100vh;overflow:hidden;background:#000}
+  .hero-bg{position:absolute;inset:0;background-position:center;background-size:cover;background-repeat:no-repeat}
+  .hero-bg.base{z-index:1}
+  .hero-bg.reveal{z-index:2;pointer-events:none;
+    -webkit-mask-image:radial-gradient(circle var(--r,0px) at var(--mx,-600px) var(--my,-600px), #000 0%, #000 42%, rgba(0,0,0,.5) 66%, transparent 100%);
+            mask-image:radial-gradient(circle var(--r,0px) at var(--mx,-600px) var(--my,-600px), #000 0%, #000 42%, rgba(0,0,0,.5) 66%, transparent 100%);
+    -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;}
+  #maskcanvas{position:absolute;inset:0;pointer-events:none;display:none}
+  .hero-scrim{position:absolute;inset:0;z-index:3;pointer-events:none;
+    background:linear-gradient(90deg, rgba(8,6,5,.80) 0%, rgba(8,6,5,.45) 40%, rgba(8,6,5,0) 66%),
+               linear-gradient(0deg, rgba(8,6,5,.55) 0%, rgba(8,6,5,0) 42%);}
+  .hero-copy{position:absolute;z-index:4;left:clamp(24px,6vw,96px);top:50%;transform:translateY(-50%);max-width:34ch;pointer-events:none}
+  .hero-copy .eyebrow{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--rust);margin-bottom:22px}
+  .hero-copy h1{font-family:'Fraunces',serif;font-weight:500;line-height:.98;letter-spacing:-.02em;font-size:clamp(40px,5.4vw,92px);color:var(--cream-text)}
+  .hero-copy h1 em{font-style:italic;color:var(--rust);font-weight:500}
+  .hero-copy .sub{margin-top:28px;max-width:34ch;font-size:clamp(16px,1.4vw,20px);line-height:1.5;color:var(--cream-muted)}
+  .hero-copy .hovertip{margin-top:36px;display:inline-flex;align-items:center;gap:11px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-muted)}
+  .hero-copy .hovertip .dot{width:8px;height:8px;border-radius:50%;background:var(--rust);animation:pulse 1.6s ease-in-out infinite}
+
+  /* the interactive Spark: closed gold base + copper reveal under a cursor spotlight */
+  .hero-spark{position:relative;height:min(80vh,680px);width:100%}
+  .spark-base,.spark-reveal{position:absolute;inset:0;background-position:center;background-size:contain;background-repeat:no-repeat}
+  .spark-reveal{opacity:0;transition:opacity .3s ease}   /* mask is drawn by JS (canvas → maskImage) */
+  .hero-spark.live .spark-reveal{opacity:1}
+  .spark-ring{position:absolute;left:var(--mx,-400px);top:var(--my,-400px);width:18px;height:18px;border-radius:50%;
+    transform:translate(-50%,-50%);pointer-events:none;opacity:0;transition:opacity .3s;
+    background:radial-gradient(circle, rgba(236,150,92,.85), rgba(236,150,92,0) 70%);
+    box-shadow:0 0 26px 9px rgba(236,150,92,.30)}
+  .hero-spark.live .spark-ring{opacity:1}
+
+  @media(max-width:900px){
+    .hero-copy{left:24px;right:24px;max-width:none;top:auto;bottom:13vh;transform:none}
+    .hero-copy h1{font-size:clamp(40px,11vw,72px)}
+    .hero-copy .sub{max-width:36ch}
+  }
+
+  /* overlay text layers */
+  .layer{
+    position:absolute;inset:0;z-index:3;pointer-events:none;
+    display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+    padding:0 clamp(24px,6vw,96px);
+    opacity:0;transition:opacity .6s ease, transform .6s ease;
+    will-change:opacity,transform;
+  }
+  .layer .eyebrow{
+    font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--rust);margin-bottom:22px;
+  }
+  .layer h1{
+    font-family:'Fraunces',serif;font-weight:500;line-height:.98;letter-spacing:-.02em;
+    font-size:clamp(40px,6.2vw,104px);color:var(--cream-text);max-width:min(44vw,11ch);
+  }
+  .layer h1 em{font-style:italic;color:var(--rust);font-weight:500}
+  .layer p.sub{
+    margin-top:30px;max-width:min(38vw,30ch);font-size:clamp(16px,1.4vw,20px);line-height:1.5;
+    color:var(--cream-muted);font-weight:400;
+  }
+  .layer h2{
+    font-family:'Fraunces',serif;font-weight:500;line-height:1.02;letter-spacing:-.02em;
+    font-size:clamp(32px,4.6vw,74px);color:var(--cream-text);max-width:min(44vw,15ch);
+  }
+  .layer h2 em{font-style:italic;color:var(--rust)}
+  /* all stages share the left column so text never sits on the Spark */
+  .layer.center, .layer.right{align-items:flex-start;text-align:left}
+  .layer.center p, .layer.right p{
+    margin-top:24px;max-width:min(38vw,42ch);margin-left:0;
+    color:var(--cream-muted);font-size:clamp(15px,1.3vw,19px);line-height:1.55;
+  }
+
+  @media(max-width:900px){
+    /* mobile: Spark sits in the top half, text drops to the bottom */
+    .layer{justify-content:flex-end;align-items:center;text-align:center;padding:0 24px 10vh}
+    .layer h1{font-size:clamp(38px,10.5vw,66px);max-width:18ch;text-align:center}
+    .layer p.sub{max-width:34ch;margin-left:auto;margin-right:auto}
+    .layer.center,.layer.right{align-items:center;text-align:center}
+    .layer h2{font-size:clamp(30px,7.5vw,50px);max-width:20ch}
+    .layer.center p,.layer.right p{max-width:34ch;margin-left:auto;margin-right:auto}
+  }
+
+  /* scroll hint */
+  .hint{
+    position:absolute;left:50%;bottom:38px;transform:translateX(-50%);z-index:4;
+    font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--cream-muted);display:flex;flex-direction:column;align-items:center;gap:10px;
+    transition:opacity .5s ease;
+  }
+  .hint .bar{width:1px;height:42px;background:linear-gradient(var(--rust),transparent);animation:pulse 1.8s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+
+  /* progress readout bottom-right (techy) */
+  .readout{
+    position:absolute;right:clamp(20px,5vw,56px);bottom:34px;z-index:4;
+    font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--cream-muted);
+    text-transform:uppercase;opacity:.75;
+  }
+  .readout b{color:var(--rust);font-weight:700}
+
+  /* loader */
+  #loader{
+    position:fixed;inset:0;z-index:100;background:var(--hero-void);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;
+    transition:opacity .8s ease;
+  }
+  #loader.hide{opacity:0;pointer-events:none}
+  #loader .lname{font-family:'Fraunces',serif;font-size:32px;color:var(--cream-text);letter-spacing:-.01em}
+  #loader .track{width:200px;height:2px;background:rgba(242,234,217,.15);border-radius:2px;overflow:hidden}
+  #loader .fill{height:100%;width:0%;background:var(--rust);transition:width .2s ease}
+  #loader .pct{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--cream-muted)}
+
+  /* ---------- HANDOFF SECTION ---------- */
+  .handoff{
+    background:var(--cream);color:var(--ink);
+    padding:clamp(90px,14vh,170px) clamp(24px,7vw,110px);
+    position:relative;z-index:5;
+  }
+  .handoff .eyebrow{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--rust);margin-bottom:26px}
+  .handoff h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(34px,5.5vw,76px);line-height:1.02;letter-spacing:-.02em;max-width:18ch}
+  .handoff h2 em{font-style:italic;color:var(--rust)}
+  .specs{
+    margin-top:70px;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:48px 40px;
+    border-top:1px solid rgba(26,21,18,.12);padding-top:54px;
+  }
+  .specs .item .n{font-family:'Space Mono',monospace;color:var(--rust);font-size:13px;letter-spacing:.1em;margin-bottom:16px}
+  .specs .item h3{font-family:'Fraunces',serif;font-weight:500;font-size:24px;margin-bottom:12px;letter-spacing:-.01em}
+  .specs .item p{color:#5f574d;font-size:15.5px;line-height:1.6}
+
+  /* ---------- scroll reveal ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease, transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+  .sec-eyebrow{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--rust);margin-bottom:26px}
+
+  /* ---------- 02 · DOCUMENTSTRAAT (dark) ---------- */
+  .work{background:radial-gradient(58% 56% at 50% 66%, #201b16 0%, #141315 66%);color:var(--cream-text);padding:clamp(90px,14vh,170px) clamp(24px,7vw,110px)}
+  .work h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(34px,5.5vw,76px);line-height:1.02;letter-spacing:-.02em;max-width:18ch}
+  .work h2 em{font-style:italic;color:var(--rust)}
+  .work .lead{margin-top:26px;max-width:56ch;color:var(--cream-muted);font-size:clamp(16px,1.5vw,20px);line-height:1.6}
+  /* kop + tekst links, 24/7 draaiende Spark rechts ernaast */
+  .work .work-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+  .work .spark-stage{position:relative;height:clamp(300px,44vh,460px);
+    -webkit-mask-image:radial-gradient(66% 72% at 50% 52%, #000 54%, transparent 100%);
+            mask-image:radial-gradient(66% 72% at 50% 52%, #000 54%, transparent 100%);}
+  .work .spark-stage video,.work .spark-stage img{width:100%;height:100%;object-fit:contain;display:block;background:transparent}
+  @media(max-width:900px){
+    .work .work-top{grid-template-columns:1fr}
+    .work .spark-stage{height:34vh;margin-top:26px}
+  }
+
+  .demo{margin-top:64px;border-radius:18px;overflow:hidden;background:var(--paper);box-shadow:0 40px 90px -45px rgba(0,0,0,.8);border:1px solid rgba(0,0,0,.06)}
+  .demo-bar{display:flex;align-items:center;gap:14px;padding:15px 22px;background:var(--cream-light);border-bottom:1px solid rgba(0,0,0,.07);font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#6b6256}
+  .demo-bar .dots{display:flex;gap:7px}
+  .demo-bar .dots i{width:11px;height:11px;border-radius:50%;background:#d8cdb8}
+  .demo-bar .dots i:first-child{background:var(--rust)}
+  .demo-bar .live{margin-left:auto;color:var(--rust);display:flex;align-items:center;gap:8px}
+  .demo-bar .live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--rust);animation:blink 1.4s infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+  .demo-stage{position:relative;display:grid;grid-template-columns:1fr 1.1fr 1fr;align-items:center;padding:54px 40px;min-height:300px;color:#3a342c}
+  .files{display:flex;flex-direction:column;gap:16px}
+  .file{font-family:'Space Mono',monospace;font-size:14px;padding:14px 18px;border:1px solid rgba(0,0,0,.14);border-radius:10px;background:#fff;color:#4a4338;opacity:.45}
+  .playing .file{animation:filesend 5s infinite}
+  .playing .file.f2{animation-delay:.45s}
+  .playing .file.f3{animation-delay:.9s}
+  @keyframes filesend{0%,6%{opacity:.45;transform:translateX(0);border-color:rgba(0,0,0,.14)}13%{opacity:1}20%{opacity:1;transform:translateX(10px);border-color:var(--rust)}38%,100%{opacity:.45;transform:translateX(0);border-color:rgba(0,0,0,.14)}}
+
+  .pipe{position:relative;height:2px;background:rgba(0,0,0,.12);margin:0 10px}
+  .pipe .node{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:14px;background:var(--ink);color:var(--rust);display:flex;align-items:center;justify-content:center;font-size:22px}
+  .playing .pipe .node{animation:nodepulse 5s infinite}
+  @keyframes nodepulse{0%,40%{box-shadow:0 0 0 0 rgba(188,90,51,0)}50%{box-shadow:0 0 0 0 rgba(188,90,51,.55)}65%,100%{box-shadow:0 0 0 16px rgba(188,90,51,0)}}
+  .packet{position:absolute;top:50%;width:9px;height:9px;border-radius:50%;background:var(--rust);transform:translateY(-50%);opacity:0;left:0}
+  .playing .packet{animation:travel 5s infinite}
+  .playing .packet.k2{animation-delay:.45s}
+  .playing .packet.k3{animation-delay:.9s}
+  @keyframes travel{0%{left:0;opacity:0}12%{opacity:1}45%{left:calc(50% - 5px);opacity:1}52%{left:calc(50% - 5px);opacity:0}100%{opacity:0}}
+
+  .output .sheet{border:1px solid rgba(0,0,0,.14);border-radius:10px;background:#fff;padding:16px;display:flex;flex-direction:column;gap:9px}
+  .output .sheet .head{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9a8f7e;margin-bottom:4px}
+  .output .row{height:10px;border-radius:3px;background:linear-gradient(90deg,var(--rust),#e3a781);transform-origin:left;transform:scaleX(0)}
+  .playing .output .row{animation:fill 5s infinite}
+  .playing .output .row:nth-of-type(2){animation-delay:1.7s}
+  .playing .output .row:nth-of-type(3){animation-delay:2.0s}
+  .playing .output .row:nth-of-type(4){animation-delay:2.3s}
+  .playing .output .row:nth-of-type(5){animation-delay:2.6s}
+  @keyframes fill{0%,32%{transform:scaleX(0)}48%{transform:scaleX(1)}92%{transform:scaleX(1)}100%{transform:scaleX(0)}}
+  .output .badge{margin-top:8px;font-family:'Space Mono',monospace;font-size:11px;color:var(--rust);opacity:0}
+  .playing .output .badge{animation:badge 5s infinite}
+  @keyframes badge{0%,58%{opacity:0}68%,92%{opacity:1}100%{opacity:0}}
+
+  .demo-term{background:var(--ink);color:#e9e2d4;font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.03em;padding:16px 22px}
+  .demo-term .caret{display:inline-block;width:8px;height:15px;background:var(--rust);margin-left:5px;vertical-align:-2px;animation:blink 1s steps(1) infinite}
+  @media(max-width:760px){.demo-stage{grid-template-columns:1fr;gap:28px}.pipe{display:none}}
+
+  /* ---------- 03 · QUOTE (cream) ---------- */
+  .quote{background:var(--cream);color:var(--ink);padding:clamp(80px,12vh,150px) clamp(24px,7vw,110px)}
+  .quote blockquote{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:clamp(24px,3.4vw,46px);line-height:1.28;letter-spacing:-.01em;max-width:26ch;border-left:3px solid var(--rust);padding-left:clamp(20px,3vw,44px)}
+  .quote cite{display:block;margin-top:28px;padding-left:clamp(23px,3vw,47px);font-style:normal;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+  /* ---------- 04 · HOE HET WERKT (dark) ---------- */
+  .steps{background:var(--hero-void);color:var(--cream-text);padding:clamp(90px,14vh,170px) clamp(24px,7vw,110px)}
+  .steps h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(34px,5.5vw,76px);line-height:1.02;letter-spacing:-.02em;max-width:16ch}
+  .steps .grid{margin-top:70px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:48px 40px}
+  .steps .step{border-top:1px solid rgba(242,234,217,.18);padding-top:26px}
+  .steps .step .n{font-family:'Space Mono',monospace;color:var(--rust);font-size:13px;margin-bottom:20px}
+  .steps .step h3{font-family:'Fraunces',serif;font-weight:500;font-size:24px;margin-bottom:12px;letter-spacing:-.01em}
+  .steps .step p{color:var(--cream-muted);font-size:15.5px;line-height:1.6}
+
+  /* ---------- 05 · CONTACT (rust) ---------- */
+  .contact{background:var(--rust);color:#fff;padding:clamp(90px,14vh,170px) clamp(24px,7vw,110px)}
+  .contact .sec-eyebrow{color:rgba(255,255,255,.82)}
+  .contact h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(34px,5.5vw,80px);line-height:1.03;letter-spacing:-.02em;max-width:16ch}
+  .contact h2 u{text-decoration-thickness:2px;text-underline-offset:6px}
+  .contact .lead{margin-top:22px;font-size:clamp(16px,1.5vw,21px);color:rgba(255,255,255,.85)}
+  .form{margin-top:60px;max-width:880px;display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  .form .full{grid-column:1/-1}
+  .form label{display:block;font-weight:600;font-size:14px;margin-bottom:10px}
+  .form input,.form textarea{width:100%;border:none;border-radius:12px;background:var(--paper);color:var(--ink);padding:16px 18px;font-family:'Inter',sans-serif;font-size:16px}
+  .form textarea{min-height:150px;resize:vertical}
+  .form input::placeholder,.form textarea::placeholder{color:#9a8f7e}
+  .form .submit{grid-column:1/-1;justify-self:start;margin-top:6px;background:var(--ink);color:#fff;border:none;border-radius:999px;padding:17px 30px;font-size:16px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:transform .2s}
+  .form .submit:hover{transform:translateY(-2px)}
+  @media(max-width:640px){.form{grid-template-columns:1fr}}
+
+  /* ---------- FOOTER ---------- */
+  footer.foot{background:var(--ink);color:var(--cream-muted);padding:50px clamp(24px,7vw,110px);display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.04em}
+  footer.foot .fb{font-family:'Fraunces',serif;font-size:22px;letter-spacing:0;color:var(--cream-text)}
+  footer.foot .fl{display:flex;gap:26px}
+  footer.foot a{color:var(--cream-muted);text-decoration:none}
+  footer.foot a:hover{color:var(--cream-text)}
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="brand">
+    <span class="logo">Systemly</span>
+    <span class="tag">Systemly as a Solution</span>
+  </div>
+  <nav>
+    <a href="#hoe-het-werkt" class="navlink">Hoe het werkt</a>
+    <a href="#contact" class="navlink">Contact</a>
+    <a href="#contact" class="btn">Plan een kennismaking <span class="arr">→</span></a>
+  </nav>
+</header>
+
+<section class="hero" id="hero">
+  <div class="hero-bg base"   id="baseImg"></div>
+  <div class="hero-bg reveal" id="revealImg"></div>
+  <canvas id="maskcanvas"></canvas>
+  <div class="hero-scrim"></div>
+  <div class="hero-copy">
+    <div class="eyebrow">Lokale AI · Geen cloud · AVG-proof</div>
+    <h1 class="serif">Uw kantoor.<br>Uw data.<br><em>Uw AI.</em></h1>
+    <p class="sub">Eén machine die op uw kantoor staat, uw documenten leest en het werk verricht dat tijd kost.</p>
+    <div class="hovertip"><span class="dot"></span>Beweeg uw muis over het beeld</div>
+  </div>
+</section>
+
+<section class="handoff">
+  <div class="eyebrow">01 · De Box</div>
+  <h2 class="serif">Eén box. Op <em>uw</em> kantoor.<br>Voor het werk van uren — klaar in minuten.</h2>
+  <div class="specs">
+    <div class="item">
+      <div class="n">→ 01</div>
+      <h3>Lokaal & privé</h3>
+      <p>Uw data verlaat nooit uw pand. Geen cloud, geen afhankelijkheid van externe servers. AVG-proof by design.</p>
+    </div>
+    <div class="item">
+      <div class="n">→ 02</div>
+      <h3>Leest uw documenten</h3>
+      <p>Stapels rapportages van verschillende banken, automatisch omgezet naar één overzicht.</p>
+    </div>
+    <div class="item">
+      <div class="n">→ 03</div>
+      <h3>Op maat ingewerkt</h3>
+      <p>Wij bouwen de stack rond uw processen en richten alles op locatie in. Pas gereed wanneer het in uw dagelijkse werk draait.</p>
+    </div>
+    <div class="item">
+      <div class="n">→ 04</div>
+      <h3>Groeit met u mee</h3>
+      <p>Updates, support en periodiek bezoek. Uw AI-stack ontwikkelt mee met uw kantoor.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · WAT HET DOET -->
+<section class="work">
+  <div class="work-top">
+    <div>
+      <div class="sec-eyebrow reveal">02 · Wat het doet</div>
+      <h2 class="serif reveal">De NVIDIA DGX Spark,<br><em>op maat voor uw kantoor.</em></h2>
+      <p class="lead reveal">Bij Systemly schaft u meer aan dan een AI-computer. U ontvangt de NVIDIA DGX Spark geleverd mét AI die wij specifiek voor uw kantoor ontwikkelen — van documentextractie tot wiskundige automatiseringen. Volledig op maat gebouwd, door ons ingericht en onderhouden. U ziet alleen het resultaat.</p>
+    </div>
+    <div class="spark-stage reveal" id="spark-stage">
+      <video id="spark360" src="spark360.mp4" autoplay muted loop playsinline preload="auto"
+        disablepictureinpicture aria-label="NVIDIA DGX Spark — 360 graden productweergave"></video>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · IN DE PRAKTIJK -->
+<section class="quote">
+  <blockquote class="reveal">“Voor een vermogensbeheerder zetten wij stapels bankrapportages om naar één overzicht — werk van uren, klaar in minuten. Zonder dat één dossier het kantoor verliet.”</blockquote>
+  <cite class="reveal">— lopend project · financiële sector</cite>
+</section>
+
+<!-- 04 · HOE HET WERKT -->
+<section class="steps" id="hoe-het-werkt">
+  <div class="sec-eyebrow reveal">04 · Hoe het werkt</div>
+  <h2 class="serif reveal">Van kennismaking tot<br>dagelijkse werking.</h2>
+  <div class="grid">
+    <div class="step reveal"><div class="n">→ 01</div><h3>Kennismaking</h3><p>45 minuten, kosteloos, op uw eigen data. Geheel vrijblijvend.</p></div>
+    <div class="step reveal"><div class="n">→ 02</div><h3>Analyse op locatie</h3><p>Wij lopen mee binnen uw organisatie en identificeren de processen die tijd kosten.</p></div>
+    <div class="step reveal"><div class="n">→ 03</div><h3>Bouwen &amp; opleveren</h3><p>Op maat gebouwd en door u getoetst. Pas gereed wanneer het in uw dagelijkse werk draait.</p></div>
+    <div class="step reveal"><div class="n">→ 04</div><h3>Doorontwikkelen</h3><p>Updates, support en periodiek bezoek. Uw stack groeit met uw organisatie mee.</p></div>
+  </div>
+</section>
+
+<!-- 05 · PLAN EEN KENNISMAKING -->
+<section class="contact" id="contact">
+  <div class="sec-eyebrow reveal">05 · Plan een kennismaking</div>
+  <h2 class="serif reveal">Laat ons zien wat wij voor <u>uw organisatie</u> kunnen betekenen.</h2>
+  <p class="lead reveal">45 minuten. Kosteloos. Op uw eigen data. Geheel vrijblijvend.</p>
+  <form class="form reveal" id="contactform" onsubmit="return sendContact(event)">
+    <div><label>Naam *</label><input required name="naam" placeholder="Uw naam"></div>
+    <div><label>Bedrijf *</label><input required name="bedrijf" placeholder="Bedrijfsnaam"></div>
+    <div class="full"><label>E-mail *</label><input required name="email" type="email" placeholder="naam@bedrijf.nl"></div>
+    <div class="full"><label>Wat speelt er? *</label><textarea required name="bericht" placeholder="Bijvoorbeeld: wij zijn wekelijks uren kwijt aan het verwerken van facturen…"></textarea></div>
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+    <button class="submit" type="submit">Verstuur — wij reageren binnen één werkdag →</button>
+  </form>
+</section>
+
+<footer class="foot">
+  <span class="fb">Systemly</span>
+  <span class="fl"><a href="#hoe-het-werkt">Hoe het werkt</a><a href="#contact">Contact</a></span>
+  <span>Lokale AI · Geen cloud · AVG-proof · © 2026</span>
+</footer>
+
+<script>
+/* ===== CURSOR-SPOTLIGHT REVEAL HERO (lava imagery + Systemly content) ===== */
+const header = document.getElementById('header');
+
+/* two dramatic landscape layers: muted base + glowing reveal */
+const BG_IMAGE_1 = "hero-base.webp";
+const BG_IMAGE_2 = "hero-reveal.webp";
+document.getElementById('baseImg').style.backgroundImage   = "url('"+BG_IMAGE_1+"')";
+document.getElementById('revealImg').style.backgroundImage = "url('"+BG_IMAGE_2+"')";
+
+const SPOTLIGHT_R = 260;
+const reveal = document.getElementById('revealImg');
+
+/* reliable CSS radial-gradient mask, positioned via CSS variables + eased trailing */
+let mx=-600, my=-600, sx=-600, sy=-600, started=false;
+window.addEventListener('mousemove', e=>{
+  mx=e.clientX; my=e.clientY;
+  if(!started){ sx=mx; sy=my; started=true; }   // snap on first move, no swoop
+});
+function tick(){
+  sx += (mx-sx)*0.12; sy += (my-sy)*0.12;
+  reveal.style.setProperty('--mx', sx+'px');
+  reveal.style.setProperty('--my', sy+'px');
+  reveal.style.setProperty('--r',  SPOTLIGHT_R+'px');
+  requestAnimationFrame(tick);
+}
+tick();
+
+/* header turns solid once you scroll past the hero */
+function onScroll(){ header.classList.toggle('scrolled', window.scrollY > window.innerHeight*0.6); }
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+/* ---- scroll reveal + start demo animation when in view ---- */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      if(e.target.id==='demo') e.target.classList.add('playing');
+    }
+  });
+},{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---- contactformulier: verzendt via FormSubmit naar admin@systemlysolutions.onmicrosoft.com ---- */
+var CONTACT_TO = 'admin@systemlysolutions.onmicrosoft.com';
+function sendContact(e){
+  e.preventDefault();
+  var form = e.target;
+  var btn = form.querySelector('.submit');
+  var data = {
+    naam:    form.naam.value,
+    bedrijf: form.bedrijf.value,
+    email:   form.email.value,
+    bericht: form.bericht.value,
+    _subject: 'Nieuwe aanvraag via systemly.nl — ' + form.bedrijf.value,
+    _template: 'table',
+    _captcha: 'false',
+    _honey: form._honey.value
+  };
+  btn.disabled = true;
+  btn.textContent = 'Versturen…';
+  fetch('https://formsubmit.co/ajax/' + CONTACT_TO, {
+    method: 'POST',
+    headers: {'Content-Type':'application/json','Accept':'application/json'},
+    body: JSON.stringify(data)
+  }).then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return {ok:r.ok, j:j}; }); })
+    .then(function(res){
+      if(res.ok){
+        form.innerHTML = '<p style="font-size:21px;font-weight:600;line-height:1.4">Hartelijk dank — wij nemen binnen één werkdag contact met u op. ✓</p>';
+      } else { throw new Error('send failed'); }
+    })
+    .catch(function(){
+      btn.disabled = false;
+      btn.textContent = 'Verstuur — wij reageren binnen één werkdag →';
+      /* fallback: open de e-mailclient met het bericht voorgevuld */
+      var body = 'Naam: '+data.naam+'%0D%0ABedrijf: '+data.bedrijf+'%0D%0AE-mail: '+data.email+'%0D%0A%0D%0A'+encodeURIComponent(data.bericht);
+      window.location.href = 'mailto:'+CONTACT_TO+'?subject='+encodeURIComponent(data._subject)+'&body='+body;
+    });
+  return false;
+}
+window.sendContact = sendContact;
+
+/* zorg dat de 360°-video blijft draaien (sommige browsers pauzeren bij tab-wissel) */
+(function(){
+  var v=document.getElementById('spark360');
+  if(!v) return;
+  document.addEventListener('visibilitychange', function(){ if(!document.hidden) v.play().catch(function(){}); });
+  v.addEventListener('pause', function(){ v.play().catch(function(){}); });
+})();
+</script>
+</body>
+</html>
