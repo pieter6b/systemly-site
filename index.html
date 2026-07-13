@@ -463,8 +463,7 @@
       <p class="lead reveal">Bij Systemly schaft u meer aan dan een AI-computer. U ontvangt de NVIDIA DGX Spark geleverd mét AI die wij specifiek voor uw kantoor ontwikkelen — van documentextractie tot wiskundige automatiseringen. Volledig op maat gebouwd, door ons ingericht en onderhouden. U ziet alleen het resultaat.</p>
     </div>
     <div class="spark-stage reveal" id="spark-stage">
-      <video id="spark360" src="spark360.mp4" poster="spark360_poster.jpg" autoplay muted loop playsinline preload="auto"
-        disablepictureinpicture aria-label="NVIDIA DGX Spark — 360 graden productweergave"></video>
+      <img id="spark360" src="spark360.webp" alt="NVIDIA DGX Spark — 360 graden productweergave" decoding="async">
     </div>
   </div>
 </section>
@@ -605,48 +604,8 @@ function sendContact(e){
 }
 window.sendContact = sendContact;
 
-/* zorg dat de 360°-video ALTIJD draait — waakvlam tegen elke pauze-oorzaak
-   (autoplay-blokkade, iOS-spaarstand, tab-wissel, uit beeld scrollen, energiebesparing) */
-(function(){
-  var v=document.getElementById('spark360');
-  if(!v) return;
-  v.muted=true; v.defaultMuted=true; v.loop=true; v.playsInline=true;
-  function tryPlay(){ var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
-  /* Chrome (Chromium) stelt het streamen van <video> soms uit tot een klik; een fetch
-     wordt nooit uitgesteld — dus halen we daar de video zelf op en spelen hem lokaal af.
-     Safari en andere browsers gebruiken het gewone, native videopad. */
-  var isChromium = !!window.chrome && (navigator.userAgent.indexOf('Chrome')>-1 || navigator.userAgent.indexOf('Edg')>-1);
-  if(isChromium){
-    fetch('spark360.mp4').then(function(r){ return r.ok ? r.blob() : Promise.reject(); })
-      .then(function(b){
-        var u=URL.createObjectURL(b);
-        v.src=u; v.load(); tryPlay();
-        v.addEventListener('loadeddata', tryPlay, {once:true});
-      }).catch(function(){ /* val terug op de gewone src */ });
-  } else {
-    /* Safari: native autoplay met rust laten — geen load(), alleen zachte duwtjes */
-    v.addEventListener('loadeddata', tryPlay, {once:true});
-    v.addEventListener('canplay', tryPlay, {once:true});
-    document.addEventListener('DOMContentLoaded', tryPlay);
-    window.addEventListener('pageshow', tryPlay);
-  }
-  function inView(){
-    var r=v.getBoundingClientRect();
-    return r.bottom>0 && r.top<(window.innerHeight||document.documentElement.clientHeight);
-  }
-  /* waakvlam: staat hij stil terwijl hij zichtbaar is → weer starten */
-  setInterval(function(){ if(v.paused && !document.hidden && inView()) tryPlay(); }, 1000);
-  document.addEventListener('visibilitychange', function(){ if(!document.hidden) tryPlay(); });
-  /* eerste interactie (nodig voor iOS-spaarstand); herlaad ook als er nog geen data is */
-  ['touchstart','scroll','click','mousemove','keydown'].forEach(function(ev){
-    window.addEventListener(ev, function once(){
-      if(v.readyState===0){ try{ v.load(); }catch(e){} }
-      tryPlay();
-      window.removeEventListener(ev, once);
-    }, {passive:true});
-  });
-  tryPlay();
-})();
+/* De 360°-weergave is een geanimeerde WebP-afbeelding: die valt buiten elk
+   autoplay-beleid en draait dus altijd, in elke browser — geen JS nodig. */
 
 /* mobiel menu */
 (function(){
