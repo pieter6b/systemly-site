@@ -624,9 +624,11 @@ window.sendContact = sendContact;
         v.addEventListener('loadeddata', tryPlay, {once:true});
       }).catch(function(){ /* val terug op de gewone src */ });
   } else {
-    v.load();
+    /* Safari: native autoplay met rust laten — geen load(), alleen zachte duwtjes */
     v.addEventListener('loadeddata', tryPlay, {once:true});
     v.addEventListener('canplay', tryPlay, {once:true});
+    document.addEventListener('DOMContentLoaded', tryPlay);
+    window.addEventListener('pageshow', tryPlay);
   }
   function inView(){
     var r=v.getBoundingClientRect();
