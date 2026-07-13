@@ -612,14 +612,22 @@ window.sendContact = sendContact;
   if(!v) return;
   v.muted=true; v.defaultMuted=true; v.loop=true; v.playsInline=true;
   function tryPlay(){ var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
-  /* Chrome stelt het streamen van <video> soms uit tot een klik; een fetch wordt
-     nooit uitgesteld — dus halen we de video zelf op en spelen we hem lokaal af */
-  fetch('spark360.mp4').then(function(r){ return r.ok ? r.blob() : Promise.reject(); })
-    .then(function(b){
-      var u=URL.createObjectURL(b);
-      v.src=u; v.load(); tryPlay();
-      v.addEventListener('loadeddata', tryPlay, {once:true});
-    }).catch(function(){ /* val terug op de gewone src */ });
+  /* Chrome (Chromium) stelt het streamen van <video> soms uit tot een klik; een fetch
+     wordt nooit uitgesteld — dus halen we daar de video zelf op en spelen hem lokaal af.
+     Safari en andere browsers gebruiken het gewone, native videopad. */
+  var isChromium = !!window.chrome && (navigator.userAgent.indexOf('Chrome')>-1 || navigator.userAgent.indexOf('Edg')>-1);
+  if(isChromium){
+    fetch('spark360.mp4').then(function(r){ return r.ok ? r.blob() : Promise.reject(); })
+      .then(function(b){
+        var u=URL.createObjectURL(b);
+        v.src=u; v.load(); tryPlay();
+        v.addEventListener('loadeddata', tryPlay, {once:true});
+      }).catch(function(){ /* val terug op de gewone src */ });
+  } else {
+    v.load();
+    v.addEventListener('loadeddata', tryPlay, {once:true});
+    v.addEventListener('canplay', tryPlay, {once:true});
+  }
   function inView(){
     var r=v.getBoundingClientRect();
     return r.bottom>0 && r.top<(window.innerHeight||document.documentElement.clientHeight);
@@ -627,9 +635,13 @@ window.sendContact = sendContact;
   /* waakvlam: staat hij stil terwijl hij zichtbaar is → weer starten */
   setInterval(function(){ if(v.paused && !document.hidden && inView()) tryPlay(); }, 1000);
   document.addEventListener('visibilitychange', function(){ if(!document.hidden) tryPlay(); });
-  /* eerste interactie (nodig voor iOS-spaarstand) */
+  /* eerste interactie (nodig voor iOS-spaarstand); herlaad ook als er nog geen data is */
   ['touchstart','scroll','click','mousemove','keydown'].forEach(function(ev){
-    window.addEventListener(ev, function once(){ tryPlay(); window.removeEventListener(ev, once); }, {passive:true});
+    window.addEventListener(ev, function once(){
+      if(v.readyState===0){ try{ v.load(); }catch(e){} }
+      tryPlay();
+      window.removeEventListener(ev, once);
+    }, {passive:true});
   });
   tryPlay();
 })();
