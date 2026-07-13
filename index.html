@@ -3,7 +3,70 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Systemly — Uw kantoor. Uw data. Uw AI.</title>
+<title>Systemly — AI-automatisering op maat voor het MKB | Uw kantoor. Uw data. Uw AI.</title>
+<meta name="description" content="Systemly levert AI-automatisering en software op maat voor het MKB: een NVIDIA DGX Spark AI-computer op uw kantoor die documenten verwerkt, data extraheert en processen automatiseert — volledig lokaal, zonder cloud, AVG-proof.">
+<meta name="keywords" content="AI automatisering MKB, lokale AI, AI computer kantoor, documentverwerking AI, documentextractie, software op maat, NVIDIA DGX Spark, AVG-proof AI, AI zonder cloud, procesautomatisering">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Systemly">
+<meta name="theme-color" content="#141315">
+<link rel="canonical" href="https://systemly.nl/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Systemly">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:url" content="https://systemly.nl/">
+<meta property="og:title" content="Systemly — AI-automatisering op maat voor het MKB">
+<meta property="og:description" content="Eén AI-computer op uw kantoor die documenten verwerkt en processen automatiseert. Lokaal, zonder cloud, AVG-proof. Op maat gebouwd voor uw organisatie.">
+<meta property="og:image" content="https://systemly.nl/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Systemly — AI-automatisering op maat voor het MKB">
+<meta name="twitter:description" content="Eén AI-computer op uw kantoor die documenten verwerkt en processen automatiseert. Lokaal, zonder cloud, AVG-proof.">
+<meta name="twitter:image" content="https://systemly.nl/og-image.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://systemly.nl/#organization",
+      "name": "Systemly",
+      "url": "https://systemly.nl/",
+      "logo": "https://systemly.nl/favicon-512.png",
+      "email": "admin@systemlysolutions.onmicrosoft.com",
+      "slogan": "Uw kantoor. Uw data. Uw AI.",
+      "description": "Systemly levert AI-automatisering en softwareoplossingen op maat voor kleine en middelgrote bedrijven (MKB). Een lokale AI-computer (NVIDIA DGX Spark) op het kantoor van de klant verwerkt documenten, extraheert data en automatiseert terugkerende processen — zonder cloud, AVG-proof.",
+      "areaServed": {"@type": "Country", "name": "Nederland"},
+      "knowsAbout": ["AI-automatisering", "documentverwerking", "documentextractie", "lokale AI", "procesautomatisering", "software op maat", "NVIDIA DGX Spark", "AVG-compliance"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://systemly.nl/#website",
+      "url": "https://systemly.nl/",
+      "name": "Systemly",
+      "inLanguage": "nl-NL",
+      "publisher": {"@id": "https://systemly.nl/#organization"}
+    },
+    {
+      "@type": "Service",
+      "@id": "https://systemly.nl/#service",
+      "name": "AI-automatisering op maat voor het MKB",
+      "serviceType": "AI-automatisering en software op maat",
+      "provider": {"@id": "https://systemly.nl/#organization"},
+      "areaServed": {"@type": "Country", "name": "Nederland"},
+      "audience": {"@type": "BusinessAudience", "name": "Kleine en middelgrote bedrijven (MKB)"},
+      "description": "Levering en inrichting van een lokale AI-computer (NVIDIA DGX Spark) met op maat ontwikkelde AI voor documentverwerking, data-extractie en wiskundige automatiseringen. Inclusief analyse op locatie, bouw, oplevering, updates en support. Data blijft op locatie: geen cloud, AVG-proof.",
+      "offers": {
+        "@type": "Offer",
+        "name": "Kennismaking",
+        "description": "45 minuten, kosteloos, op eigen data, geheel vrijblijvend.",
+        "price": "0",
+        "priceCurrency": "EUR"
+      }
+    }
+  ]
+}
+</script>
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -239,10 +302,11 @@
   .work .lead{margin-top:26px;max-width:56ch;color:var(--cream-muted);font-size:clamp(16px,1.5vw,20px);line-height:1.6}
   /* kop + tekst links, 24/7 draaiende Spark rechts ernaast */
   .work .work-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,1fr);gap:clamp(24px,4vw,56px);align-items:center}
-  .work .spark-stage{position:relative;height:clamp(300px,44vh,460px);
-    -webkit-mask-image:radial-gradient(66% 72% at 50% 52%, #000 54%, transparent 100%);
-            mask-image:radial-gradient(66% 72% at 50% 52%, #000 54%, transparent 100%);}
-  .work .spark-stage video,.work .spark-stage img{width:100%;height:100%;object-fit:contain;display:block;background:transparent}
+  .work .spark-stage{position:relative;height:clamp(300px,44vh,460px)}
+  .work .spark-stage video,.work .spark-stage img{width:100%;height:100%;object-fit:contain;display:block;background:transparent;
+    /* masker op de video zelf: randen lopen altijd vloeiend over in de sectie-achtergrond */
+    -webkit-mask-image:radial-gradient(closest-side at 50% 50%, #000 52%, rgba(0,0,0,.35) 76%, transparent 96%);
+            mask-image:radial-gradient(closest-side at 50% 50%, #000 52%, rgba(0,0,0,.35) 76%, transparent 96%);}
   @media(max-width:900px){
     .work .work-top{grid-template-columns:1fr}
     .work .spark-stage{height:34vh;margin-top:26px}
@@ -541,23 +605,25 @@ function sendContact(e){
 }
 window.sendContact = sendContact;
 
-/* zorg dat de 360°-video blijft draaien — ook op mobiel (autoplay-blokkades, spaarstand, tab-wissel) */
+/* zorg dat de 360°-video ALTIJD draait — waakvlam tegen elke pauze-oorzaak
+   (autoplay-blokkade, iOS-spaarstand, tab-wissel, uit beeld scrollen, energiebesparing) */
 (function(){
   var v=document.getElementById('spark360');
   if(!v) return;
+  v.muted=true; v.defaultMuted=true; v.loop=true; v.playsInline=true;
   function tryPlay(){ var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
+  function inView(){
+    var r=v.getBoundingClientRect();
+    return r.bottom>0 && r.top<(window.innerHeight||document.documentElement.clientHeight);
+  }
+  /* waakvlam: staat hij stil terwijl hij zichtbaar is → weer starten */
+  setInterval(function(){ if(v.paused && !document.hidden && inView()) tryPlay(); }, 1000);
   document.addEventListener('visibilitychange', function(){ if(!document.hidden) tryPlay(); });
-  v.addEventListener('pause', function(){ if(!document.hidden) tryPlay(); });
-  /* iOS spaarstand/autoplay-blokkade: start bij eerste aanraking of scroll */
-  ['touchstart','scroll','click'].forEach(function(ev){
+  /* eerste interactie (nodig voor iOS-spaarstand) */
+  ['touchstart','scroll','click','mousemove','keydown'].forEach(function(ev){
     window.addEventListener(ev, function once(){ tryPlay(); window.removeEventListener(ev, once); }, {passive:true});
   });
-  /* speel zodra de video in beeld komt */
-  if('IntersectionObserver' in window){
-    new IntersectionObserver(function(es){
-      es.forEach(function(e){ if(e.isIntersecting) tryPlay(); });
-    },{threshold:0.1}).observe(v);
-  }
+  tryPlay();
 })();
 
 /* mobiel menu */

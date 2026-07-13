@@ -1,0 +1,27 @@
+# Systemly
+
+> Systemly levert AI-automatisering en softwareoplossingen op maat voor kleine en middelgrote bedrijven (MKB) in Nederland. Kern van het aanbod: een lokale AI-computer (NVIDIA DGX Spark) die op het kantoor van de klant staat en daar documenten verwerkt, data extraheert en terugkerende processen automatiseert — volledig lokaal, zonder cloud, AVG-proof.
+
+## Wat Systemly doet
+
+- Levering van de NVIDIA DGX Spark AI-computer, ingericht en onderhouden door Systemly
+- Op maat ontwikkelde AI voor documentverwerking en documentextractie (bijv. stapels bankrapportages automatisch omzetten naar één overzicht)
+- Wiskundige en administratieve procesautomatiseringen
+- Data verlaat nooit het pand van de klant: geen cloud, geen externe servers, AVG-proof by design
+
+## Werkwijze
+
+1. Kennismaking — 45 minuten, kosteloos, op eigen data, vrijblijvend
+2. Analyse op locatie — processen identificeren die tijd kosten
+3. Bouwen & opleveren — op maat gebouwd, door de klant getoetst
+4. Doorontwikkelen — updates, support en periodiek bezoek
+
+## Doelgroep
+
+Kleine en middelgrote bedrijven (MKB) die administratief werk willen automatiseren zonder hun data naar de cloud te sturen, o.a. financiële dienstverleners, family offices en vermogensbeheerders.
+
+## Contact
+
+- Website: https://systemly.nl/
+- E-mail: admin@systemlysolutions.onmicrosoft.com
+- Contactformulier: https://systemly.nl/#contact
