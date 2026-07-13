@@ -612,6 +612,14 @@ window.sendContact = sendContact;
   if(!v) return;
   v.muted=true; v.defaultMuted=true; v.loop=true; v.playsInline=true;
   function tryPlay(){ var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
+  /* Chrome stelt het streamen van <video> soms uit tot een klik; een fetch wordt
+     nooit uitgesteld — dus halen we de video zelf op en spelen we hem lokaal af */
+  fetch('spark360.mp4').then(function(r){ return r.ok ? r.blob() : Promise.reject(); })
+    .then(function(b){
+      var u=URL.createObjectURL(b);
+      v.src=u; v.load(); tryPlay();
+      v.addEventListener('loadeddata', tryPlay, {once:true});
+    }).catch(function(){ /* val terug op de gewone src */ });
   function inView(){
     var r=v.getBoundingClientRect();
     return r.bottom>0 && r.top<(window.innerHeight||document.documentElement.clientHeight);
