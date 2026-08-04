@@ -538,6 +538,30 @@
   footer.foot .fl{display:flex;gap:26px;flex-wrap:wrap}
   footer.foot a{color:var(--cream-muted);text-decoration:none}
   footer.foot a:hover{color:var(--cream-text)}
+  /* klein voorkeurspaneel links onderin — los van de pagina */
+  .intro-pref{
+    position:fixed;left:clamp(14px,2vw,28px);bottom:clamp(14px,2.5vh,28px);z-index:60;
+    background:var(--paper);border:1px solid rgba(26,21,18,.16);
+    padding:16px 18px 15px;max-width:236px;
+    opacity:0;transform:translateY(14px);
+    transition:opacity .5s var(--ease),transform .5s var(--ease);
+  }
+  .intro-pref.show{opacity:1;transform:none}
+  .intro-pref .ip-label{
+    font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--rust);margin-bottom:7px;
+  }
+  .intro-pref .ip-text{font-size:13.5px;line-height:1.45;color:var(--body-cream);margin-bottom:12px}
+  .intro-pref .ip-btn{
+    background:var(--ink);color:#fff;border:none;border-radius:999px;
+    padding:8px 17px;font-size:13px;font-weight:600;cursor:pointer;
+  }
+  .intro-pref .ip-btn:hover{background:var(--rust-deep)}
+  .intro-pref .ip-close{
+    position:absolute;top:5px;right:9px;background:none;border:none;cursor:pointer;
+    font-size:17px;line-height:1;color:var(--muted);padding:4px;
+  }
+  .intro-pref .ip-close:hover{color:var(--ink)}
 </style>
 </head>
 <body>
@@ -567,6 +591,13 @@
     <source src="intro.mp4" type="video/mp4">
   </video>
   <button class="intro-skip" id="introSkip" type="button">Overslaan</button>
+</div>
+
+<div class="intro-pref" id="introPref" role="dialog" aria-label="Voorkeur intro-video" hidden>
+  <button class="ip-close" id="introPrefClose" type="button" aria-label="Sluiten">×</button>
+  <div class="ip-label">Intro-video</div>
+  <p class="ip-text" id="introPrefText"></p>
+  <button class="ip-btn" id="introPrefBtn" type="button"></button>
 </div>
 
 <header id="header">
@@ -829,17 +860,56 @@
       intro.style.display = 'none';
       try { vid.pause(); } catch(e){}
     }, 900);
+    setTimeout(showIntroPref, 1400);   /* voorkeurspaneel ná de intro tonen */
   }
 
   /* ?intro=1 forces the intro even when the visitor asked for reduced motion —
      handy for reviewing it on a machine with "Beperk beweging" switched on */
   var forceIntro = /[?&]intro=1/.test(location.search);
+
+  /* voorkeur "intro-video uit" — klein paneel links onderin, verschijnt na de intro
+     en wordt per browser onthouden */
+  var INTRO_KEY = 'systemly_intro_off';
+  var introOff = false;
+  try { introOff = localStorage.getItem(INTRO_KEY) === '1'; } catch(e){}
+
+  var pref     = document.getElementById('introPref');
+  var prefText = document.getElementById('introPrefText');
+  var prefBtn  = document.getElementById('introPrefBtn');
+  var prefX    = document.getElementById('introPrefClose');
+
+  function prefRender(){
+    prefText.textContent = introOff
+      ? 'De intro-video staat uit voor deze browser.'
+      : 'De intro-video speelt bij elk bezoek.';
+    prefBtn.textContent = introOff ? 'Zet aan' : 'Zet uit';
+  }
+  function showIntroPref(){
+    var dismissed = false;
+    try { dismissed = sessionStorage.getItem('systemly_pref_dismissed') === '1'; } catch(e){}
+    if(dismissed || !pref) return;
+    prefRender();
+    pref.hidden = false;
+    requestAnimationFrame(function(){ pref.classList.add('show'); });
+  }
+  if(pref){
+    prefBtn.addEventListener('click', function(){
+      introOff = !introOff;
+      try { localStorage.setItem(INTRO_KEY, introOff ? '1' : '0'); } catch(e){}
+      prefRender();
+    });
+    prefX.addEventListener('click', function(){
+      pref.classList.remove('show');
+      try { sessionStorage.setItem('systemly_pref_dismissed', '1'); } catch(e){}
+      setTimeout(function(){ pref.hidden = true; }, 500);
+    });
+  }
   if(reduce && !forceIntro){
     console.info('[systemly] Intro overgeslagen: uw systeem staat op "beperk beweging". ' +
                  'Voeg ?intro=1 toe aan de URL om hem toch te zien.');
   }
 
-  if(!reduce || forceIntro){
+  if((!reduce && !introOff) || forceIntro){
     root.classList.add('intro-on');
     skip.addEventListener('click', endIntro);
     document.addEventListener('keydown', function(e){
@@ -892,6 +962,9 @@
     }, 5000));
     /* absolute backstop */
     introTimers.push(setTimeout(endIntro, 9500));
+  } else {
+    /* geen intro (uitgezet of beperkte beweging): paneel kort na laden tonen */
+    setTimeout(showIntroPref, 1200);
   }
 
   /* ============ HEADER ============ */
