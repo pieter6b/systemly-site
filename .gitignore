@@ -1,0 +1,11 @@
+# AI-harness skills & config (lokaal, hoort niet op de site)
+.claude/
+.agents/
+.gemini/
+.codex/
+.impeccable/
+skills-lock.json
+
+# macOS
+.DS_Store
+hf_*.mp4

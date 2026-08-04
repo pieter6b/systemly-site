@@ -2,13 +2,13 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Systemly — AI-automatisering op maat voor het MKB | Uw kantoor. Uw data. Uw AI.</title>
 <meta name="description" content="Systemly levert AI-automatisering en software op maat voor het MKB: een NVIDIA DGX Spark AI-computer op uw kantoor die documenten verwerkt, data extraheert en processen automatiseert — volledig lokaal, zonder cloud, AVG-proof.">
 <meta name="keywords" content="AI automatisering MKB, lokale AI, AI computer kantoor, documentverwerking AI, documentextractie, software op maat, NVIDIA DGX Spark, AVG-proof AI, AI zonder cloud, procesautomatisering">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Systemly">
-<meta name="theme-color" content="#141315">
+<meta name="theme-color" content="#EDE7DB">
 <link rel="canonical" href="https://systemly.nl/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Systemly">
@@ -74,32 +74,101 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script>document.documentElement.className += ' js';</script>
 <style>
   :root{
     --cream:#EDE7DB;
-    --cream-light:#F4EFE5;
     --paper:#FBF7EE;
-    --dark:#1A1512;
     --void:#100C0A;
     --hero-void:#141315;
     --rust:#BC5A33;
     --rust-deep:#A24A28;
+    /* lighter terracottas for dark slabs: #BC5A33 only reaches ~3.1:1 on the
+       void, so the accent is lifted rather than left illegible */
+    --rust-light:#E08A5F;
+    --rust-pale:#E8B48F;
     --ink:#1A1512;
     --muted:#8A7E72;
+    --muted-strong:#665C50;
     --cream-text:#F2EAD9;
     --cream-muted:#B7AC9C;
+    --body-cream:#5F574D;
+    --line-paper:rgba(26,21,18,.12);
+    --line-dark:rgba(242,234,217,.18);
+    --sec-y:clamp(90px,14vh,170px);
+    --sec-x:clamp(24px,7vw,110px);
+    --ease:cubic-bezier(.16,1,.3,1);
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:auto}
+  html{overflow-x:clip}
   body{
     font-family:'Inter',sans-serif;
-    background:var(--hero-void);
-    color:var(--cream-text);
+    background:var(--cream);
+    color:var(--ink);
     -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
+    overflow-x:clip;
   }
-  .mono{font-family:'Space Mono',monospace;letter-spacing:.18em;text-transform:uppercase}
+  @media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
   .serif{font-family:'Fraunces',serif}
+  img{max-width:100%;display:block}
+
+  :focus-visible{outline:2px solid var(--rust);outline-offset:3px}
+  .contact :focus-visible,.on-dark :focus-visible{outline-color:var(--paper)}
+  .skip{
+    position:absolute;left:-9999px;top:0;z-index:400;
+    background:var(--ink);color:var(--cream-text);padding:14px 20px;
+    font-size:15px;font-weight:600;text-decoration:none;
+  }
+  .skip:focus{left:0}
+
+  /* ================================================================
+     INTRO — the fresco, the touch, the flash, then the page
+     ================================================================ */
+  .intro{
+    position:fixed;inset:0;z-index:300;background:var(--void);
+    display:none;align-items:center;justify-content:center;overflow:hidden;
+    transition:opacity .9s var(--ease);
+    height:100vh;
+  }
+  @supports (height:100svh){.intro{height:100svh}}
+  @supports (height:100dvh){.intro{height:100dvh}}
+  html.intro-on .intro{display:flex}
+  html.intro-on{overflow:hidden}
+  html.intro-on body{overflow:hidden}
+  .intro video,.intro .intro-still{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  }
+  /* Safari paints a native start-playback button inside the video's shadow DOM
+     whenever it is not convinced it may autoplay. Three defences: strip the
+     native controls, make the element untouchable, and keep it invisible until
+     it is genuinely playing — with a still frame underneath in the meantime. */
+  .intro video{
+    opacity:0;transition:opacity .35s ease;pointer-events:none;
+  }
+  .intro.playing video{opacity:1}
+  .intro video::-webkit-media-controls,
+  .intro video::-webkit-media-controls-panel,
+  .intro video::-webkit-media-controls-start-playback-button,
+  .intro video::-webkit-media-controls-play-button,
+  .intro video::-webkit-media-controls-overlay-play-button{
+    display:none!important;-webkit-appearance:none!important;opacity:0!important;
+  }
+  .intro .intro-still{z-index:0}
+  .intro video{z-index:1}
+  .intro-skip{z-index:2}
+  /* the melt: the video freezes on the touch and dissolves into the hero, which
+     already carries the very same frame faintly. No flash, no cut. */
+  .intro{transition:opacity 1.5s cubic-bezier(.4,0,.2,1)}
+  .intro.done{opacity:0;pointer-events:none}
+  .intro-skip{
+    position:absolute;right:clamp(20px,5vw,56px);bottom:clamp(20px,5vh,48px);z-index:2;
+    background:rgba(16,12,10,.45);color:#fff;border:1px solid rgba(255,255,255,.35);
+    -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+    font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    padding:11px 18px;cursor:pointer;opacity:0;transition:opacity .5s ease,background .2s ease;
+  }
+  .intro.ready .intro-skip{opacity:1}
+  .intro-skip:hover{background:rgba(16,12,10,.72)}
 
   /* ---------- HEADER ---------- */
   header{
@@ -110,516 +179,845 @@
     border-bottom:1px solid transparent;
   }
   header.scrolled{
-    background:rgba(237,231,219,.85);
-    backdrop-filter:blur(12px);
+    background:rgba(237,231,219,.88);
+    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
     border-bottom:1px solid rgba(26,21,18,.08);
   }
-  .brand{display:flex;align-items:center;gap:14px}
-  .brand .logo{
-    font-family:'Fraunces',serif;font-weight:600;font-size:25px;letter-spacing:-.01em;
-    color:var(--cream-text);transition:color .4s ease;
-  }
+  .brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+  .brand .logo{font-family:'Fraunces',serif;font-weight:600;font-size:25px;letter-spacing:-.01em;color:var(--ink)}
   .brand .tag{
     font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;
-    color:var(--cream-muted);padding-left:14px;border-left:1px solid rgba(242,234,217,.25);
-    transition:color .4s ease,border-color .4s ease;
+    color:var(--muted-strong);padding-left:14px;border-left:1px solid rgba(26,21,18,.2);
   }
-  header.scrolled .brand .logo{color:var(--ink)}
-  header.scrolled .brand .tag{color:var(--muted);border-color:rgba(26,21,18,.2)}
   nav{display:flex;align-items:center;gap:clamp(16px,3vw,40px)}
-  nav a{color:var(--cream-text);text-decoration:none;font-size:15px;font-weight:500;transition:color .4s ease,opacity .2s}
-  nav a:hover{opacity:.7}
-  header.scrolled nav a{color:var(--ink)}
+  nav a{color:var(--ink);text-decoration:none;font-size:15px;font-weight:500;transition:opacity .2s}
+  nav a:hover{opacity:.65}
   .btn{
-    background:var(--rust);color:#fff;border:none;border-radius:999px;
+    background:var(--rust);color:#fff;border:none;border-radius:999px;white-space:nowrap;
     padding:12px 24px;font-size:15px;font-weight:600;cursor:pointer;
     display:inline-flex;align-items:center;gap:9px;text-decoration:none;
     transition:background .25s ease,transform .25s ease;
   }
-  .btn:hover{background:var(--rust-deep);transform:translateY(-1px)}
+  .btn:hover{background:var(--rust-deep);transform:translateY(-1px);opacity:1}
   .btn .arr{transition:transform .25s ease}
   .btn:hover .arr{transform:translateX(3px)}
-  /* mobiel menu */
   .menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;margin-left:6px}
-  .menu-btn span{display:block;width:22px;height:2px;background:var(--cream-text);margin:5px 0;border-radius:2px;transition:transform .3s ease,opacity .3s ease,background .4s ease}
-  header.scrolled .menu-btn span{background:var(--ink)}
+  .menu-btn span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;transition:transform .3s ease,opacity .3s ease}
   header.menu-open .menu-btn span:nth-child(1){transform:translateY(7px) rotate(45deg)}
   header.menu-open .menu-btn span:nth-child(2){opacity:0}
   header.menu-open .menu-btn span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
   .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;z-index:49;
-    background:rgba(237,231,219,.97);backdrop-filter:blur(12px);
-    border-bottom:1px solid rgba(26,21,18,.1);
-    padding:18px 24px 24px;flex-direction:column;gap:4px}
+    background:rgba(237,231,219,.97);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(26,21,18,.1);padding:18px 24px 24px;flex-direction:column;gap:4px}
   .mobile-menu a{display:block;padding:14px 4px;color:var(--ink);text-decoration:none;
     font-family:'Fraunces',serif;font-size:22px;border-bottom:1px solid rgba(26,21,18,.08)}
   .mobile-menu a:last-child{border-bottom:none}
-  header.menu-open ~ .mobile-menu, .mobile-menu.open{display:flex}
-  @media(max-width:760px){
+  .mobile-menu.open{display:flex}
+  @media(max-width:880px){
     nav .navlink{display:none}
     .brand .tag{display:none}
     nav .btn{padding:10px 16px;font-size:14px}
     .menu-btn{display:block}
   }
+  @media(max-width:560px){nav{gap:10px}nav .btn{padding:9px 14px;font-size:13.5px}}
+  @media(max-width:400px){nav .btn{display:none}}
 
-  /* ---------- HERO SCROLL SCRUB ---------- */
-  .hero{position:relative;min-height:100vh;height:100vh;overflow:hidden;background:#000}
-  @supports (height:100svh){.hero{min-height:100svh;height:100svh}}
-  .hero-bg{position:absolute;inset:0;background-position:center;background-size:cover;background-repeat:no-repeat}
-  .hero-bg.base{z-index:1}
-  .hero-bg.reveal{z-index:2;pointer-events:none;
-    -webkit-mask-image:radial-gradient(circle var(--r,0px) at var(--mx,-600px) var(--my,-600px), #000 0%, #000 42%, rgba(0,0,0,.5) 66%, transparent 100%);
-            mask-image:radial-gradient(circle var(--r,0px) at var(--mx,-600px) var(--my,-600px), #000 0%, #000 42%, rgba(0,0,0,.5) 66%, transparent 100%);
-    -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;}
-  #maskcanvas{position:absolute;inset:0;pointer-events:none;display:none}
-  .hero-scrim{position:absolute;inset:0;z-index:3;pointer-events:none;
-    background:linear-gradient(90deg, rgba(8,6,5,.80) 0%, rgba(8,6,5,.45) 40%, rgba(8,6,5,0) 66%),
-               linear-gradient(0deg, rgba(8,6,5,.55) 0%, rgba(8,6,5,0) 42%);}
-  .hero-copy{position:absolute;z-index:4;left:clamp(24px,6vw,96px);top:50%;transform:translateY(-50%);max-width:34ch;pointer-events:none}
-  .hero-copy .eyebrow{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--rust);margin-bottom:22px}
-  .hero-copy h1{font-family:'Fraunces',serif;font-weight:500;line-height:.98;letter-spacing:-.02em;font-size:clamp(40px,5.4vw,92px);color:var(--cream-text)}
-  .hero-copy h1 em{font-style:italic;color:var(--rust);font-weight:500}
-  .hero-copy .sub{margin-top:28px;max-width:34ch;font-size:clamp(16px,1.4vw,20px);line-height:1.5;color:var(--cream-muted)}
-  .hero-copy .hovertip{margin-top:36px;display:inline-flex;align-items:center;gap:11px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-muted)}
-  .hero-copy .hovertip .dot{width:8px;height:8px;border-radius:50%;background:var(--rust);animation:pulse 1.6s ease-in-out infinite}
-
-  /* the interactive Spark: closed gold base + copper reveal under a cursor spotlight */
-  .hero-spark{position:relative;height:min(80vh,680px);width:100%}
-  .spark-base,.spark-reveal{position:absolute;inset:0;background-position:center;background-size:contain;background-repeat:no-repeat}
-  .spark-reveal{opacity:0;transition:opacity .3s ease}   /* mask is drawn by JS (canvas → maskImage) */
-  .hero-spark.live .spark-reveal{opacity:1}
-  .spark-ring{position:absolute;left:var(--mx,-400px);top:var(--my,-400px);width:18px;height:18px;border-radius:50%;
-    transform:translate(-50%,-50%);pointer-events:none;opacity:0;transition:opacity .3s;
-    background:radial-gradient(circle, rgba(236,150,92,.85), rgba(236,150,92,0) 70%);
-    box-shadow:0 0 26px 9px rgba(236,150,92,.30)}
-  .hero-spark.live .spark-ring{opacity:1}
-
-  @media(max-width:900px){
-    .hero-copy{left:24px;right:24px;max-width:none;top:auto;bottom:13vh;transform:none}
-    .hero-copy h1{font-size:clamp(40px,11vw,72px)}
-    .hero-copy .sub{max-width:36ch}
-  }
-
-  /* overlay text layers */
-  .layer{
-    position:absolute;inset:0;z-index:3;pointer-events:none;
-    display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
-    padding:0 clamp(24px,6vw,96px);
-    opacity:0;transition:opacity .6s ease, transform .6s ease;
-    will-change:opacity,transform;
-  }
-  .layer .eyebrow{
-    font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;
-    color:var(--rust);margin-bottom:22px;
-  }
-  .layer h1{
-    font-family:'Fraunces',serif;font-weight:500;line-height:.98;letter-spacing:-.02em;
-    font-size:clamp(40px,6.2vw,104px);color:var(--cream-text);max-width:min(44vw,11ch);
-  }
-  .layer h1 em{font-style:italic;color:var(--rust);font-weight:500}
-  .layer p.sub{
-    margin-top:30px;max-width:min(38vw,30ch);font-size:clamp(16px,1.4vw,20px);line-height:1.5;
-    color:var(--cream-muted);font-weight:400;
-  }
-  .layer h2{
-    font-family:'Fraunces',serif;font-weight:500;line-height:1.02;letter-spacing:-.02em;
-    font-size:clamp(32px,4.6vw,74px);color:var(--cream-text);max-width:min(44vw,15ch);
-  }
-  .layer h2 em{font-style:italic;color:var(--rust)}
-  /* all stages share the left column so text never sits on the Spark */
-  .layer.center, .layer.right{align-items:flex-start;text-align:left}
-  .layer.center p, .layer.right p{
-    margin-top:24px;max-width:min(38vw,42ch);margin-left:0;
-    color:var(--cream-muted);font-size:clamp(15px,1.3vw,19px);line-height:1.55;
-  }
-
-  @media(max-width:900px){
-    /* mobile: Spark sits in the top half, text drops to the bottom */
-    .layer{justify-content:flex-end;align-items:center;text-align:center;padding:0 24px 10vh}
-    .layer h1{font-size:clamp(38px,10.5vw,66px);max-width:18ch;text-align:center}
-    .layer p.sub{max-width:34ch;margin-left:auto;margin-right:auto}
-    .layer.center,.layer.right{align-items:center;text-align:center}
-    .layer h2{font-size:clamp(30px,7.5vw,50px);max-width:20ch}
-    .layer.center p,.layer.right p{max-width:34ch;margin-left:auto;margin-right:auto}
-  }
-
-  /* scroll hint */
-  .hint{
-    position:absolute;left:50%;bottom:38px;transform:translateX(-50%);z-index:4;
-    font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;
-    color:var(--cream-muted);display:flex;flex-direction:column;align-items:center;gap:10px;
-    transition:opacity .5s ease;
-  }
-  .hint .bar{width:1px;height:42px;background:linear-gradient(var(--rust),transparent);animation:pulse 1.8s ease-in-out infinite}
-  @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
-
-  /* progress readout bottom-right (techy) */
-  .readout{
-    position:absolute;right:clamp(20px,5vw,56px);bottom:34px;z-index:4;
-    font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--cream-muted);
-    text-transform:uppercase;opacity:.75;
-  }
-  .readout b{color:var(--rust);font-weight:700}
-
-  /* loader */
-  #loader{
-    position:fixed;inset:0;z-index:100;background:var(--hero-void);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;
-    transition:opacity .8s ease;
-  }
-  #loader.hide{opacity:0;pointer-events:none}
-  #loader .lname{font-family:'Fraunces',serif;font-size:32px;color:var(--cream-text);letter-spacing:-.01em}
-  #loader .track{width:200px;height:2px;background:rgba(242,234,217,.15);border-radius:2px;overflow:hidden}
-  #loader .fill{height:100%;width:0%;background:var(--rust);transition:width .2s ease}
-  #loader .pct{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--cream-muted)}
-
-  /* ---------- HANDOFF SECTION ---------- */
-  .handoff{
-    background:var(--cream);color:var(--ink);
-    padding:clamp(90px,14vh,170px) clamp(24px,7vw,110px);
-    position:relative;z-index:5;
-  }
-  .handoff .eyebrow{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--rust);margin-bottom:26px}
-  .handoff h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(34px,5.5vw,76px);line-height:1.02;letter-spacing:-.02em;max-width:18ch}
-  .handoff h2 em{font-style:italic;color:var(--rust)}
-  .specs{
-    margin-top:70px;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:48px 40px;
-    border-top:1px solid rgba(26,21,18,.12);padding-top:54px;
-  }
-  .specs .item .n{font-family:'Space Mono',monospace;color:var(--rust);font-size:13px;letter-spacing:.1em;margin-bottom:16px}
-  .specs .item h3{font-family:'Fraunces',serif;font-weight:500;font-size:24px;margin-bottom:12px;letter-spacing:-.01em}
-  .specs .item p{color:#5f574d;font-size:15.5px;line-height:1.6}
-
-  /* ---------- scroll reveal ---------- */
+  /* ---------- SHARED ---------- */
   section{scroll-margin-top:76px}
-  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease, transform .8s ease}
-  .reveal.in{opacity:1;transform:none}
   .sec-eyebrow{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--rust);margin-bottom:26px}
+  h2.serif{font-weight:500;font-size:clamp(34px,5.5vw,76px);line-height:1.02;letter-spacing:-.02em;max-width:17ch}
+  h2.serif em{font-style:italic;color:var(--rust)}
+  .lead{margin-top:26px;max-width:54ch;font-size:clamp(16px,1.5vw,20px);line-height:1.6;color:var(--body-cream)}
+  .on-dark{color:var(--cream-text)}
+  .on-dark .lead{color:var(--cream-muted)}
+  .on-dark h2.serif em{color:var(--rust-light)}
 
-  /* ---------- 02 · DOCUMENTSTRAAT (dark) ---------- */
-  .work{background:radial-gradient(58% 56% at 50% 66%, #201b16 0%, #141315 66%);color:var(--cream-text);padding:clamp(90px,14vh,170px) clamp(24px,7vw,110px)}
-  .work h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(34px,5.5vw,76px);line-height:1.02;letter-spacing:-.02em;max-width:18ch}
-  .work h2 em{font-style:italic;color:var(--rust)}
-  .work .lead{margin-top:26px;max-width:56ch;color:var(--cream-muted);font-size:clamp(16px,1.5vw,20px);line-height:1.6}
-  /* kop + tekst links, 24/7 draaiende Spark rechts ernaast */
-  .work .work-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,1fr);gap:clamp(24px,4vw,56px);align-items:center}
-  .work .spark-stage{position:relative;height:clamp(300px,44vh,460px)}
-  .work .spark-stage video,.work .spark-stage img{width:100%;height:100%;object-fit:contain;display:block;background:transparent;
-    /* masker op de video zelf: randen lopen altijd vloeiend over in de sectie-achtergrond */
-    -webkit-mask-image:radial-gradient(closest-side at 50% 50%, #000 52%, rgba(0,0,0,.35) 76%, transparent 96%);
-            mask-image:radial-gradient(closest-side at 50% 50%, #000 52%, rgba(0,0,0,.35) 76%, transparent 96%);}
-  @media(max-width:900px){
-    .work .work-top{grid-template-columns:1fr}
-    .work .spark-stage{height:34vh;margin-top:26px}
+  /* motion primitives */
+  .lines .l{display:block;overflow:hidden;padding:.06em .14em .12em 0;margin:0 -.14em -.12em 0}
+  html.js .lines .l>span{display:block;transform:translateY(108%);transition:transform 1.05s var(--ease);transition-delay:calc(var(--i,0)*90ms)}
+  html.js .lines.in .l>span{transform:none}
+  html.js [data-rise]{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:calc(var(--i,0)*70ms)}
+  html.js [data-rise].in{opacity:1;transform:none}
+  html.js .track{--f:0}
+  @media(prefers-reduced-motion:reduce){
+    html.js .lines .l>span,html.js [data-rise]{transform:none!important;opacity:1!important;transition:none!important}
+    html{scroll-behavior:auto}
   }
 
-  .demo{margin-top:64px;border-radius:18px;overflow:hidden;background:var(--paper);box-shadow:0 40px 90px -45px rgba(0,0,0,.8);border:1px solid rgba(0,0,0,.06)}
-  .demo-bar{display:flex;align-items:center;gap:14px;padding:15px 22px;background:var(--cream-light);border-bottom:1px solid rgba(0,0,0,.07);font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#6b6256}
-  .demo-bar .dots{display:flex;gap:7px}
-  .demo-bar .dots i{width:11px;height:11px;border-radius:50%;background:#d8cdb8}
-  .demo-bar .dots i:first-child{background:var(--rust)}
-  .demo-bar .live{margin-left:auto;color:var(--rust);display:flex;align-items:center;gap:8px}
-  .demo-bar .live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--rust);animation:blink 1.4s infinite}
-  @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+  /* ================================================================
+     HERO — the statement, on plaster
+     ================================================================ */
+  .hero{
+    min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    padding:clamp(120px,16vh,180px) var(--sec-x) clamp(60px,10vh,110px);
+    position:relative;isolation:isolate;
+  }
+  /* the frozen frame stays as the hero's background — the intro dissolves into it */
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:-2;
+    background:url('hero-touch.webp') center/cover no-repeat;
+    opacity:.88;
+  }
+  /* scrim only where the statement sits, so the fresco keeps its presence on the
+     right where the hands actually meet */
+  .hero::after{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(90deg,rgba(237,231,219,.92) 0%,rgba(237,231,219,.80) 26%,rgba(237,231,219,.34) 52%,rgba(237,231,219,0) 76%);
+  }
+  @media(max-width:900px){
+    .hero::before{opacity:.82;background-position:62% 42%}
+    .hero::after{
+      background:linear-gradient(0deg,rgba(237,231,219,.95) 0%,rgba(237,231,219,.88) 42%,rgba(237,231,219,.50) 74%,rgba(237,231,219,.18) 100%);
+    }
+  }
+  /* dynamic viewport height: the hero fills the screen and re-fits when mobile
+     browser chrome slides away, instead of being cropped by a stale 100vh */
+  @supports (height:100svh){.hero{min-height:100svh}}
+  @supports (height:100dvh){.hero{min-height:100dvh}}
+  /* container widths are px, not ch: a ch here resolves against the body font,
+     not the display font, and silently clamps the headline to ~300px */
+  .hero-copy{max-width:min(100%,1120px)}
+  .hero .eyebrow{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--rust);margin-bottom:26px;text-wrap:balance}
+  .hero h1{
+    font-family:'Fraunces',serif;font-weight:500;line-height:.95;letter-spacing:-.025em;
+    font-size:clamp(46px,7.4vw,112px);color:var(--ink);
+  }
+  .hero h1 em{font-style:italic;color:var(--rust)}
+  .hero .sub{margin-top:clamp(24px,3.5vh,38px);max-width:46ch;font-size:clamp(16px,1.5vw,21px);line-height:1.55;color:var(--body-cream)}
+  .hero-actions{margin-top:clamp(28px,4vh,42px);display:flex;align-items:center;gap:clamp(18px,3vw,34px);flex-wrap:wrap}
+  .hero-actions .textlink{
+    font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--muted-strong);text-decoration:none;border-bottom:1px solid rgba(26,21,18,.25);padding-bottom:3px;
+  }
+  .hero-actions .textlink:hover{color:var(--ink);border-color:var(--ink)}
+  /* laptops are wide but short — scale the display line down so the statement
+     still lands inside one screen. Must come after the base rules above, or it
+     loses the cascade at equal specificity. */
+  @media(min-width:900px) and (max-height:940px){
+    .hero h1{font-size:clamp(40px,5.8vw,84px)}
+    .hero .sub{font-size:clamp(15px,1.2vw,19px);margin-top:24px}
+  }
 
-  .demo-stage{position:relative;display:grid;grid-template-columns:1fr 1.1fr 1fr;align-items:center;padding:54px 40px;min-height:300px;color:#3a342c}
-  .files{display:flex;flex-direction:column;gap:16px}
-  .file{font-family:'Space Mono',monospace;font-size:14px;padding:14px 18px;border:1px solid rgba(0,0,0,.14);border-radius:10px;background:#fff;color:#4a4338;opacity:.45}
-  .playing .file{animation:filesend 5s infinite}
-  .playing .file.f2{animation-delay:.45s}
-  .playing .file.f3{animation-delay:.9s}
-  @keyframes filesend{0%,6%{opacity:.45;transform:translateX(0);border-color:rgba(0,0,0,.14)}13%{opacity:1}20%{opacity:1;transform:translateX(10px);border-color:var(--rust)}38%,100%{opacity:.45;transform:translateX(0);border-color:rgba(0,0,0,.14)}}
+  /* ================================================================
+     01 · DE VERSCHUIVING — full-bleed fresco, dark
+     ================================================================ */
+  .shift{
+    position:relative;background:var(--void);
+    padding:clamp(150px,26vh,300px) var(--sec-x);overflow:hidden;
+  }
+  .shift-bg{position:absolute;inset:0;z-index:0}
+  .shift-bg img{width:100%;height:100%;object-fit:cover;object-position:center}
+  .shift-bg::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg,rgba(16,12,10,.84) 0%,rgba(16,12,10,.72) 34%,rgba(16,12,10,.38) 68%,rgba(16,12,10,.28) 100%),
+               linear-gradient(0deg,rgba(16,12,10,.62) 0%,rgba(16,12,10,0) 55%);
+  }
+  .shift-copy{position:relative;z-index:1;max-width:min(100%,760px)}
+  .shift .kicker{
+    margin-top:clamp(34px,5vh,58px);font-family:'Fraunces',serif;font-style:italic;
+    font-size:clamp(20px,2.6vw,34px);line-height:1.3;color:var(--rust-pale);max-width:22ch;
+  }
+  /* the left-to-right scrim only works while the copy sits in the left column.
+     Once it spans the full width it crosses the lit plaster, so darken evenly. */
+  @media(max-width:900px){
+    .shift-bg img{object-position:32% center}
+    .shift-bg::after{
+      background:linear-gradient(180deg,rgba(16,12,10,.80) 0%,rgba(16,12,10,.88) 55%,rgba(16,12,10,.93) 100%);
+    }
+  }
 
-  .pipe{position:relative;height:2px;background:rgba(0,0,0,.12);margin:0 10px}
-  .pipe .node{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:14px;background:var(--ink);color:var(--rust);display:flex;align-items:center;justify-content:center;font-size:22px}
-  .playing .pipe .node{animation:nodepulse 5s infinite}
-  @keyframes nodepulse{0%,40%{box-shadow:0 0 0 0 rgba(188,90,51,0)}50%{box-shadow:0 0 0 0 rgba(188,90,51,.55)}65%,100%{box-shadow:0 0 0 16px rgba(188,90,51,0)}}
-  .packet{position:absolute;top:50%;width:9px;height:9px;border-radius:50%;background:var(--rust);transform:translateY(-50%);opacity:0;left:0}
-  .playing .packet{animation:travel 5s infinite}
-  .playing .packet.k2{animation-delay:.45s}
-  .playing .packet.k3{animation-delay:.9s}
-  @keyframes travel{0%{left:0;opacity:0}12%{opacity:1}45%{left:calc(50% - 5px);opacity:1}52%{left:calc(50% - 5px);opacity:0}100%{opacity:0}}
+  /* ================================================================
+     02 · WAT WIJ DOEN — dienstenraster, geen beeld
+     ================================================================ */
+  .services{padding:var(--sec-y) var(--sec-x)}
+  .svc-grid{
+    margin-top:clamp(40px,6vh,64px);border-top:1px solid var(--line-paper);
+    padding-top:clamp(30px,4vh,42px);
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:38px 44px;
+  }
+  .svc .n{font-family:'Space Mono',monospace;color:var(--rust);font-size:13px;letter-spacing:.1em;margin-bottom:14px}
+  .svc h3{font-family:'Fraunces',serif;font-weight:500;font-size:21px;letter-spacing:-.01em;margin-bottom:9px}
+  .svc p{color:var(--body-cream);font-size:15.5px;line-height:1.6}
 
-  .output .sheet{border:1px solid rgba(0,0,0,.14);border-radius:10px;background:#fff;padding:16px;display:flex;flex-direction:column;gap:9px}
-  .output .sheet .head{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#9a8f7e;margin-bottom:4px}
-  .output .row{height:10px;border-radius:3px;background:linear-gradient(90deg,var(--rust),#e3a781);transform-origin:left;transform:scaleX(0)}
-  .playing .output .row{animation:fill 5s infinite}
-  .playing .output .row:nth-of-type(2){animation-delay:1.7s}
-  .playing .output .row:nth-of-type(3){animation-delay:2.0s}
-  .playing .output .row:nth-of-type(4){animation-delay:2.3s}
-  .playing .output .row:nth-of-type(5){animation-delay:2.6s}
-  @keyframes fill{0%,32%{transform:scaleX(0)}48%{transform:scaleX(1)}92%{transform:scaleX(1)}100%{transform:scaleX(0)}}
-  .output .badge{margin-top:8px;font-family:'Space Mono',monospace;font-size:11px;color:var(--rust);opacity:0}
-  .playing .output .badge{animation:badge 5s infinite}
-  @keyframes badge{0%,58%{opacity:0}68%,92%{opacity:1}100%{opacity:0}}
+  /* ================================================================
+     02 · FOCUS  &  04 · LOKAAL — paired image + statement
+     ================================================================ */
+  .pair{padding:var(--sec-y) var(--sec-x)}
+  .pair-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,86px);align-items:center}
+  .pair.flip .pair-grid{grid-template-columns:.95fr 1.05fr}
+  .pair.flip .pair-text{order:2}
+  .pair-fig{position:relative}
+  .pair-fig img{width:100%;height:clamp(300px,52vh,520px);object-fit:cover}
+  .pair-cap{
+    margin-top:14px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted-strong);
+  }
+  .pair-points{margin-top:clamp(30px,4vh,46px);border-top:1px solid var(--line-paper);padding-top:26px;display:flex;flex-direction:column;gap:16px}
+  .pair-points div{display:flex;gap:14px;align-items:baseline;font-size:16px;line-height:1.5;color:var(--body-cream)}
+  .pair-points b{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--rust);font-weight:400;flex:none}
+  @media(max-width:900px){
+    .pair-grid,.pair.flip .pair-grid{grid-template-columns:1fr;gap:28px}
+    .pair.flip .pair-text{order:0}
+    .pair-fig img{height:clamp(240px,38vh,360px)}
+  }
 
-  .demo-term{background:var(--ink);color:#e9e2d4;font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.03em;padding:16px 22px}
-  .demo-term .caret{display:inline-block;width:8px;height:15px;background:var(--rust);margin-left:5px;vertical-align:-2px;animation:blink 1s steps(1) infinite}
-  @media(max-width:760px){.demo-stage{grid-template-columns:1fr;gap:28px}.pipe{display:none}}
+  /* ================================================================
+     03 · DE MACHINE — dark
+     ================================================================ */
+  .box-sec{position:relative;background:radial-gradient(58% 56% at 50% 66%, #201b16 0%, #141315 66%);padding:var(--sec-y) var(--sec-x)}
+  .box-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,.9fr);gap:clamp(28px,5vw,72px);align-items:center}
+  .spark-stage{position:relative;height:clamp(280px,42vh,440px)}
+  .spark-stage img{width:100%;height:100%;object-fit:contain;
+    -webkit-mask-image:radial-gradient(closest-side at 50% 50%, #000 46%, rgba(0,0,0,.3) 72%, transparent 94%);
+            mask-image:radial-gradient(closest-side at 50% 50%, #000 46%, rgba(0,0,0,.3) 72%, transparent 94%);}
+  .annots{margin-top:clamp(34px,5vh,58px);display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:34px 40px;border-top:1px solid var(--line-dark);padding-top:34px}
+  .annot .a-n{font-family:'Space Mono',monospace;color:var(--rust);font-size:13px;letter-spacing:.1em;margin-bottom:14px}
+  .annot h3{font-family:'Fraunces',serif;font-weight:500;font-size:21px;letter-spacing:-.01em;margin-bottom:9px}
+  .annot p{color:var(--cream-muted);font-size:15.5px;line-height:1.6}
+  @media(max-width:900px){
+    .box-top{grid-template-columns:1fr}
+    .spark-stage{height:32vh;min-height:220px;order:-1;margin-bottom:22px}
+  }
+  /* uw-data — eigen donkere sectie */
+  .data-sec{position:relative;background:var(--void);padding:clamp(64px,9vh,104px) var(--sec-x)}
+  /* stof in het licht — canvas per donkere sectie */
+  .dust{position:absolute;inset:0;z-index:2;pointer-events:none}
+  .data-sec h2.serif{font-size:clamp(28px,3.6vw,52px)}
+  .data-sec .lead{margin-top:18px;font-size:clamp(15px,1.3vw,18px)}
+  .data-sec .pair-points{gap:13px;margin-top:0;border-top:0;padding-top:0}
+  .data-sec .pair-points div{font-size:15px}
+  .data-grid{
+    display:grid;grid-template-columns:1.05fr .95fr;
+    gap:clamp(28px,5vw,72px);align-items:center;
+  }
+  .on-dark .pair-points{border-top-color:var(--line-dark)}
+  .on-dark .pair-points div{color:var(--cream-muted)}
+  .on-dark .pair-points b{color:var(--rust-light)}
+  @media(max-width:900px){
+    .data-grid{grid-template-columns:1fr;gap:30px}
+  }
 
-  /* ---------- 03 · QUOTE (cream) ---------- */
-  .quote{background:var(--cream);color:var(--ink);padding:clamp(80px,12vh,150px) clamp(24px,7vw,110px)}
-  .quote blockquote{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:clamp(24px,3.4vw,46px);line-height:1.28;letter-spacing:-.01em;max-width:26ch;border-left:3px solid var(--rust);padding-left:clamp(20px,3vw,44px)}
-  .quote cite{display:block;margin-top:28px;padding-left:clamp(23px,3vw,47px);font-style:normal;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  /* ================================================================
+     HET BEWIJS — band binnen de uw-data sectie
+     ================================================================ */
+  .proof-band{
+    margin-top:clamp(40px,6vh,64px);border-top:1px solid var(--line-dark);
+    padding-top:clamp(36px,5vh,60px);
+    display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,4vw,64px);align-items:center;
+  }
+  .proof-band blockquote{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:500;
+    font-size:clamp(21px,2.4vw,34px);line-height:1.25;letter-spacing:-.015em;max-width:30ch;
+    border-left:3px solid var(--rust);padding-left:clamp(18px,2.5vw,36px);
+  }
+  .proof-band blockquote em{font-style:italic;color:var(--rust-light)}
+  .proof-band cite{
+    display:block;margin-top:20px;padding-left:clamp(21px,2.5vw,39px);font-style:normal;
+    font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-muted);
+  }
+  .proof-stats{
+    display:grid;grid-template-columns:1fr;gap:20px;
+    border-left:1px solid var(--line-dark);padding-left:clamp(20px,3vw,42px);
+  }
+  .proof-stats .st b{
+    display:block;font-family:'Fraunces',serif;font-weight:500;
+    font-size:clamp(18px,1.9vw,26px);letter-spacing:-.01em;color:var(--cream-text);
+  }
+  .proof-stats .st span{
+    display:block;margin-top:4px;font-family:'Space Mono',monospace;font-size:10.5px;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--cream-muted);
+  }
+  @media(max-width:760px){
+    .proof-band{grid-template-columns:1fr;gap:28px}
+    .proof-band blockquote{font-size:clamp(20px,5.6vw,28px);max-width:none}
+    .proof-stats{border-left:0;border-top:1px solid var(--line-dark);padding-left:0;padding-top:22px;gap:16px}
+  }
 
-  /* ---------- 04 · HOE HET WERKT (dark) ---------- */
-  .steps{background:var(--hero-void);color:var(--cream-text);padding:clamp(90px,14vh,170px) clamp(24px,7vw,110px)}
-  .steps h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(34px,5.5vw,76px);line-height:1.02;letter-spacing:-.02em;max-width:16ch}
-  .steps .grid{margin-top:70px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:48px 40px}
-  .steps .step{border-top:1px solid rgba(242,234,217,.18);padding-top:26px}
-  .steps .step .n{font-family:'Space Mono',monospace;color:var(--rust);font-size:13px;margin-bottom:20px}
-  .steps .step h3{font-family:'Fraunces',serif;font-weight:500;font-size:24px;margin-bottom:12px;letter-spacing:-.01em}
-  .steps .step p{color:var(--cream-muted);font-size:15.5px;line-height:1.6}
+  /* ================================================================
+     06 · HOE HET WERKT
+     ================================================================ */
+  .steps{padding:var(--sec-y) var(--sec-x)}
+  .track{position:relative;margin-top:clamp(56px,8vh,90px);padding-top:34px}
+  .track::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:var(--line-paper)}
+  .track::after{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:var(--rust);transform:scaleX(var(--f,1));transform-origin:left}
+  .track .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:44px 40px}
+  .step .n{font-family:'Space Mono',monospace;color:var(--rust);font-size:13px;letter-spacing:.1em;margin-bottom:18px}
+  .step h3{font-family:'Fraunces',serif;font-weight:500;font-size:24px;margin-bottom:12px;letter-spacing:-.01em}
+  .step p{color:var(--body-cream);font-size:15.5px;line-height:1.6}
+  @media(max-width:760px){
+    .track{padding-top:0;padding-left:26px}
+    .track::before{top:0;bottom:0;left:0;right:auto;width:1px;height:auto}
+    .track::after{top:0;bottom:0;left:0;right:auto;width:1px;height:auto;transform:scaleY(var(--f,1));transform-origin:top}
+    .track .grid{grid-template-columns:1fr;gap:38px}
+  }
 
-  /* ---------- 05 · CONTACT (rust) ---------- */
-  .contact{background:var(--rust);color:#fff;padding:clamp(90px,14vh,170px) clamp(24px,7vw,110px)}
-  .contact .sec-eyebrow{color:rgba(255,255,255,.82)}
-  .contact h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(34px,5.5vw,80px);line-height:1.03;letter-spacing:-.02em;max-width:16ch}
-  .contact h2 u{text-decoration-thickness:2px;text-underline-offset:6px}
-  .contact .lead{margin-top:22px;font-size:clamp(16px,1.5vw,21px);color:rgba(255,255,255,.85)}
+  /* ================================================================
+     07 · CONTACT
+     ================================================================ */
+  .contact{background:var(--rust);color:#fff;padding:var(--sec-y) var(--sec-x)}
+  .contact .sec-eyebrow{color:#fff}
+  .contact h2.serif{max-width:16ch}
+  .contact h2.serif u{text-decoration-thickness:2px;text-underline-offset:6px}
+  .contact .lead{color:#fff}
   .form{margin-top:60px;max-width:880px;display:grid;grid-template-columns:1fr 1fr;gap:26px}
   .form .full{grid-column:1/-1}
   .form label{display:block;font-weight:600;font-size:14px;margin-bottom:10px}
   .form input,.form textarea{width:100%;border:none;border-radius:12px;background:var(--paper);color:var(--ink);padding:16px 18px;font-family:'Inter',sans-serif;font-size:16px}
   .form textarea{min-height:150px;resize:vertical}
-  .form input::placeholder,.form textarea::placeholder{color:#9a8f7e}
-  .form .submit{grid-column:1/-1;justify-self:start;margin-top:6px;background:var(--ink);color:#fff;border:none;border-radius:999px;padding:17px 30px;font-size:16px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:transform .2s}
+  .form input::placeholder,.form textarea::placeholder{color:var(--muted-strong)}
+  .form .submit{grid-column:1/-1;justify-self:start;margin-top:6px;background:var(--ink);color:#fff;border:none;border-radius:999px;padding:17px 30px;font-size:16px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:transform .2s ease}
   .form .submit:hover{transform:translateY(-2px)}
+  .form .submit[disabled]{opacity:.65;cursor:progress;transform:none}
+  .form-msg{grid-column:1/-1;font-size:15px;line-height:1.5;color:#fff;min-height:1px}
+  .form-done{font-size:21px;font-weight:600;line-height:1.4}
+  .form-done-wrap{display:flex;align-items:center;gap:clamp(24px,4vw,44px);flex-wrap:wrap}
+  .seal{
+    width:150px;height:150px;border-radius:50%;flex:none;
+    display:flex;align-items:center;justify-content:center;text-align:center;
+    position:relative;padding:20px;transform:rotate(-8deg);
+    border:2px solid var(--paper);color:var(--paper);
+    font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.16em;
+    text-transform:uppercase;line-height:1.7;
+  }
+  .seal::before{
+    content:"";position:absolute;inset:6px;border-radius:50%;
+    border:1px dashed rgba(251,247,238,.7);
+  }
+  @keyframes stamp{
+    0%{transform:scale(2.1) rotate(-26deg);opacity:0}
+    55%{transform:scale(.94) rotate(-6deg);opacity:1}
+    100%{transform:scale(1) rotate(-8deg)}
+  }
+  html.js .seal{animation:stamp .55s cubic-bezier(.2,.9,.3,1.2) both}
+  @media(prefers-reduced-motion:reduce){html.js .seal{animation:none}}
   @media(max-width:640px){.form{grid-template-columns:1fr}}
 
-  /* ---------- FOOTER ---------- */
-  footer.foot{background:var(--ink);color:var(--cream-muted);padding:50px clamp(24px,7vw,110px);display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.04em}
+  footer.foot{background:var(--ink);color:var(--cream-muted);padding:50px var(--sec-x);display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;font-family:'Space Mono',monospace;font-size:12.5px;letter-spacing:.04em}
   footer.foot .fb{font-family:'Fraunces',serif;font-size:22px;letter-spacing:0;color:var(--cream-text)}
-  footer.foot .fl{display:flex;gap:26px}
+  footer.foot .fl{display:flex;gap:26px;flex-wrap:wrap}
   footer.foot a{color:var(--cream-muted);text-decoration:none}
   footer.foot a:hover{color:var(--cream-text)}
 </style>
 </head>
 <body>
+<!--
+  DIRECTION CONTRACT — Systemly, one-page Persuade surface
+  THESIS: this is the next step in a very old story, and the gap between the offices that take
+    it and the ones that don't widens every week. It refuses the category default of
+    "here is our product and here are four feature cards".
+  OWN-WORLD: Renaissance fresco. Every image on the site is painted on lime plaster in one
+    hand — cream, bone, ochre, burnt terracotta — carried from the Michelangelo opening.
+    Full-bleed warm slabs, Fraunces statements with italic terracotta accents, Inter for
+    explanation, Space Mono as machine label, hairlines instead of cards, no shadows.
+  STORY: the visitor feels the shift is already happening, sees that the drudgery can leave
+    their people, learns the machine sits in their own building, and books the kennismaking.
+  FIRST VIEWPORT: a 7s fresco of the Creation of Adam; fingers meet, a flash, and the page
+    resolves out of the light onto plaster with the statement set large at lower left.
+  FORM: cinematic intro + painted editorial page; user-pinned direction, no concept roll.
+  FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review,
+    the verdict, and DESIGN.md.
+-->
+<a class="skip" href="#main">Naar de inhoud</a>
+
+<div class="intro" id="intro" role="region" aria-label="Introductie-animatie">
+  <img class="intro-still" src="intro-poster.jpg" alt="" aria-hidden="true">
+  <video id="introVideo" muted autoplay playsinline webkit-playsinline preload="auto"
+         disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1">
+    <source src="intro.mp4" type="video/mp4">
+  </video>
+  <button class="intro-skip" id="introSkip" type="button">Overslaan</button>
+</div>
 
 <header id="header">
-  <div class="brand">
+  <a class="brand" href="#top">
     <span class="logo">Systemly</span>
     <span class="tag">Systemly as a Solution</span>
-  </div>
+  </a>
   <nav>
+    <a href="#uw-mensen" class="navlink">Wat het doet</a>
     <a href="#hoe-het-werkt" class="navlink">Hoe het werkt</a>
-    <a href="#contact" class="navlink">Contact</a>
-    <a href="#contact" class="btn">Plan een kennismaking <span class="arr">→</span></a>
-    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <a href="#contact" class="btn">Plan een kennismaking <span class="arr" aria-hidden="true">→</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu openen" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
   </nav>
 </header>
 <div class="mobile-menu" id="mobileMenu">
+  <a href="#uw-mensen">Wat het doet</a>
   <a href="#hoe-het-werkt">Hoe het werkt</a>
-  <a href="#contact">Contact</a>
   <a href="#contact">Plan een kennismaking →</a>
 </div>
 
-<section class="hero" id="hero">
-  <div class="hero-bg base"   id="baseImg"></div>
-  <div class="hero-bg reveal" id="revealImg"></div>
-  <canvas id="maskcanvas"></canvas>
-  <div class="hero-scrim"></div>
+<main id="main">
+
+<section class="hero" id="top">
   <div class="hero-copy">
-    <div class="eyebrow">Lokale AI · Geen cloud · AVG-proof</div>
-    <h1 class="serif">Uw kantoor.<br>Uw data.<br><em>Uw AI.</em></h1>
-    <p class="sub">Eén machine die op uw kantoor staat, uw documenten leest en het werk verricht dat tijd kost.</p>
-    <div class="hovertip"><span class="dot"></span>Beweeg uw muis over het beeld</div>
+    <div class="eyebrow" data-rise>Lokale AI · Geen cloud · AVG-proof</div>
+    <h1 class="serif lines" data-lines>
+      <span class="l"><span style="--i:0">Vuur.</span></span>
+      <span class="l"><span style="--i:1">Schrift.</span></span>
+      <span class="l"><span style="--i:2">Elektriciteit.</span></span>
+      <span class="l"><span style="--i:3"><em>En nu de vierde.</em></span></span>
+    </h1>
+    <p class="sub" data-rise style="--i:2">Elke sprong in ons werk begon met gereedschap dat een paar mensen eerder oppakten dan de rest. Systemly zet dat gereedschap bij u op kantoor neer. En uw data blijft er.</p>
+    <div class="hero-actions" data-rise style="--i:3">
+      <a href="#contact" class="btn">Plan een kennismaking <span class="arr" aria-hidden="true">→</span></a>
+      <a href="#uw-mensen" class="textlink">Wat het voor u doet</a>
+    </div>
   </div>
 </section>
 
-<section class="handoff">
-  <div class="eyebrow">01 · De Box</div>
-  <h2 class="serif">Eén box. Op <em>uw</em> kantoor.<br>Voor het werk van uren — klaar in minuten.</h2>
-  <div class="specs">
-    <div class="item">
+<!-- ============ 01 · DE VERSCHUIVING ============ -->
+<section class="shift on-dark" id="de-verschuiving">
+  <div class="shift-bg" aria-hidden="true">
+    <img src="fresco-kloof.webp" alt="" width="1800" height="1029" loading="lazy" decoding="async">
+  </div>
+  <div class="shift-copy">
+    <div class="sec-eyebrow" data-rise>01 · De verschuiving</div>
+    <h2 class="serif lines" data-lines>
+      <span class="l"><span style="--i:0">Het verschil is niet meer</span></span>
+      <span class="l"><span style="--i:1">wie <em>harder</em> werkt,</span></span>
+      <span class="l"><span style="--i:2">maar wie <em>slimmer</em> werkt.</span></span>
+    </h2>
+    <p class="lead" data-rise style="--i:1">Twee kantoren, hetzelfde vak. Het ene verwerkt zijn administratie met de hand; het andere heeft dat werk toevertrouwd aan een machine die 's nachts doorwerkt en 's ochtends klaarstaat met het resultaat. Vandaag oogt dat verschil klein. Over een jaar is het een achterstand — in uren, in foutmarges, en in de aandacht die overblijft voor klanten.</p>
+    <p class="kicker" data-rise style="--i:2">De vraag is niet meer óf u meegaat. De vraag is wanneer, en met wiens data.</p>
+  </div>
+</section>
+
+<!-- ============ 02 · WAT WIJ DOEN ============ -->
+<section class="services" id="uw-mensen">
+  <div class="sec-eyebrow" data-rise>02 · Wat wij doen</div>
+  <h2 class="serif lines" data-lines>
+    <span class="l"><span style="--i:0">Uw mensen zijn niet</span></span>
+    <span class="l"><span style="--i:1">aangenomen om <em>over te typen</em>.</span></span>
+  </h2>
+  <p class="lead" data-rise style="--i:1">Het werk dat niemand mist — overtypen, controleren, samenvoegen, doorsturen — nemen wij uit handen. Lokaal waar het moet, in de cloud waar het kan, en altijd op maat gebouwd voor uw organisatie.</p>
+  <div class="svc-grid">
+    <div class="svc" data-rise style="--i:0">
       <div class="n">→ 01</div>
-      <h3>Lokaal & privé</h3>
-      <p>Uw data verlaat nooit uw pand. Geen cloud, geen afhankelijkheid van externe servers. AVG-proof by design.</p>
+      <h3>Lokale AI-automatisering</h3>
+      <p>Documentverwerking, data-extractie en terugkerende processen op een AI-machine in uw eigen pand. Voor al het werk waar de AVG meekijkt: uw data blijft binnen.</p>
     </div>
-    <div class="item">
+    <div class="svc" data-rise style="--i:1">
       <div class="n">→ 02</div>
-      <h3>Leest uw documenten</h3>
-      <p>Stapels rapportages van verschillende banken, automatisch omgezet naar één overzicht.</p>
+      <h3>Automatisering via cloud-AI</h3>
+      <p>Spelen er geen persoonsgegevens of gevoelige dossiers — AVG niet van toepassing — dan zetten wij cloud-AI-diensten in. Sneller opgezet, lagere instapkosten, dezelfde kwaliteit.</p>
     </div>
-    <div class="item">
+    <div class="svc" data-rise style="--i:2">
       <div class="n">→ 03</div>
+      <h3>Websites &amp; software op maat</h3>
+      <p>Van bedrijfswebsite tot volledige softwareapplicaties voor intern of extern gebruik, op aanvraag ontworpen en gebouwd rond uw processen — en daarna door ons onderhouden.</p>
+    </div>
+    <div class="svc" data-rise style="--i:3">
+      <div class="n">→ 04</div>
+      <h3>Tijd voor het echte werk</h3>
+      <p>Het doel van elke oplossing: uren terug voor uw primaire bedrijfsprocessen. Uw medewerkers oordelen, adviseren en houden contact met klanten — de machine doet de rest.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 · DE MACHINE ============ -->
+<section class="box-sec on-dark" id="de-machine">
+  <div class="box-top">
+    <div>
+      <div class="sec-eyebrow" data-rise>03 · De machine</div>
+      <h2 class="serif lines" data-lines>
+        <span class="l"><span style="--i:0">De NVIDIA DGX Spark,</span></span>
+        <span class="l"><span style="--i:1"><em>op maat voor uw kantoor.</em></span></span>
+      </h2>
+      <p class="lead" data-rise style="--i:1">Bij Systemly schaft u meer aan dan een AI-computer. U ontvangt de NVIDIA DGX Spark geleverd mét AI die wij specifiek voor uw kantoor ontwikkelen — van documentextractie tot wiskundige automatiseringen. Volledig op maat gebouwd, door ons ingericht en onderhouden. U ziet alleen het resultaat.</p>
+    </div>
+    <div class="spark-stage" data-rise style="--i:2">
+      <img src="spark-static.webp" alt="De NVIDIA DGX Spark, schuin van voren gezien" width="1408" height="838" loading="lazy" decoding="async">
+    </div>
+  </div>
+  <div class="annots">
+    <div class="annot" data-rise style="--i:0">
+      <div class="a-n">→ 01</div>
+      <h3>Staat bij u op kantoor</h3>
+      <p>Geen abonnement op rekenkracht die ergens anders staat. Eén machine, in uw eigen pand, die van u is.</p>
+    </div>
+    <div class="annot" data-rise style="--i:1">
+      <div class="a-n">→ 02</div>
       <h3>Op maat ingewerkt</h3>
       <p>Wij bouwen de stack rond uw processen en richten alles op locatie in. Pas gereed wanneer het in uw dagelijkse werk draait.</p>
     </div>
-    <div class="item">
-      <div class="n">→ 04</div>
+    <div class="annot" data-rise style="--i:2">
+      <div class="a-n">→ 03</div>
       <h3>Groeit met u mee</h3>
       <p>Updates, support en periodiek bezoek. Uw AI-stack ontwikkelt mee met uw kantoor.</p>
     </div>
   </div>
 </section>
 
-<!-- 02 · WAT HET DOET -->
-<section class="work">
-  <div class="work-top">
-    <div>
-      <div class="sec-eyebrow reveal">02 · Wat het doet</div>
-      <h2 class="serif reveal">De NVIDIA DGX Spark,<br><em>op maat voor uw kantoor.</em></h2>
-      <p class="lead reveal">Bij Systemly schaft u meer aan dan een AI-computer. U ontvangt de NVIDIA DGX Spark geleverd mét AI die wij specifiek voor uw kantoor ontwikkelen — van documentextractie tot wiskundige automatiseringen. Volledig op maat gebouwd, door ons ingericht en onderhouden. U ziet alleen het resultaat.</p>
-    </div>
-    <div class="spark-stage reveal" id="spark-stage">
-      <img id="spark360" src="spark360.webp" alt="NVIDIA DGX Spark — 360 graden productweergave" decoding="async">
-    </div>
-  </div>
-</section>
-
-<!-- 03 · IN DE PRAKTIJK -->
-<section class="quote">
-  <blockquote class="reveal">“Voor een vermogensbeheerder zetten wij stapels bankrapportages om naar één overzicht — werk van uren, klaar in minuten. Zonder dat één dossier het kantoor verliet.”</blockquote>
-  <cite class="reveal">— lopend project · financiële sector</cite>
-</section>
-
-<!-- 04 · HOE HET WERKT -->
+<!-- ============ 04 · HOE HET WERKT ============ -->
 <section class="steps" id="hoe-het-werkt">
-  <div class="sec-eyebrow reveal">04 · Hoe het werkt</div>
-  <h2 class="serif reveal">Van kennismaking tot<br>dagelijkse werking.</h2>
-  <div class="grid">
-    <div class="step reveal"><div class="n">→ 01</div><h3>Kennismaking</h3><p>45 minuten, kosteloos, op uw eigen data. Geheel vrijblijvend.</p></div>
-    <div class="step reveal"><div class="n">→ 02</div><h3>Analyse op locatie</h3><p>Wij lopen mee binnen uw organisatie en identificeren de processen die tijd kosten.</p></div>
-    <div class="step reveal"><div class="n">→ 03</div><h3>Bouwen &amp; opleveren</h3><p>Op maat gebouwd en door u getoetst. Pas gereed wanneer het in uw dagelijkse werk draait.</p></div>
-    <div class="step reveal"><div class="n">→ 04</div><h3>Doorontwikkelen</h3><p>Updates, support en periodiek bezoek. Uw stack groeit met uw organisatie mee.</p></div>
+  <div class="sec-eyebrow" data-rise>04 · Hoe het werkt</div>
+  <h2 class="serif lines" data-lines>
+    <span class="l"><span style="--i:0">Van kennismaking tot</span></span>
+    <span class="l"><span style="--i:1">dagelijkse werking.</span></span>
+  </h2>
+  <div class="track" id="track">
+    <div class="grid">
+      <div class="step" data-rise style="--i:0"><div class="n">→ 01</div><h3>Kennismaking</h3><p>45 minuten, kosteloos, op uw eigen data. Geheel vrijblijvend.</p></div>
+      <div class="step" data-rise style="--i:1"><div class="n">→ 02</div><h3>Analyse op locatie</h3><p>Wij lopen mee binnen uw organisatie en identificeren de processen die tijd kosten.</p></div>
+      <div class="step" data-rise style="--i:2"><div class="n">→ 03</div><h3>Bouwen &amp; opleveren</h3><p>Op maat gebouwd en door u getoetst, op uw eigen dossiers. U bepaalt wanneer het af is.</p></div>
+      <div class="step" data-rise style="--i:3"><div class="n">→ 04</div><h3>Doorontwikkelen</h3><p>Updates, support en periodiek bezoek. Uw stack groeit met uw organisatie mee.</p></div>
+    </div>
   </div>
 </section>
 
-<!-- 05 · PLAN EEN KENNISMAKING -->
+<!-- ============ 05 · UW DATA ============ -->
+<section class="data-sec on-dark" id="uw-data">
+  <div class="data-grid">
+    <div>
+      <div class="sec-eyebrow" data-rise>05 · Uw data</div>
+      <h2 class="serif lines" data-lines>
+        <span class="l"><span style="--i:0">Alles blijft</span></span>
+        <span class="l"><span style="--i:1"><em>binnen deze muren</em>.</span></span>
+      </h2>
+      <p class="lead" data-rise style="--i:1">Geen cloud. Geen externe servers. Geen aanbieder die morgen zijn voorwaarden wijzigt. AVG-proof by design — omdat de machine bij u staat, niet omdat wij het beloven.</p>
+    </div>
+    <div class="pair-points" data-rise style="--i:2">
+      <div><b>→ 01</b><span>Uw dossiers verlaten het pand niet, ook niet tijdens de verwerking.</span></div>
+      <div><b>→ 02</b><span>Geen afhankelijkheid van een externe dienst die kan uitvallen of duurder kan worden.</span></div>
+      <div><b>→ 03</b><span>Wat er met uw gegevens gebeurt, gebeurt op een machine die u kunt aanwijzen.</span></div>
+    </div>
+  </div>
+  <div class="proof-band">
+    <div>
+      <blockquote class="lines" data-lines>
+        <span class="l"><span style="--i:0">“Stapels bankrapportages, omgezet</span></span>
+        <span class="l"><span style="--i:1">naar één overzicht — <em>zonder dat één</em></span></span>
+        <span class="l"><span style="--i:2"><em>dossier het kantoor verliet.”</em></span></span>
+      </blockquote>
+      <cite data-rise style="--i:3">— lopend project voor een vermogensbeheerder · financiële sector</cite>
+    </div>
+    <div class="proof-stats" data-rise style="--i:4">
+      <div class="st"><b>Uren → minuten</b><span>verwerkingstijd per rapportage</span></div>
+      <div class="st"><b>100%</b><span>op locatie verwerkt</span></div>
+      <div class="st"><b>0</b><span>dossiers het pand uit</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 · CONTACT ============ -->
 <section class="contact" id="contact">
-  <div class="sec-eyebrow reveal">05 · Plan een kennismaking</div>
-  <h2 class="serif reveal">Laat ons zien wat wij voor <u>uw organisatie</u> kunnen betekenen.</h2>
-  <p class="lead reveal">45 minuten. Kosteloos. Op uw eigen data. Geheel vrijblijvend.</p>
-  <form class="form reveal" id="contactform" onsubmit="return sendContact(event)">
-    <div><label>Naam *</label><input required name="naam" placeholder="Uw naam"></div>
-    <div><label>Bedrijf *</label><input required name="bedrijf" placeholder="Bedrijfsnaam"></div>
-    <div class="full"><label>E-mail *</label><input required name="email" type="email" placeholder="naam@bedrijf.nl"></div>
-    <div class="full"><label>Wat speelt er? *</label><textarea required name="bericht" placeholder="Bijvoorbeeld: wij zijn wekelijks uren kwijt aan het verwerken van facturen…"></textarea></div>
-    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-    <button class="submit" type="submit">Verstuur — wij reageren binnen één werkdag →</button>
+  <div class="sec-eyebrow" data-rise>06 · Plan een kennismaking</div>
+  <h2 class="serif lines" data-lines>
+    <span class="l"><span style="--i:0">Laat ons zien wat wij voor</span></span>
+    <span class="l"><span style="--i:1"><u>uw organisatie</u> kunnen betekenen.</span></span>
+  </h2>
+  <p class="lead" data-rise style="--i:1">45 minuten. Kosteloos. Op uw eigen data. Geheel vrijblijvend.</p>
+  <form class="form" id="contactform" data-rise style="--i:2" novalidate>
+    <div><label for="f-naam">Naam *</label><input required id="f-naam" name="naam" autocomplete="name" placeholder="Uw naam"></div>
+    <div><label for="f-bedrijf">Bedrijf *</label><input required id="f-bedrijf" name="bedrijf" autocomplete="organization" placeholder="Bedrijfsnaam"></div>
+    <div class="full"><label for="f-email">E-mail *</label><input required id="f-email" name="email" type="email" autocomplete="email" placeholder="naam@bedrijf.nl"></div>
+    <div class="full"><label for="f-bericht">Wat speelt er? *</label><textarea required id="f-bericht" name="bericht" placeholder="Bijvoorbeeld: wij zijn wekelijks uren kwijt aan het verwerken van facturen…"></textarea></div>
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+    <button class="submit" type="submit">Verstuur — wij reageren binnen één werkdag <span aria-hidden="true">→</span></button>
   </form>
 </section>
 
+</main>
+
 <footer class="foot">
   <span class="fb">Systemly</span>
-  <span class="fl"><a href="#hoe-het-werkt">Hoe het werkt</a><a href="#contact">Contact</a></span>
+  <span class="fl"><a href="#uw-mensen">Wat het doet</a><a href="#uw-data">Uw data</a><a href="#hoe-het-werkt">Hoe het werkt</a><a href="#contact">Contact</a></span>
   <span>Lokale AI · Geen cloud · AVG-proof · © 2026</span>
 </footer>
 
 <script>
-/* ===== CURSOR-SPOTLIGHT REVEAL HERO (lava imagery + Systemly content) ===== */
-const header = document.getElementById('header');
-
-/* two dramatic landscape layers: muted base + glowing reveal */
-const BG_IMAGE_1 = "hero-base.webp";
-const BG_IMAGE_2 = "hero-reveal.webp";
-document.getElementById('baseImg').style.backgroundImage   = "url('"+BG_IMAGE_1+"')";
-document.getElementById('revealImg').style.backgroundImage = "url('"+BG_IMAGE_2+"')";
-
-const SPOTLIGHT_R = 260;
-const reveal = document.getElementById('revealImg');
-
-/* reliable CSS radial-gradient mask, positioned via CSS variables + eased trailing */
-let mx=-600, my=-600, sx=-600, sy=-600, started=false;
-window.addEventListener('mousemove', e=>{
-  mx=e.clientX; my=e.clientY;
-  if(!started){ sx=mx; sy=my; started=true; }   // snap on first move, no swoop
-});
-/* touch-ondersteuning: vinger over het beeld werkt als de muis-spotlight */
-function touchSpot(e){
-  if(!e.touches || !e.touches.length) return;
-  mx=e.touches[0].clientX; my=e.touches[0].clientY;
-  if(!started){ sx=mx; sy=my; started=true; }
-}
-const heroEl=document.getElementById('hero');
-heroEl.addEventListener('touchstart', touchSpot, {passive:true});
-heroEl.addEventListener('touchmove',  touchSpot, {passive:true});
-/* op touch-apparaten kloppende hint tonen */
-if(('ontouchstart' in window) || navigator.maxTouchPoints>0){
-  var tip=document.querySelector('.hovertip');
-  if(tip) tip.innerHTML='<span class="dot"></span>Beweeg uw vinger over het beeld';
-}
-function tick(){
-  sx += (mx-sx)*0.12; sy += (my-sy)*0.12;
-  reveal.style.setProperty('--mx', sx+'px');
-  reveal.style.setProperty('--my', sy+'px');
-  reveal.style.setProperty('--r',  SPOTLIGHT_R+'px');
-  requestAnimationFrame(tick);
-}
-tick();
-
-/* header turns solid once you scroll past the hero */
-function onScroll(){ header.classList.toggle('scrolled', window.scrollY > window.innerHeight*0.6); }
-window.addEventListener('scroll', onScroll, {passive:true});
-onScroll();
-
-/* ---- scroll reveal + start demo animation when in view ---- */
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('in');
-      if(e.target.id==='demo') e.target.classList.add('playing');
-    }
-  });
-},{threshold:0.15});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-/* ---- contactformulier: verzendt via FormSubmit naar admin@systemlysolutions.onmicrosoft.com ---- */
-var CONTACT_TO = 'admin@systemlysolutions.onmicrosoft.com';
-function sendContact(e){
-  e.preventDefault();
-  var form = e.target;
-  var btn = form.querySelector('.submit');
-  var data = {
-    naam:    form.naam.value,
-    bedrijf: form.bedrijf.value,
-    email:   form.email.value,
-    bericht: form.bericht.value,
-    _subject: 'Nieuwe aanvraag via systemly.nl — ' + form.bedrijf.value,
-    _template: 'table',
-    _captcha: 'false',
-    _honey: form._honey.value
-  };
-  btn.disabled = true;
-  btn.textContent = 'Versturen…';
-  fetch('https://formsubmit.co/ajax/' + CONTACT_TO, {
-    method: 'POST',
-    headers: {'Content-Type':'application/json','Accept':'application/json'},
-    body: JSON.stringify(data)
-  }).then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return {ok:r.ok, j:j}; }); })
-    .then(function(res){
-      if(res.ok){
-        form.innerHTML = '<p style="font-size:21px;font-weight:600;line-height:1.4">Hartelijk dank — wij nemen binnen één werkdag contact met u op. ✓</p>';
-      } else { throw new Error('send failed'); }
-    })
-    .catch(function(){
-      btn.disabled = false;
-      btn.textContent = 'Verstuur — wij reageren binnen één werkdag →';
-      /* fallback: open de e-mailclient met het bericht voorgevuld */
-      var body = 'Naam: '+data.naam+'%0D%0ABedrijf: '+data.bedrijf+'%0D%0AE-mail: '+data.email+'%0D%0A%0D%0A'+encodeURIComponent(data.bericht);
-      window.location.href = 'mailto:'+CONTACT_TO+'?subject='+encodeURIComponent(data._subject)+'&body='+body;
-    });
-  return false;
-}
-window.sendContact = sendContact;
-
-/* De 360°-weergave is een geanimeerde WebP-afbeelding: die valt buiten elk
-   autoplay-beleid en draait dus altijd, in elke browser — geen JS nodig. */
-
-/* mobiel menu */
 (function(){
-  var btn=document.getElementById('menuBtn'), menu=document.getElementById('mobileMenu'), hdr=document.getElementById('header');
-  if(!btn||!menu) return;
-  function close(){ menu.classList.remove('open'); hdr.classList.remove('menu-open'); btn.setAttribute('aria-expanded','false'); }
-  btn.addEventListener('click', function(){
-    var open=menu.classList.toggle('open');
-    hdr.classList.toggle('menu-open', open);
-    if(open && !hdr.classList.contains('scrolled')) hdr.classList.add('scrolled');
-    btn.setAttribute('aria-expanded', open?'true':'false');
-    if(!open) onScroll();
+  'use strict';
+  var root   = document.documentElement;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ============ INTRO ============
+     Plays once per session. Never blocks: if autoplay is refused, the video
+     stalls, or the visitor has seen it, the page is simply there. */
+  var intro = document.getElementById('intro');
+  var vid   = document.getElementById('introVideo');
+  var skip  = document.getElementById('introSkip');
+
+  var introTimers = [];
+  function endIntro(){
+    if(!root.classList.contains('intro-on')) return;
+    introTimers.forEach(clearTimeout);
+    intro.classList.add('done');
+    setTimeout(function(){
+      root.classList.remove('intro-on');
+      intro.style.display = 'none';
+      try { vid.pause(); } catch(e){}
+    }, 900);
+  }
+
+  /* ?intro=1 forces the intro even when the visitor asked for reduced motion —
+     handy for reviewing it on a machine with "Beperk beweging" switched on */
+  var forceIntro = /[?&]intro=1/.test(location.search);
+  if(reduce && !forceIntro){
+    console.info('[systemly] Intro overgeslagen: uw systeem staat op "beperk beweging". ' +
+                 'Voeg ?intro=1 toe aan de URL om hem toch te zien.');
+  }
+
+  if(!reduce || forceIntro){
+    root.classList.add('intro-on');
+    skip.addEventListener('click', endIntro);
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
+        if(root.classList.contains('intro-on')) endIntro();
+      }
+    });
+
+    /* Safari rejects the first play() while the buffer is still empty, so a single
+       attempt (and giving up on rejection) kills the intro there while Chrome is fine.
+       Keep asking as data arrives; the stall timeout below is the only real give-up. */
+    vid.muted = true;                 /* property, not just the attribute — Safari checks this */
+    var gaveUp = false;
+    function tryPlay(){
+      if(gaveUp) return;
+      var p = vid.play();
+      if(p && p.catch) p.catch(function(){ /* not ready or not allowed yet — retry on the next event */ });
+    }
+    ['loadeddata','canplay','canplaythrough','loadedmetadata'].forEach(function(ev){
+      vid.addEventListener(ev, tryPlay);
+    });
+    /* a real interaction always unblocks it, whatever the policy */
+    document.addEventListener('pointerdown', tryPlay, {once:true});
+    tryPlay();
+
+    vid.addEventListener('playing', function(){
+      intro.classList.add('ready');
+      intro.classList.add('playing');   /* only now is the video shown at all */
+      /* the clip is cut at the touch, so 'ended' already lands on the right frame
+         and the paused video holds it while the melt runs */
+      introTimers.push(setTimeout(endIntro, 6200));   /* backstop if 'ended' misfires */
+    }, {once:true});
+
+    vid.addEventListener('ended', endIntro);
+    vid.addEventListener('error', function(){
+      console.warn('[systemly] Intro-video kon niet geladen worden (intro.mp4).');
+      endIntro();
+    });
+    /* still nothing playing after 5s (slow line, blocked codec) → do not make anyone wait */
+    introTimers.push(setTimeout(function(){
+      if(vid.paused || vid.readyState < 2){
+        gaveUp = true;
+        console.warn('[systemly] Intro kon niet starten (readyState ' + vid.readyState + ', paused ' + vid.paused + ').');
+        /* nothing played: swap the still to the frame the hero background holds,
+           so the melt still lands on the same picture instead of jumping */
+        var still = document.querySelector('.intro-still');
+        if(still){ still.src = 'hero-touch.webp'; }
+        setTimeout(endIntro, 450);
+      }
+    }, 5000));
+    /* absolute backstop */
+    introTimers.push(setTimeout(endIntro, 9500));
+  }
+
+  /* ============ HEADER ============ */
+  var header = document.getElementById('header');
+  var menu   = document.getElementById('mobileMenu');
+  function onHeaderScroll(){
+    header.classList.toggle('scrolled', window.scrollY > 40 || menu.classList.contains('open'));
+  }
+
+  /* ============ ENTRANCE REVEALS ============ */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.2, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('[data-lines],[data-rise]').forEach(function(el){ io.observe(el); });
+
+  /* ============ TIMELINE SCRUB ============ */
+  var track = document.getElementById('track');
+  var ticking = false;
+  function clamp01(v){ return v<0?0:(v>1?1:v); }
+  function updateScrub(){
+    ticking = false;
+    if(!track) return;
+    var vh = window.innerHeight, r = track.getBoundingClientRect(), p;
+    if(r.height > vh) p = clamp01(-r.top / (r.height - vh));
+    else              p = clamp01((vh - r.top) / (vh*0.6 + r.height/2));
+    track.style.setProperty('--f', clamp01((p - 0.05) / 0.8).toFixed(4));
+  }
+  function requestScrub(){ if(!ticking){ ticking = true; requestAnimationFrame(updateScrub); } }
+
+  if(reduce){ if(track) track.style.setProperty('--f', 1); }
+  else {
+    window.addEventListener('resize', requestScrub);
+    requestScrub();
+  }
+  window.addEventListener('scroll', function(){
+    onHeaderScroll();
+    if(!reduce) requestScrub();
+  }, {passive:true});
+
+  /* ============ MOBILE MENU ============ */
+  var menuBtn = document.getElementById('menuBtn');
+  function closeMenu(){
+    menu.classList.remove('open');
+    header.classList.remove('menu-open');
+    menuBtn.setAttribute('aria-expanded','false');
+    menuBtn.setAttribute('aria-label','Menu openen');
+    onHeaderScroll();
+  }
+  menuBtn.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    header.classList.toggle('menu-open', open);
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuBtn.setAttribute('aria-label', open ? 'Menu sluiten' : 'Menu openen');
+    onHeaderScroll();
   });
-  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ close(); onScroll(); }); });
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && menu.classList.contains('open')){ closeMenu(); menuBtn.focus(); }
+  });
+  onHeaderScroll();
+
+  /* ============ STOF IN HET LICHT ============
+     Een handvol stofdeeltjes in de donkere secties. Ze dwarrelen traag,
+     krijgen een zetje van de scrollsnelheid en komen tot rust als u stopt.
+     Draait alleen wanneer de sectie in beeld is; niet bij "beperk beweging". */
+  if(!reduce && window.IntersectionObserver){
+    var dustVel = 0, dustLastY = window.scrollY;
+    window.addEventListener('scroll', function(){
+      var y = window.scrollY;
+      dustVel += y - dustLastY;
+      dustLastY = y;
+    }, {passive:true});
+    (function dustDecay(){ dustVel *= .90; requestAnimationFrame(dustDecay); })();
+
+    document.querySelectorAll('.shift,.box-sec,.data-sec').forEach(function(sec){
+      var c = document.createElement('canvas');
+      c.className = 'dust'; c.setAttribute('aria-hidden','true');
+      sec.appendChild(c);
+      var ctx = c.getContext('2d');
+      var DPR = Math.min(window.devicePixelRatio || 1, 2), W = 0, H = 0;
+      function size(){
+        W = sec.clientWidth; H = sec.clientHeight;
+        c.width = W * DPR; c.height = H * DPR;
+        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      }
+      size();
+      window.addEventListener('resize', size);
+      var ps = [];
+      for(var i = 0; i < 22; i++){
+        var warm = Math.random() < .3;
+        ps.push({
+          x: Math.random() * W, y: Math.random() * H,
+          r: .6 + Math.random() * 1.5,
+          a: .07 + Math.random() * .20,
+          p: Math.random() * 6.28,
+          s: .15 + Math.random() * .4,
+          warm: warm
+        });
+      }
+      var running = false;
+      function loop(){
+        if(!running) return;
+        ctx.clearRect(0, 0, W, H);
+        var v = Math.max(-2, Math.min(2, dustVel * .015));
+        for(var i = 0; i < ps.length; i++){
+          var p = ps[i];
+          p.p += .004 + p.s * .01;
+          p.x += Math.sin(p.p) * .2;
+          p.y += .07 * p.s - v * (.6 + p.s);
+          if(p.y < -5) p.y = H + 5; else if(p.y > H + 5) p.y = -5;
+          if(p.x < -5) p.x = W + 5; else if(p.x > W + 5) p.x = -5;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, 6.283);
+          ctx.fillStyle = p.warm
+            ? 'rgba(232,180,143,' + p.a + ')'
+            : 'rgba(242,234,217,' + p.a + ')';
+          ctx.fill();
+        }
+        requestAnimationFrame(loop);
+      }
+      new IntersectionObserver(function(entries){
+        var vis = entries[0].isIntersecting;
+        if(vis && !running){ running = true; loop(); }
+        else if(!vis){ running = false; }
+      }, {rootMargin:'80px 0px'}).observe(sec);
+    });
+  }
+
+  /* ============ ZELF-TYPEND VOORBEELDVELD ============ */
+  var ta = document.getElementById('f-bericht');
+  if(ta && !reduce){
+    var VB = [
+      'wij zijn wekelijks uren kwijt aan het verwerken van facturen…',
+      'onze maandrapportage kost drie dagen handwerk…',
+      'wij typen gegevens over van PDF naar Excel…',
+      'hetzelfde dossier gaat bij ons door vier paar handen…'
+    ];
+    var PRE = 'Bijvoorbeeld: ', vi = 0, ci = 0, del = false;
+    function typeTick(){
+      /* pauzeer zolang de bezoeker in het veld staat of al iets typte */
+      if(document.activeElement === ta || ta.value){ setTimeout(typeTick, 1200); return; }
+      var t = VB[vi];
+      if(!del){
+        ci++;
+        ta.setAttribute('placeholder', PRE + t.slice(0, ci));
+        if(ci >= t.length){ del = true; setTimeout(typeTick, 2600); return; }
+        setTimeout(typeTick, 34);
+      } else {
+        ci -= 3; if(ci < 0) ci = 0;
+        ta.setAttribute('placeholder', PRE + t.slice(0, ci));
+        if(ci === 0){ del = false; vi = (vi + 1) % VB.length; setTimeout(typeTick, 500); return; }
+        setTimeout(typeTick, 16);
+      }
+    }
+    setTimeout(typeTick, 1800);
+  }
+
+  /* ============ CONTACTFORMULIER — FormSubmit ============ */
+  var CONTACT_TO = 'admin@systemlysolutions.onmicrosoft.com';
+  var form = document.getElementById('contactform');
+  var msg  = document.getElementById('formMsg');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    msg.textContent = '';
+    if(!form.checkValidity()){
+      var bad = form.querySelector(':invalid');
+      msg.textContent = 'Enkele velden zijn nog niet ingevuld. Controleer naam, bedrijf, e-mail en uw bericht.';
+      if(bad) bad.focus();
+      return;
+    }
+    var btn = form.querySelector('.submit');
+    var data = {
+      naam:    form.naam.value,
+      bedrijf: form.bedrijf.value,
+      email:   form.email.value,
+      bericht: form.bericht.value,
+      _subject: 'Nieuwe aanvraag via systemly.nl — ' + form.bedrijf.value,
+      _template: 'table',
+      _captcha: 'false',
+      _honey: form._honey.value
+    };
+    btn.disabled = true;
+    btn.textContent = 'Versturen…';
+    fetch('https://formsubmit.co/ajax/' + CONTACT_TO, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify(data)
+    }).then(function(r){ if(!r.ok) throw new Error('send failed'); return r; })
+      .then(function(){
+        form.innerHTML =
+          '<div class="form-done-wrap">' +
+            '<div class="seal" aria-hidden="true"><span>Binnen één<br>werkdag<br>antwoord</span></div>' +
+            '<p class="form-done">Hartelijk dank. Wij nemen binnen één werkdag contact met u op.</p>' +
+          '</div>';
+      })
+      .catch(function(){
+        btn.disabled = false;
+        btn.innerHTML = 'Verstuur — wij reageren binnen één werkdag <span aria-hidden="true">→</span>';
+        msg.textContent = 'Versturen lukte niet. Wij openen uw e-mailprogramma met het bericht alvast ingevuld.';
+        var body = 'Naam: '+data.naam+'%0D%0ABedrijf: '+data.bedrijf+'%0D%0AE-mail: '+data.email+'%0D%0A%0D%0A'+encodeURIComponent(data.bericht);
+        window.location.href = 'mailto:'+CONTACT_TO+'?subject='+encodeURIComponent(data._subject)+'&body='+body;
+      });
+  });
 })();
 </script>
 </body>
