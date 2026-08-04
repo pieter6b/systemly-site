@@ -1,13 +1,14 @@
 # Systemly
 
-> Systemly levert AI-automatisering en softwareoplossingen op maat voor kleine en middelgrote bedrijven (MKB) in Nederland. Kern van het aanbod: een lokale AI-computer (NVIDIA DGX Spark) die op het kantoor van de klant staat en daar documenten verwerkt, data extraheert en terugkerende processen automatiseert — volledig lokaal, zonder cloud, AVG-proof.
+> Systemly levert AI-automatisering, softwareontwikkeling op maat en websites voor kleine en middelgrote bedrijven (MKB) in Nederland. Kern van het aanbod: automatisering van documentverwerking, data-extractie en terugkerende administratieve processen — lokaal op een AI-computer (NVIDIA DGX Spark) in het pand van de klant waar de AVG dat vereist, of via cloud-AI-diensten waar dat kan.
 
 ## Wat Systemly doet
 
+- Lokale AI-automatisering: documentverwerking, data-extractie en terugkerende processen op een AI-machine in het eigen pand — AVG-proof, data blijft binnen (bijv. stapels bankrapportages automatisch omzetten naar één overzicht)
+- Automatisering via cloud-AI wanneer er geen persoonsgegevens of gevoelige dossiers spelen: sneller opgezet, lagere instapkosten
+- Websites en volledige softwareapplicaties op maat, voor intern of extern gebruik, op aanvraag ontworpen, gebouwd en onderhouden
 - Levering van de NVIDIA DGX Spark AI-computer, ingericht en onderhouden door Systemly
-- Op maat ontwikkelde AI voor documentverwerking en documentextractie (bijv. stapels bankrapportages automatisch omzetten naar één overzicht)
-- Wiskundige en administratieve procesautomatiseringen
-- Data verlaat nooit het pand van de klant: geen cloud, geen externe servers, AVG-proof by design
+- Doel van elke oplossing: uren teruggeven aan de primaire bedrijfsprocessen van de klant
 
 ## Werkwijze
 
@@ -18,7 +19,7 @@
 
 ## Doelgroep
 
-Kleine en middelgrote bedrijven (MKB) die administratief werk willen automatiseren zonder hun data naar de cloud te sturen, o.a. financiële dienstverleners, family offices en vermogensbeheerders.
+Kleine en middelgrote bedrijven (MKB) met terugkerend document- of administratiewerk, o.a. administratie- en advieskantoren, financiële dienstverleners, family offices, vermogensbeheerders, juridische praktijken en logistiek.
 
 ## Contact
 
