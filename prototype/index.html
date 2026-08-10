@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Systemly — stijlprototype "Diep"</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0C0B09;
+    --black-soft: #131110;
+    --creme: #EDE7DB;
+    --creme-bright: #F2EAD9;
+    --ink: #1A1512;
+    --ink-soft: #5F574D;
+    --creme-dim: rgba(242, 234, 217, 0.64);
+    --creme-faint: rgba(242, 234, 217, 0.4);
+    --line-dark: rgba(242, 234, 217, 0.14);
+    --line-light: rgba(26, 21, 18, 0.14);
+    --serif: "Fraunces", serif;
+    --sans: "Inter", sans-serif;
+    --mono: "Space Mono", monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--sans);
+    background: var(--creme);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .mono {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem clamp(1.2rem, 4vw, 3rem);
+    background: linear-gradient(rgba(12,11,9,0.66), rgba(12,11,9,0.34) 70%, transparent);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+  nav .brand { display: flex; align-items: baseline; gap: 0.9rem; color: var(--creme-bright); text-decoration: none; }
+  nav .brand .word { font-family: var(--serif); font-size: 1.45rem; font-weight: 500; }
+  nav .brand .tag { color: var(--creme-faint); display: none; }
+  @media (min-width: 900px) { nav .brand .tag { display: inline; } }
+  nav .links { display: flex; align-items: center; gap: clamp(1rem, 2.5vw, 2.2rem); }
+  nav .links a { color: var(--creme-dim); text-decoration: none; font-size: 0.92rem; font-weight: 500; transition: color 0.2s; }
+  nav .links a:hover { color: var(--creme-bright); }
+  nav .links a.btn-creme, nav .links a.btn-creme:hover { color: var(--ink); }
+  nav .links a.plain { display: none; }
+  @media (min-width: 640px) { nav .links a.plain { display: inline; } }
+
+  .btn {
+    display: inline-block;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.78rem 1.5rem;
+    border-radius: 2px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: transform 0.15s ease, background 0.2s, color 0.2s;
+    cursor: pointer;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn-creme { background: var(--creme-bright); color: var(--ink); }
+  .btn-creme:hover { background: #fff8e8; }
+  .btn-dark { background: var(--ink); color: var(--creme-bright); }
+  .btn-dark:hover { background: #000; }
+  .btn-ghost { border-color: var(--line-dark); color: var(--creme-bright); }
+  .btn-ghost:hover { border-color: var(--creme-dim); }
+
+  /* ---------- HERO (video) ---------- */
+  header.hero {
+    position: relative;
+    height: 100svh;
+    min-height: 640px;
+    background: var(--black);
+    color: var(--creme-bright);
+    overflow: hidden;
+  }
+  .hero video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.6s ease;
+  }
+  .hero video.active { opacity: 1; }
+  .hero .tint {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 90% 70% at 50% 45%, transparent 25%, rgba(12,11,9,0.65) 100%),
+      linear-gradient(rgba(12,11,9,0.62), rgba(12,11,9,0.62));
+    pointer-events: none;
+  }
+  .hero .tint::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(rgba(12,11,9,0.55), transparent 30%, transparent 65%, rgba(12,11,9,0.82));
+  }
+  .hero .inner {
+    position: relative; z-index: 2;
+    height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 0 1.4rem;
+    gap: 1.6rem;
+  }
+  .hero .chip { color: var(--creme-dim); border: 1px solid var(--line-dark); padding: 0.55rem 1.1rem; border-radius: 999px; background: rgba(12,11,9,0.35); }
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2.4rem, 6.4vw, 5.2rem);
+    line-height: 1.06;
+    letter-spacing: -0.015em;
+    max-width: 17ch;
+    text-shadow: 0 2px 30px rgba(12,11,9,0.55);
+  }
+  .hero h1 em { font-style: italic; font-weight: 400; color: var(--creme-dim); }
+  .hero p.sub { max-width: 46ch; color: var(--creme-dim); font-size: clamp(1rem, 1.4vw, 1.13rem); line-height: 1.65; text-shadow: 0 1px 16px rgba(12,11,9,0.6); }
+  .hero .cta-row { display: flex; gap: 0.9rem; flex-wrap: wrap; justify-content: center; margin-top: 0.4rem; }
+  .hero .trust { color: var(--creme-faint); margin-top: 1.4rem; letter-spacing: 0.18em; font-size: 0.66rem; }
+  .hero .scrollhint { position: absolute; bottom: 1.6rem; left: 50%; transform: translateX(-50%); color: var(--creme-faint); font-size: 1.1rem; z-index: 2; animation: bob 2.4s ease-in-out infinite; }
+  @keyframes bob { 0%,100% { transform: translate(-50%,0);} 50% { transform: translate(-50%,8px);} }
+
+  /* ---------- GENERIC SECTIONS ---------- */
+  section.light { background: var(--creme); padding: clamp(4.5rem, 9vw, 8rem) clamp(1.4rem, 6vw, 4rem); }
+  section.light + section.light { border-top: 1px solid var(--line-light); }
+  section.dark { background: var(--black); color: var(--creme-bright); padding: clamp(4.5rem, 9vw, 8rem) clamp(1.4rem, 6vw, 4rem); }
+  .wrap { max-width: 1060px; margin: 0 auto; }
+  .kicker { color: var(--ink-soft); margin-bottom: 1.4rem; }
+  section.dark .kicker { color: var(--creme-faint); }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2rem, 4.6vw, 3.3rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    max-width: 22ch;
+  }
+  .lede { color: var(--ink-soft); font-size: 1.08rem; line-height: 1.7; max-width: 58ch; margin-top: 1.4rem; }
+  section.dark .lede { color: var(--creme-dim); }
+
+  /* ---------- SPIEGEL ---------- */
+  .symptoms { margin-top: 3rem; border-top: 1px solid var(--line-light); }
+  .symptom {
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--line-light);
+  }
+  .symptom .num { font-family: var(--mono); font-size: 0.8rem; color: var(--ink-soft); }
+  .symptom p { font-family: var(--serif); font-size: clamp(1.15rem, 2.2vw, 1.5rem); font-weight: 400; line-height: 1.35; }
+
+  /* ---------- OORDEEL ---------- */
+  .pullquote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.5rem, 3.4vw, 2.5rem);
+    line-height: 1.25;
+    max-width: 24ch;
+    margin: 3rem 0 2.4rem;
+  }
+  .oordeel-grid { display: grid; gap: 2.5rem; margin-top: 2.6rem; }
+  @media (min-width: 860px) { .oordeel-grid { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+  .oordeel-grid h3 { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.9rem; }
+  .oordeel-grid p { color: var(--ink); line-height: 1.7; font-size: 1rem; }
+  .oordeel-grid p + p { margin-top: 0.8rem; }
+
+  /* ---------- WAT WE BOUWEN ---------- */
+  .cases { display: grid; gap: 1.2rem; margin-top: 3rem; }
+  @media (min-width: 860px) { .cases { grid-template-columns: repeat(3, 1fr); } }
+  .case {
+    background: var(--black);
+    color: var(--creme-bright);
+    padding: 1.9rem 1.7rem 2rem;
+    display: flex; flex-direction: column; gap: 1.1rem;
+    border-radius: 4px;
+  }
+  .case .label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--creme-faint); }
+  .case h3 { font-family: var(--serif); font-weight: 500; font-size: 1.4rem; line-height: 1.25; }
+  .case .voor { color: var(--creme-dim); font-size: 0.93rem; line-height: 1.6; flex-grow: 1; }
+  .case .na {
+    border-top: 1px solid var(--line-dark);
+    padding-top: 1rem;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.25rem;
+  }
+  .cases-note { margin-top: 2rem; color: var(--ink-soft); font-size: 0.92rem; max-width: 60ch; line-height: 1.65; }
+
+  /* ---------- OERWOUD — expanding dark box ---------- */
+  .oerwoud-track { background: var(--creme); }
+  @media (min-width: 900px) { .oerwoud-track { height: 220vh; } }
+  .oerwoud-sticky { display: flex; align-items: center; justify-content: center; }
+  @media (min-width: 900px) { .oerwoud-sticky { position: sticky; top: 0; height: 100vh; } }
+  .oerwoud-box {
+    background: var(--black);
+    color: var(--creme-bright);
+    width: 100%;
+    margin: 0 5vw;
+    border-radius: 28px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    will-change: margin, border-radius, min-height;
+  }
+  @media (min-width: 900px) { .oerwoud-box { min-height: 84vh; } }
+  @media (max-width: 899px) { .oerwoud-box { margin: 0 !important; border-radius: 0 !important; } }
+  .oerwoud-content { width: 100%; max-width: 1060px; margin: 0 auto; padding: clamp(2.4rem, 4.5vw, 3.6rem); }
+  .oerwoud-content h2 { font-size: clamp(1.9rem, 4vw, 3rem); }
+  .oerwoud-content .lede { font-size: 1rem; margin-top: 1rem; }
+  .tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1px;
+    background: var(--line-dark);
+    border: 1px solid var(--line-dark);
+    margin-top: 2.2rem;
+  }
+  .tile { background: var(--black-soft); padding: 1.5rem 1.4rem 1.6rem; display: flex; flex-direction: column; gap: 0.9rem; }
+  .tile .label {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid var(--line-dark);
+    align-self: flex-start;
+    color: var(--creme-dim);
+  }
+  .tile .label.pos { background: var(--creme-bright); color: var(--ink); border-color: var(--creme-bright); }
+  .tile h3 { font-family: var(--serif); font-weight: 500; font-size: 1.25rem; line-height: 1.25; }
+  .tile p { color: var(--creme-dim); font-size: 0.88rem; line-height: 1.6; }
+  .tile p strong { color: var(--creme-bright); font-weight: 500; }
+  .oerwoud-meta {
+    margin-top: 2rem;
+    display: flex; flex-wrap: wrap;
+    gap: 1rem 2rem;
+    align-items: center; justify-content: space-between;
+    color: var(--creme-faint);
+    font-size: 0.85rem;
+  }
+  .oerwoud-meta .auto { display: flex; align-items: center; gap: 0.6rem; max-width: 52ch; line-height: 1.5; }
+  .oerwoud-meta .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--creme-bright); animation: pulse 2.2s ease-in-out infinite; flex-shrink: 0; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+  .oerwoud-meta a { color: var(--creme-bright); text-decoration: none; font-weight: 500; font-size: 0.95rem; white-space: nowrap; }
+
+  /* ---------- HOE HET WERKT ---------- */
+  .steps { display: grid; gap: 1.2rem; margin-top: 3rem; }
+  @media (min-width: 860px) { .steps { grid-template-columns: repeat(4, 1fr); gap: 2rem; } }
+  .step { border-top: 2px solid var(--ink); padding-top: 1.2rem; }
+  .step .num { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-soft); }
+  .step h3 { font-family: var(--serif); font-weight: 500; font-size: 1.3rem; margin: 0.6rem 0 0.7rem; }
+  .step p { color: var(--ink-soft); font-size: 0.92rem; line-height: 1.65; }
+  .step .note { margin-top: 0.7rem; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); }
+
+  /* ---------- PRIVACY & ZEKERHEID (dark) ---------- */
+  .garanties { display: grid; gap: 1.2rem; margin-top: 3rem; }
+  @media (min-width: 860px) { .garanties { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
+  .garantie { border-top: 1px solid var(--line-dark); padding-top: 1.2rem; }
+  .garantie .num { font-family: var(--mono); font-size: 0.75rem; color: var(--creme-faint); }
+  .garantie p { font-family: var(--serif); font-size: 1.2rem; line-height: 1.4; margin-top: 0.7rem; }
+  .garantie-kop { margin-top: 3.4rem; }
+
+  /* ---------- AI-NIEUWS / SIGNALEN ---------- */
+  .nieuws-grid {
+    display: grid;
+    gap: 1px;
+    background: var(--line-light);
+    border: 1px solid var(--line-light);
+    margin-top: 3rem;
+  }
+  @media (min-width: 860px) { .nieuws-grid { grid-template-columns: 1fr 1fr; } }
+  .nieuws { background: var(--creme); padding: 1.8rem 1.6rem 2rem; display: flex; flex-direction: column; gap: 0.9rem; }
+  .nieuws .kop-rij { display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap; }
+  .nieuws .label {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+  }
+  .nieuws .label.pos { background: var(--ink); color: var(--creme-bright); }
+  .nieuws .bron { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); }
+  .nieuws h3 { font-family: var(--serif); font-weight: 500; font-size: 1.3rem; line-height: 1.3; }
+  .nieuws p { color: var(--ink-soft); font-size: 0.92rem; line-height: 1.65; }
+  .nieuws p strong { color: var(--ink); font-weight: 600; }
+  .nieuws-meta {
+    margin-top: 2rem;
+    display: flex; flex-wrap: wrap;
+    gap: 1rem 2rem;
+    align-items: center; justify-content: space-between;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+  }
+  .nieuws-meta .auto { display: flex; align-items: center; gap: 0.6rem; max-width: 52ch; line-height: 1.5; }
+  .nieuws-meta .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ink); animation: pulse 2.2s ease-in-out infinite; flex-shrink: 0; }
+  .nieuws-meta a { color: var(--ink); text-decoration: none; font-weight: 500; font-size: 0.95rem; white-space: nowrap; }
+
+  /* ---------- WIE ER LANGSKOMT ---------- */
+  .profielen { display: grid; gap: 1.2rem; margin-top: 3rem; }
+  @media (min-width: 700px) { .profielen { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+  .profiel {
+    background: var(--black);
+    color: var(--creme-bright);
+    border-radius: 4px;
+    padding: 2rem 1.8rem;
+    display: flex; flex-direction: column; gap: 1.2rem;
+  }
+  .profiel .foto {
+    width: 96px; height: 96px;
+    background: var(--black-soft);
+    border: 1px solid var(--line-dark);
+    color: var(--creme-bright);
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 4px;
+  }
+  .profiel h3 { font-family: var(--serif); font-weight: 500; font-size: 1.5rem; }
+  .profiel .rol { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--creme-faint); margin-top: 0.4rem; }
+  .profiel p { color: var(--creme-dim); font-size: 0.95rem; line-height: 1.65; }
+  .yinyang { margin-top: 2.2rem; font-family: var(--serif); font-style: italic; font-size: 1.3rem; color: var(--ink); }
+
+  /* ---------- FORMULIERSTATUS ---------- */
+  .form-status { margin-top: 1.2rem; font-size: 0.95rem; line-height: 1.6; }
+  .form-status.ok { color: var(--ink); font-family: var(--serif); font-size: 1.15rem; }
+  .form-status.err { color: #8a2f22; }
+
+  /* ---------- CONTACT ---------- */
+  section.slot .grid { display: grid; gap: 3rem; margin-top: 3rem; }
+  @media (min-width: 860px) { section.slot .grid { grid-template-columns: 1fr 1fr; gap: 5rem; } }
+  form .field { margin-bottom: 1.2rem; }
+  form label { display: block; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.5rem; }
+  form input, form textarea {
+    width: 100%;
+    font-family: var(--sans);
+    font-size: 1rem;
+    padding: 0.85rem 1rem;
+    background: rgba(255,255,255,0.5);
+    border: 1px solid var(--line-light);
+    border-radius: 2px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  form input:focus, form textarea:focus { border-color: var(--ink); }
+  form textarea { min-height: 120px; resize: vertical; }
+  .contact-side p { color: var(--ink-soft); line-height: 1.7; }
+  .contact-side .direct { margin-top: 2rem; border-top: 1px solid var(--line-light); padding-top: 2rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .contact-side .direct a { color: var(--ink); font-family: var(--serif); font-size: 1.3rem; text-decoration: none; }
+  .price-note { margin-top: 2.6rem; color: var(--ink-soft); font-size: 0.9rem; line-height: 1.65; max-width: 44ch; }
+
+  /* ---------- FOOTER ---------- */
+  footer { background: var(--black); color: var(--creme-faint); padding: 3.4rem clamp(1.4rem, 6vw, 4rem); }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 1.4rem 3rem; align-items: baseline; justify-content: space-between; }
+  footer .word { font-family: var(--serif); font-size: 1.3rem; color: var(--creme-bright); }
+  footer .mono { font-size: 0.62rem; }
+  footer a { color: var(--creme-dim); text-decoration: none; font-size: 0.85rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero .scrollhint, .oerwoud-meta .dot { animation: none; }
+    .hero video { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="#">
+    <span class="word">Systemly</span>
+    <span class="tag mono">onafhankelijk ai-advies &amp; uitvoering</span>
+  </a>
+  <div class="links">
+    <a class="plain" href="#bouwen">Wat we bouwen</a>
+    <a class="plain" href="#oerwoud">Het oerwoud</a>
+    <a class="btn btn-creme" href="#contact">Plan een kennismaking</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <video id="vidA" muted playsinline autoplay loop preload="auto"></video>
+  <video id="vidB" muted playsinline loop preload="none"></video>
+  <div class="tint"></div>
+  <div class="inner">
+    <span class="chip mono">honderd routes &middot; één die past</span>
+    <h1>Er zijn honderd manieren om AI in te zetten. <em>Wij weten welke bij jou past.</em></h1>
+    <p class="sub">Van een slim bestaand tooltje tot een machine in jouw pand — wij hebben geen belang bij de uitkomst. Soms is ons advies: doe het niet.</p>
+    <div class="cta-row">
+      <a class="btn btn-creme" href="#contact">Plan een kennismaking&nbsp;&rarr;</a>
+      <a class="btn btn-ghost" href="#spiegel">Herken je dit?</a>
+    </div>
+    <div class="trust mono">nederlandstalig &middot; op locatie &middot; je blijft eigenaar van je data</div>
+  </div>
+  <div class="scrollhint">&darr;</div>
+</header>
+
+<section class="light" id="spiegel">
+  <div class="wrap">
+    <div class="kicker mono">herkenning</div>
+    <h2>Dit gaat over jouw kantoor.</h2>
+    <div class="symptoms">
+      <div class="symptom"><span class="num">/01</span><p>Iemand typt elke maand bankafschriften of facturen over.</p></div>
+      <div class="symptom"><span class="num">/02</span><p>Een map &lsquo;Inbox&rsquo; met duizenden bestanden die niemand meer doorzoekt.</p></div>
+      <div class="symptom"><span class="num">/03</span><p>Offertes worden met de hand uit oude offertes geknipt.</p></div>
+      <div class="symptom"><span class="num">/04</span><p>Rapportages worden elk kwartaal handmatig samengevoegd.</p></div>
+    </div>
+    <p class="lede">Dit is geen technologieprobleem. Het is een keuzeprobleem: welke van de honderd oplossingen past bij jouw proces, jouw data en jouw budget?</p>
+  </div>
+</section>
+
+<section class="light" id="oordeel">
+  <div class="wrap">
+    <div class="kicker mono">ons oordeel</div>
+    <h2>Iedereen in deze markt heeft één hamer. Wij niet.</h2>
+    <p class="lede">Een cloudpartij adviseert cloud. Een hardwareleverancier adviseert hardware. Een implementatiebureau adviseert het pakket waar het partner van is. Wij verkopen geen product — we zoeken uit welke route bij jouw bedrijf past, en bouwen hem daarna zelf.</p>
+    <div class="pullquote">&ldquo;Wij zijn de enige die je ook kunnen vertellen dat je het niet nodig hebt.&rdquo;</div>
+    <div class="oordeel-grid">
+      <div>
+        <h3>Wat dat betekent</h3>
+        <p>Soms is het antwoord een bestaand tooltje van veertig euro per maand. Soms een systeem dat volledig binnen jouw muren draait. En soms is het antwoord: dit lost je probleem niet op, begin er niet aan.</p>
+        <p>Je koopt bij ons geen rapport. Wat we adviseren, moeten we daarna zelf waarmaken — dat houdt een advies eerlijk.</p>
+      </div>
+      <div>
+        <h3>Wat we niet doen</h3>
+        <p>Geen chatbots voor je website. Geen strategierapporten die in een la verdwijnen. Geen AI omdat het kan. We bouwen alleen wat zichzelf terugverdient in uren of fouten — en anders zeggen we dat.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light" id="bouwen">
+  <div class="wrap">
+    <div class="kicker mono">bewijs</div>
+    <h2>Gebouwd. Niet ge-powerpoint.</h2>
+    <p class="lede">Een greep uit wat er draait — zonder klantnamen, want discretie hoort bij dit werk.</p>
+    <div class="cases">
+      <div class="case">
+        <span class="label">documentverwerking</span>
+        <h3>Bankafschriften die zichzelf inboeken</h3>
+        <p class="voor">Vier banken, zestig pagina&rsquo;s per kwartaal, een halve werkdag overtypen naar de administratie.</p>
+        <p class="na">Nu: vier minuten.</p>
+      </div>
+      <div class="case">
+        <span class="label">bestandsordening</span>
+        <h3>Tien jaar archief, doorzoekbaar</h3>
+        <p class="voor">Duizenden bestanden in losse mappen, vindbaar op bestandsnaam — als je wist hoe hij heette.</p>
+        <p class="na">Nu: zoeken op inhoud.</p>
+      </div>
+      <div class="case">
+        <span class="label">rapportage</span>
+        <h3>Kwartaalcijfers die zichzelf samenstellen</h3>
+        <p class="voor">Cijfers uit drie systemen, elk kwartaal met de hand samengevoegd en gecontroleerd.</p>
+        <p class="na">Nu: één overzicht, altijd actueel.</p>
+      </div>
+    </div>
+    <p class="cases-note">Elke oplossing draait waar hij hoort: soms in de cloud, soms op een machine bij jou op kantoor. Dat bepaalt de situatie — niet ons assortiment.</p>
+  </div>
+</section>
+
+<div class="oerwoud-track" id="oerwoud">
+  <div class="oerwoud-sticky">
+    <div class="oerwoud-box" id="oerwoudBox">
+      <div class="oerwoud-content">
+        <div class="kicker mono" style="color: var(--creme-faint)">het oerwoud</div>
+        <h2>Wat wel en niet werkt.</h2>
+        <p class="lede">Elke week nieuwe tools, elke maand een nieuwe belofte. Wij hakken erdoorheen — en zeggen er ook bij waar je níét in moet stappen.</p>
+        <div class="tiles">
+          <div class="tile">
+            <span class="label pos">wel doen</span>
+            <h3>Documenten die zichzelf verwerken</h3>
+            <p><strong>Voor een bedrijf van twintig man:</strong> bankafschriften, facturen en contracten die niet meer overgetypt hoeven te worden.</p>
+          </div>
+          <div class="tile">
+            <span class="label">hype</span>
+            <h3>Elke week een nieuwe AI-tool erbij</h3>
+            <p><strong>Voor een bedrijf van twintig man:</strong> tien losse abonnementen die niemand echt gebruikt maken het werk moeilijker, niet makkelijker. E&eacute;n systeem dat past wint van tien tools die botsen.</p>
+          </div>
+          <div class="tile">
+            <span class="label">niet doen</span>
+            <h3>Vertrouwelijke dossiers in gratis chatbots</h3>
+            <p><strong>Voor een bedrijf van twintig man:</strong> één gelekt dossier kost meer dan tien jaar aan licenties.</p>
+          </div>
+        </div>
+        <div class="oerwoud-meta">
+          <span class="auto"><span class="dot"></span>Dit overzicht wordt dagelijks automatisch samengesteld door een systeem dat wij hebben gebouwd. Wij keuren alleen goed.</span>
+          <a href="#">Bekijk het volledige overzicht &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="light" id="nieuws">
+  <div class="wrap">
+    <div class="kicker mono">ai-nieuws</div>
+    <h2>Wat er buiten gebeurt.</h2>
+    <p class="lede">De doorbraken gaan hard — de blunders ook. Wij volgen beide, zodat jij niet hoeft bij te benen wat er elke week verandert.</p>
+    <div class="nieuws-grid">
+      <div class="nieuws">
+        <div class="kop-rij"><span class="label">blunder</span><span class="bron">consultancy</span></div>
+        <h3>Big Four-kantoor betaalt overheidsrapport terug: bronnen bleken door AI verzonnen</h3>
+        <p><strong>Ons oordeel:</strong> AI zonder controlelaag is een aansprakelijkheidsrisico. Daarom toetsen wij elke uitkomst voordat hij jouw administratie in gaat.</p>
+      </div>
+      <div class="nieuws">
+        <div class="kop-rij"><span class="label">blunder</span><span class="bron">klantenservice</span></div>
+        <h3>Luchtvaartmaatschappij moet korting uitbetalen die haar chatbot ter plekke verzon</h3>
+        <p><strong>Ons oordeel:</strong> precies waarom wij geen website-chatbots bouwen. Wat namens jou praat, moet je kunnen vertrouwen.</p>
+      </div>
+      <div class="nieuws">
+        <div class="kop-rij"><span class="label pos">doorbraak</span><span class="bron">wetenschap</span></div>
+        <h3>AI die eiwitstructuren voorspelt wint de Nobelprijs en versnelt medicijnonderzoek wereldwijd</h3>
+        <p><strong>Ons oordeel:</strong> dezelfde techniek die eiwitten leest, leest jouw facturen en contracten. Dit is geen experiment meer.</p>
+      </div>
+      <div class="nieuws">
+        <div class="kop-rij"><span class="label pos">doorbraak</span><span class="bron">dienstverlening</span></div>
+        <h3>Fintech laat AI het werk van honderden servicemedewerkers doen — en zet mensen weer op het maatwerk</h3>
+        <p><strong>Ons oordeel:</strong> automatiseer het repetitieve, houd mensen op het oordeel. Dat is exact de grens die wij bewaken.</p>
+      </div>
+    </div>
+    <div class="nieuws-meta">
+      <span class="auto"><span class="dot"></span>Dagelijks automatisch verzameld uit tientallen bronnen door een systeem dat wij hebben gebouwd. Wij keuren alleen goed.</span>
+      <a href="#">Bekijk het volledige overzicht &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<section class="light" id="werkwijze">
+  <div class="wrap">
+    <div class="kicker mono">hoe het werkt</div>
+    <h2>Behapbaar. Persoonlijk. In vier stappen.</h2>
+    <div class="steps">
+      <div class="step">
+        <span class="num">/01</span>
+        <h3>Kennismaking</h3>
+        <p>Jij vertelt wat er speelt. Wij zeggen eerlijk of we iets voor je kunnen betekenen.</p>
+        <div class="note">45 min &middot; gratis &middot; geen verplichtingen</div>
+      </div>
+      <div class="step">
+        <span class="num">/02</span>
+        <h3>Analyse op locatie</h3>
+        <p>We komen langs en kijken mee met het echte werk. Waar lekken de uren weg — en wat kun je beter laten liggen?</p>
+      </div>
+      <div class="step">
+        <span class="num">/03</span>
+        <h3>Bouwen &amp; opleveren</h3>
+        <p>Wij bouwen de oplossing en zetten hem werkend neer, ingepast in hoe jouw team al werkt.</p>
+      </div>
+      <div class="step">
+        <span class="num">/04</span>
+        <h3>Doorontwikkelen</h3>
+        <p>Het werk verandert, de systemen veranderen mee. Je krijgt geen ticketsysteem — je krijgt ons nummer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="zekerheid">
+  <div class="wrap">
+    <div class="kicker mono">privacy &amp; zekerheid</div>
+    <h2>Als het écht niet naar buiten mag, kan dat ook.</h2>
+    <p class="lede">Voor het zwaarste werk bouwen we systemen die volledig binnen jouw muren draaien, op een AI-machine (NVIDIA DGX Spark) die van jou is — jouw data verlaat het pand niet, ook niet tijdens de verwerking. Niet als dogma, maar als bewijs dat we het hele spectrum aankunnen. AVG-proof by design: omdat de machine bij jou staat, niet omdat wij het beloven.</p>
+    <div class="garantie-kop mono" style="color: var(--creme-faint)">zo is het geregeld</div>
+    <div class="garanties">
+      <div class="garantie">
+        <span class="num">/01</span>
+        <p>Jij houdt een eeuwigdurende gebruikslicentie op de code van jouw tools.</p>
+      </div>
+      <div class="garantie">
+        <span class="num">/02</span>
+        <p>De machine in jouw pand is jouw eigendom.</p>
+      </div>
+      <div class="garantie">
+        <span class="num">/03</span>
+        <p>De code blijft beschikbaar en bruikbaar — wat er ook met Systemly gebeurt.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light" id="wie">
+  <div class="wrap">
+    <div class="kicker mono">wie er langskomt</div>
+    <h2>Je krijgt geen accountmanager. Je krijgt ons.</h2>
+    <div class="profielen">
+      <div class="profiel">
+        <div class="foto">P</div>
+        <div>
+          <h3>Pieter Wellens</h3>
+          <div class="rol">co-founder &middot; developer</div>
+        </div>
+        <p>Bouwt de systemen en zet ze werkend neer. En loopt in de analyse mee met Guus — want wie bouwt, ziet wat er te automatiseren valt.</p>
+      </div>
+      <div class="profiel">
+        <div class="foto">G</div>
+        <div>
+          <h3>Guus van der Graaf</h3>
+          <div class="rol">co-founder &middot; proces &amp; analyse</div>
+        </div>
+        <p>Herkent waar de uren weglekken en vertaalt jouw processen naar de route die past. En bouwt mee zodra het systeem vorm krijgt.</p>
+      </div>
+    </div>
+    <p class="yinyang">De een bouwt wat de ander vindt — en andersom.</p>
+  </div>
+</section>
+
+<section class="light slot" id="contact">
+  <div class="wrap">
+    <div class="kicker mono">contact</div>
+    <h2>Plan een kennismaking.</h2>
+    <p class="lede">45 minuten, bij jou op locatie of online. Gratis en zonder verplichtingen. Je hoort binnen één werkdag van ons.</p>
+    <div class="grid">
+      <form id="contactForm" novalidate>
+        <div class="field"><label for="fNaam">Naam</label><input id="fNaam" name="naam" type="text" placeholder="Je naam" required></div>
+        <div class="field"><label for="fBedrijf">Bedrijf</label><input id="fBedrijf" name="bedrijf" type="text" placeholder="Je bedrijf" required></div>
+        <div class="field"><label for="fEmail">E-mail</label><input id="fEmail" name="email" type="email" placeholder="naam@bedrijf.nl" required></div>
+        <div class="field"><label for="watSpeeltEr">Wat speelt er?</label><textarea id="watSpeeltEr" name="bericht" placeholder="Bijvoorbeeld: " required></textarea></div>
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn btn-dark" type="submit">Verstuur — wij reageren binnen één werkdag &rarr;</button>
+        <p class="form-status" id="formStatus" hidden></p>
+      </form>
+      <div class="contact-side">
+        <p>Liever direct mailen? Ook goed — je krijgt geen accountmanager, je krijgt ons.</p>
+        <div class="direct">
+          <a href="mailto:admin@systemlysolutions.onmicrosoft.com" style="font-size:1.05rem; word-break:break-all;">admin@systemlysolutions.onmicrosoft.com</a>
+        </div>
+        <p class="price-note">We zijn geen goedkope oplossing, en wat een traject kost verschilt sterk per situatie. Daarom staat hier geen prijslijst — de oplossing verschilt namelijk ook.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="word">Systemly</div>
+      <div class="mono" style="margin-top:0.5rem">onafhankelijk ai-advies &amp; uitvoering</div>
+    </div>
+    <div style="display:flex; gap:2rem; flex-wrap:wrap;">
+      <a href="mailto:admin@systemlysolutions.onmicrosoft.com">admin@systemlysolutions.onmicrosoft.com</a>
+      <a href="#">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------- Hero: crossfading stock footage (Pexels, vrije licentie) ----------
+   Robuust: er wordt pas gewisseld als de volgende clip volledig afspeelklaar is
+   (geen zwarte fades), clips die falen of te traag laden worden overgeslagen,
+   en een bevroren video wordt gedetecteerd en vervangen. */
+(() => {
+  const CLIPS = [
+    // Amsterdam vanuit de lucht bij zonsondergang (1080p, ~30 MB)
+    'https://videos.pexels.com/video-files/31532146/13439840_1920_1080_60fps.mp4',
+    // Modern kantoor met werkplekken en monitors (1080p, ~3 MB)
+    'https://videos.pexels.com/video-files/8346903/8346903-hd_1920_1080_25fps.mp4',
+    // Close-up: documenten doornemen aan bureau (1080p, ~2 MB)
+    'https://videos.pexels.com/video-files/8478951/8478951-hd_1920_1080_25fps.mp4',
+    // Serverruimte / datacenter (1080p, ~19 MB)
+    'https://videos.pexels.com/video-files/5028622/5028622-hd_1920_1080_25fps.mp4',
+  ];
+  const SHOW_MS = 9000;          // zichtduur per clip
+  const READY_TIMEOUT_MS = 12000; // laadt de volgende niet binnen deze tijd → overslaan
+  const vids = [document.getElementById('vidA'), document.getElementById('vidB')];
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let front = 0;       // welk <video>-element zichtbaar is
+  let clip = 0;        // welke clip zichtbaar is
+  let nextClip = 1;    // welke clip klaargezet wordt
+  let backReady = false;
+  let lastSwitch = performance.now();
+  let lastTime = 0, stallTicks = 0;
+
+  // Eerste clip: pas tonen zodra hij kan spelen (hero blijft tot dan egaal zwart)
+  vids[0].src = CLIPS[0];
+  vids[0].addEventListener('canplay', () => {
+    vids[0].classList.add('active');
+    vids[0].play().catch(() => {});
+  }, { once: true });
+  vids[0].load();
+  // autoplay-policies: een echte interactie deblokkeert altijd
+  document.addEventListener('pointerdown', () => vids[front].play().catch(() => {}), { once: true });
+
+  if (reduced) return;
+
+  function loadBack() {
+    const back = vids[1 - front];
+    backReady = false;
+    back.classList.remove('active');
+    back.src = CLIPS[nextClip];
+    const to = setTimeout(skip, READY_TIMEOUT_MS);
+    function cleanup() {
+      clearTimeout(to);
+      back.removeEventListener('canplaythrough', onReady);
+      back.removeEventListener('error', skip);
+    }
+    function onReady() { cleanup(); backReady = true; }
+    function skip() {
+      cleanup();
+      nextClip = (nextClip + 1) % CLIPS.length;
+      if (nextClip !== clip) loadBack(); // nooit dezelfde clip in beide elementen
+    }
+    back.addEventListener('canplaythrough', onReady);
+    back.addEventListener('error', skip);
+    back.load();
+  }
+
+  function doSwitch() {
+    const back = vids[1 - front];
+    try { back.currentTime = 0; } catch {}
+    back.play().catch(() => {});
+    back.classList.add('active');
+    vids[front].classList.remove('active');
+    front = 1 - front;
+    clip = nextClip;
+    nextClip = (clip + 1) % CLIPS.length;
+    lastSwitch = performance.now();
+    stallTicks = 0;
+    setTimeout(loadBack, 1500); // nieuwe front even laten spelen, dan pas preloaden
+  }
+
+  setTimeout(loadBack, 2500);
+
+  setInterval(() => {
+    const f = vids[front];
+    // vastloper-detectie: speelt hij wel, maar beweegt de tijd niet?
+    if (f.readyState >= 2 && !f.paused && !document.hidden) {
+      if (Math.abs(f.currentTime - lastTime) < 0.05) stallTicks++;
+      else stallTicks = 0;
+      lastTime = f.currentTime;
+    }
+    const stalled = stallTicks >= 3; // ~3 s bevroren
+    const due = performance.now() - lastSwitch >= SHOW_MS;
+    if ((due || stalled) && backReady) doSwitch();
+    else if (stalled) f.play().catch(() => {}); // nudge; volgende tick kan alsnog wisselen
+  }, 1000);
+})();
+
+/* ---------- Oerwoud: box groeit naar full-bleed (alleen desktop) ---------- */
+(() => {
+  const track = document.getElementById('oerwoud');
+  const box = document.getElementById('oerwoudBox');
+  const mq = matchMedia('(min-width: 900px)');
+  const clamp01 = (v) => Math.max(0, Math.min(1, v));
+  const ease = (p) => 1 - Math.pow(1 - p, 3);
+
+  function update() {
+    if (!mq.matches) { box.style.margin = ''; box.style.borderRadius = ''; box.style.minHeight = ''; return; }
+    const rect = track.getBoundingClientRect();
+    const vh = innerHeight;
+    const total = rect.height - vh;
+    const p = clamp01(-rect.top / (total * 0.55));
+    const e = ease(p);
+    box.style.margin = `0 ${5 * (1 - e)}vw`;
+    box.style.borderRadius = `${28 * (1 - e)}px`;
+    box.style.minHeight = `${84 + 16 * e}vh`;
+  }
+  addEventListener('scroll', update, { passive: true });
+  addEventListener('resize', update);
+  mq.addEventListener?.('change', update);
+  update();
+})();
+
+/* ---------- Formulier: werkende verzending via FormSubmit (zelfde alias als oude site) ---------- */
+(() => {
+  const FORMSUBMIT_ID = 'b6a1f4d663aa1ada9d07f6711fdb2b1b'; // gekoppeld aan admin@systemlysolutions.onmicrosoft.com
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  const btn = form.querySelector('button[type="submit"]');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (form._honey.value) return; // spam-bot
+    if (!form.naam.value.trim() || !form.bedrijf.value.trim() || !form.email.value.includes('@') || !form.bericht.value.trim()) {
+      status.hidden = false;
+      status.className = 'form-status err';
+      status.textContent = 'Vul alle velden in — dan weten we wie we terugmailen.';
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = 'Versturen…';
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/' + FORMSUBMIT_ID, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          naam: form.naam.value,
+          bedrijf: form.bedrijf.value,
+          email: form.email.value,
+          bericht: form.bericht.value,
+          _subject: 'Nieuw bericht via systemly.nl',
+        }),
+      });
+      if (!res.ok) throw new Error('http ' + res.status);
+      form.querySelectorAll('.field, button').forEach((el) => (el.style.display = 'none'));
+      status.hidden = false;
+      status.className = 'form-status ok';
+      status.textContent = 'Dank je — je bericht is binnen. Je hoort binnen één werkdag van ons.';
+    } catch {
+      btn.disabled = false;
+      btn.innerHTML = 'Verstuur — wij reageren binnen één werkdag &rarr;';
+      status.hidden = false;
+      status.className = 'form-status err';
+      status.textContent = 'Versturen lukte even niet. Mail ons direct: admin@systemlysolutions.onmicrosoft.com';
+    }
+  });
+})();
+
+/* ---------- Formulier: typewriter-placeholder (zelfde als oude site) ---------- */
+(() => {
+  const ta = document.getElementById('watSpeeltEr');
+  const PREFIX = 'Bijvoorbeeld: ';
+  const ZINNEN = [
+    'wij zijn wekelijks uren kwijt aan het verwerken van facturen…',
+    'onze maandrapportage kost drie dagen handwerk…',
+    'wij typen gegevens over van PDF naar Excel…',
+    'hetzelfde dossier gaat bij ons door vier paar handen…',
+  ];
+  const HOLD_MS = 4000, TYPE_MS = 38, ERASE_MS = 14;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    ta.placeholder = PREFIX + ZINNEN[0];
+    return;
+  }
+  let zin = 0;
+  function typeZin(done) {
+    const s = ZINNEN[zin];
+    let c = 0;
+    const t = setInterval(() => {
+      c++;
+      ta.placeholder = PREFIX + s.slice(0, c);
+      if (c >= s.length) { clearInterval(t); done(); }
+    }, TYPE_MS);
+  }
+  function eraseZin(done) {
+    const t = setInterval(() => {
+      const cur = ta.placeholder.slice(PREFIX.length);
+      if (!cur.length) { clearInterval(t); done(); }
+      else ta.placeholder = PREFIX + cur.slice(0, -1);
+    }, ERASE_MS);
+  }
+  (function cycle() {
+    typeZin(() => setTimeout(() => eraseZin(() => {
+      zin = (zin + 1) % ZINNEN.length;
+      cycle();
+    }), HOLD_MS));
+  })();
+})();
+</script>
+</body>
+</html>
