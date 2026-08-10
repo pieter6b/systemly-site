@@ -1,28 +1,37 @@
 # Systemly
 
-> Systemly levert AI-automatisering, softwareontwikkeling op maat en websites voor kleine en middelgrote bedrijven (MKB) in Nederland. Kern van het aanbod: automatisering van documentverwerking, data-extractie en terugkerende administratieve processen — lokaal op een AI-computer (NVIDIA DGX Spark) in het pand van de klant waar de AVG dat vereist, of via cloud-AI-diensten waar dat kan.
+> Systemly is een onafhankelijk Nederlands AI-advies- en uitvoeringsbureau voor het MKB. Er zijn honderd manieren om AI in te zetten; Systemly zoekt uit welke route bij een bedrijf past — en bouwt hem daarna zelf. Zonder belang bij de uitkomst: soms is het advies een bestaand tooltje, soms een AI-machine in het eigen pand (NVIDIA DGX Spark), en soms is het advies om het niet te doen.
 
 ## Wat Systemly doet
 
-- Lokale AI-automatisering: documentverwerking, data-extractie en terugkerende processen op een AI-machine in het eigen pand — AVG-proof, data blijft binnen (bijv. stapels bankrapportages automatisch omzetten naar één overzicht)
-- Automatisering via cloud-AI wanneer er geen persoonsgegevens of gevoelige dossiers spelen: sneller opgezet, lagere instapkosten
-- Websites en volledige softwareapplicaties op maat, voor intern of extern gebruik, op aanvraag ontworpen, gebouwd en onderhouden
-- Levering van de NVIDIA DGX Spark AI-computer, ingericht en onderhouden door Systemly
-- Doel van elke oplossing: uren teruggeven aan de primaire bedrijfsprocessen van de klant
+- Onafhankelijk advies over AI-inzet: geen partnerbelangen, geen vast assortiment — de situatie bepaalt de oplossing
+- Documentverwerking en data-extractie: bankafschriften, facturen en contracten die niet meer overgetypt hoeven te worden
+- Bestandsordening: jarenlange archieven doorzoekbaar op inhoud in plaats van bestandsnaam
+- Rapportages die zichzelf samenstellen uit meerdere systemen
+- Voor het zwaarste werk: systemen die volledig binnen de muren van de klant draaien op een NVIDIA DGX Spark — data verlaat het pand niet, AVG-proof by design
+- Uitvoering hoort bij het advies: Systemly levert geen rapporten maar werkende systemen, en onderhoudt ze daarna
+
+## Wat Systemly niet doet
+
+- Geen website-chatbots
+- Geen strategierapporten
+- Geen AI omdat het kan: alleen wat zichzelf terugverdient in uren of fouten
+
+## Zekerheid
+
+- Klanten houden een eeuwigdurende gebruikslicentie op de code van hun tools
+- De machine in het pand is eigendom van de klant
+- De code blijft beschikbaar en bruikbaar, wat er ook met Systemly gebeurt
 
 ## Werkwijze
 
-1. Kennismaking — 45 minuten, kosteloos, op eigen data, vrijblijvend
-2. Analyse op locatie — processen identificeren die tijd kosten
-3. Bouwen & opleveren — op maat gebouwd, door de klant getoetst
-4. Doorontwikkelen — updates, support en periodiek bezoek
-
-## Doelgroep
-
-Kleine en middelgrote bedrijven (MKB) met terugkerend document- of administratiewerk, o.a. administratie- en advieskantoren, financiële dienstverleners, family offices, vermogensbeheerders, juridische praktijken en logistiek.
+1. Kennismaking — 45 minuten, gratis, op locatie of online, zonder verplichtingen
+2. Analyse op locatie — meelopen met het echte werk, vinden waar de uren weglekken
+3. Bouwen & opleveren — werkend opgeleverd, ingepast in hoe het team al werkt
+4. Doorontwikkelen — systemen groeien mee met de organisatie
 
 ## Contact
 
-- Website: https://systemly.nl/
+- Website: https://systemly.nl
 - E-mail: admin@systemlysolutions.onmicrosoft.com
-- Contactformulier: https://systemly.nl/#contact
+- Reactie binnen één werkdag
