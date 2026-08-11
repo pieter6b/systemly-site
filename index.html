@@ -221,18 +221,48 @@
   .lede { color: var(--ink-soft); font-size: 1.08rem; line-height: 1.7; max-width: 58ch; margin-top: 1.4rem; }
   section.dark .lede { color: var(--creme-dim); }
 
-  /* ---------- SPIEGEL ---------- */
+  /* ---------- SPIEGEL (uitklapbare tabjes) ---------- */
   .symptoms { margin-top: 3rem; border-top: 1px solid var(--line-light); }
-  .symptom {
+  .symptom { border-bottom: 1px solid var(--line-light); cursor: pointer; }
+  .symptom .kop-rij {
     display: grid;
-    grid-template-columns: 4rem 1fr;
+    grid-template-columns: 4rem 1fr auto;
     gap: 1rem;
     align-items: baseline;
     padding: 1.4rem 0;
-    border-bottom: 1px solid var(--line-light);
   }
   .symptom .num { font-family: var(--mono); font-size: 0.8rem; color: var(--ink-soft); }
-  .symptom p { font-family: var(--serif); font-size: clamp(1.15rem, 2.2vw, 1.5rem); font-weight: 400; line-height: 1.35; }
+  .symptom .kop-rij p { font-family: var(--serif); font-size: clamp(1.15rem, 2.2vw, 1.5rem); font-weight: 400; line-height: 1.35; }
+  .symptom .plus {
+    font-family: var(--mono);
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    transition: transform 0.4s ease;
+    align-self: center;
+  }
+  .symptom.open .plus { transform: rotate(45deg); }
+  .symptom .uitleg {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.55s ease;
+    margin-left: 5rem;
+    max-width: 56ch;
+  }
+  @media (max-width: 640px) { .symptom .uitleg { margin-left: 0; } }
+  .symptom .uitleg .probleem { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.65; }
+  .symptom .uitleg .oplossing { display: flex; gap: 0.8rem; align-items: baseline; margin-top: 0.7rem; padding-bottom: 1.5rem; }
+  .symptom .uitleg .oplossing .tag {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: var(--creme-bright);
+    padding: 0.3rem 0.6rem;
+    flex-shrink: 0;
+  }
+  .symptom .uitleg .oplossing p { color: var(--ink); font-size: 0.95rem; line-height: 1.6; }
+  .symptom.open .uitleg { max-height: 220px; }
 
   /* ---------- OORDEEL ---------- */
   .pullquote {
@@ -250,10 +280,16 @@
   .oordeel-grid p { color: var(--ink); line-height: 1.7; font-size: 1rem; }
   .oordeel-grid p + p { margin-top: 0.8rem; }
 
-  /* ---------- WAT WE BOUWEN ---------- */
-  .cases { display: grid; gap: 1.2rem; margin-top: 3rem; }
-  @media (min-width: 860px) { .cases { grid-template-columns: repeat(3, 1fr); } }
+  /* ---------- WAT WE BOUWEN (doorlopende catalogus) ---------- */
+  .cases-viewport { overflow: hidden; margin-top: 3rem; }
+  .cases {
+    display: flex;
+    gap: 1.2rem;
+    transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
   .case {
+    flex: 0 0 min(340px, 80vw);
     background: var(--black);
     color: var(--creme-bright);
     padding: 1.9rem 1.7rem 2rem;
@@ -460,7 +496,6 @@
   </a>
   <div class="links">
     <a class="plain" href="/portfolio.html">Portfolio</a>
-    <a class="plain" href="#oerwoud">Het oerwoud</a>
     <a class="btn btn-creme" href="#contact">Plan een kennismaking</a>
   </div>
 </nav>
@@ -486,11 +521,35 @@
   <div class="wrap">
     <div class="kicker mono">herkenning</div>
     <h2>Dit gaat over uw kantoor.</h2>
-    <div class="symptoms">
-      <div class="symptom"><span class="num">/01</span><p>Iemand typt elke maand bankafschriften of facturen over.</p></div>
-      <div class="symptom"><span class="num">/02</span><p>Een map &lsquo;Inbox&rsquo; met duizenden bestanden die niemand meer doorzoekt.</p></div>
-      <div class="symptom"><span class="num">/03</span><p>Offertes worden met de hand uit oude offertes geknipt.</p></div>
-      <div class="symptom"><span class="num">/04</span><p>Rapportages worden elk kwartaal handmatig samengevoegd.</p></div>
+    <div class="symptoms" id="symptoms">
+      <div class="symptom">
+        <div class="kop-rij"><span class="num">/01</span><p>Iemand typt elke maand bankafschriften of facturen over.</p><span class="plus">+</span></div>
+        <div class="uitleg">
+          <p class="probleem">Elke maand dezelfde handeling: openen, overlezen, overtikken. Foutgevoelig, en zonde van goede mensen.</p>
+          <div class="oplossing"><span class="tag">de oplossing</span><p>Een systeem dat documenten zelf leest en inboekt. Uw team controleert alleen nog de uitzonderingen.</p></div>
+        </div>
+      </div>
+      <div class="symptom">
+        <div class="kop-rij"><span class="num">/02</span><p>Een map &lsquo;Inbox&rsquo; met duizenden bestanden die niemand meer doorzoekt.</p><span class="plus">+</span></div>
+        <div class="uitleg">
+          <p class="probleem">Wat niet vindbaar is, bestaat praktisch niet. De kennis van jaren zit opgesloten in mappen waar niemand meer komt.</p>
+          <div class="oplossing"><span class="tag">de oplossing</span><p>Een archief dat doorzoekbaar is op inhoud: &eacute;&eacute;n zoekopdracht in plaats van een middag bladeren.</p></div>
+        </div>
+      </div>
+      <div class="symptom">
+        <div class="kop-rij"><span class="num">/03</span><p>Offertes worden met de hand uit oude offertes geknipt.</p><span class="plus">+</span></div>
+        <div class="uitleg">
+          <p class="probleem">Elke offerte begint bij een oude — inclusief de verouderde prijzen en de fouten van de vorige.</p>
+          <div class="oplossing"><span class="tag">de oplossing</span><p>Offertes die zichzelf opbouwen uit actuele gegevens, in uw eigen format en huisstijl.</p></div>
+        </div>
+      </div>
+      <div class="symptom">
+        <div class="kop-rij"><span class="num">/04</span><p>Rapportages worden elk kwartaal handmatig samengevoegd.</p><span class="plus">+</span></div>
+        <div class="uitleg">
+          <p class="probleem">Drie systemen, &eacute;&eacute;n spreadsheet, elk kwartaal opnieuw — en niemand die er nog met plezier aan begint.</p>
+          <div class="oplossing"><span class="tag">de oplossing</span><p>Rapportage die zichzelf samenstelt uit de bronnen en gecontroleerd klaarstaat.</p></div>
+        </div>
+      </div>
     </div>
     <p class="lede">Dit is geen technologieprobleem. Het is een keuzeprobleem: welke van de honderd oplossingen past bij uw proces, uw data en uw budget?</p>
   </div>
@@ -521,7 +580,8 @@
     <div class="kicker mono">bewijs</div>
     <h2>Gebouwd. Niet ge-powerpoint.</h2>
     <p class="lede">Een greep uit wat er draait — zonder klantnamen, want discretie hoort bij dit werk.</p>
-    <div class="cases">
+    <div class="cases-viewport" id="casesViewport">
+    <div class="cases" id="cases">
       <div class="case">
         <span class="label">documentverwerking</span>
         <h3>Bankafschriften die zichzelf inboeken</h3>
@@ -540,6 +600,25 @@
         <p class="voor">Cijfers uit drie systemen, elk kwartaal met de hand samengevoegd en gecontroleerd.</p>
         <p class="na">Nu: één overzicht, altijd actueel.</p>
       </div>
+      <div class="case">
+        <span class="label">documentsortering</span>
+        <h3>Een inbox die zichzelf opruimt</h3>
+        <p class="voor">Elk bestand dat binnenkomt wordt herkend en op de juiste plek in de mappenstructuur gezet.</p>
+        <p class="na">Nu: nul keer slepen.</p>
+      </div>
+      <div class="case">
+        <span class="label">intake</span>
+        <h3>Dossiers gecontroleerd bij binnenkomst</h3>
+        <p class="voor">Aangeleverde stukken worden gelezen, gekoppeld aan het dossier en getoetst op volledigheid.</p>
+        <p class="na">Nu: gesignaleerd vóór iemand het opent.</p>
+      </div>
+      <div class="case">
+        <span class="label">boekhouding</span>
+        <h3>Jaarcijfers die klaarstaan</h3>
+        <p class="voor">Mutaties per entiteit, doorlopend geboekt, gecontroleerd en aangesloten volgens één stramien.</p>
+        <p class="na">Nu: concept gereed, heel het jaar.</p>
+      </div>
+    </div>
     </div>
     <p class="cases-note">Elke oplossing draait waar hij hoort: soms in de cloud, soms op een machine bij u op kantoor. Dat bepaalt de situatie — niet ons assortiment.</p>
     <p style="margin-top:1.6rem;"><a href="/portfolio.html" style="color:var(--ink); font-weight:600; text-decoration:none;">Bekijk het volledige portfolio &rarr;</a></p>
@@ -740,7 +819,6 @@
     // Zelf gehost (bron: Pexels, vrije licentie — zie assets/video/)
     '/assets/video/amsterdam.mp4',   // Amsterdam vanuit de lucht bij zonsondergang
     '/assets/video/kantoor.mp4',     // modern kantoor met werkplekken
-    '/assets/video/documenten.mp4',  // close-up: documenten doornemen
     '/assets/video/datacenter.mp4',  // serverruimte / datacenter
   ];
   const SHOW_MS = 9000;          // zichtduur per clip
@@ -857,6 +935,49 @@
   addEventListener('resize', update);
   mq.addEventListener?.('change', update);
   update();
+})();
+
+/* ---------- Herkenning: uitklapbare tabjes ---------- */
+(() => {
+  const symptoms = [...document.querySelectorAll('.symptom')];
+  symptoms.forEach((s) => s.addEventListener('click', () => {
+    const wasOpen = s.classList.contains('open');
+    symptoms.forEach((x) => x.classList.remove('open'));
+    if (!wasOpen) s.classList.add('open');
+  }));
+  // eerste tabje klapt open zodra de sectie in beeld komt
+  new IntersectionObserver((entries, io) => {
+    if (entries[0].isIntersecting) {
+      symptoms[0].classList.add('open');
+      io.disconnect();
+    }
+  }, { threshold: 0.4 }).observe(document.getElementById('symptoms'));
+})();
+
+/* ---------- Bewijs: doorlopende catalogus (elke 5 s één kaart verder) ---------- */
+(() => {
+  const strip = document.getElementById('cases');
+  const viewport = document.getElementById('casesViewport');
+  const cards = [...strip.children];
+  let idx = 0;
+  let pauze = false;
+
+  function stap() {
+    if (pauze || document.hidden) return;
+    const cardW = cards[0].getBoundingClientRect().width;
+    const gap = parseFloat(getComputedStyle(strip).gap) || 0;
+    const zichtbaar = Math.max(1, Math.floor((viewport.clientWidth + gap) / (cardW + gap)));
+    const maxIdx = Math.max(0, cards.length - zichtbaar);
+    idx = idx >= maxIdx ? 0 : idx + 1;
+    strip.style.transform = `translateX(${-idx * (cardW + gap)}px)`;
+  }
+
+  viewport.addEventListener('mouseenter', () => { pauze = true; });
+  viewport.addEventListener('mouseleave', () => { pauze = false; });
+  viewport.addEventListener('touchstart', () => { pauze = true; }, { passive: true });
+  viewport.addEventListener('touchend', () => { setTimeout(() => { pauze = false; }, 6000); }, { passive: true });
+  addEventListener('resize', () => { idx = 0; strip.style.transform = ''; });
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(stap, 5000);
 })();
 
 /* ---------- Formulier: werkende verzending via FormSubmit (zelfde alias als oude site) ---------- */
