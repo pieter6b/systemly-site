@@ -73,7 +73,7 @@
      schuift de rest van de pagina eroverheen (alles erna staat op z-index 1). */
   .hero video {
     position: fixed; inset: 0; width: 100%; height: 100lvh;
-    object-fit: cover; opacity: 0; transition: opacity 1.2s ease;
+    object-fit: cover; opacity: 0; transition: opacity 1.6s ease;
   }
   .hero video.active { opacity: 1; }
   .hero .tint {
@@ -254,7 +254,8 @@
 </nav>
 
 <header class="hero">
-  <video id="heroVid" muted playsinline autoplay loop preload="auto" src="/assets/video/datacenter.mp4"></video>
+  <video id="vidA" muted playsinline autoplay loop preload="auto"></video>
+  <video id="vidB" muted playsinline loop preload="none"></video>
   <div class="tint"></div>
   <div class="labels">
     <div class="label-blok">U bekijkt<br>gebouwd werk<br>van Systemly</div>
@@ -398,15 +399,98 @@
 </footer>
 
 <script>
-  // Hero-video (fixed): tonen zodra afspeelbaar, pauzeren zodra de hero uit beeld is
+  // Hero: zelfde crossfade-rotatiesysteem als de homepage (1-op-1)
   (() => {
-    const v = document.getElementById('heroVid');
-    v.addEventListener('canplay', () => { v.classList.add('active'); v.play().catch(() => {}); }, { once: true });
-    document.addEventListener('pointerdown', () => v.play().catch(() => {}), { once: true });
+    const CLIPS = [
+      '/assets/video/amsterdam.mp4',
+      '/assets/video/kantoor.mp4',
+      '/assets/video/datacenter.mp4',
+    ];
+    const SHOW_MS = 9000;
+    const READY_TIMEOUT_MS = 12000;
+    const vids = [document.getElementById('vidA'), document.getElementById('vidB')];
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let front = 0;
+    let clip = 0;
+    let nextClip = 1;
+    let backReady = false;
+    let lastSwitch = performance.now();
+    let lastTime = 0, stallTicks = 0;
+
+    vids[0].src = CLIPS[0];
+    vids[0].addEventListener('canplay', () => {
+      vids[0].classList.add('active');
+      vids[0].play().catch(() => {});
+    }, { once: true });
+    vids[0].load();
+    document.addEventListener('pointerdown', () => vids[front].play().catch(() => {}), { once: true });
+
+    if (reduced) return;
+
+    function loadBack() {
+      const back = vids[1 - front];
+      backReady = false;
+      back.classList.remove('active');
+      back.src = CLIPS[nextClip];
+      const to = setTimeout(skip, READY_TIMEOUT_MS);
+      function cleanup() {
+        clearTimeout(to);
+        back.removeEventListener('canplaythrough', onReady);
+        back.removeEventListener('error', skip);
+      }
+      function onReady() { cleanup(); backReady = true; }
+      function skip() {
+        cleanup();
+        nextClip = (nextClip + 1) % CLIPS.length;
+        if (nextClip !== clip) loadBack();
+      }
+      back.addEventListener('canplaythrough', onReady);
+      back.addEventListener('error', skip);
+      back.load();
+    }
+
+    function doSwitch() {
+      const back = vids[1 - front];
+      try { back.currentTime = 0; } catch {}
+      back.play().catch(() => {});
+      back.classList.add('active');
+      vids[front].classList.remove('active');
+      front = 1 - front;
+      clip = nextClip;
+      nextClip = (clip + 1) % CLIPS.length;
+      lastSwitch = performance.now();
+      stallTicks = 0;
+      setTimeout(loadBack, 1500);
+    }
+
+    setTimeout(loadBack, 2500);
+
+    let heroVisible = true;
     new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) v.play().catch(() => {});
-      else v.pause();
+      heroVisible = entries[0].isIntersecting;
+      if (!heroVisible) {
+        vids.forEach((v) => v.pause());
+      } else {
+        vids[front].play().catch(() => {});
+        lastSwitch = performance.now();
+        stallTicks = 0;
+      }
     }, { threshold: 0.02 }).observe(document.querySelector('header.hero'));
+
+    setInterval(() => {
+      if (!heroVisible) return;
+      const f = vids[front];
+      if (f.readyState >= 2 && !f.paused && !document.hidden) {
+        if (Math.abs(f.currentTime - lastTime) < 0.05) stallTicks++;
+        else stallTicks = 0;
+        lastTime = f.currentTime;
+      }
+      const stalled = stallTicks >= 3;
+      const due = performance.now() - lastSwitch >= SHOW_MS;
+      if ((due || stalled) && backReady) doSwitch();
+      else if (stalled) f.play().catch(() => {});
+    }, 1000);
   })();
 
   // Gepinde werk-sectie: scroll stuurt de actieve tool (AIP-mechaniek)

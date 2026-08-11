@@ -954,29 +954,40 @@
   }, { threshold: 0.4 }).observe(document.getElementById('symptoms'));
 })();
 
-/* ---------- Bewijs: doorlopende catalogus (elke 5 s één kaart verder) ---------- */
+/* ---------- Bewijs: lopende band (elke 5 s één kaart; de linkerkaart
+   sluit achteraan weer aan — geen reset) ---------- */
 (() => {
   const strip = document.getElementById('cases');
   const viewport = document.getElementById('casesViewport');
-  const cards = [...strip.children];
-  let idx = 0;
   let pauze = false;
+  let bezig = false;
 
   function stap() {
-    if (pauze || document.hidden) return;
-    const cardW = cards[0].getBoundingClientRect().width;
+    if (pauze || bezig || document.hidden) return;
+    const eerste = strip.children[0];
     const gap = parseFloat(getComputedStyle(strip).gap) || 0;
-    const zichtbaar = Math.max(1, Math.floor((viewport.clientWidth + gap) / (cardW + gap)));
-    const maxIdx = Math.max(0, cards.length - zichtbaar);
-    idx = idx >= maxIdx ? 0 : idx + 1;
-    strip.style.transform = `translateX(${-idx * (cardW + gap)}px)`;
+    const afstand = eerste.getBoundingClientRect().width + gap;
+    bezig = true;
+
+    function rondmaken() {
+      if (!bezig) return;
+      strip.style.transition = 'none';
+      strip.appendChild(eerste);           // linkerkaart achteraan aansluiten
+      strip.style.transform = 'translateX(0)';
+      void strip.offsetWidth;              // reflow vóór transitie weer aan
+      strip.style.transition = '';
+      bezig = false;
+    }
+    strip.addEventListener('transitionend', rondmaken, { once: true });
+    setTimeout(rondmaken, 1200);           // vangnet als transitionend niet vuurt
+
+    strip.style.transform = `translateX(${-afstand}px)`;
   }
 
   viewport.addEventListener('mouseenter', () => { pauze = true; });
   viewport.addEventListener('mouseleave', () => { pauze = false; });
   viewport.addEventListener('touchstart', () => { pauze = true; }, { passive: true });
   viewport.addEventListener('touchend', () => { setTimeout(() => { pauze = false; }, 6000); }, { passive: true });
-  addEventListener('resize', () => { idx = 0; strip.style.transform = ''; });
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(stap, 5000);
 })();
 
