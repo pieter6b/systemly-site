@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Huidig project: Atlanticus — Systemly</title>
+<meta name="description" content="Atlanticus is het huidige project van Systemly: één besturingslaag voor de hele organisatie — documenten, posities, processen en automatiseringen in één beveiligd portaal dat volledig binnen de muren draait. Geen cloud, geen telemetrie.">
+<link rel="canonical" href="https://systemly.nl/atlanticus.html">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:title" content="Huidig project: Atlanticus — Systemly">
+<meta property="og:description" content="Eén systeem dat de organisatie aanstuurt — en het pand nooit verlaat.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://systemly.nl/atlanticus.html">
+<meta property="og:locale" content="nl_NL">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0C0B09;
+    --black-soft: #131110;
+    --creme: #EDE7DB;
+    --creme-bright: #F2EAD9;
+    --ink: #1A1512;
+    --creme-dim: rgba(242, 234, 217, 0.64);
+    --creme-faint: rgba(242, 234, 217, 0.4);
+    --line-dark: rgba(242, 234, 217, 0.14);
+    --serif: "Fraunces", serif;
+    --sans: "Inter", sans-serif;
+    --mono: "Space Mono", monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--sans); background: var(--black); color: var(--creme-bright); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  .mono { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; }
+
+  /* ---------- reveals ---------- */
+  .rv { opacity: 0; transform: translateY(26px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .rv.in { opacity: 1; transform: none; }
+
+  /* ---------- NAV ---------- */
+  nav.top {
+    position: fixed; inset: 0 0 auto 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem clamp(1.2rem, 4vw, 3rem);
+    background: linear-gradient(rgba(12,11,9,0.66), rgba(12,11,9,0.34) 70%, transparent);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  }
+  nav.top .brand { display: flex; align-items: baseline; gap: 0.9rem; color: var(--creme-bright); text-decoration: none; }
+  nav.top .brand .word { font-family: var(--serif); font-size: 1.45rem; font-weight: 500; }
+  nav.top .brand .tag { color: var(--creme-faint); display: none; }
+  @media (min-width: 900px) { nav.top .brand .tag { display: inline; } }
+  nav.top .links { display: flex; align-items: center; gap: clamp(1rem, 2.5vw, 2.2rem); }
+  nav.top .links a { color: var(--creme-dim); text-decoration: none; font-size: 0.92rem; font-weight: 500; }
+  nav.top .links a:hover { color: var(--creme-bright); }
+  nav.top .links a.plain { display: none; }
+  @media (min-width: 640px) { nav.top .links a.plain { display: inline; } }
+  .btn {
+    display: inline-block; font-weight: 600; font-size: 0.95rem;
+    padding: 0.78rem 1.5rem; border-radius: 2px; text-decoration: none;
+    border: 1px solid transparent; cursor: pointer;
+    transition: transform 0.15s ease, background 0.2s;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn-creme { background: var(--creme-bright); color: var(--ink) !important; }
+  .btn-creme:hover { background: #fff8e8; }
+  .btn-ghost { border-color: var(--line-dark); color: var(--creme-bright); }
+  .btn-ghost:hover { border-color: var(--creme-dim); }
+
+  /* ---------- HERO ---------- */
+  header.hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: clamp(6rem, 12vh, 8rem) clamp(1.4rem, 5vw, 4rem) 0;
+    overflow: hidden;
+  }
+  .hero-grid {
+    max-width: 1280px; margin: 0 auto; width: 100%;
+    display: grid; gap: 3rem;
+    align-items: center;
+    flex: 1 1 auto;
+    position: relative; z-index: 2;
+  }
+  @media (min-width: 980px) { .hero-grid { grid-template-columns: 5fr 4fr; gap: clamp(2rem, 4vw, 5rem); } }
+
+  .hero-copy .chip {
+    display: inline-block;
+    color: var(--creme-dim);
+    border: 1px solid var(--line-dark);
+    padding: 0.55rem 1.1rem;
+    border-radius: 999px;
+    margin-bottom: 1.8rem;
+  }
+  .hero-copy h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(3.4rem, 8.5vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+  .hero-copy .sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+    color: var(--creme-dim);
+    margin-top: 1rem;
+    max-width: 26ch;
+    line-height: 1.3;
+  }
+  .hero-copy .lede {
+    color: var(--creme-dim);
+    line-height: 1.75;
+    font-size: 1rem;
+    max-width: 52ch;
+    margin-top: 1.6rem;
+  }
+  .hero-copy .lede strong { color: var(--creme-bright); font-weight: 500; }
+  .hero-copy .cta-row { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 2rem; }
+  .hero-copy .trust { color: var(--creme-faint); margin-top: 1.8rem; letter-spacing: 0.18em; font-size: 0.66rem; }
+
+  .globe-wrap { position: relative; display: flex; flex-direction: column; align-items: center; gap: 1.2rem; }
+  #globe { width: min(88vw, 600px); height: min(88vw, 600px); display: block; }
+  .globe-readout {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--creme-faint);
+    display: flex; gap: 1.6rem; flex-wrap: wrap; justify-content: center;
+  }
+  .globe-readout .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--creme-bright); margin-right: 0.5rem; animation: pulse 2.2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+  .hero-labels {
+    max-width: 1280px; margin: clamp(2.5rem, 6vh, 4rem) auto 0; width: 100%;
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1.4rem 2rem;
+    padding-bottom: 2.2rem;
+    position: relative; z-index: 2;
+  }
+  @media (min-width: 760px) { .hero-labels { grid-template-columns: repeat(4, 1fr); } }
+  .label-blok {
+    border-left: 1px solid var(--line-dark);
+    padding-left: 1rem;
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.8;
+    color: var(--creme-faint);
+  }
+
+  /* ---------- CAPABILITY-BAND ---------- */
+  .band {
+    border-top: 1px solid var(--line-dark);
+    border-bottom: 1px solid var(--line-dark);
+    overflow: hidden;
+    padding: 1.1rem 0;
+    position: relative;
+  }
+  .band .strook {
+    display: flex; gap: 3rem;
+    width: max-content;
+    animation: schuif 40s linear infinite;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--creme-faint);
+    white-space: nowrap;
+  }
+  @keyframes schuif { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ---------- SECTIES ---------- */
+  section { padding: clamp(4.5rem, 9vw, 8rem) clamp(1.4rem, 5vw, 4rem); }
+  section + section { border-top: 1px solid var(--line-dark); }
+  .wrap { max-width: 1280px; margin: 0 auto; }
+  .kicker { color: var(--creme-faint); margin-bottom: 1.4rem; }
+  h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(2.1rem, 4.6vw, 3.4rem); line-height: 1.06; max-width: 24ch; }
+  .lede { color: var(--creme-dim); font-size: 1.05rem; line-height: 1.7; max-width: 60ch; margin-top: 1.4rem; }
+  .lede strong { color: var(--creme-bright); font-weight: 500; }
+
+  /* dataflow-diagram */
+  .flow-wrap { margin-top: 3rem; overflow-x: auto; }
+  #flow { width: 100%; min-width: 700px; height: 420px; display: block; }
+  .flow-noot { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--creme-faint); margin-top: 1rem; }
+
+  /* modules */
+  .modules {
+    display: grid; gap: 1px;
+    background: var(--line-dark);
+    border: 1px solid var(--line-dark);
+    margin-top: 3rem;
+  }
+  @media (min-width: 700px) { .modules { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1050px) { .modules { grid-template-columns: 1fr 1fr 1fr; } }
+  .module { background: var(--black-soft); padding: 1.8rem 1.6rem 2rem; }
+  .module .nr { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.2em; color: var(--creme-faint); }
+  .module h3 { font-family: var(--serif); font-weight: 500; font-size: 1.35rem; margin-top: 0.9rem; line-height: 1.2; }
+  .module p { color: var(--creme-dim); font-size: 0.92rem; line-height: 1.65; margin-top: 0.8rem; }
+  .module.vraag { display: flex; flex-direction: column; justify-content: center; border: 1px dashed var(--line-dark); background: transparent; }
+  .module.vraag h3 { font-style: italic; font-weight: 400; }
+
+  /* controlekamer */
+  .kamer { display: grid; gap: 2rem; margin-top: 3rem; align-items: start; }
+  @media (min-width: 980px) { .kamer { grid-template-columns: 3fr 2fr; gap: 3rem; } }
+  .log-paneel {
+    background: var(--black-soft);
+    border: 1px solid var(--line-dark);
+    border-radius: 8px;
+    padding: clamp(1.2rem, 2.5vw, 1.8rem);
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.03em;
+    min-height: 300px;
+  }
+  .log-paneel .kop {
+    display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    padding-bottom: 0.9rem; margin-bottom: 0.9rem;
+    border-bottom: 1px solid var(--line-dark);
+    color: var(--creme-faint);
+    font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .log-paneel .kop .live { display: flex; align-items: center; gap: 0.5rem; }
+  .log-paneel .kop .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--creme-bright); animation: pulse 2.2s ease-in-out infinite; }
+  #logRegels { display: flex; flex-direction: column; gap: 0.55rem; }
+  #logRegels .regel { color: var(--creme-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #logRegels .regel .tijd { color: var(--creme-faint); margin-right: 0.9rem; }
+  #logRegels .regel.nieuw { color: var(--creme-bright); }
+  .log-noot { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--creme-faint); margin-top: 1rem; }
+
+  .tellers { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line-dark); border: 1px solid var(--line-dark); }
+  .teller { background: var(--black-soft); padding: 1.6rem 1.4rem; }
+  .teller .cijfer { font-family: var(--serif); font-weight: 500; font-size: clamp(1.7rem, 3vw, 2.4rem); font-variant-numeric: tabular-nums; }
+  .teller .toel { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--creme-faint); margin-top: 0.5rem; line-height: 1.7; }
+
+  /* vergrendeld */
+  .sloten { margin-top: 3rem; border-top: 1px solid var(--line-dark); }
+  .slot-rij {
+    display: grid; grid-template-columns: 4rem 1fr;
+    gap: 1rem; align-items: baseline;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--line-dark);
+  }
+  .slot-rij .num { font-family: var(--mono); font-size: 0.8rem; color: var(--creme-faint); }
+  .slot-rij h3 { font-family: var(--serif); font-weight: 500; font-size: clamp(1.2rem, 2.2vw, 1.6rem); line-height: 1.3; }
+  .slot-rij p { color: var(--creme-dim); font-size: 0.95rem; line-height: 1.65; margin-top: 0.5rem; max-width: 62ch; }
+
+  /* statement */
+  .statement {
+    text-align: center;
+    padding: clamp(6rem, 14vh, 10rem) clamp(1.4rem, 5vw, 4rem);
+  }
+  .statement .zin {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.9rem, 5vw, 3.6rem);
+    line-height: 1.2;
+    max-width: 24ch;
+    margin: 0 auto;
+  }
+  .statement .zin .w {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .statement.in .zin .w { opacity: 1; transform: none; }
+
+  /* status-paneel */
+  .status-paneel {
+    background: var(--black-soft);
+    border: 1px solid var(--line-dark);
+    border-radius: 8px;
+    padding: clamp(1.4rem, 3vw, 2.2rem);
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    margin-top: 3rem;
+    max-width: 720px;
+  }
+  .status-paneel .kop {
+    display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    padding-bottom: 0.9rem; margin-bottom: 0.9rem;
+    border-bottom: 1px solid var(--line-dark);
+    color: var(--creme-faint);
+    font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .status-paneel .rij {
+    display: flex; justify-content: space-between; gap: 1.5rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(242,234,217,0.07);
+    color: var(--creme-dim);
+  }
+  .status-paneel .rij:last-child { border-bottom: none; }
+  .status-paneel .rij .ok { color: var(--creme-bright); }
+  .status-paneel .rij .actief { color: var(--creme-bright); display: flex; align-items: center; gap: 0.6rem; }
+  .status-paneel .rij .actief .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--creme-bright); animation: pulse 2.2s ease-in-out infinite; }
+  .status-paneel .rij .stil { color: var(--creme-faint); }
+
+  .discretie {
+    margin-top: 2.6rem;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--creme-dim);
+    max-width: 44ch;
+    line-height: 1.5;
+  }
+
+  /* ---------- SLOT ---------- */
+  section.eind { text-align: center; }
+  section.eind h2 { margin: 0 auto; }
+  section.eind p { color: var(--creme-dim); margin: 1.6rem auto 2.4rem; max-width: 50ch; line-height: 1.7; }
+  section.eind .mono-sub { color: var(--creme-faint); margin-top: 2rem; font-size: 0.66rem; letter-spacing: 0.2em; }
+
+  footer { background: var(--black); color: var(--creme-faint); padding: 3rem clamp(1.4rem, 5vw, 4rem); border-top: 1px solid var(--line-dark); }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 1.4rem 3rem; align-items: baseline; justify-content: space-between; }
+  footer .word { font-family: var(--serif); font-size: 1.3rem; color: var(--creme-bright); }
+  footer a { color: var(--creme-dim); text-decoration: none; font-size: 0.85rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .globe-readout .dot, .status-paneel .rij .actief .dot, .log-paneel .kop .dot { animation: none; }
+    .band .strook { animation: none; }
+    .rv, .statement .zin .w { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <a class="brand" href="/">
+    <span class="word">Systemly</span>
+    <span class="tag mono">huidig project</span>
+  </a>
+  <div class="links">
+    <a class="plain" href="/portfolio.html">Portfolio</a>
+    <a class="plain" href="/">&larr; Terug naar de site</a>
+    <a class="btn btn-creme" href="/#contact">Plan een kennismaking</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <span class="chip mono">huidig project &middot; in aanbouw</span>
+      <h1>Atlanticus.</h1>
+      <div class="sub">E&eacute;n systeem dat de hele organisatie aanstuurt.</div>
+      <p class="lede">Niet n&oacute;g een tool naast de rest, maar de laag eronder: &eacute;&eacute;n omgeving waarin documenten, posities, dossiers en processen samenkomen — en waarin de automatiseringen draaien die het werk doen. <strong>Volledig binnen de muren van de organisatie.</strong> Geen cloud, geen telemetrie: het systeem belt nergens naartoe.</p>
+      <div class="cta-row">
+        <a class="btn btn-creme" href="/#contact">Plan een kennismaking&nbsp;&rarr;</a>
+        <a class="btn btn-ghost" href="/portfolio.html">Bekijk gebouwd werk</a>
+      </div>
+      <div class="trust mono">geen cloud &middot; geen telemetrie &middot; data verlaat het pand niet</div>
+    </div>
+    <div class="globe-wrap">
+      <canvas id="globe" aria-hidden="true"></canvas>
+      <div class="globe-readout"><span><span class="dot"></span>&eacute;&eacute;n systeem &middot; &eacute;&eacute;n pand</span><span>weergave ter illustratie</span></div>
+    </div>
+  </div>
+  <div class="hero-labels">
+    <div class="label-blok">U bekijkt<br>het huidige project<br>van Systemly</div>
+    <div class="label-blok">Status<br>fundament staat<br>automatiseringen in aanbouw</div>
+    <div class="label-blok">Draait<br>volledig binnen de muren<br>van de opdrachtgever</div>
+    <div class="label-blok">&copy; 2026<br>Systemly</div>
+  </div>
+</header>
+
+<div class="band" aria-hidden="true">
+  <div class="strook" id="bandStrook">
+    <span>documentsortering</span><span>&#9670;</span><span>portefeuille-consolidatie</span><span>&#9670;</span><span>rapportage</span><span>&#9670;</span><span>intake-controle</span><span>&#9670;</span><span>boekhouding</span><span>&#9670;</span><span>signalering</span><span>&#9670;</span><span>archief</span><span>&#9670;</span><span>audittrail</span><span>&#9670;</span><span>toegangsbeheer</span><span>&#9670;</span><span>op aanvraag meer</span><span>&#9670;</span>
+  </div>
+</div>
+
+<section id="fundament">
+  <div class="wrap">
+    <div class="kicker mono rv">het fundament</div>
+    <h2 class="rv">E&eacute;n levend model van uw organisatie.</h2>
+    <p class="lede rv">Onder Atlanticus ligt &eacute;&eacute;n datamodel: entiteiten, personen, dossiers, posities en documenten — en hoe ze met elkaar samenhangen. Alles wat binnenkomt, wordt aan dat model gekoppeld. Daardoor weet het systeem niet alleen <strong>wat</strong> een stuk is, maar ook <strong>waar het bij hoort</strong>, wie erbij mag, en wat ermee moet gebeuren. E&eacute;n keer vastleggen, overal kloppend.</p>
+    <div class="flow-wrap rv">
+      <canvas id="flow" aria-hidden="true"></canvas>
+      <div class="flow-noot">links: wat binnenkomt &middot; midden: het model &middot; rechts: wat het systeem oplevert &middot; weergave ter illustratie</div>
+    </div>
+  </div>
+</section>
+
+<section id="automatiseringen">
+  <div class="wrap">
+    <div class="kicker mono rv">de automatiseringen</div>
+    <h2 class="rv">Ingebouwd. En op aanvraag: meer.</h2>
+    <p class="lede rv">In het fundament draaien de automatiseringen die het dagelijkse werk overnemen. Elke terugkerende handeling in de organisatie is een kandidaat — wij bouwen hem, en hij klikt erin als module. Zonder nieuw pakket, zonder extra inlog, zonder migratie.</p>
+    <div class="modules">
+      <div class="module rv">
+        <span class="nr">/01 &middot; instroom</span>
+        <h3>Post die zichzelf verwerkt</h3>
+        <p>Elk bestand dat binnenkomt — mail, scan, upload — wordt gelezen, herkend, gekoppeld aan het juiste dossier en op de juiste plek gezet.</p>
+      </div>
+      <div class="module rv">
+        <span class="nr">/02 &middot; posities</span>
+        <h3>Portefeuilles, geconsolideerd</h3>
+        <p>Bankrapportages worden automatisch verwerkt tot &eacute;&eacute;n actueel totaaloverzicht, getoetst aan het beleid, met signalering bij afwijkingen.</p>
+      </div>
+      <div class="module rv">
+        <span class="nr">/03 &middot; rapportage</span>
+        <h3>Overzichten die klaarstaan</h3>
+        <p>Kwartaal- en jaaroverzichten stellen zichzelf samen uit het model — Excel en PDF, altijd hetzelfde stramien, gecontroleerd v&oacute;&oacute;r akkoord.</p>
+      </div>
+      <div class="module rv">
+        <span class="nr">/04 &middot; controle</span>
+        <h3>Volledigheid bewaakt</h3>
+        <p>Dossiers worden bij binnenkomst getoetst: wat ontbreekt wordt gesignaleerd v&oacute;&oacute;rdat iemand eraan begint. Het systeem bewaakt, de mens beoordeelt.</p>
+      </div>
+      <div class="module rv">
+        <span class="nr">/05 &middot; administratie</span>
+        <h3>Boekhouding die bijblijft</h3>
+        <p>Mutaties doorlopend geboekt en aangesloten per entiteit. Aan het einde van het jaar staan de cijfers klaar — niet op de planning.</p>
+      </div>
+      <div class="module vraag rv">
+        <span class="nr">/06 &middot; uw proces</span>
+        <h3>&ldquo;Kan het systeem ook&hellip;?&rdquo;</h3>
+        <p>Vrijwel zeker. Elke module hierboven begon met precies die vraag. U noemt de terugkerende handeling; wij bouwen hem erin.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="controlekamer">
+  <div class="wrap">
+    <div class="kicker mono rv">de controlekamer</div>
+    <h2 class="rv">Het systeem werkt. U houdt het oordeel.</h2>
+    <p class="lede rv">Atlanticus draait door — sorteert, consolideert, controleert, signaleert. Maar niets verlaat het systeem zonder akkoord: elke uitkomst die ertoe doet wacht op een mens. E&eacute;n scherm toont wat er gebeurd is, wat er klaarstaat en wat uw aandacht vraagt.</p>
+    <div class="kamer">
+      <div class="log-paneel rv">
+        <div class="kop"><span>systeemlog &middot; vandaag</span><span class="live"><span class="dot"></span>actief</span></div>
+        <div id="logRegels"></div>
+        <div class="log-noot">weergave ter illustratie &middot; werkelijke logs verlaten het pand niet</div>
+      </div>
+      <div class="tellers rv">
+        <div class="teller"><div class="cijfer" data-tel="11408">0</div><div class="toel">documenten<br>door het systeem</div></div>
+        <div class="teller"><div class="cijfer" data-tel="92417">0</div><div class="toel">handelingen<br>in de audittrail</div></div>
+        <div class="teller"><div class="cijfer" data-tel="6">0</div><div class="toel">automatiseringen<br>actief</div></div>
+        <div class="teller"><div class="cijfer">0</div><div class="toel">dossiers<br>het pand uit</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="vergrendeld">
+  <div class="wrap">
+    <div class="kicker mono rv">vergrendeld by design</div>
+    <h2 class="rv">Gebouwd alsof het gestolen gaat worden.</h2>
+    <p class="lede rv">Een systeem dat alles van een organisatie weet, verdient het zwaarste slot. Beveiliging is bij Atlanticus geen instelling maar architectuur — elk van deze keuzes zit in het fundament, niet in een vinkje.</p>
+    <div class="sloten">
+      <div class="slot-rij rv">
+        <span class="num">/01</span>
+        <div><h3>Toegang staat standaard op &lsquo;nee&rsquo;</h3><p>Verplichte tweestapsverificatie, en rechten die expliciet toegekend moeten worden. Wie niets is toegewezen, ziet niets — ook niet per ongeluk.</p></div>
+      </div>
+      <div class="slot-rij rv">
+        <span class="num">/02</span>
+        <div><h3>Versleuteld tot op het veld</h3><p>Documenten &eacute;n losse gegevensvelden zijn afzonderlijk versleuteld. Zelfs wie bij de databank zou komen, leest niets.</p></div>
+      </div>
+      <div class="slot-rij rv">
+        <span class="num">/03</span>
+        <div><h3>Een geheugen dat niet kan vergeten</h3><p>Elke handeling wordt vastgelegd in een register dat alleen kan groeien — bewaakt door de databank zelf. Niets verdwijnt geruisloos.</p></div>
+      </div>
+      <div class="slot-rij rv">
+        <span class="num">/04</span>
+        <div><h3>E&eacute;n machine, &eacute;&eacute;n pand</h3><p>Geen clouddatabase, geen externe inlogdienst, geen telemetrie. Het volledige systeem draait op een machine die eigendom is van de opdrachtgever.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="statement" id="statement">
+  <div class="zin" id="statementZin">Niet n&oacute;g een tool erbij. Het fundament eronder.</div>
+</div>
+
+<section id="status" style="border-top: 1px solid var(--line-dark);">
+  <div class="wrap">
+    <div class="kicker mono rv">waar het staat</div>
+    <h2 class="rv">Het fundament staat. De modules landen.</h2>
+    <div class="status-paneel rv" aria-hidden="true">
+      <div class="kop"><span>projectstatus &middot; atlanticus</span><span>bijgewerkt: deze maand</span></div>
+      <div class="rij"><span>analyse &amp; dreigingsmodel</span><span class="ok">afgerond</span></div>
+      <div class="rij"><span>architectuur &amp; beveiligingsontwerp</span><span class="ok">afgerond</span></div>
+      <div class="rij"><span>fundament: portaal, kluis, model, audittrail</span><span class="ok">staat</span></div>
+      <div class="rij"><span>automatiseringen: instroom &amp; portefeuilles</span><span class="actief"><span class="dot"></span>in aanbouw</span></div>
+      <div class="rij"><span>volgende modules</span><span class="stil">op aanvraag</span></div>
+      <div class="rij"><span>oplevering op locatie</span><span class="stil">gepland</span></div>
+    </div>
+    <p class="discretie rv">Voor wie het gebouwd wordt, zeggen we niet — discretie hoort bij dit werk. Hoe het gebouwd wordt, laten we graag zien.</p>
+  </div>
+</section>
+
+<section class="eind">
+  <h2 class="rv">Zoiets voor uw organisatie?</h2>
+  <p class="rv">Atlanticus begon zoals elk traject bij ons begint: met drie kwartier en de vraag waar de uren weglekken. U vertelt wat er speelt; wij zeggen eerlijk of — en hoe — het beter kan.</p>
+  <a class="btn btn-creme rv" href="/#contact">Plan een kennismaking &rarr;</a>
+  <div class="mono-sub mono">45 minuten &middot; kosteloos &middot; op uw eigen data &middot; geheel vrijblijvend</div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="word">Systemly</div>
+      <div class="mono" style="margin-top:0.5rem">onafhankelijk ai-advies &amp; uitvoering</div>
+    </div>
+    <div style="display:flex; gap:2rem; flex-wrap:wrap;">
+      <a href="mailto:admin@systemlysolutions.onmicrosoft.com">admin@systemlysolutions.onmicrosoft.com</a>
+      <a href="/privacy.html">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- capability-band: inhoud verdubbelen voor naadloze loop ---------- */
+(() => {
+  const s = document.getElementById('bandStrook');
+  s.innerHTML += s.innerHTML;
+})();
+
+/* ---------- reveals (gestaggerd) ---------- */
+(() => {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((en) => {
+      if (!en.isIntersecting) return;
+      const el = en.target;
+      const broers = [...el.parentElement.children].filter((c) => c.classList.contains('rv'));
+      el.style.transitionDelay = `${(broers.indexOf(el) % 6) * 90}ms`;
+      el.classList.add('in');
+      io.unobserve(el);
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.rv').forEach((el) => io.observe(el));
+})();
+
+/* ---------- statement: woord-voor-woord ---------- */
+(() => {
+  const zin = document.getElementById('statementZin');
+  zin.innerHTML = zin.textContent.split(' ').map((w) => `<span class="w">${w}</span>`).join(' ');
+  const woorden = zin.querySelectorAll('.w');
+  new IntersectionObserver((entries, io) => {
+    if (!entries[0].isIntersecting) return;
+    woorden.forEach((w, i) => { w.style.transitionDelay = `${i * 110}ms`; });
+    document.getElementById('statement').classList.add('in');
+    io.disconnect();
+  }, { threshold: 0.6 }).observe(zin);
+})();
+
+/* ---------- tellers ---------- */
+(() => {
+  const cijfers = document.querySelectorAll('[data-tel]');
+  const fmt = (n) => n.toLocaleString('nl-NL');
+  new IntersectionObserver((entries, io) => {
+    if (!entries[0].isIntersecting) return;
+    io.disconnect();
+    cijfers.forEach((el) => {
+      const doel = Number(el.dataset.tel);
+      if (REDUCED) { el.textContent = fmt(doel); return; }
+      const start = performance.now(), duur = 1800;
+      (function tik(ms) {
+        const p = Math.min(1, (ms - start) / duur);
+        el.textContent = fmt(Math.round(doel * (1 - Math.pow(1 - p, 3))));
+        if (p < 1) requestAnimationFrame(tik);
+      })(start);
+    });
+  }, { threshold: 0.4 }).observe(document.querySelector('.tellers'));
+})();
+
+/* ---------- systeemlog: doorlopend typend ---------- */
+(() => {
+  const REGELS = [
+    ['07:58', 'instroom: 3 nieuwe bestanden aangetroffen'],
+    ['07:58', 'factuur herkend → gekoppeld aan entiteit B'],
+    ['08:02', 'bankrapportage gelezen · 61 posities'],
+    ['08:03', 'consolidatie bijgewerkt · 4 banken actueel'],
+    ['08:07', 'afwijking beleggingsbeleid → ter beoordeling'],
+    ['08:11', 'dossier: stuk ontbreekt → gesignaleerd'],
+    ['08:14', 'kwartaalrapportage samengesteld · wacht op akkoord'],
+    ['08:15', 'audit: 214 handelingen vastgelegd'],
+    ['08:19', 'archief: 2 stukken doorzoekbaar gemaakt'],
+    ['08:23', 'boekhouding entiteit C · 5 mutaties geboekt'],
+  ];
+  const MAX = 7;
+  const houder = document.getElementById('logRegels');
+  let i = 0;
+
+  function voegToe() {
+    const [tijd, tekst] = REGELS[i % REGELS.length];
+    i++;
+    const div = document.createElement('div');
+    div.className = 'regel nieuw';
+    houder.appendChild(div);
+    [...houder.children].forEach((c) => { if (c !== div) c.classList.remove('nieuw'); });
+    while (houder.children.length > MAX) houder.removeChild(houder.firstChild);
+
+    if (REDUCED) {
+      div.innerHTML = `<span class="tijd">${tijd}</span>${tekst}`;
+      return;
+    }
+    let c = 0;
+    div.innerHTML = `<span class="tijd">${tijd}</span>`;
+    const span = document.createElement('span');
+    div.appendChild(span);
+    const t = setInterval(() => {
+      c++;
+      span.textContent = tekst.slice(0, c);
+      if (c >= tekst.length) clearInterval(t);
+    }, 16);
+  }
+  for (let k = 0; k < 5; k++) voegToe();
+  if (!REDUCED) setInterval(voegToe, 2600);
+})();
+
+/* ---------- wereldbol met muis-parallax en datastromen ---------- */
+(() => {
+  const canvas = document.getElementById('globe');
+  const ctx = canvas.getContext('2d');
+  const TILT_BASIS = -0.38;
+  const SPEED = 0.07;
+  let W, H, R, CX, CY;
+  let muisX = 0, muisY = 0, parX = 0, parY = 0;
+
+  function resize() {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    R = Math.min(W, H) * 0.44;
+    CX = W / 2; CY = H / 2;
+  }
+  resize();
+  addEventListener('resize', resize);
+  addEventListener('pointermove', (e) => {
+    muisX = (e.clientX / innerWidth - 0.5) * 2;
+    muisY = (e.clientY / innerHeight - 0.5) * 2;
+  }, { passive: true });
+
+  const HUBS = [
+    [52.37, 4.90], [51.92, 4.48], [51.51, -0.13], [47.37, 8.54], [46.20, 6.14],
+    [49.61, 6.13], [40.71, -74.01], [1.35, 103.82], [12.11, -68.94],
+  ];
+  const rad = (d) => (d * Math.PI) / 180;
+  const toVec = (lat, lon) => [Math.cos(rad(lat)) * Math.sin(rad(lon)), Math.sin(rad(lat)), Math.cos(rad(lat)) * Math.cos(rad(lon))];
+
+  function project(v, rot, tilt) {
+    const x1 = v[0] * Math.cos(rot) + v[2] * Math.sin(rot);
+    const z1 = -v[0] * Math.sin(rot) + v[2] * Math.cos(rot);
+    const y2 = v[1] * Math.cos(tilt) - z1 * Math.sin(tilt);
+    const z2 = v[1] * Math.sin(tilt) + z1 * Math.cos(tilt);
+    return { x: CX + x1 * R, y: CY - y2 * R, front: z2 > 0 };
+  }
+  function slerp(a, b, t) {
+    const dot = Math.max(-1, Math.min(1, a[0]*b[0] + a[1]*b[1] + a[2]*b[2]));
+    const th = Math.acos(dot);
+    if (th < 1e-6) return a;
+    const s = Math.sin(th);
+    const p = Math.sin((1 - t) * th) / s, q = Math.sin(t * th) / s;
+    return [a[0]*p + b[0]*q, a[1]*p + b[1]*q, a[2]*p + b[2]*q];
+  }
+  const boog = (a, b, t) => {
+    const v = slerp(a, b, t);
+    const lift = 1 + 0.12 * Math.sin(Math.PI * t);
+    return [v[0]*lift, v[1]*lift, v[2]*lift];
+  };
+
+  function frame(ms) {
+    const t = ms / 1000;
+    parX += ((REDUCED ? 0 : muisX) - parX) * 0.04;
+    parY += ((REDUCED ? 0 : muisY) - parY) * 0.04;
+    const rot = (REDUCED ? 0.6 : t * SPEED) + parX * 0.18;
+    const tilt = TILT_BASIS + parY * 0.14;
+    ctx.clearRect(0, 0, W, H);
+
+    const g = ctx.createRadialGradient(CX, CY, R * 0.2, CX, CY, R * 1.35);
+    g.addColorStop(0, 'rgba(242,234,217,0.05)');
+    g.addColorStop(1, 'rgba(242,234,217,0)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, W, H);
+
+    ctx.strokeStyle = 'rgba(242,234,217,0.22)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.arc(CX, CY, R, 0, Math.PI * 2);
+    ctx.stroke();
+
+    function lijnstuk(p1, p2) {
+      const alpha = p1.front && p2.front ? 0.13 : 0.035;
+      ctx.strokeStyle = `rgba(242,234,217,${alpha})`;
+      ctx.beginPath();
+      ctx.moveTo(p1.x, p1.y);
+      ctx.lineTo(p2.x, p2.y);
+      ctx.stroke();
+    }
+    for (let lat = -60; lat <= 60; lat += 20) {
+      let prev = null;
+      for (let lon = 0; lon <= 360; lon += 4) {
+        const p = project(toVec(lat, lon), rot, tilt);
+        if (prev) lijnstuk(prev, p);
+        prev = p;
+      }
+    }
+    for (let lon = 0; lon < 360; lon += 20) {
+      let prev = null;
+      for (let lat = -84; lat <= 84; lat += 4) {
+        const p = project(toVec(lat, lon), rot, tilt);
+        if (prev) lijnstuk(prev, p);
+        prev = p;
+      }
+    }
+
+    const ams = toVec(HUBS[0][0], HUBS[0][1]);
+    for (let h = 1; h < HUBS.length; h++) {
+      const doel = toVec(HUBS[h][0], HUBS[h][1]);
+      // boog zelf
+      let prev = null;
+      for (let s = 0; s <= 40; s++) {
+        const p = project(boog(ams, doel, s / 40), rot, tilt);
+        if (prev && p.front && prev.front) {
+          ctx.strokeStyle = 'rgba(242,234,217,0.10)';
+          ctx.beginPath();
+          ctx.moveTo(prev.x, prev.y);
+          ctx.lineTo(p.x, p.y);
+          ctx.stroke();
+        }
+        prev = p;
+      }
+      // datastroom: puls die langs de boog reist
+      if (!REDUCED) {
+        const tt = (t * 0.22 + h * 0.19) % 1;
+        const p = project(boog(ams, doel, tt), rot, tilt);
+        if (p.front) {
+          ctx.fillStyle = 'rgba(242,234,217,0.75)';
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 1.8, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    }
+
+    HUBS.forEach((hub, i) => {
+      const p = project(toVec(hub[0], hub[1]), rot, tilt);
+      if (!p.front) return;
+      const puls = REDUCED ? 0.7 : 0.45 + 0.45 * (0.5 + 0.5 * Math.sin(t * 1.6 + i * 1.3));
+      const r = i === 0 ? 3.4 : 2.2;
+      ctx.fillStyle = `rgba(242,234,217,${puls})`;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+      ctx.fill();
+      if (i === 0) {
+        ctx.strokeStyle = `rgba(242,234,217,${0.5 * puls})`;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, r + 4 + 2 * Math.sin(t * 2), 0, Math.PI * 2);
+        ctx.stroke();
+      }
+    });
+
+    if (!REDUCED) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+/* ---------- dataflow-diagram: bronnen → model → uitkomsten ---------- */
+(() => {
+  const canvas = document.getElementById('flow');
+  const ctx = canvas.getContext('2d');
+  let W, H;
+
+  const BRONNEN = ['post & mail', 'dropbox', 'bankrapportages', 'administratie'];
+  const UIT = ['archief', 'rapportage', 'signalen', 'akkoorden'];
+
+  function resize() {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    W = canvas.clientWidth || canvas.parentElement.clientWidth;
+    H = canvas.clientHeight || 420;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  resize();
+  addEventListener('resize', resize);
+
+  function knoop(x, y, tekst, uitlijning) {
+    ctx.font = '10px "Space Mono", monospace';
+    const label = tekst.toUpperCase();
+    const b = ctx.measureText(label).width;
+    const padX = 12, hh = 30;
+    const bx = uitlijning === 'links' ? x : x - b - padX * 2;
+    ctx.strokeStyle = 'rgba(242,234,217,0.25)';
+    ctx.strokeRect(bx, y - hh / 2, b + padX * 2, hh);
+    ctx.fillStyle = 'rgba(242,234,217,0.7)';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(label, bx + padX, y + 1);
+    return { x: uitlijning === 'links' ? bx + b + padX * 2 : bx, y };
+  }
+
+  function pad(p1, p2) {
+    const midX = (p1.x + p2.x) / 2;
+    return (tt) => {
+      const u = 1 - tt;
+      // kubische bezier met horizontale controlepunten
+      const x = u*u*u*p1.x + 3*u*u*tt*midX + 3*u*tt*tt*midX + tt*tt*tt*p2.x;
+      const y = u*u*u*p1.y + 3*u*u*tt*p1.y + 3*u*tt*tt*p2.y + tt*tt*tt*p2.y;
+      return { x, y };
+    };
+  }
+
+  function frame(ms) {
+    const t = ms / 1000;
+    resizeIfNeeded();
+    ctx.clearRect(0, 0, W, H);
+
+    const kernB = Math.min(300, W * 0.3);
+    const kernH = 150;
+    const kx = W / 2 - kernB / 2, ky = H / 2 - kernH / 2;
+
+    // kern
+    ctx.strokeStyle = 'rgba(242,234,217,0.35)';
+    ctx.strokeRect(kx, ky, kernB, kernH);
+    ctx.strokeStyle = 'rgba(242,234,217,0.12)';
+    ctx.strokeRect(kx + 6, ky + 6, kernB - 12, kernH - 12);
+    ctx.font = '12px "Space Mono", monospace';
+    ctx.fillStyle = 'rgba(242,234,217,0.9)';
+    ctx.textBaseline = 'middle';
+    const titel = 'ATLANTICUS';
+    ctx.fillText(titel, W / 2 - ctx.measureText(titel).width / 2, H / 2 - 10);
+    ctx.font = '9px "Space Mono", monospace';
+    ctx.fillStyle = 'rgba(242,234,217,0.45)';
+    const sub = 'HET LEVENDE MODEL';
+    ctx.fillText(sub, W / 2 - ctx.measureText(sub).width / 2, H / 2 + 12);
+    // hartslag-ring in de kern
+    const puls = 0.5 + 0.5 * Math.sin(t * 2);
+    ctx.strokeStyle = `rgba(242,234,217,${0.1 + 0.15 * puls})`;
+    ctx.strokeRect(kx - 5 - 3 * puls, ky - 5 - 3 * puls, kernB + 10 + 6 * puls, kernH + 10 + 6 * puls);
+
+    const stapB = H / (BRONNEN.length + 1);
+    const bronPunten = BRONNEN.map((naam, i) => knoop(10, stapB * (i + 1), naam, 'links'));
+    const uitPunten = UIT.map((naam, i) => knoop(W - 10, stapB * (i + 1), naam, 'rechts'));
+
+    // lijnen + pulsen
+    ctx.lineWidth = 1;
+    bronPunten.forEach((p, i) => {
+      const doel = { x: kx, y: H / 2 + (i - 1.5) * 22 };
+      const f = pad(p, doel);
+      ctx.strokeStyle = 'rgba(242,234,217,0.14)';
+      ctx.beginPath();
+      for (let s = 0; s <= 24; s++) { const q = f(s / 24); s === 0 ? ctx.moveTo(q.x, q.y) : ctx.lineTo(q.x, q.y); }
+      ctx.stroke();
+      const tt = (t * 0.35 + i * 0.23) % 1;
+      const q = f(tt);
+      ctx.fillStyle = 'rgba(242,234,217,0.8)';
+      ctx.beginPath(); ctx.arc(q.x, q.y, 2, 0, Math.PI * 2); ctx.fill();
+    });
+    uitPunten.forEach((p, i) => {
+      const start = { x: kx + kernB, y: H / 2 + (i - 1.5) * 22 };
+      const f = pad(start, p);
+      ctx.strokeStyle = 'rgba(242,234,217,0.14)';
+      ctx.beginPath();
+      for (let s = 0; s <= 24; s++) { const q = f(s / 24); s === 0 ? ctx.moveTo(q.x, q.y) : ctx.lineTo(q.x, q.y); }
+      ctx.stroke();
+      const tt = (t * 0.35 + i * 0.29 + 0.5) % 1;
+      const q = f(tt);
+      ctx.fillStyle = 'rgba(242,234,217,0.8)';
+      ctx.beginPath(); ctx.arc(q.x, q.y, 2, 0, Math.PI * 2); ctx.fill();
+    });
+
+    if (!REDUCED) requestAnimationFrame(frame);
+  }
+
+  let lastW = 0;
+  function resizeIfNeeded() {
+    const w = canvas.clientWidth || canvas.parentElement.clientWidth;
+    if (w !== lastW) { lastW = w; resize(); }
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
