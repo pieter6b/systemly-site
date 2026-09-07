@@ -31,3 +31,11 @@ for the 3D scenes. Serve the repository root with any static HTTP server, e.g.
 
 The Three.js version is pinned locally. Attribution and texture processing details
 are in `assets/space/README.md`, with public credits at `/beeldcredits.html`.
+
+## Atlanticus mobile flow correction
+
+The diagram now uses a vertical source → Atlanticus → output layout when its
+container is narrower than 700px, instead of requiring horizontal scrolling.
+All labels and canvas bounds checked at 320, 390, 640, 768 and 1440px viewport
+widths. Animated connections and resizing between desktop/mobile were checked;
+the existing desktop diagram and reduced-motion behavior remain available.

@@ -185,8 +185,9 @@
   .lede strong { color: var(--creme-bright); font-weight: 500; }
 
   /* dataflow-diagram */
-  .flow-wrap { margin-top: 3rem; overflow-x: auto; }
-  #flow { width: 100%; min-width: 700px; height: 420px; display: block; }
+  .flow-wrap { margin-top: 3rem; }
+  #flow { width: 100%; height: 420px; display: block; }
+  @media (max-width: 747px) { #flow { height: 560px; } }
   .flow-noot { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--creme-faint); margin-top: 1rem; }
 
   /* modules */
@@ -385,7 +386,7 @@
     <div class="kicker mono rv">het fundament</div>
     <h2 class="rv">E&eacute;n levend model van uw organisatie.</h2>
     <p class="lede rv">Onder Atlanticus ligt &eacute;&eacute;n datamodel: entiteiten, personen, dossiers, posities en documenten — en hoe ze met elkaar samenhangen. Alles wat binnenkomt, wordt aan dat model gekoppeld. Daardoor weet het systeem niet alleen <strong>wat</strong> een stuk is, maar ook <strong>waar het bij hoort</strong>, wie erbij mag, en wat ermee moet gebeuren. E&eacute;n keer vastleggen, overal kloppend.</p>
-    <div class="flow-wrap rv" role="region" aria-label="Datastroom: horizontaal te verschuiven" tabindex="0">
+    <div class="flow-wrap rv" role="img" aria-label="Datastroom: post en mail, Dropbox, bankrapportages en administratie gaan naar Atlanticus. Atlanticus levert archief, rapportage, signalen en akkoorden.">
       <canvas id="flow" aria-hidden="true"></canvas>
       <div class="flow-noot">links: wat binnenkomt &middot; midden: het model &middot; rechts: wat het systeem oplevert &middot; weergave ter illustratie</div>
     </div>
@@ -820,6 +821,7 @@ const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
   function resize() {
     const dpr = Math.min(devicePixelRatio || 1, 2);
     W = canvas.clientWidth || canvas.parentElement.clientWidth;
+    canvas.style.height = W < 700 ? '560px' : '420px';
     H = canvas.clientHeight || 420;
     canvas.width = W * dpr; canvas.height = H * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -852,10 +854,87 @@ const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
     };
   }
 
+  // On phones, route the flow vertically through a central bus. Every label
+  // stays at a readable size and every connection fits inside the canvas.
+  function mobileFrame(t) {
+    const center = W / 2;
+    const gap = 22, margin = 3;
+    const cardWidth = (W - margin * 2 - gap) / 2;
+    const cardHeight = 44;
+    const core = { x: 18, y: 222, w: W - 36, h: 108 };
+    ctx.lineWidth = 1;
+    ctx.textBaseline = 'middle';
+    ctx.textAlign = 'center';
+    function label(text, y) {
+      ctx.font = '12px "Space Mono", monospace';
+      ctx.fillStyle = 'rgba(242,234,217,0.55)';
+      ctx.fillText(text, center, y);
+    }
+    function card(text, i, top) {
+      const left = i % 2 === 0;
+      const x = left ? margin : center + gap / 2;
+      const y = top + Math.floor(i / 2) * 64;
+      ctx.strokeStyle = 'rgba(242,234,217,0.3)';
+      ctx.strokeRect(x, y, cardWidth, cardHeight);
+      ctx.fillStyle = 'rgba(242,234,217,0.85)';
+      ctx.font = '12px "Space Mono", monospace';
+      ctx.fillText(text, x + cardWidth / 2, y + cardHeight / 2);
+      return { x: left ? x + cardWidth : x, y: y + cardHeight / 2 };
+    }
+    function connection(points, phase) {
+      ctx.strokeStyle = 'rgba(242,234,217,0.26)';
+      ctx.beginPath();
+      points.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y));
+      ctx.stroke();
+      if (REDUCED) return;
+      const lengths = points.slice(1).map((p, i) => Math.hypot(p.x - points[i].x, p.y - points[i].y));
+      let distance = ((t * 0.24 + phase) % 1) * lengths.reduce((a, b) => a + b, 0);
+      for (let i = 0; i < lengths.length; i++) {
+        if (distance <= lengths[i]) {
+          const f = distance / lengths[i];
+          ctx.fillStyle = 'rgba(242,234,217,0.9)';
+          ctx.beginPath();
+          ctx.arc(points[i].x + (points[i + 1].x - points[i].x) * f, points[i].y + (points[i + 1].y - points[i].y) * f, 2, 0, Math.PI * 2);
+          ctx.fill();
+          break;
+        }
+        distance -= lengths[i];
+      }
+    }
+    function arrow(y) {
+      ctx.strokeStyle = 'rgba(242,234,217,0.65)';
+      ctx.beginPath(); ctx.moveTo(center - 5, y - 5); ctx.lineTo(center, y); ctx.lineTo(center + 5, y - 5); ctx.stroke();
+    }
+    label('BRONNEN', 16);
+    const sources = BRONNEN.map((name, i) => card(name, i, 42));
+    sources.forEach((p, i) => connection([p, { x: center, y: p.y }, { x: center, y: core.y - 10 }], i * .21));
+    arrow(core.y - 10);
+    ctx.strokeStyle = 'rgba(242,234,217,0.45)';
+    ctx.strokeRect(core.x, core.y, core.w, core.h);
+    ctx.strokeStyle = 'rgba(242,234,217,0.14)';
+    ctx.strokeRect(core.x + 6, core.y + 6, core.w - 12, core.h - 12);
+    ctx.font = '16px "Space Mono", monospace';
+    ctx.fillStyle = 'rgba(242,234,217,0.95)';
+    ctx.fillText('ATLANTICUS', center, core.y + 43);
+    label('HET LEVENDE MODEL', core.y + 70);
+    label('UITKOMSTEN', 374);
+    const outputs = UIT.map((name, i) => card(name, i, 412));
+    // Leave a gap in the trunk around the group label.
+    connection([{ x: center, y: core.y + core.h + 10 }, { x: center, y: 352 }], .1);
+    arrow(354);
+    outputs.forEach((p, i) => connection([{ x: center, y: 396 }, { x: center, y: p.y }, p], i * .21));
+    ctx.textAlign = 'start';
+  }
+
   function frame(ms) {
     const t = ms / 1000;
     resizeIfNeeded();
     ctx.clearRect(0, 0, W, H);
+    if (W < 700) {
+      mobileFrame(t);
+      if (!REDUCED) queueFrame();
+      return;
+    }
 
     const kernB = Math.min(300, W * 0.3);
     const kernH = 150;
