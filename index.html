@@ -144,65 +144,8 @@
   .btn-ghost { border-color: var(--line-dark); color: var(--creme-bright); }
   .btn-ghost:hover { border-color: var(--creme-dim); }
 
-  /* ---------- HERO (video) ---------- */
-  header.hero {
-    position: relative;
-    height: 100svh;
-    min-height: 640px;
-    background: var(--black);
-    color: var(--creme-bright);
-    overflow: hidden;
-  }
-  /* Video + tint zijn fixed: bij scrollen blijft het beeld hangen en
-     schuift de rest van de pagina eroverheen (secties staan op z-index 1). */
-  .hero video {
-    position: fixed; inset: 0;
-    width: 100%; height: 100lvh;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1.6s ease;
-  }
-  .hero video.active { opacity: 1; }
-  .hero .tint {
-    position: fixed; inset: 0; height: 100lvh;
-    background:
-      radial-gradient(ellipse 90% 70% at 50% 45%, transparent 25%, rgba(12,11,9,0.65) 100%),
-      linear-gradient(rgba(12,11,9,0.62), rgba(12,11,9,0.62));
-    pointer-events: none;
-  }
-  .hero .tint::after {
-    content: "";
-    position: absolute; inset: 0;
-    background: linear-gradient(rgba(12,11,9,0.55), transparent 30%, transparent 65%, rgba(12,11,9,0.82));
-  }
-  .hero .inner {
-    position: relative; z-index: 2;
-    height: 100%;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center;
-    padding: 0 1.4rem;
-    gap: 1.6rem;
-  }
-  .hero .chip { color: var(--creme-dim); border: 1px solid var(--line-dark); padding: 0.55rem 1.1rem; border-radius: 999px; background: rgba(12,11,9,0.35); }
-  .hero h1 {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(2.4rem, 6.4vw, 5.2rem);
-    line-height: 1.06;
-    letter-spacing: -0.015em;
-    max-width: 17ch;
-    text-shadow: 0 2px 30px rgba(12,11,9,0.55);
-  }
-  .hero h1 em { font-style: italic; font-weight: 400; color: var(--creme-dim); }
-  .hero p.sub { max-width: 46ch; color: var(--creme-dim); font-size: clamp(1rem, 1.4vw, 1.13rem); line-height: 1.65; text-shadow: 0 1px 16px rgba(12,11,9,0.6); }
-  .hero .cta-row { display: flex; gap: 0.9rem; flex-wrap: wrap; justify-content: center; margin-top: 0.4rem; }
-  .hero .trust { color: var(--creme-faint); margin-top: 1.4rem; letter-spacing: 0.18em; font-size: 0.66rem; }
-  .hero .scrollhint { position: absolute; bottom: 1.6rem; left: 50%; transform: translateX(-50%); color: var(--creme-faint); font-size: 1.1rem; z-index: 2; animation: bob 2.4s ease-in-out infinite; }
-  @keyframes bob { 0%,100% { transform: translate(-50%,0);} 50% { transform: translate(-50%,8px);} }
-
   /* ---------- GENERIC SECTIONS ---------- */
-  /* Alles na de hero moet bóven de fixed videolaag schuiven */
+  /* Secties blijven in hun eigen laag */
   section, footer, .oerwoud-track { position: relative; z-index: 1; }
   section.light { background: var(--creme); padding: clamp(4.5rem, 9vw, 8rem) clamp(1.4rem, 6vw, 4rem); }
   section.light + section.light { border-top: 1px solid var(--line-light); }
@@ -483,39 +426,48 @@
 
   @media (prefers-reduced-motion: reduce) {
     .hero .scrollhint, .oerwoud-meta .dot { animation: none; }
-    .hero video { transition: none; }
   }
 </style>
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/planet-hero.css">
+<script defer src="/assets/site.js"></script>
+<script type="module" src="/assets/planet-hero.js"></script>
 </head>
 <body>
 
-<nav>
+<nav class="top site-nav" aria-label="Hoofdnavigatie">
   <a class="brand" href="/">
     <span class="word">Systemly</span>
     <span class="tag mono">onafhankelijk ai-advies &amp; uitvoering</span>
   </a>
-  <div class="links">
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" hidden><span>Menu</span><span class="menu-icon" aria-hidden="true"></span></button>
+  <div class="links" id="site-menu">
     <a class="plain" href="/portfolio.html">Portfolio</a>
     <a class="plain" href="/atlanticus.html">Huidig project</a>
     <a class="btn btn-creme" href="#contact">Plan een kennismaking</a>
   </div>
 </nav>
 
-<header class="hero">
-  <video id="vidA" muted playsinline autoplay loop preload="auto"></video>
-  <video id="vidB" muted playsinline loop preload="none"></video>
-  <div class="tint"></div>
-  <div class="inner">
-    <span class="chip mono">honderd routes &middot; één die past</span>
-    <h1>Er zijn honderd manieren om AI in te zetten. <em>Wij weten welke bij u past.</em></h1>
-    <p class="sub">Van een slim bestaand hulpmiddel tot een machine in uw pand — wij hebben geen belang bij de uitkomst. Soms is ons advies: doe het niet.</p>
-    <div class="cta-row">
-      <a class="btn btn-creme" href="#contact">Plan een kennismaking&nbsp;&rarr;</a>
-      <a class="btn btn-ghost" href="#spiegel">Herkent u dit?</a>
-    </div>
-    <div class="trust mono">nederlandstalig &middot; op locatie &middot; u blijft eigenaar van uw data</div>
+<header class="hero cosmic-hero" data-planet="earth">
+  <div class="planet-stage" role="group" aria-label="Interactieve 3D-aarde">
+    <img class="planet-poster" src="/assets/space/earth-poster.webp" alt="Realistisch verlichte aarde tegen een donkere achtergrond" width="1200" height="1200" fetchpriority="high">
   </div>
-  <div class="scrollhint">&darr;</div>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="inner">
+    <span class="hero-eyebrow mono">onafhankelijk ai-advies &amp; uitvoering</span>
+    <h1>Een wereld<br>van verandering<br><em>in uw manier<br>van werken.</em></h1>
+    <p class="sub">Meer ruimte voor wat mensen goed doen. Wij vertalen de mogelijkheden van AI naar systemen die uw dagelijkse werk veranderen.</p>
+    <div class="cta-row"><a class="btn btn-creme" href="#contact">Plan een kennismaking <span aria-hidden="true">&rarr;</span></a><a class="btn btn-ghost" href="/portfolio.html">Ontdek ons werk</a></div>
+    <p class="trust">Nederlandstalig &middot; op locatie &middot; uw data blijft van u</p>
+  </div>
+  <div class="planet-controls" hidden>
+    <span class="planet-instruction" id="planet-instruction">Sleep om de aarde te draaien</span>
+    <button class="planet-pause" type="button" aria-pressed="false" aria-label="Automatisch draaien pauzeren">Pauze</button>
+  </div>
+  <div class="hero-bottom">
+    <span class="hero-coordinate"><span>01 /</span> Een wereld aan mogelijkheden</span>
+    <a href="#spiegel" class="hero-scroll">Scroll om te ontdekken <span aria-hidden="true">&darr;</span></a>
+  </div>
 </header>
 
 <section class="light" id="spiegel">
@@ -806,117 +758,17 @@
     <div style="display:flex; gap:2rem; flex-wrap:wrap;">
       <a href="mailto:admin@systemlysolutions.onmicrosoft.com">admin@systemlysolutions.onmicrosoft.com</a>
       <a href="/privacy.html">Privacy</a>
+      <a href="/beeldcredits.html">Beeldcredits</a>
     </div>
   </div>
 </footer>
 
 <script>
-/* ---------- Hero: crossfading stock footage (Pexels, vrije licentie) ----------
-   Robuust: er wordt pas gewisseld als de volgende clip volledig afspeelklaar is
-   (geen zwarte fades), clips die falen of te traag laden worden overgeslagen,
-   en een bevroren video wordt gedetecteerd en vervangen. */
-(() => {
-  const CLIPS = [
-    // Zelf gehost (bron: Pexels, vrije licentie — zie assets/video/)
-    '/assets/video/kantoor.mp4',     // modern kantoor met werkplekken
-    '/assets/video/datacenter.mp4',  // serverruimte / datacenter
-  ];
-  const SHOW_MS = 9000;          // zichtduur per clip
-  const READY_TIMEOUT_MS = 12000; // laadt de volgende niet binnen deze tijd → overslaan
-  const vids = [document.getElementById('vidA'), document.getElementById('vidB')];
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  let front = 0;       // welk <video>-element zichtbaar is
-  let clip = 0;        // welke clip zichtbaar is
-  let nextClip = 1;    // welke clip klaargezet wordt
-  let backReady = false;
-  let lastSwitch = performance.now();
-  let lastTime = 0, stallTicks = 0;
-
-  // Eerste clip: pas tonen zodra hij kan spelen (hero blijft tot dan egaal zwart)
-  vids[0].src = CLIPS[0];
-  vids[0].addEventListener('canplay', () => {
-    vids[0].classList.add('active');
-    vids[0].play().catch(() => {});
-  }, { once: true });
-  vids[0].load();
-  // autoplay-policies: een echte interactie deblokkeert altijd
-  document.addEventListener('pointerdown', () => vids[front].play().catch(() => {}), { once: true });
-
-  if (reduced) return;
-
-  function loadBack() {
-    const back = vids[1 - front];
-    backReady = false;
-    back.classList.remove('active');
-    back.src = CLIPS[nextClip];
-    const to = setTimeout(skip, READY_TIMEOUT_MS);
-    function cleanup() {
-      clearTimeout(to);
-      back.removeEventListener('canplaythrough', onReady);
-      back.removeEventListener('error', skip);
-    }
-    function onReady() { cleanup(); backReady = true; }
-    function skip() {
-      cleanup();
-      nextClip = (nextClip + 1) % CLIPS.length;
-      if (nextClip !== clip) loadBack(); // nooit dezelfde clip in beide elementen
-    }
-    back.addEventListener('canplaythrough', onReady);
-    back.addEventListener('error', skip);
-    back.load();
-  }
-
-  function doSwitch() {
-    const back = vids[1 - front];
-    try { back.currentTime = 0; } catch {}
-    back.play().catch(() => {});
-    back.classList.add('active');
-    vids[front].classList.remove('active');
-    front = 1 - front;
-    clip = nextClip;
-    nextClip = (clip + 1) % CLIPS.length;
-    lastSwitch = performance.now();
-    stallTicks = 0;
-    setTimeout(loadBack, 1500); // nieuwe front even laten spelen, dan pas preloaden
-  }
-
-  setTimeout(loadBack, 2500);
-
-  // Buiten beeld (voorbij de hero gescrold): video's pauzeren, rotatie stil
-  let heroVisible = true;
-  new IntersectionObserver((entries) => {
-    heroVisible = entries[0].isIntersecting;
-    if (!heroVisible) {
-      vids.forEach((v) => v.pause());
-    } else {
-      vids[front].play().catch(() => {});
-      lastSwitch = performance.now();
-      stallTicks = 0;
-    }
-  }, { threshold: 0.02 }).observe(document.querySelector('header.hero'));
-
-  setInterval(() => {
-    if (!heroVisible) return;
-    const f = vids[front];
-    // vastloper-detectie: speelt hij wel, maar beweegt de tijd niet?
-    if (f.readyState >= 2 && !f.paused && !document.hidden) {
-      if (Math.abs(f.currentTime - lastTime) < 0.05) stallTicks++;
-      else stallTicks = 0;
-      lastTime = f.currentTime;
-    }
-    const stalled = stallTicks >= 3; // ~3 s bevroren
-    const due = performance.now() - lastSwitch >= SHOW_MS;
-    if ((due || stalled) && backReady) doSwitch();
-    else if (stalled) f.play().catch(() => {}); // nudge; volgende tick kan alsnog wisselen
-  }, 1000);
-})();
-
 /* ---------- Oerwoud: box groeit naar full-bleed (alleen desktop) ---------- */
 (() => {
   const track = document.getElementById('oerwoud');
   const box = document.getElementById('oerwoudBox');
-  const mq = matchMedia('(min-width: 900px)');
+  const mq = matchMedia('(min-width: 900px) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
   const clamp01 = (v) => Math.max(0, Math.min(1, v));
   const ease = (p) => 1 - Math.pow(1 - p, 3);
 
@@ -963,7 +815,7 @@
   let bezig = false;
 
   function stap() {
-    if (pauze || bezig || document.hidden) return;
+    if (pauze || bezig || document.hidden || matchMedia('(max-width: 899px), (pointer: coarse)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const eerste = strip.children[0];
     const gap = parseFloat(getComputedStyle(strip).gap) || 0;
     const afstand = eerste.getBoundingClientRect().width + gap;

@@ -1,0 +1,79 @@
+/* Shared usability fixes, preserving the existing page designs. */
+html { scroll-padding-top: 6rem; }
+body { overflow-x: clip; }
+[hidden] { display: none !important; }
+img, video { max-width: 100%; }
+a, button, input, textarea { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px solid #7398b7; outline-offset: 5px; }
+button, input, textarea { font-family: inherit; }
+.btn, .menu-toggle { min-height: 44px; }
+.wrap, .grid, .hero-grid, .hero-copy, .globe-wrap, .tools, .tool, .paneel, .kamer, .contact-side, form { min-width: 0; }
+footer a, .contact-side a { overflow-wrap: anywhere; }
+footer .wrap > div { min-width: 0; max-width: 100%; }
+.site-nav .menu-toggle { display: none; }
+.site-nav .links a { min-height: 44px; align-content: center; }
+.symptom.open .uitleg { max-height: none; }
+.symptom .kop-rij { min-height: 64px; }
+.symptom .kop-rij:focus-visible { outline-offset: -3px; }
+.cases-viewport { scrollbar-width: thin; }
+@media (max-width: 1099px) {
+  nav.site-nav { padding: .8rem max(1.2rem, env(safe-area-inset-right)) .8rem max(1.2rem, env(safe-area-inset-left)); gap: 1rem; background: #0c0b09f2; flex-wrap: wrap; }
+  nav.site-nav .brand .tag { display: none; }
+  nav.site-nav .links { width: 100%; flex-wrap: wrap; gap: .5rem 1.2rem; }
+  nav.site-nav .links a.plain { display: block; }
+  nav.site-nav.nav-enhanced { flex-wrap: nowrap; }
+  nav.site-nav.nav-enhanced .menu-toggle { display: inline-flex; align-items: center; justify-content: center; gap: .7rem; border: 1px solid #ffffff40; background: transparent; color: var(--creme-bright); padding: .5rem .8rem; font-size: .9375rem; border-radius: 2px; cursor: pointer; }
+  .menu-icon { width: 16px; height: 8px; border-top: 1px solid currentColor; border-bottom: 1px solid currentColor; }
+  nav.site-nav.nav-enhanced .links { display: none; position: absolute; top: 100%; left: 0; right: 0; padding: 1rem 1.2rem 1.4rem; background: #0c0b09; border-bottom: 1px solid #ffffff26; max-height: calc(100dvh - 76px); overflow-y: auto; overscroll-behavior: contain; }
+  nav.site-nav.nav-enhanced.menu-open .links { display: flex; flex-direction: column; align-items: stretch; gap: .4rem; }
+  nav.site-nav .links a { padding: .7rem .5rem; font-size: 1rem; }
+  nav.site-nav .links .btn { text-align: center; margin-top: .6rem; padding: .9rem; }
+}
+@media (max-width: 899px), (pointer: coarse) {
+  .cases-viewport { overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: 0; padding-bottom: 1rem; touch-action: pan-x pan-y pinch-zoom; }
+  .cases { transform: none !important; transition: none !important; }
+  .case { flex-basis: min(340px, 84%); scroll-snap-align: start; }
+  #globe { width: min(100%, 600px); height: auto; aspect-ratio: 1; }
+  .globe-wrap { width: 100%; }
+  .globe-readout { flex-wrap: wrap; justify-content: center; line-height: 1.6; text-align: center; }
+}
+@media (max-width: 640px) {
+  section.light, section.dark, .oerwoud-content { padding-inline: 1.2rem; }
+  .tiles { grid-template-columns: minmax(0, 1fr); }
+  .symptom .kop-rij { grid-template-columns: 2rem minmax(0, 1fr) 1rem; gap: .65rem; }
+  .symptom .uitleg .oplossing { flex-direction: column; align-items: flex-start; }
+  .symptom .uitleg { margin-left: 0; }
+  form input, form textarea { font-size: 16px; max-width: 100%; }
+  form .btn { width: 100%; white-space: normal; line-height: 1.5; }
+  .hero-copy h1 { font-size: clamp(2.8rem, 12vw, 4rem); overflow-wrap: anywhere; }
+  .hero-copy .cta-row { flex-direction: column; align-items: stretch; }
+  .hero-copy .cta-row .btn { text-align: center; }
+  .hero-copy .trust { line-height: 1.8; font-size: .75rem; letter-spacing: .08em; }
+  .hero-labels { gap: 1.5rem 1rem; }
+  .paneel { padding: 1rem; font-size: .8125rem; overflow-x: visible; }
+  .paneel .rij { white-space: normal; gap: .6rem; align-items: start; font-size: .8125rem; }
+  .paneel .rij > * { min-width: 0; overflow-wrap: anywhere; }
+  .paneel .rij > :last-child { text-align: right; }
+  .paneel .kop, .paneel .noot { font-size: .75rem; line-height: 1.7; letter-spacing: .08em; }
+  .status-paneel .rij { gap: .7rem; flex-wrap: wrap; font-size: .8125rem; }
+  .status-paneel .rij > * { overflow-wrap: anywhere; }
+  .flow-wrap { max-width: 100%; overscroll-behavior-x: contain; }
+  .flow-wrap::before { content: 'Veeg opzij om het hele schema te bekijken →'; display: block; margin-bottom: .8rem; color: var(--creme-dim); font: .8125rem/1.5 var(--sans); }
+  #logRegels .regel { white-space: normal; overflow-wrap: anywhere; }
+  footer a { display: inline-block; padding-block: .6rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+}
+#globe { width: min(100%, 600px); height: auto; aspect-ratio: 1; }
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .oerwoud-track { height: auto; }
+  .oerwoud-sticky { position: static; height: auto; }
+  .oerwoud-box { min-height: 0; margin: 0 !important; border-radius: 0 !important; }
+}
+@media (max-width: 640px) {
+  .tile p, .step p, .nieuws p, .case .voor { font-size: 1rem; }
+}
+@media (max-width: 640px) {
+  .tool h3 { overflow-wrap: anywhere; hyphens: auto; }
+}
