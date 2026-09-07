@@ -80,3 +80,13 @@ header.cosmic-hero {
 @media (max-width: 380px) {
   .cosmic-hero[data-planet="moon"] h1 { font-size: 2.65rem; }
 }
+/* Preserve the cinematic scale on very large desktop displays. */
+@media (min-width: 2000px) {
+  .cosmic-hero .inner { max-width: none; padding-inline: 8vw; }
+  .cosmic-hero h1, .cosmic-hero[data-planet="moon"] h1 { font-size: clamp(6rem, 5.4vw, 13rem); }
+  .cosmic-hero .planet-stage, .cosmic-hero[data-planet="moon"] .planet-stage { width: min(70vw, 2400px); right: -3%; }
+  .cosmic-hero p.sub { font-size: clamp(1.0625rem, 1vw, 2rem); }
+  .cosmic-hero .hero-eyebrow, .cosmic-hero .trust { font-size: clamp(.8125rem, .65vw, 1.25rem); }
+  .cosmic-hero .btn { font-size: clamp(.95rem, .7vw, 1.4rem); padding: 1.1rem 2rem; }
+  .planet-controls { right: 8%; }
+}
