@@ -57,8 +57,7 @@ footer .wrap > div { min-width: 0; max-width: 100%; }
   .paneel .kop, .paneel .noot { font-size: .75rem; line-height: 1.7; letter-spacing: .08em; }
   .status-paneel .rij { gap: .7rem; flex-wrap: wrap; font-size: .8125rem; }
   .status-paneel .rij > * { overflow-wrap: anywhere; }
-  .flow-wrap { max-width: 100%; overscroll-behavior-x: contain; }
-  .flow-wrap::before { content: 'Veeg opzij om het hele schema te bekijken →'; display: block; margin-bottom: .8rem; color: var(--creme-dim); font: .8125rem/1.5 var(--sans); }
+  .flow-wrap { max-width: 100%; }
   #logRegels .regel { white-space: normal; overflow-wrap: anywhere; }
   footer a { display: inline-block; padding-block: .6rem; }
 }
