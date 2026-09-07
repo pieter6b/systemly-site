@@ -48,7 +48,7 @@
   nav.top .brand { display: flex; align-items: baseline; gap: 0.9rem; color: var(--creme-bright); text-decoration: none; }
   nav.top .brand .word { font-family: var(--serif); font-size: 1.45rem; font-weight: 500; }
   nav.top .brand .tag { color: var(--creme-faint); display: none; }
-  @media (min-width: 900px) { nav.top .brand .tag { display: inline; } }
+  @media (min-width: 1100px) and (min-height: 800px) and (pointer: fine) and (prefers-reduced-motion: no-preference) { nav.top .brand .tag { display: inline; } }
   nav.top .links { display: flex; align-items: center; gap: clamp(1rem, 2.5vw, 2.2rem); }
   nav.top .links a { color: var(--creme-dim); text-decoration: none; font-size: 0.92rem; font-weight: 500; }
   nav.top .links a:hover { color: var(--creme-bright); }
@@ -62,61 +62,11 @@
   .btn-creme { background: var(--creme-bright); color: var(--ink) !important; }
   .btn-creme:hover { background: #fff8e8; }
 
-  /* ---------- HERO ---------- */
-  header.hero {
-    position: relative;
-    height: 100svh; min-height: 640px;
-    overflow: hidden;
-    display: flex; flex-direction: column; justify-content: flex-end;
-  }
-  /* Video + tint zijn fixed: bij scrollen blijft het beeld hangen en
-     schuift de rest van de pagina eroverheen (alles erna staat op z-index 1). */
-  .hero video {
-    position: fixed; inset: 0; width: 100%; height: 100lvh;
-    object-fit: cover; opacity: 0; transition: opacity 1.6s ease;
-  }
-  .hero video.active { opacity: 1; }
-  .hero .tint {
-    position: fixed; inset: 0; height: 100lvh;
-    background:
-      radial-gradient(ellipse 90% 70% at 50% 40%, transparent 20%, rgba(12,11,9,0.7) 100%),
-      linear-gradient(rgba(12,11,9,0.72), rgba(12,11,9,0.6));
-    pointer-events: none;
-  }
-  .hero .labels {
-    position: relative; z-index: 2;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 1.6rem 2rem;
-    max-width: 900px;
-    padding: 0 clamp(1.4rem, 5vw, 4rem);
-    margin-bottom: clamp(1rem, 3vh, 2.5rem);
-  }
-  .hero .label-blok {
-    border-left: 1px solid var(--line-dark);
-    padding-left: 1rem;
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    line-height: 1.8;
-    color: var(--creme-dim);
-  }
-  .hero .wordmark {
-    position: relative; z-index: 2;
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(5rem, 19vw, 17rem);
-    line-height: 0.9;
-    letter-spacing: -0.02em;
-    padding: 0 clamp(1.4rem, 5vw, 4rem);
-    transform: translateY(0.12em);
-  }
-
   /* ---------- WERK: gepinde scroll-secties (AIP-mechaniek) ---------- */
   .werk-track { position: relative; z-index: 1; background: var(--black); }
-  @media (min-width: 900px) { .werk-track { height: 500vh; } }
+  @media (min-width: 1100px) and (min-height: 800px) and (pointer: fine) and (prefers-reduced-motion: no-preference) { .werk-track { height: 500vh; } }
   .werk-sticky { padding: 0 clamp(1.4rem, 5vw, 4rem); }
-  @media (min-width: 900px) {
+  @media (min-width: 1100px) and (min-height: 800px) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .werk-sticky {
       position: sticky; top: 0; height: 100vh;
       display: flex; flex-direction: column; justify-content: center;
@@ -142,12 +92,12 @@
   }
   .chip .nr { display: block; margin-top: 0.3rem; font-size: 0.6rem; color: var(--creme-faint); }
   .chip.actief { border-color: var(--creme-bright); color: var(--creme-bright); }
-  @media (max-width: 899px) { .chips { display: none; } }
+  @media (max-width: 1099px), (max-height: 799px), (pointer: coarse), (prefers-reduced-motion: reduce) { .chips { display: none; } }
 
   .tools { max-width: 1240px; margin: 2rem auto 0; width: 100%; position: relative; flex: 1 1 auto; min-height: 0; }
-  @media (min-width: 900px) { .tools { max-height: 62vh; } }
+  @media (min-width: 1100px) and (min-height: 800px) and (pointer: fine) and (prefers-reduced-motion: no-preference) { .tools { max-height: 62vh; } }
   .tool { width: 100%; }
-  @media (min-width: 900px) {
+  @media (min-width: 1100px) and (min-height: 800px) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .tool {
       position: absolute; inset: 0;
       opacity: 0; transform: translateY(26px);
@@ -159,7 +109,7 @@
     }
     .tool.actief { opacity: 1; transform: none; pointer-events: auto; }
   }
-  @media (max-width: 899px) {
+  @media (max-width: 1099px), (max-height: 799px), (pointer: coarse), (prefers-reduced-motion: reduce) {
     .tool { padding: 3.5rem 0; border-bottom: 1px solid var(--line-dark); }
   }
   .tool .rail { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em; color: var(--creme-faint); margin-bottom: 1.1rem; }
@@ -184,7 +134,7 @@
     overflow-x: auto;
     margin-top: 1.6rem;
   }
-  @media (min-width: 900px) { .paneel { margin-top: 0; } }
+  @media (min-width: 1100px) and (min-height: 800px) and (pointer: fine) and (prefers-reduced-motion: no-preference) { .paneel { margin-top: 0; } }
   .paneel .kop {
     display: flex; justify-content: space-between; align-items: center; gap: 1rem;
     padding-bottom: 0.9rem; margin-bottom: 0.9rem;
@@ -236,35 +186,48 @@
 
   @media (prefers-reduced-motion: reduce) {
     .paneel .dot { animation: none; }
-    .hero video, .tool { transition: none; }
   }
 </style>
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/planet-hero.css">
+<script defer src="/assets/site.js"></script>
+<script type="module" src="/assets/planet-hero.js"></script>
 </head>
 <body>
 
-<nav class="top">
+<nav class="top site-nav" aria-label="Hoofdnavigatie">
   <a class="brand" href="/">
     <span class="word">Systemly</span>
     <span class="tag mono">portfolio</span>
   </a>
-  <div class="links">
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" hidden><span>Menu</span><span class="menu-icon" aria-hidden="true"></span></button>
+  <div class="links" id="site-menu">
     <a href="/atlanticus.html">Huidig project</a>
     <a href="/">&larr; Terug naar de site</a>
     <a class="btn btn-creme" href="/#contact">Plan een kennismaking</a>
   </div>
 </nav>
 
-<header class="hero">
-  <video id="vidA" muted playsinline autoplay loop preload="auto"></video>
-  <video id="vidB" muted playsinline loop preload="none"></video>
-  <div class="tint"></div>
-  <div class="labels">
-    <div class="label-blok">U bekijkt<br>gebouwd werk<br>van Systemly</div>
-    <div class="label-blok">Leestijd: 3 minuten<br>Scroll om te verkennen</div>
-    <div class="label-blok">Klantnamen weggelaten<br>Discretie hoort bij dit werk</div>
-    <div class="label-blok">&copy; 2026<br>Systemly</div>
+<header class="hero cosmic-hero" data-planet="moon">
+  <div class="planet-stage" role="group" aria-label="Interactieve 3D-maan">
+    <img class="planet-poster" src="/assets/space/moon-poster.webp" alt="Realistisch verlichte maan tegen een donkere achtergrond" width="1200" height="1200" fetchpriority="high">
   </div>
-  <div class="wordmark">Gebouwd.</div>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="inner">
+    <span class="hero-eyebrow mono">het werk van systemly</span>
+    <h1>Grote stappen.<br><em>Echt gemaakt.</em></h1>
+    <p class="sub">Vooruitgang begint met een eerste stap. Ontdek de systemen die wij bouwen om ambities om te zetten in dagelijks resultaat.</p>
+    <div class="cta-row"><a class="btn btn-creme" href="#werk">Verken ons werk <span aria-hidden="true">&darr;</span></a><a class="btn btn-ghost" href="/#contact">Plan een kennismaking</a></div>
+    <p class="trust">Vier systemen in productie &middot; gebouwd voor het echte werk</p>
+  </div>
+  <div class="planet-controls" hidden>
+    <span class="planet-instruction" id="planet-instruction">Sleep om de maan te draaien</span>
+    <button class="planet-pause" type="button" aria-pressed="false" aria-label="Automatisch draaien pauzeren">Pauze</button>
+  </div>
+  <div class="hero-bottom">
+    <span class="hero-coordinate"><span>02 /</span> Van ambitie naar werkelijkheid</span>
+    <a href="#werk" class="hero-scroll">Scroll om te ontdekken <span aria-hidden="true">&darr;</span></a>
+  </div>
 </header>
 
 <div class="werk-track" id="werk">
@@ -395,114 +358,21 @@
     <div style="display:flex; gap:2rem; flex-wrap:wrap;">
       <a href="mailto:admin@systemlysolutions.onmicrosoft.com">admin@systemlysolutions.onmicrosoft.com</a>
       <a href="/privacy.html">Privacy</a>
+      <a href="/beeldcredits.html">Beeldcredits</a>
     </div>
   </div>
 </footer>
 
 <script>
-  // Hero: zelfde crossfade-rotatiesysteem als de homepage (1-op-1)
-  (() => {
-    const CLIPS = [
-      '/assets/video/datacenter.mp4',
-      '/assets/video/kantoor.mp4',
-    ];
-    const SHOW_MS = 9000;
-    const READY_TIMEOUT_MS = 12000;
-    const vids = [document.getElementById('vidA'), document.getElementById('vidB')];
-    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    let front = 0;
-    let clip = 0;
-    let nextClip = 1;
-    let backReady = false;
-    let lastSwitch = performance.now();
-    let lastTime = 0, stallTicks = 0;
-
-    vids[0].src = CLIPS[0];
-    vids[0].addEventListener('canplay', () => {
-      vids[0].classList.add('active');
-      vids[0].play().catch(() => {});
-    }, { once: true });
-    vids[0].load();
-    document.addEventListener('pointerdown', () => vids[front].play().catch(() => {}), { once: true });
-
-    if (reduced) return;
-
-    function loadBack() {
-      const back = vids[1 - front];
-      backReady = false;
-      back.classList.remove('active');
-      back.src = CLIPS[nextClip];
-      const to = setTimeout(skip, READY_TIMEOUT_MS);
-      function cleanup() {
-        clearTimeout(to);
-        back.removeEventListener('canplaythrough', onReady);
-        back.removeEventListener('error', skip);
-      }
-      function onReady() { cleanup(); backReady = true; }
-      function skip() {
-        cleanup();
-        nextClip = (nextClip + 1) % CLIPS.length;
-        if (nextClip !== clip) loadBack();
-      }
-      back.addEventListener('canplaythrough', onReady);
-      back.addEventListener('error', skip);
-      back.load();
-    }
-
-    function doSwitch() {
-      const back = vids[1 - front];
-      try { back.currentTime = 0; } catch {}
-      back.play().catch(() => {});
-      back.classList.add('active');
-      vids[front].classList.remove('active');
-      front = 1 - front;
-      clip = nextClip;
-      nextClip = (clip + 1) % CLIPS.length;
-      lastSwitch = performance.now();
-      stallTicks = 0;
-      setTimeout(loadBack, 1500);
-    }
-
-    setTimeout(loadBack, 2500);
-
-    let heroVisible = true;
-    new IntersectionObserver((entries) => {
-      heroVisible = entries[0].isIntersecting;
-      if (!heroVisible) {
-        vids.forEach((v) => v.pause());
-      } else {
-        vids[front].play().catch(() => {});
-        lastSwitch = performance.now();
-        stallTicks = 0;
-      }
-    }, { threshold: 0.02 }).observe(document.querySelector('header.hero'));
-
-    setInterval(() => {
-      if (!heroVisible) return;
-      const f = vids[front];
-      if (f.readyState >= 2 && !f.paused && !document.hidden) {
-        if (Math.abs(f.currentTime - lastTime) < 0.05) stallTicks++;
-        else stallTicks = 0;
-        lastTime = f.currentTime;
-      }
-      const stalled = stallTicks >= 3;
-      const due = performance.now() - lastSwitch >= SHOW_MS;
-      if ((due || stalled) && backReady) doSwitch();
-      else if (stalled) f.play().catch(() => {});
-    }, 1000);
-  })();
-
   // Gepinde werk-sectie: scroll stuurt de actieve tool (AIP-mechaniek)
   (() => {
     const track = document.getElementById('werk');
     const chips = [...document.querySelectorAll('.chip')];
     const tools = [...document.querySelectorAll('.tool')];
-    const mq = matchMedia('(min-width: 900px)');
+    const mq = matchMedia('(min-width: 1100px) and (min-height: 800px) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
     let actief = 0;
 
     function setActief(i) {
-      if (i === actief) return;
       actief = i;
       chips.forEach((c, j) => c.classList.toggle('actief', j === i));
       tools.forEach((t, j) => t.classList.toggle('actief', j === i));

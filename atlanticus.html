@@ -330,15 +330,18 @@
     .rv, .statement .zin .w { opacity: 1; transform: none; transition: none; }
   }
 </style>
+<link rel="stylesheet" href="/assets/site.css">
+<script defer src="/assets/site.js"></script>
 </head>
 <body>
 
-<nav class="top">
+<nav class="top site-nav" aria-label="Hoofdnavigatie">
   <a class="brand" href="/">
     <span class="word">Systemly</span>
     <span class="tag mono">huidig project</span>
   </a>
-  <div class="links">
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" hidden><span>Menu</span><span class="menu-icon" aria-hidden="true"></span></button>
+  <div class="links" id="site-menu">
     <a class="plain" href="/portfolio.html">Portfolio</a>
     <a class="plain" href="/">&larr; Terug naar de site</a>
     <a class="btn btn-creme" href="/#contact">Plan een kennismaking</a>
@@ -382,7 +385,7 @@
     <div class="kicker mono rv">het fundament</div>
     <h2 class="rv">E&eacute;n levend model van uw organisatie.</h2>
     <p class="lede rv">Onder Atlanticus ligt &eacute;&eacute;n datamodel: entiteiten, personen, dossiers, posities en documenten — en hoe ze met elkaar samenhangen. Alles wat binnenkomt, wordt aan dat model gekoppeld. Daardoor weet het systeem niet alleen <strong>wat</strong> een stuk is, maar ook <strong>waar het bij hoort</strong>, wie erbij mag, en wat ermee moet gebeuren. E&eacute;n keer vastleggen, overal kloppend.</p>
-    <div class="flow-wrap rv">
+    <div class="flow-wrap rv" role="region" aria-label="Datastroom: horizontaal te verschuiven" tabindex="0">
       <canvas id="flow" aria-hidden="true"></canvas>
       <div class="flow-noot">links: wat binnenkomt &middot; midden: het model &middot; rechts: wat het systeem oplevert &middot; weergave ter illustratie</div>
     </div>
@@ -623,6 +626,25 @@ const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 (() => {
   const canvas = document.getElementById('globe');
   const ctx = canvas.getContext('2d');
+
+  // Stop canvas work outside the viewport and while the tab is hidden.
+  let visible = true, pendingFrame = 0;
+  function queueFrame() {
+    if (!pendingFrame && visible && !document.hidden) {
+      pendingFrame = requestAnimationFrame(ms => { pendingFrame = 0; frame(ms); });
+    }
+  }
+  new IntersectionObserver(([entry]) => {
+    visible = entry.isIntersecting;
+    if (visible) queueFrame();
+    else { cancelAnimationFrame(pendingFrame); pendingFrame = 0; }
+  }).observe(canvas);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { cancelAnimationFrame(pendingFrame); pendingFrame = 0; }
+    else queueFrame();
+  });
+  new ResizeObserver(queueFrame).observe(canvas);
+
   const TILT_BASIS = -0.38;
   const SPEED = 0.07;
   let W, H, R, CX, CY;
@@ -762,15 +784,34 @@ const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
       }
     });
 
-    if (!REDUCED) requestAnimationFrame(frame);
+    if (!REDUCED) queueFrame();
   }
-  requestAnimationFrame(frame);
+  queueFrame();
 })();
 
 /* ---------- dataflow-diagram: bronnen → model → uitkomsten ---------- */
 (() => {
   const canvas = document.getElementById('flow');
   const ctx = canvas.getContext('2d');
+
+  // Stop canvas work outside the viewport and while the tab is hidden.
+  let visible = true, pendingFrame = 0;
+  function queueFrame() {
+    if (!pendingFrame && visible && !document.hidden) {
+      pendingFrame = requestAnimationFrame(ms => { pendingFrame = 0; frame(ms); });
+    }
+  }
+  new IntersectionObserver(([entry]) => {
+    visible = entry.isIntersecting;
+    if (visible) queueFrame();
+    else { cancelAnimationFrame(pendingFrame); pendingFrame = 0; }
+  }).observe(canvas);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { cancelAnimationFrame(pendingFrame); pendingFrame = 0; }
+    else queueFrame();
+  });
+  new ResizeObserver(queueFrame).observe(canvas);
+
   let W, H;
 
   const BRONNEN = ['post & mail', 'dropbox', 'bankrapportages', 'administratie'];
@@ -870,7 +911,7 @@ const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
       ctx.beginPath(); ctx.arc(q.x, q.y, 2, 0, Math.PI * 2); ctx.fill();
     });
 
-    if (!REDUCED) requestAnimationFrame(frame);
+    if (!REDUCED) queueFrame();
   }
 
   let lastW = 0;
@@ -878,7 +919,7 @@ const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const w = canvas.clientWidth || canvas.parentElement.clientWidth;
     if (w !== lastW) { lastW = w; resize(); }
   }
-  requestAnimationFrame(frame);
+  queueFrame();
 })();
 </script>
 </body>
