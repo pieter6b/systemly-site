@@ -1,931 +1,1794 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="nl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Systemly — AI-consultancy & implementatie voor het MKB | Onafhankelijk AI-advies</title>
-<meta name="description" content="AI voor uw organisatie? Er zijn honderd manieren om AI in te zetten. Systemly is de onafhankelijke AI-consultancy die uitzoekt welke route past — en hem daarna zelf bouwt. AI-advies, implementatie en automatisering voor het MKB, Nederlandstalig en op locatie. Soms is ons advies: doe het niet.">
-<link rel="canonical" href="https://systemly.nl/">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://systemly.nl/#organization",
-      "name": "Systemly",
-      "url": "https://systemly.nl/",
-      "logo": "https://systemly.nl/favicon-512.png",
-      "email": "admin@systemlysolutions.onmicrosoft.com",
-      "slogan": "Er zijn honderd manieren om AI in te zetten. Wij weten welke bij u past.",
-      "description": "Onafhankelijke AI-consultancy en -implementatie voor het MKB in Nederland. Systemly adviseert welke AI-route bij een bedrijf past — en bouwt hem daarna zelf. Van documentverwerking en AI-automatisering tot lokale AI op een NVIDIA DGX Spark in het eigen pand, AVG-proof by design.",
-      "areaServed": { "@type": "Country", "name": "Nederland" },
-      "founder": [
-        { "@type": "Person", "name": "Pieter Wellens", "jobTitle": "Co-founder · Developer" },
-        { "@type": "Person", "name": "Guus van der Graaf", "jobTitle": "Co-founder · Proces & analyse" }
-      ],
-      "knowsAbout": ["AI voor bedrijven", "AI voor mijn bedrijf", "AI-consultancy", "AI-implementatie", "AI-advies", "AI-automatisering", "AI-adviesbureau", "documentverwerking", "data-extractie", "lokale AI", "NVIDIA DGX Spark", "procesautomatisering", "workflow-automatisering", "AVG-compliance", "software op maat", "MKB"]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://systemly.nl/#website",
-      "url": "https://systemly.nl/",
-      "name": "Systemly",
-      "inLanguage": "nl-NL",
-      "publisher": { "@id": "https://systemly.nl/#organization" }
-    },
-    {
-      "@type": "ProfessionalService",
-      "@id": "https://systemly.nl/#service",
-      "name": "Systemly — AI-consultancy & implementatie",
-      "url": "https://systemly.nl/",
-      "image": "https://systemly.nl/favicon-512.png",
-      "areaServed": { "@type": "Country", "name": "Nederland" },
-      "parentOrganization": { "@id": "https://systemly.nl/#organization" },
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Diensten",
-        "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Onafhankelijk AI-advies", "description": "Welke van de honderd AI-routes past bij uw organisatie — inclusief het eerlijke advies om het níét te doen. Geen partnerbelangen, geen vast assortiment." } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI-implementatie & automatisering", "description": "Documentverwerking, data-extractie en rapportages die zichzelf samenstellen — op maat gebouwd, werkend opgeleverd en daarna onderhouden." } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Lokale AI (NVIDIA DGX Spark)", "description": "AI volledig binnen de eigen muren: data verlaat het pand niet, ook niet tijdens de verwerking. AVG-proof by design." } }
-        ]
-      }
-    }
-  ]
-}
-</script>
+<title>Systemly</title>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta property="og:title" content="Systemly — Onafhankelijk AI-advies & uitvoering">
-<meta property="og:description" content="Honderd manieren om AI in te zetten. Wij weten welke bij u past — en bouwen hem daarna zelf.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://systemly.nl/">
-<meta property="og:locale" content="nl_NL">
+<meta name="description" content="Systemly bouwt data-ontologie, AI-automatisering en software op maat, op ons eigen platform Atlanticus.">
+<meta name="theme-color" content="#171310">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23171310'/%3E%3Ctext x='7' y='23' font-family='Georgia,serif' font-size='20' fill='%23f2ede2'%3ES%3C/text%3E%3Ccircle cx='24' cy='21' r='2.4' fill='%23c4693f'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --black: #0C0B09;
-    --black-soft: #131110;
-    --creme: #EDE7DB;
-    --creme-bright: #F2EAD9;
-    --ink: #1A1512;
-    --ink-soft: #5F574D;
-    --creme-dim: rgba(242, 234, 217, 0.64);
-    --creme-faint: rgba(242, 234, 217, 0.4);
-    --line-dark: rgba(242, 234, 217, 0.14);
-    --line-light: rgba(26, 21, 18, 0.14);
-    --serif: "Fraunces", serif;
-    --sans: "Inter", sans-serif;
-    --mono: "Space Mono", monospace;
-  }
+:root{
+  --creme:#f2ede2;
+  --ink:#171310;
+  --terra:#c4693f;
+  --grey:#76716b;
+  --line:#dcd5c6;
+  --ink-2:#1f1a16;
+  --ink-3:#2a241f;
+  --creme-70:rgba(242,237,226,.7);
+  --creme-45:rgba(242,237,226,.45);
+  --creme-20:rgba(242,237,226,.2);
+  --creme-10:rgba(242,237,226,.1);
+  --ink-60:rgba(23,19,16,.6);
+  --ink-12:rgba(23,19,16,.12);
+  --serif:"Lora",Georgia,"Times New Roman",serif;
+  --sans:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono","IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --gut:clamp(16px,4vw,56px);
+  --maxw:1320px;
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:auto}
+body{
+  margin:0;color:var(--ink);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.6;
+  background-color:var(--creme);
+  background-image:
+    linear-gradient(rgba(220,213,198,.55) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(220,213,198,.55) 1px,transparent 1px);
+  background-size:28px 28px;
+  overflow-x:clip;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+img,svg{display:block}
+::selection{background:var(--terra);color:var(--creme)}
+.mono{font-family:var(--mono);font-weight:400;letter-spacing:.06em;text-transform:uppercase;font-size:11px;line-height:1.5}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: var(--sans);
-    background: var(--creme);
-    color: var(--ink);
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
+/* ---------- fixed layers ---------- */
+#darkbg{position:fixed;inset:0;z-index:0;background:var(--ink);pointer-events:none;
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,transparent var(--r,0px),#000 calc(var(--r,0px) + 1px));
+  mask-image:radial-gradient(circle at 50% 50%,transparent var(--r,0px),#000 calc(var(--r,0px) + 1px));}
+#darkbg::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at 62% 46%,rgba(196,105,63,.07),transparent 55%),radial-gradient(ellipse at 50% 120%,rgba(242,237,226,.05),transparent 60%);}
+#ring{position:fixed;left:50%;top:50%;width:0;height:0;border:1px solid var(--terra);border-radius:50%;transform:translate(-50%,-50%);z-index:1;pointer-events:none;opacity:0}
+#gl{position:fixed;left:0;top:0;width:100vw;height:100vh;height:100lvh;z-index:1;pointer-events:none;display:block}
+main,footer,.nav{position:relative;z-index:2}
 
-  .mono {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-  }
+/* ---------- nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;color:var(--ink);transition:color .4s var(--ease)}
+.nav::before{content:"";position:absolute;inset:0;background:rgba(242,237,226,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);opacity:0;transition:opacity .4s var(--ease),background .4s}
+.nav.scrolled::before{opacity:1}
+.nav.on-dark{color:var(--creme)}
+.nav.on-dark::before{background:rgba(23,19,16,.6);border-bottom-color:var(--creme-10)}
+.nav.on-dark.in-hero::before{opacity:0}
+.nav-in{position:relative;display:flex;align-items:center;justify-content:space-between;height:76px;padding:0 var(--gut);max-width:1600px;margin:0 auto}
+.wm{display:inline-flex;flex-direction:column;line-height:1}
+.wm b{font-family:var(--serif);font-weight:600;font-size:25px;letter-spacing:-.015em}
+.wm b i{font-style:normal;color:var(--terra)}
+.wm small{font-family:var(--sans);font-weight:500;font-size:7.5px;letter-spacing:.42em;margin-top:5px;opacity:.75;padding-left:1px}
+.nav-links{display:flex;align-items:center;gap:34px;font-size:14px;font-weight:400}
+.nav-links a.l{position:relative;opacity:.82;transition:opacity .25s}
+.nav-links a.l:hover{opacity:1}
+.nav-links a.l::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
+.nav-links a.l:hover::after{transform:scaleX(1);transform-origin:left}
+.btn{display:inline-flex;align-items:center;gap:12px;height:44px;padding:0 20px;border:1px solid currentColor;font-size:14px;font-weight:400;letter-spacing:.01em;transition:background .3s,color .3s,border-color .3s;white-space:nowrap}
+.btn .br{font-family:var(--mono);font-size:11px;opacity:.7}
+.nav .btn:hover{background:var(--ink);color:var(--creme);border-color:var(--ink)}
+.nav.on-dark .btn:hover{background:var(--creme);color:var(--ink);border-color:var(--creme)}
+.btn-solid{background:var(--terra);border-color:var(--terra);color:var(--creme)}
+@media (hover:hover){.btn-solid:hover{background:var(--creme);border-color:var(--creme);color:var(--ink)}}
+.menu-btn{display:none;font-family:var(--mono);font-size:11px;letter-spacing:.12em;height:40px;padding:0 14px;border:1px solid currentColor}
+.mnav{position:fixed;inset:0;z-index:49;background:var(--ink);color:var(--creme);padding:110px var(--gut) 40px;display:flex;flex-direction:column;gap:6px;transform:translateY(-100%);transition:transform .6s var(--ease);visibility:hidden}
+.mnav.open{transform:none;visibility:visible}
+.mnav a{font-family:var(--serif);font-size:38px;line-height:1.25;border-bottom:1px solid var(--creme-10);padding:10px 0;display:flex;justify-content:space-between;align-items:baseline}
+.mnav a span{font-family:var(--mono);font-size:11px;color:var(--creme-45)}
+.mnav .btn{padding:0 22px;align-items:center;justify-content:center;margin-top:28px;align-self:flex-start;font-family:var(--sans);font-size:15px;height:48px;border:1px solid var(--terra);background:var(--terra)}
 
-  /* ---------- NAV ---------- */
-  nav {
-    position: fixed;
-    inset: 0 0 auto 0;
-    z-index: 50;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.1rem clamp(1.2rem, 4vw, 3rem);
-    background: linear-gradient(rgba(12,11,9,0.66), rgba(12,11,9,0.34) 70%, transparent);
-    -webkit-backdrop-filter: blur(14px);
-    backdrop-filter: blur(14px);
-  }
-  nav .brand { display: flex; align-items: baseline; gap: 0.9rem; color: var(--creme-bright); text-decoration: none; }
-  nav .brand .word { font-family: var(--serif); font-size: 1.45rem; font-weight: 500; }
-  nav .brand .tag { color: var(--creme-faint); display: none; }
-  @media (min-width: 900px) { nav .brand .tag { display: inline; } }
-  nav .links { display: flex; align-items: center; gap: clamp(1rem, 2.5vw, 2.2rem); }
-  nav .links a { color: var(--creme-dim); text-decoration: none; font-size: 0.92rem; font-weight: 500; transition: color 0.2s; }
-  nav .links a:hover { color: var(--creme-bright); }
-  nav .links a.btn-creme, nav .links a.btn-creme:hover { color: var(--ink); }
-  nav .links a.plain { display: none; }
-  @media (min-width: 640px) { nav .links a.plain { display: inline; } }
+/* ---------- hero ---------- */
+#hero{position:relative;height:520vh;color:var(--creme)}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.hud{position:absolute;inset:0;pointer-events:none}
+.corner{position:absolute;width:22px;height:22px;border-color:var(--creme-45);border-style:solid;border-width:0}
+.c-tl{top:92px;left:var(--gut);border-top-width:1px;border-left-width:1px}
+.c-tr{top:92px;right:var(--gut);border-top-width:1px;border-right-width:1px}
+.c-bl{bottom:24px;left:var(--gut);border-bottom-width:1px;border-left-width:1px}
+.c-br{bottom:24px;right:var(--gut);border-bottom-width:1px;border-right-width:1px}
+.hud-tl{position:absolute;top:104px;left:calc(var(--gut) + 34px);color:var(--creme-70)}
+.hud-tl .sys{color:var(--creme)}
+.hud-tl .sub{color:var(--creme-45);margin-top:2px}
+.hud-tr{position:absolute;top:104px;right:calc(var(--gut) + 34px);text-align:right;color:var(--creme-70)}
+.hud-tr .z{color:var(--creme)}
+.hud-bl{position:absolute;bottom:40px;left:calc(var(--gut) + 34px);color:var(--creme-45);display:flex;gap:28px}
+.hud-br{position:absolute;bottom:40px;right:calc(var(--gut) + 34px);color:var(--creme-70);display:flex;align-items:center;gap:10px}
+.blip{width:6px;height:6px;background:var(--terra);display:inline-block;animation:blink 1.4s steps(2,start) infinite}
+@keyframes blink{to{visibility:hidden}}
+.scan{position:absolute;left:0;right:0;height:1px;top:0;background:linear-gradient(90deg,transparent,var(--creme-10) 20%,var(--creme-20) 50%,var(--creme-10) 80%,transparent);animation:scan 7s linear infinite;opacity:.6}
+@keyframes scan{from{transform:translateY(0)}to{transform:translateY(100vh)}}
 
-  .btn {
-    display: inline-block;
-    font-family: var(--sans);
-    font-weight: 600;
-    font-size: 0.95rem;
-    padding: 0.78rem 1.5rem;
-    border-radius: 2px;
-    text-decoration: none;
-    border: 1px solid transparent;
-    transition: transform 0.15s ease, background 0.2s, color 0.2s;
-    cursor: pointer;
-  }
-  .btn:active { transform: scale(0.98); }
-  .btn-creme { background: var(--creme-bright); color: var(--ink); }
-  .btn-creme:hover { background: #fff8e8; }
-  .btn-dark { background: var(--ink); color: var(--creme-bright); }
-  .btn-dark:hover { background: #000; }
-  .btn-ghost { border-color: var(--line-dark); color: var(--creme-bright); }
-  .btn-ghost:hover { border-color: var(--creme-dim); }
+.reticle{position:absolute;left:0;top:0;width:100px;height:100px;pointer-events:none;will-change:transform;opacity:.9;transform-origin:50% 50%}
+.reticle svg{width:100%;height:100%;overflow:visible}
+.reticle .spin{transform-origin:50% 50%;animation:spin 40s linear infinite}
+.reticle .spin2{transform-origin:50% 50%;animation:spin 90s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tag{position:absolute;left:0;top:0;pointer-events:none;color:var(--creme);white-space:nowrap;will-change:transform;opacity:0;font-size:10px}
+.tag::before{content:"";position:absolute;left:-3px;top:-3px;width:6px;height:6px;border:1px solid var(--terra)}
+.tag span{position:absolute;left:14px;top:-22px;padding:3px 6px;background:rgba(23,19,16,.72);border-left:1px solid var(--terra)}
+.tag i{position:absolute;left:3px;top:-12px;width:12px;height:1px;background:var(--creme-45);transform-origin:left;transform:rotate(-40deg)}
 
-  /* ---------- GENERIC SECTIONS ---------- */
-  /* Secties blijven in hun eigen laag */
-  section, footer, .oerwoud-track { position: relative; z-index: 1; }
-  section.light { background: var(--creme); padding: clamp(4.5rem, 9vw, 8rem) clamp(1.4rem, 6vw, 4rem); }
-  section.light + section.light { border-top: 1px solid var(--line-light); }
-  section.dark { background: var(--black); color: var(--creme-bright); padding: clamp(4.5rem, 9vw, 8rem) clamp(1.4rem, 6vw, 4rem); }
-  .wrap { max-width: 1060px; margin: 0 auto; }
-  .kicker { color: var(--ink-soft); margin-bottom: 1.4rem; }
-  section.dark .kicker { color: var(--creme-faint); }
-  h2 {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(2rem, 4.6vw, 3.3rem);
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    max-width: 22ch;
-  }
-  .lede { color: var(--ink-soft); font-size: 1.08rem; line-height: 1.7; max-width: 58ch; margin-top: 1.4rem; }
-  section.dark .lede { color: var(--creme-dim); }
+.beats{position:absolute;inset:0;pointer-events:none}
+.beat{will-change:opacity,transform;position:absolute;left:var(--gut);top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;max-width:min(600px,46vw);opacity:0;visibility:hidden}
+.beat.b0{top:auto;bottom:clamp(64px,11vh,120px);display:block;max-width:min(760px,54vw);opacity:1;visibility:visible}
+#red2 .bar{clip-path:inset(0 100% 0 0)}
+.kick{display:flex;align-items:center;gap:10px;color:var(--creme-70);margin-bottom:22px}
+.kick .tri{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid var(--terra)}
+.h-hero{font-family:var(--serif);font-weight:500;font-size:clamp(40px,5.6vw,90px);line-height:1.02;letter-spacing:-.025em;margin:0}
+.h-hero em{font-style:italic;font-weight:400}
+.h-sub{display:block;margin-top:.42em;padding-top:.5em;border-top:1px solid var(--creme-20);font-size:clamp(28px,3.3vw,54px);font-weight:400;line-height:1.08;letter-spacing:-.02em;color:var(--creme);max-width:13em}
+.h-sub .u{position:relative;display:inline-block;font-style:italic;color:var(--terra);white-space:nowrap}
+.h-sub .u::after{content:"";position:absolute;left:0;right:.25em;bottom:-.1em;height:3px;background:var(--terra);transform:scaleX(0);transform-origin:left;transition:transform 1.1s var(--ease)}
+.h-sub .u.on::after{transform:scaleX(1)}
+.h-beat{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.3vw,50px);line-height:1.12;letter-spacing:-.018em;margin:0}
+.h-beat .dim{color:var(--creme-45)}
+.lead{font-size:clamp(16px,1.3vw,19px);color:var(--creme-70);margin:26px 0 0;max-width:460px;font-weight:300}
+.lead strong{font-weight:400;color:var(--creme)}
+.ln{display:block;overflow:hidden;padding-bottom:.06em}
+.ln>span{display:inline-block}
+.status{display:inline-flex;gap:10px;align-items:center;margin-top:30px;padding:7px 12px;border:1px solid var(--creme-20);color:var(--creme-70)}
+.status b{font-weight:500;color:var(--creme)}
+.status.warn b{color:var(--terra)}
+.redact{position:relative;display:inline-block;white-space:nowrap}
+.redact .bar{position:absolute;left:-.08em;right:-.08em;top:.12em;bottom:.02em;background:var(--creme);clip-path:inset(0 0 0 0)}
+.redact .mk{position:absolute;left:50%;bottom:-.32em;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:7px solid var(--terra);transform:translateX(-50%);opacity:0}
+.hint{position:absolute;left:50%;bottom:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:12px;color:var(--creme-70);padding-bottom:clamp(22px,3.5vh,36px)}
+.scrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(23,19,16,.82) 0%,rgba(23,19,16,.55) 30%,rgba(23,19,16,0) 52%)}
+.hint .ln2{width:1px;height:38px;background:var(--creme-20);position:relative;overflow:hidden}
+.hint .ln2::after{content:"";position:absolute;left:0;top:-40%;width:1px;height:40%;background:var(--creme);animation:drip 2s var(--ease) infinite}
+@keyframes drip{to{top:110%}}
 
-  /* ---------- SPIEGEL (uitklapbare tabjes) ---------- */
-  .symptoms { margin-top: 3rem; border-top: 1px solid var(--line-light); }
-  .symptom { border-bottom: 1px solid var(--line-light); cursor: pointer; }
-  .symptom .kop-rij {
-    display: grid;
-    grid-template-columns: 4rem 1fr auto;
-    gap: 1rem;
-    align-items: baseline;
-    padding: 1.4rem 0;
-  }
-  .symptom .num { font-family: var(--mono); font-size: 0.8rem; color: var(--ink-soft); }
-  .symptom .kop-rij p { font-family: var(--serif); font-size: clamp(1.15rem, 2.2vw, 1.5rem); font-weight: 400; line-height: 1.35; }
-  .symptom .plus {
-    font-family: var(--mono);
-    font-size: 1.1rem;
-    color: var(--ink-soft);
-    transition: transform 0.4s ease;
-    align-self: center;
-  }
-  .symptom.open .plus { transform: rotate(45deg); }
-  .symptom .uitleg {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.55s ease;
-    margin-left: 5rem;
-    max-width: 56ch;
-  }
-  @media (max-width: 640px) { .symptom .uitleg { margin-left: 0; } }
-  .symptom .uitleg .probleem { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.65; }
-  .symptom .uitleg .oplossing { display: flex; gap: 0.8rem; align-items: baseline; margin-top: 0.7rem; padding-bottom: 1.5rem; }
-  .symptom .uitleg .oplossing .tag {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    background: var(--ink);
-    color: var(--creme-bright);
-    padding: 0.3rem 0.6rem;
-    flex-shrink: 0;
-  }
-  .symptom .uitleg .oplossing p { color: var(--ink); font-size: 0.95rem; line-height: 1.6; }
-  .symptom.open .uitleg { max-height: 220px; }
+.prog{position:absolute;right:calc(var(--gut) - 4px);top:50%;transform:translateY(-50%);height:min(44vh,380px);display:flex;flex-direction:column;align-items:center;gap:14px;color:var(--creme)}
+.prog .cnt{font-family:var(--mono);font-size:11px;letter-spacing:.08em;writing-mode:horizontal-tb}
+.prog .cnt span{color:var(--creme-45)}
+.prog .track{position:relative;width:3px;flex:1;background:var(--creme-10)}
+.prog .fill{position:absolute;left:0;top:0;width:100%;height:100%;background:var(--creme);transform-origin:top;transform:scaleY(0)}
+.prog .mkr{position:absolute;left:-9px;width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:6px solid var(--creme-45);transform:translateY(-50%);transition:border-color .3s}
+.prog .mkr.on{border-left-color:var(--terra)}
 
-  /* ---------- OORDEEL ---------- */
-  .pullquote {
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 400;
-    font-size: clamp(1.5rem, 3.4vw, 2.5rem);
-    line-height: 1.25;
-    max-width: 24ch;
-    margin: 3rem 0 2.4rem;
-  }
-  .oordeel-grid { display: grid; gap: 2.5rem; margin-top: 2.6rem; }
-  @media (min-width: 860px) { .oordeel-grid { grid-template-columns: 1fr 1fr; gap: 4rem; } }
-  .oordeel-grid h3 { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.9rem; }
-  .oordeel-grid p { color: var(--ink); line-height: 1.7; font-size: 1rem; }
-  .oordeel-grid p + p { margin-top: 0.8rem; }
+/* ---------- creme sections ---------- */
+section{position:relative}
+.sec{padding:clamp(96px,14vw,190px) 0}
+.label{display:flex;align-items:center;gap:12px;color:var(--grey)}
+.label b{font-weight:500;color:var(--ink)}
+.label .rule{flex:1;height:1px;background:var(--line);transform-origin:left}
+.dark .label{color:var(--creme-45)}
+.dark .label b{color:var(--creme)}
+.dark .label .rule{background:var(--creme-10)}
+.statement{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5.4vw,84px);line-height:1.04;letter-spacing:-.028em;margin:48px 0 0;max-width:15em}
+.statement em{font-style:italic;color:var(--terra)}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.w>span{display:inline-block}
+.intro-meta{display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--gut);margin-top:clamp(56px,7vw,96px);padding-top:22px;border-top:1px solid var(--line)}
+.intro-meta p{margin:8px 0 0;font-size:15px;color:var(--ink-60);max-width:34ch}
+.intro-meta .mono{color:var(--grey)}
 
-  /* ---------- WAT WE BOUWEN (doorlopende catalogus) ---------- */
-  .cases-viewport { overflow: hidden; margin-top: 3rem; }
-  .cases {
-    display: flex;
-    gap: 1.2rem;
-    transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
-  }
-  .case {
-    flex: 0 0 min(340px, 80vw);
-    background: var(--black);
-    color: var(--creme-bright);
-    padding: 1.9rem 1.7rem 2rem;
-    display: flex; flex-direction: column; gap: 1.1rem;
-    border-radius: 4px;
-  }
-  .case .label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--creme-faint); }
-  .case h3 { font-family: var(--serif); font-weight: 500; font-size: 1.4rem; line-height: 1.25; }
-  .case .voor { color: var(--creme-dim); font-size: 0.93rem; line-height: 1.6; flex-grow: 1; }
-  .case .na {
-    border-top: 1px solid var(--line-dark);
-    padding-top: 1rem;
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.25rem;
-  }
-  .cases-note { margin-top: 2rem; color: var(--ink-soft); font-size: 0.92rem; max-width: 60ch; line-height: 1.65; }
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink);margin-top:clamp(40px,5vw,72px)}
+.card{position:relative;padding:28px 28px 36px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:420px;display:flex;flex-direction:column;background:rgba(242,237,226,.6);transition:background .4s var(--ease)}
+.card:last-child{border-right:0}
+.card:hover{background:rgba(242,237,226,.95)}
+.card .top{display:flex;justify-content:space-between;align-items:center;color:var(--grey)}
+.card .pm{font-family:var(--mono);font-size:13px;color:var(--ink);transition:color .3s}
+.card:hover .pm{color:var(--terra)}
+.card .ic{width:76px;height:76px;margin:56px 0 auto;color:var(--ink)}
+.card .ic *{vector-effect:non-scaling-stroke}
+.card h3{font-family:var(--serif);font-weight:500;font-size:clamp(26px,2.2vw,34px);letter-spacing:-.015em;margin:48px 0 12px;line-height:1.1}
+.card p{margin:0;color:var(--ink-60);font-size:15.5px;max-width:30ch}
+.card .edge{position:absolute;left:0;top:-1px;height:2px;width:100%;background:var(--terra);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
+.card:hover .edge{transform:scaleX(1)}
+.card .foot{margin-top:26px;padding-top:14px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;color:var(--grey);font-size:10px}
 
-  /* ---------- OERWOUD — expanding dark box ---------- */
-  .oerwoud-track { background: var(--creme); }
-  @media (min-width: 900px) { .oerwoud-track { height: 220vh; } }
-  .oerwoud-sticky { display: flex; align-items: center; justify-content: center; }
-  @media (min-width: 900px) { .oerwoud-sticky { position: sticky; top: 0; height: 100vh; } }
-  .oerwoud-box {
-    background: var(--black);
-    color: var(--creme-bright);
-    width: 100%;
-    margin: 0 5vw;
-    border-radius: 28px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    will-change: margin, border-radius, min-height;
-  }
-  @media (min-width: 900px) { .oerwoud-box { min-height: 84vh; } }
-  @media (max-width: 899px) { .oerwoud-box { margin: 0 !important; border-radius: 0 !important; } }
-  .oerwoud-content { width: 100%; max-width: 1060px; margin: 0 auto; padding: clamp(2.4rem, 4.5vw, 3.6rem); }
-  .oerwoud-content h2 { font-size: clamp(1.9rem, 4vw, 3rem); }
-  .oerwoud-content .lede { font-size: 1rem; margin-top: 1rem; }
-  .tiles {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 1px;
-    background: var(--line-dark);
-    border: 1px solid var(--line-dark);
-    margin-top: 2.2rem;
-  }
-  .tile { background: var(--black-soft); padding: 1.5rem 1.4rem 1.6rem; display: flex; flex-direction: column; gap: 0.9rem; }
-  .tile .label {
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 0.35rem 0.7rem;
-    border: 1px solid var(--line-dark);
-    align-self: flex-start;
-    color: var(--creme-dim);
-  }
-  .tile .label.pos { background: var(--creme-bright); color: var(--ink); border-color: var(--creme-bright); }
-  .tile h3 { font-family: var(--serif); font-weight: 500; font-size: 1.25rem; line-height: 1.25; }
-  .tile p { color: var(--creme-dim); font-size: 0.88rem; line-height: 1.6; }
-  .tile p strong { color: var(--creme-bright); font-weight: 500; }
-  .oerwoud-meta {
-    margin-top: 2rem;
-    display: flex; flex-wrap: wrap;
-    gap: 1rem 2rem;
-    align-items: center; justify-content: space-between;
-    color: var(--creme-faint);
-    font-size: 0.85rem;
-  }
-  .oerwoud-meta .auto { display: flex; align-items: center; gap: 0.6rem; max-width: 52ch; line-height: 1.5; }
-  .oerwoud-meta .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--creme-bright); animation: pulse 2.2s ease-in-out infinite; flex-shrink: 0; }
-  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
-  .oerwoud-meta a { color: var(--creme-bright); text-decoration: none; font-weight: 500; font-size: 0.95rem; white-space: nowrap; }
+/* ---------- dark band: live ---------- */
+.dark{background:var(--ink);color:var(--creme)}
+#live{padding:clamp(96px,12vw,160px) 0;overflow:hidden}
+#live::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--creme-10) 1px,transparent 1px),linear-gradient(90deg,var(--creme-10) 1px,transparent 1px);background-size:84px 84px;opacity:.35;pointer-events:none;-webkit-mask-image:linear-gradient(transparent,#000 30%,#000 70%,transparent);mask-image:linear-gradient(transparent,#000 30%,#000 70%,transparent)}
+.live-head{display:grid;grid-template-columns:1.2fr 1fr;gap:var(--gut);align-items:end;margin-top:40px}
+.live-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(36px,4.6vw,72px);line-height:1.04;letter-spacing:-.025em;margin:0}
+.live-head p{color:var(--creme-70);margin:0;max-width:40ch;font-size:16px}
+.panel{position:relative;margin-top:clamp(48px,6vw,80px);border:1px solid var(--creme-20);background:rgba(31,26,22,.85)}
+.panel-bar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 18px;border-bottom:1px solid var(--creme-10);color:var(--creme-70);font-size:10.5px}
+.panel-bar .demo{color:var(--ink);background:var(--creme);padding:2px 7px;font-weight:500;white-space:nowrap}
+.panel-bar .l{display:flex;gap:18px;align-items:center}
+.cols{display:grid;grid-template-columns:1fr 1.15fr 1.2fr;min-height:430px}
+.col{padding:18px;border-right:1px solid var(--creme-10);position:relative;overflow:hidden}
+.col:last-child{border-right:0}
+.col-h{display:flex;justify-content:space-between;color:var(--creme-45);font-size:10px;margin-bottom:14px}
+.col-h b{color:var(--creme);font-weight:500}
+.queue{display:flex;flex-direction:column;gap:6px}
+.doc{display:grid;grid-template-columns:18px 1fr auto;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--creme-10);font-family:var(--mono);font-size:11px;color:var(--creme-70);background:rgba(242,237,226,.02);animation:docIn .6s var(--ease) both}
+.doc.out{animation:docOut .45s var(--ease) both}
+@keyframes docIn{from{opacity:0;transform:translateY(-10px)}}
+@keyframes docOut{to{opacity:0;transform:translateX(30px)}}
+.doc svg{width:14px;height:17px;color:var(--creme-45)}
+.doc .sz{color:var(--creme-45);font-size:10px}
+.scanbox{position:relative;border:1px solid var(--creme-20);padding:16px;height:calc(100% - 30px);display:flex;flex-direction:column}
+.scanbox .pg{position:relative;height:150px;border:1px solid var(--creme-10);background:repeating-linear-gradient(transparent 0 13px,var(--creme-10) 13px 14px);margin-bottom:16px;overflow:hidden}
+.scanbox .pg::before{content:"";position:absolute;left:14px;top:14px;width:46%;height:10px;background:var(--creme-20)}
+.scanbox .pg .sl{position:absolute;left:0;right:0;height:26px;top:-30px;background:linear-gradient(transparent,rgba(196,105,63,.28));border-bottom:1px solid var(--terra)}
+.scanbox .pg .hl{position:absolute;border:1px solid var(--terra);opacity:0;transition:opacity .3s}
+.kv{font-family:var(--mono);font-size:11px;display:grid;grid-template-columns:auto 1fr auto;gap:6px 10px;color:var(--creme-45)}
+.kv .dots{border-bottom:1px dotted var(--creme-20);transform:translateY(-4px)}
+.kv .v{color:var(--creme);text-align:right;min-width:9ch}
+.kv .v.ok{color:var(--creme)}
+.kv .v.chk{color:var(--terra)}
+.bar-p{height:2px;background:var(--creme-10);margin-top:auto;position:relative}
+.bar-p i{position:absolute;left:0;top:0;bottom:0;background:var(--creme);width:0}
+.bins{display:flex;flex-direction:column}
+.bin{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:10px 0;border-bottom:1px solid var(--creme-10);font-family:var(--mono);font-size:11px;color:var(--creme-70)}
+.bin .n{color:var(--creme);font-variant-numeric:tabular-nums}
+.bin .meter{grid-column:1/-1;height:2px;background:var(--creme-10);position:relative}
+.bin .meter i{position:absolute;left:0;top:0;bottom:0;background:var(--creme-70);width:0;transition:width .8s var(--ease)}
+.bin.flash .n{color:var(--terra)}
+.bin.man .meter i{background:var(--terra)}
+.log{margin-top:16px;font-family:var(--mono);font-size:10px;color:var(--creme-45);line-height:1.9;height:76px;overflow:hidden}
+.log div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;animation:docIn .4s var(--ease) both}
+.log .ok{color:var(--creme-70)}
+.log .mn{color:var(--terra)}
+.panel-foot{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--creme-10)}
+.stat{padding:14px 18px;border-right:1px solid var(--creme-10)}
+.stat:last-child{border-right:0}
+.stat .k{color:var(--creme-45);font-size:10px}
+.stat .v{font-family:var(--mono);font-size:22px;color:var(--creme);letter-spacing:.02em;margin-top:4px;font-variant-numeric:tabular-nums}
+.stat svg{width:100%;height:34px;margin-top:6px}
+.panel .cn{position:absolute;width:10px;height:10px;border-color:var(--creme);border-style:solid;border-width:0}
+.panel .cn.a{top:-5px;left:-5px;border-top-width:1px;border-left-width:1px}
+.panel .cn.b{top:-5px;right:-5px;border-top-width:1px;border-right-width:1px}
+.panel .cn.c{bottom:-5px;left:-5px;border-bottom-width:1px;border-left-width:1px}
+.panel .cn.d{bottom:-5px;right:-5px;border-bottom-width:1px;border-right-width:1px}
+.note{margin-top:16px;color:var(--creme-45);font-size:10px}
 
-  /* ---------- HOE HET WERKT ---------- */
-  .steps { display: grid; gap: 1.2rem; margin-top: 3rem; }
-  @media (min-width: 860px) { .steps { grid-template-columns: repeat(4, 1fr); gap: 2rem; } }
-  .step { border-top: 2px solid var(--ink); padding-top: 1.2rem; }
-  .step .num { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-soft); }
-  .step h3 { font-family: var(--serif); font-weight: 500; font-size: 1.3rem; margin: 0.6rem 0 0.7rem; }
-  .step p { color: var(--ink-soft); font-size: 0.92rem; line-height: 1.65; }
-  .step .note { margin-top: 0.7rem; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); }
+/* ---------- werkwijze ---------- */
+.steps-h{display:grid;grid-template-columns:1fr 1fr;gap:var(--gut);align-items:end;margin-top:40px}
+.steps-h h2,.h2{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.2vw,64px);line-height:1.05;letter-spacing:-.025em;margin:0}
+.steps-h p{margin:0;color:var(--ink-60);max-width:40ch}
+.timeline{position:relative;margin-top:clamp(56px,7vw,100px);display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.tl-line{position:absolute;left:0;right:0;top:0;height:3px;background:var(--line)}
+.tl-line i{position:absolute;inset:0;background:var(--ink);transform-origin:left;transform:scaleX(0)}
+.step{position:relative;padding:44px 28px 0 0}
+.step .tri{position:absolute;left:0;top:7px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:9px solid var(--ink)}
+.step:first-child .tri{border-top-color:var(--terra)}
+.step .n{color:var(--grey)}
+.step h3{font-family:var(--serif);font-weight:500;font-size:clamp(24px,2vw,30px);margin:14px 0 10px;letter-spacing:-.01em;line-height:1.15}
+.step p{margin:0;color:var(--ink-60);font-size:15.5px;max-width:28ch}
+.step .t{margin-top:22px;color:var(--grey);font-size:10px}
 
-  /* ---------- PRIVACY & ZEKERHEID (dark) ---------- */
-  .garanties { display: grid; gap: 1.2rem; margin-top: 3rem; }
-  @media (min-width: 860px) { .garanties { grid-template-columns: repeat(3, 1fr); gap: 2rem; } }
-  .garantie { border-top: 1px solid var(--line-dark); padding-top: 1.2rem; }
-  .garantie .num { font-family: var(--mono); font-size: 0.75rem; color: var(--creme-faint); }
-  .garantie p { font-family: var(--serif); font-size: 1.2rem; line-height: 1.4; margin-top: 0.7rem; }
-  .garantie-kop { margin-top: 3.4rem; }
+/* ---------- sectoren ---------- */
+.sectors{margin-top:clamp(48px,6vw,80px);border-top:1px solid var(--ink)}
+.row{position:relative;display:grid;grid-template-columns:120px 1.1fr 1.3fr 40px;gap:24px;align-items:center;padding:26px 0;border-bottom:1px solid var(--line);transition:padding .45s var(--ease)}
+.row .tg{color:var(--grey)}
+.row .tg b{display:inline-block;padding:3px 7px;border:1px solid var(--line);font-weight:500;color:var(--ink);transition:border-color .3s,color .3s}
+.row h3{font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.4vw,36px);margin:0;letter-spacing:-.015em;line-height:1.15}
+.row p{margin:0;color:var(--ink-60);font-size:15.5px}
+.row .pm{font-family:var(--mono);font-size:14px;text-align:right;transition:color .3s,transform .4s var(--ease)}
+.row::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:var(--terra);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
+.row:hover{padding-left:14px}
+.row:hover::after{transform:scaleX(1)}
+.row:hover .tg b{border-color:var(--terra);color:var(--terra)}
+.row:hover .pm{color:var(--terra)}
 
-  /* ---------- AI-NIEUWS / SIGNALEN ---------- */
-  .nieuws-grid {
-    display: grid;
-    gap: 1px;
-    background: var(--line-light);
-    border: 1px solid var(--line-light);
-    margin-top: 3rem;
-  }
-  @media (min-width: 860px) { .nieuws-grid { grid-template-columns: 1fr 1fr; } }
-  .nieuws { background: var(--creme); padding: 1.8rem 1.6rem 2rem; display: flex; flex-direction: column; gap: 0.9rem; }
-  .nieuws .kop-rij { display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap; }
-  .nieuws .label {
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 0.35rem 0.7rem;
-    border: 1px solid var(--ink);
-    color: var(--ink);
-  }
-  .nieuws .label.pos { background: var(--ink); color: var(--creme-bright); }
-  .nieuws .bron { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); }
-  .nieuws h3 { font-family: var(--serif); font-weight: 500; font-size: 1.3rem; line-height: 1.3; }
-  .nieuws p { color: var(--ink-soft); font-size: 0.92rem; line-height: 1.65; }
-  .nieuws p strong { color: var(--ink); font-weight: 600; }
-  .nieuws-meta {
-    margin-top: 2rem;
-    display: flex; flex-wrap: wrap;
-    gap: 1rem 2rem;
-    align-items: center; justify-content: space-between;
-    color: var(--ink-soft);
-    font-size: 0.85rem;
-  }
-  .nieuws-meta .auto { display: flex; align-items: center; gap: 0.6rem; max-width: 52ch; line-height: 1.5; }
-  .nieuws-meta .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ink); animation: pulse 2.2s ease-in-out infinite; flex-shrink: 0; }
-  .nieuws-meta a { color: var(--ink); text-decoration: none; font-weight: 500; font-size: 0.95rem; white-space: nowrap; }
+/* ---------- waarom ---------- */
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gut);margin-top:clamp(48px,6vw,80px)}
+.why .it{border-top:1px solid var(--ink);padding-top:22px}
+.why .big{font-family:var(--mono);font-size:12px;color:var(--grey);display:flex;justify-content:space-between}
+.why h3{font-family:var(--serif);font-weight:500;font-size:clamp(24px,2.1vw,32px);line-height:1.15;margin:40px 0 14px;letter-spacing:-.015em}
+.why p{margin:0;color:var(--ink-60);font-size:15.5px;max-width:34ch}
 
-  /* ---------- WIE ER LANGSKOMT ---------- */
-  .profielen { display: grid; gap: 1.2rem; margin-top: 3rem; }
-  @media (min-width: 700px) { .profielen { grid-template-columns: 1fr 1fr; gap: 2rem; } }
-  .profiel {
-    background: var(--black);
-    color: var(--creme-bright);
-    border-radius: 4px;
-    padding: 2rem 1.8rem;
-    display: flex; flex-direction: column; gap: 1.2rem;
-  }
-  .profiel .foto {
-    width: 96px; height: 96px;
-    background: var(--black-soft);
-    border: 1px solid var(--line-dark);
-    color: var(--creme-bright);
-    font-family: var(--serif);
-    font-size: 2.2rem;
-    display: flex; align-items: center; justify-content: center;
-    border-radius: 4px;
-  }
-  .profiel h3 { font-family: var(--serif); font-weight: 500; font-size: 1.5rem; }
-  .profiel .rol { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--creme-faint); margin-top: 0.4rem; }
-  .profiel p { color: var(--creme-dim); font-size: 0.95rem; line-height: 1.65; }
-  .yinyang { margin-top: 2.2rem; font-family: var(--serif); font-style: italic; font-size: 1.3rem; color: var(--ink); }
+/* ---------- contact ---------- */
+.contact{position:relative;padding:clamp(96px,11vw,150px) 0 clamp(48px,5vw,72px);overflow:hidden}
+.ct-bg{position:absolute;inset:0;background-image:radial-gradient(var(--creme-20) 1px,transparent 1.4px);background-size:24px 24px;opacity:.5;-webkit-mask-image:radial-gradient(ellipse at 25% 55%,#000,transparent 60%);mask-image:radial-gradient(ellipse at 25% 55%,#000,transparent 60%);pointer-events:none}
+.ct-grid{position:relative;display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(32px,6vw,96px);margin-top:clamp(40px,5vw,64px);align-items:start}
+.ct-left h2{font-family:var(--serif);font-weight:400;font-size:clamp(36px,4.4vw,68px);line-height:1.04;letter-spacing:-.028em;margin:0}
+.ct-lead{color:var(--creme-70);margin:22px 0 0;max-width:40ch}
+.ct-net{margin-top:36px;max-width:420px}
+.ct-net svg{width:100%;height:auto;overflow:visible}
+.ct-pulse{transform-origin:180px 100px;transform-box:view-box;animation:ctPulse 2.6s var(--ease) infinite}
+@keyframes ctPulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.2);opacity:0}}
+.ct-net.hot .ct-sats circle{stroke:var(--terra)}
+.ct-net.hot .ct-links path{stroke:rgba(196,105,63,.6)}
+#ctCore{transform-origin:180px 100px;transform-box:view-box;transition:transform .4s var(--ease)}
+.ct-meta{margin:30px 0 0;display:grid;gap:0;border-top:1px solid var(--creme-10);max-width:420px}
+.ct-meta div{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--creme-10)}
+.ct-meta dt{color:var(--creme-45)}
+.ct-meta dd{margin:0;color:var(--creme)}
+.ct-meta a:hover{color:var(--terra)}
+.ct-form{position:relative;border:1px solid var(--creme-20);background:rgba(31,26,22,.88);padding:clamp(20px,2.6vw,34px)}
+.ct-form::before,.ct-form::after{content:"";position:absolute;width:10px;height:10px;border-color:var(--creme);border-style:solid;border-width:0}
+.ct-form::before{top:-5px;left:-5px;border-top-width:1px;border-left-width:1px}
+.ct-form::after{bottom:-5px;right:-5px;border-bottom-width:1px;border-right-width:1px}
+.ct-chips{border:0;margin:0 0 26px;padding:0;min-width:0}
+.ct-chips legend,.fld>span{color:var(--creme-45);font-size:10.5px;padding:0;margin-bottom:12px;display:block;transition:color .25s}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--creme-20);padding:9px 12px;color:var(--creme-70);font-size:11px;transition:background .25s,color .25s,border-color .25s}
+.chip i{font-style:normal;color:var(--creme-45);margin-right:4px}
+@media (hover:hover){.chip:hover{border-color:var(--creme-70);color:var(--creme)}}
+.chip[aria-pressed="true"]{background:var(--creme);color:var(--ink);border-color:var(--creme)}
+.chip[aria-pressed="true"] i{color:var(--terra)}
+.ct-row{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
+.fld{display:block;position:relative;margin-bottom:22px}
+.fld small{font-size:inherit;color:var(--creme-20)}
+.fld input,.fld textarea{width:100%;background:transparent;border:0;border-bottom:1px solid var(--creme-20);color:var(--creme);font:300 16px/1.5 var(--sans);padding:6px 0 10px;border-radius:0;outline:none;transition:border-color .25s;resize:vertical}
+.fld textarea{min-height:104px}
+.fld:focus-within>span{color:var(--creme)}
+.fld input:focus,.fld textarea:focus{border-bottom-color:var(--terra)}
+.fld .msg{display:block;font-style:normal;font-size:10px;color:var(--terra);height:0;overflow:hidden;transition:height .2s}
+.fld.err>span{color:var(--terra)}
+.fld.err input,.fld.err textarea{border-bottom-color:var(--terra)}
+.fld.err .msg{height:16px;margin-top:6px}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.ct-act{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:6px}
+.ct-send{position:relative;height:54px;padding:0 24px;font-size:15px;overflow:hidden}
+.ct-send .bar{position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--creme);transform:scaleX(0);transform-origin:left}
+.ct-send[disabled]{cursor:progress;background:var(--ink-3);border-color:var(--creme-20);color:var(--creme-70)}
+.ct-send[disabled] .bar{animation:sendbar 1.4s var(--ease) infinite}
+@keyframes sendbar{0%{transform:scaleX(0);transform-origin:left}50%{transform:scaleX(1);transform-origin:left}51%{transform-origin:right}100%{transform:scaleX(0);transform-origin:right}}
+.ct-note{color:var(--creme-45);font-size:9.5px}
+.ct-term{margin-top:22px;padding-top:14px;border-top:1px dashed var(--creme-20);font-size:10.5px;color:var(--creme-45);min-height:64px;line-height:1.85}
+.ct-term div{white-space:normal}
+.ct-term .ok{color:var(--creme)}
+.ct-term .bad{color:var(--terra)}
+.ct-term .cur{display:inline-block;width:7px;height:11px;background:var(--creme-70);margin-left:6px;vertical-align:-1px;animation:blink 1s steps(2,start) infinite}
+.ct-done{padding:8px 0 4px}
+.ct-ref{color:var(--terra);font-size:11px}
+.ct-done h3{font-family:var(--serif);font-weight:400;font-size:clamp(30px,3vw,44px);letter-spacing:-.02em;margin:14px 0 10px;line-height:1.1}
+.ct-done p{color:var(--creme-70);margin:0 0 22px}
+.ct-done .lk{color:var(--creme);border-bottom:1px solid var(--terra);padding-bottom:4px;font-size:11px}
+.fly-layer{position:fixed;inset:0;pointer-events:none;z-index:70}
+.fly-layer svg{position:absolute;inset:0;width:100%;height:100%}
+.fly-dot{position:absolute;left:0;top:0;width:4px;height:4px;margin:-2px 0 0 -2px;border-radius:50%;background:var(--creme)}
+.fly-dot.t{background:var(--terra)}
 
-  /* ---------- FORMULIERSTATUS ---------- */
-  .form-status { margin-top: 1.2rem; font-size: 0.95rem; line-height: 1.6; }
-  .form-status.ok { color: var(--ink); font-family: var(--serif); font-size: 1.15rem; }
-  .form-status.err { color: #8a2f22; }
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:var(--creme);padding:0 0 26px}
+.f-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;border-top:1px solid var(--creme-20);border-bottom:1px solid var(--creme-10)}
+.f-cell{padding:28px 24px 30px;border-left:1px solid var(--creme-10);display:flex;flex-direction:column;align-items:flex-start}
+.f-cell:first-child{border-left:0;padding-left:0}
+.f-cell h4{font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.08em;color:var(--creme);margin:0 0 16px}
+.f-cell h4 span{color:var(--terra);margin-right:6px}
+.f-cell a,.f-plain{color:var(--creme-70);font-size:14.5px;padding:3px 0;transition:color .25s}
+.f-cell a:hover{color:var(--creme)}
+.f-brand p{color:var(--creme-45);max-width:32ch;margin:0;font-size:14.5px}
+.f-big{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;font-family:var(--serif);font-weight:500;font-size:clamp(56px,12.5vw,190px);line-height:1;letter-spacing:-.05em;color:var(--creme);white-space:nowrap;padding:.12em 0 .2em;margin:0;border-bottom:1px solid var(--creme-10)}
+.f-big .w{display:block;margin-left:-.04em}
+.f-side{display:flex;flex-direction:column;gap:4px;text-align:right;font-size:10.5px;line-height:1.8;letter-spacing:.08em;color:var(--creme-45);padding-bottom:3.2em}
+.f-side span:first-child{color:var(--creme);letter-spacing:.3em}
+.f-big i{font-style:normal;color:var(--terra)}
+.f-bot{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;padding-top:18px;color:var(--creme-45);font-size:10.5px}
+.f-bot a{justify-self:center;color:var(--creme-70)}
+.f-bot a:hover{color:var(--terra)}
+.f-bot #fz{justify-self:end;text-align:right}
+@media (max-width:900px){
+  .ct-grid{grid-template-columns:1fr}
+  .ct-net{max-width:360px;margin-top:28px}
+  .f-grid{grid-template-columns:1fr 1fr}
+  .f-cell{padding:22px 16px 24px}
+  .f-cell:nth-child(2){border-left:0;padding-left:0;border-top:1px solid var(--creme-10)}
+  .f-cell:nth-child(3){border-top:1px solid var(--creme-10)}
+  .f-cell:nth-child(4){border-left:0;padding-left:0;border-top:1px solid var(--creme-10)}
+  .f-brand{grid-column:1/-1}
+  .f-grid .f-cell:nth-child(4){grid-column:1/-1}
+  .f-bot{grid-template-columns:1fr;gap:6px}
+  .f-bot a,.f-bot #fz{justify-self:start;text-align:left}
+}
+@media (max-width:600px){
+  .ct-row{grid-template-columns:1fr}
+  .ct-form{padding:20px 16px}
+  .f-big{font-size:20.5vw}
+  .f-side{display:none}
+}
 
-  /* ---------- CONTACT ---------- */
-  section.slot .grid { display: grid; gap: 3rem; margin-top: 3rem; }
-  @media (min-width: 860px) { section.slot .grid { grid-template-columns: 1fr 1fr; gap: 5rem; } }
-  form .field { margin-bottom: 1.2rem; }
-  form label { display: block; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.5rem; }
-  form input, form textarea {
-    width: 100%;
-    font-family: var(--sans);
-    font-size: 1rem;
-    padding: 0.85rem 1rem;
-    background: rgba(255,255,255,0.5);
-    border: 1px solid var(--line-light);
-    border-radius: 2px;
-    color: var(--ink);
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  form input:focus, form textarea:focus { border-color: var(--ink); }
-  form textarea { min-height: 120px; resize: vertical; }
-  .contact-side p { color: var(--ink-soft); line-height: 1.7; }
-  .contact-side .direct { margin-top: 2rem; border-top: 1px solid var(--line-light); padding-top: 2rem; display: flex; flex-direction: column; gap: 0.6rem; }
-  .contact-side .direct a { color: var(--ink); font-family: var(--serif); font-size: 1.3rem; text-decoration: none; }
-  .price-note { margin-top: 2.6rem; color: var(--ink-soft); font-size: 0.9rem; line-height: 1.65; max-width: 44ch; }
+/* ---------- responsive ---------- */
+@media (max-width:1100px){
+  .nav-links{gap:22px}
+    .card{min-height:380px}
+}
+@media (max-width:900px){
+  .nav-links a.l{display:none}
+  .nav-links .btn{display:none}
+  .menu-btn{display:inline-flex;align-items:center}
+  .pillars{grid-template-columns:1fr}
+  .card{border-right:0;min-height:0}
+  .card .ic{margin:36px 0 0;width:64px;height:64px}
+  .card h3{margin-top:32px}
+  .live-head,.steps-h{grid-template-columns:1fr}
+  .cols{grid-template-columns:1fr;min-height:0}
+  .col{border-right:0;border-bottom:1px solid var(--creme-10)}
+  .scanbox{height:auto}
+  .panel-foot{grid-template-columns:1fr 1fr}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--creme-10)}
+  .timeline{grid-template-columns:1fr;padding-left:30px}
+  .tl-line{left:4px;right:auto;top:0;bottom:0;width:3px;height:auto}
+  .tl-line i{transform-origin:top;transform:scaleY(0)}
+  .step{padding:0 0 44px}
+  .step .tri{left:-31px;top:8px;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:9px solid var(--ink);border-right:0}
+  .step:first-child .tri{border-left-color:var(--terra);border-top-color:transparent}
+  .row{grid-template-columns:1fr 28px;gap:8px 16px;padding:22px 0}
+  .row .tg{grid-column:1/-1}
+  .row h3{grid-column:1}
+  .row .pm{grid-column:2;grid-row:2}
+  .row p{grid-column:1/-1}
+  .why{grid-template-columns:1fr;gap:36px}
+  .why h3{margin-top:22px}
+  .intro-meta{grid-template-columns:1fr;gap:22px}
+}
+@media (max-width:767px){
+  .nav-in{height:64px}
+  .wm b{font-size:22px}
+  .c-tl,.c-tr{top:76px}
+  .hud-tl{top:84px;left:calc(var(--gut) + 26px)}
+  .hud-tr{top:84px;right:calc(var(--gut) + 26px)}
+  .hud-tr .k2{display:none}
+  .hud-tl{display:none}
+  .scan{display:none}
+  .prog{height:22vh;top:36%}
+  .prog .track{width:2px}
+  .hud-bl{display:none}
+  .hud-br{display:none}
+  .beat,.beat.b0{left:var(--gut);right:var(--gut);max-width:none;top:auto;bottom:clamp(84px,13vh,120px);display:block}
+  .beat.b0{bottom:clamp(92px,14vh,130px)}
+  .h-hero{font-size:clamp(34px,9.4vw,46px)}
+  .h-sub{font-size:clamp(24px,6.6vw,30px);margin-top:.45em;padding-top:.45em}
+  .h-beat{font-size:clamp(25px,7vw,32px)}
+  .lead{margin-top:16px;font-size:15px}
+  .kick{margin-bottom:14px}
+  .status{margin-top:18px}
+  .prog{right:10px;height:28vh;top:40%}
+  .prog .cnt{font-size:10px}
+  .hint{padding-bottom:26px;left:var(--gut);transform:none;flex-direction:row}
+  .scrim{background:linear-gradient(0deg,rgba(23,19,16,.9) 0%,rgba(23,19,16,.6) 38%,rgba(23,19,16,0) 62%)}
+  .tag{display:none}
+  .card{padding:22px 0 30px;background:transparent}
+  .card:hover{background:transparent}
+  .panel-bar .l span:nth-child(2){display:none}
+}
 
-  /* ---------- FOOTER ---------- */
-  footer { background: var(--black); color: var(--creme-faint); padding: 3.4rem clamp(1.4rem, 6vw, 4rem); }
-  footer .wrap { display: flex; flex-wrap: wrap; gap: 1.4rem 3rem; align-items: baseline; justify-content: space-between; }
-  footer .word { font-family: var(--serif); font-size: 1.3rem; color: var(--creme-bright); }
-  footer .mono { font-size: 0.62rem; }
-  footer a { color: var(--creme-dim); text-decoration: none; font-size: 0.85rem; }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero .scrollhint, .oerwoud-meta .dot { animation: none; }
-  }
+/* ---------- reduced motion ---------- */
+html.reduced #hero{height:auto;background:var(--ink)}
+html.reduced .stage{position:relative;height:auto;overflow:visible}
+html.reduced #gl{position:absolute;top:0;left:0;width:100%;height:100vh;z-index:0}
+html.reduced .beats{z-index:1}
+html.reduced .scrim{height:100vh}
+html.reduced #darkbg,html.reduced #ring,html.reduced .prog,html.reduced .scan,html.reduced .hint{display:none}
+html.reduced .hud{height:100vh}
+html.reduced .beats{position:relative}
+html.reduced .beat{position:relative;opacity:1;visibility:visible;left:auto;top:auto;bottom:auto;transform:none;max-width:760px;margin:0;padding:0 var(--gut) 72px}
+html.reduced .beat.b0{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:14vh}
+html.reduced .redact .bar{display:none}
+html.reduced .h-sub .u::after{transform:scaleX(1)}
+html.reduced *{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
-<link rel="stylesheet" href="/assets/site.css">
-<link rel="stylesheet" href="/assets/planet-hero.css">
-<script defer src="/assets/site.js"></script>
-<script type="module" src="/assets/planet-hero.js"></script>
 </head>
 <body>
 
-<nav class="top site-nav" aria-label="Hoofdnavigatie">
-  <a class="brand" href="/">
-    <span class="word">Systemly</span>
-    <span class="tag mono">onafhankelijk ai-advies &amp; uitvoering</span>
-  </a>
-  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" hidden><span>Menu</span><span class="menu-icon" aria-hidden="true"></span></button>
-  <div class="links" id="site-menu">
-    <a class="plain" href="/portfolio.html">Portfolio</a>
-    <a class="plain" href="/atlanticus.html">Huidig project</a>
-    <a class="btn btn-creme" href="#contact">Plan een kennismaking</a>
-  </div>
-</nav>
+<div id="darkbg" aria-hidden="true"></div>
+<div id="ring" aria-hidden="true"></div>
+<canvas id="gl" aria-hidden="true"></canvas>
 
-<header class="hero cosmic-hero" data-planet="earth">
-  <div class="planet-stage" role="group" aria-label="Interactieve 3D-aarde">
-    <img class="planet-poster" src="/assets/space/earth-poster.webp" alt="Realistisch verlichte aarde tegen een donkere achtergrond" width="1200" height="1200" fetchpriority="high">
-  </div>
-  <div class="hero-shade" aria-hidden="true"></div>
-  <div class="inner">
-    <span class="hero-eyebrow mono">onafhankelijk ai-advies &amp; uitvoering</span>
-    <h1>Een wereld<br>van verandering<br><em>in uw manier<br>van werken.</em></h1>
-    <p class="sub">Meer ruimte voor wat mensen goed doen. Wij vertalen de mogelijkheden van AI naar systemen die uw dagelijkse werk veranderen.</p>
-    <div class="cta-row"><a class="btn btn-creme" href="#contact">Plan een kennismaking <span aria-hidden="true">&rarr;</span></a><a class="btn btn-ghost" href="/portfolio.html">Ontdek ons werk</a></div>
-    <p class="trust">Nederlandstalig &middot; op locatie &middot; uw data blijft van u</p>
-  </div>
-  <div class="planet-controls" hidden>
-    <span class="planet-instruction" id="planet-instruction">Sleep om de aarde te draaien</span>
-    <button class="planet-pause" type="button" aria-pressed="false" aria-label="Automatisch draaien pauzeren">Pauze</button>
-  </div>
-  <div class="hero-bottom">
-    <span class="hero-coordinate"><span>01 /</span> Een wereld aan mogelijkheden</span>
-    <a href="#spiegel" class="hero-scroll">Scroll om te ontdekken <span aria-hidden="true">&darr;</span></a>
+<header class="nav on-dark in-hero" id="nav">
+  <div class="nav-in">
+    <a href="#top" class="wm" aria-label="Systemly, naar boven"><b>Systemly<i>.</i></b><small>AS A SOLUTION</small></a>
+    <nav class="nav-links" aria-label="Hoofdmenu">
+      <a class="l" href="#platform">Platform</a>
+      <a class="l" href="#oplossingen">Oplossingen</a>
+      <a class="l" href="#werkwijze">Werkwijze</a>
+      <a class="l" href="#over">Over ons</a>
+      <a class="btn" href="#contact">Plan een gesprek <span class="br">[+]</span></a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mnav">MENU [+]</button>
+    </nav>
   </div>
 </header>
-
-<section class="light" id="spiegel">
-  <div class="wrap">
-    <div class="kicker mono">herkenning</div>
-    <h2>Dit gaat over uw kantoor.</h2>
-    <div class="symptoms" id="symptoms">
-      <div class="symptom">
-        <div class="kop-rij"><span class="num">/01</span><p>Iemand typt elke maand bankafschriften of facturen over.</p><span class="plus">+</span></div>
-        <div class="uitleg">
-          <p class="probleem">Elke maand dezelfde handeling: openen, overlezen, overtikken. Foutgevoelig, en zonde van goede mensen.</p>
-          <div class="oplossing"><span class="tag">de oplossing</span><p>Een systeem dat documenten zelf leest en inboekt. Uw team controleert alleen nog de uitzonderingen.</p></div>
-        </div>
-      </div>
-      <div class="symptom">
-        <div class="kop-rij"><span class="num">/02</span><p>Een map &lsquo;Inbox&rsquo; met duizenden bestanden die niemand meer doorzoekt.</p><span class="plus">+</span></div>
-        <div class="uitleg">
-          <p class="probleem">Wat niet vindbaar is, bestaat praktisch niet. De kennis van jaren zit opgesloten in mappen waar niemand meer komt.</p>
-          <div class="oplossing"><span class="tag">de oplossing</span><p>Een archief dat doorzoekbaar is op inhoud: &eacute;&eacute;n zoekopdracht in plaats van een middag bladeren.</p></div>
-        </div>
-      </div>
-      <div class="symptom">
-        <div class="kop-rij"><span class="num">/03</span><p>Hetzelfde dossier gaat door vier paar handen voordat het klaar is.</p><span class="plus">+</span></div>
-        <div class="uitleg">
-          <p class="probleem">Iedereen kijkt ernaar, niemand weet wat al gecontroleerd is. De doorlooptijd stapelt op — en fouten glippen er juist tussendoor.</p>
-          <div class="oplossing"><span class="tag">de oplossing</span><p>E&eacute;n systeem dat het voorwerk doet en bijhoudt wat al is gecontroleerd. Uw mensen kijken alleen nog waar hun oordeel telt.</p></div>
-        </div>
-      </div>
-      <div class="symptom">
-        <div class="kop-rij"><span class="num">/04</span><p>Rapportages worden elk kwartaal handmatig samengevoegd.</p><span class="plus">+</span></div>
-        <div class="uitleg">
-          <p class="probleem">Drie systemen, &eacute;&eacute;n spreadsheet, elk kwartaal opnieuw — en niemand die er nog met plezier aan begint.</p>
-          <div class="oplossing"><span class="tag">de oplossing</span><p>Rapportage die zichzelf samenstelt uit de bronnen en gecontroleerd klaarstaat.</p></div>
-        </div>
-      </div>
-    </div>
-    <p class="lede">Dit is geen technologieprobleem. Het is een keuzeprobleem: welke van de honderd oplossingen past bij uw proces, uw data en uw budget?</p>
-  </div>
-</section>
-
-<section class="light" id="oordeel">
-  <div class="wrap">
-    <div class="kicker mono">ons oordeel</div>
-    <h2>Iedereen in deze markt heeft één hamer. Wij niet.</h2>
-    <p class="lede">Een cloudpartij adviseert cloud. Een hardwareleverancier adviseert hardware. Een implementatiebureau adviseert het pakket waar het partner van is. Wij verkopen geen product — wij zoeken uit welke route bij uw organisatie past, en bouwen hem daarna zelf.</p>
-    <div class="pullquote">&ldquo;Wij zijn de enige die u ook kunnen vertellen dat u het niet nodig hebt.&rdquo;</div>
-    <div class="oordeel-grid">
-      <div>
-        <h3>Wat dat betekent</h3>
-        <p>Soms is het antwoord een bestaand tooltje van veertig euro per maand. Soms een systeem dat volledig binnen uw muren draait. En soms is het antwoord: dit lost uw probleem niet op, begin er niet aan.</p>
-        <p>U koopt bij ons geen rapport. Wat wij adviseren, moeten we daarna zelf waarmaken — dat houdt een advies eerlijk.</p>
-      </div>
-      <div>
-        <h3>Wat we niet doen</h3>
-        <p>Geen chatbots voor uw website. Geen strategierapporten die in een la verdwijnen. Geen AI omdat het kan. We bouwen alleen wat zichzelf terugverdient in uren of fouten — en anders zeggen we dat.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="light" id="bouwen">
-  <div class="wrap">
-    <div class="kicker mono">bewijs</div>
-    <h2>Gebouwd. Niet ge-powerpoint.</h2>
-    <p class="lede">Een greep uit wat er draait — zonder klantnamen, want discretie hoort bij dit werk.</p>
-    <div class="cases-viewport" id="casesViewport">
-    <div class="cases" id="cases">
-      <div class="case">
-        <span class="label">documentverwerking</span>
-        <h3>Bankafschriften die zichzelf inboeken</h3>
-        <p class="voor">Vier banken, zestig pagina&rsquo;s per kwartaal, een halve werkdag overtypen naar de administratie.</p>
-        <p class="na">Nu: vier minuten.</p>
-      </div>
-      <div class="case">
-        <span class="label">bestandsordening</span>
-        <h3>Tien jaar archief, doorzoekbaar</h3>
-        <p class="voor">Duizenden bestanden in losse mappen, vindbaar op bestandsnaam — als iemand nog wist hoe het heette.</p>
-        <p class="na">Nu: zoeken op inhoud.</p>
-      </div>
-      <div class="case">
-        <span class="label">rapportage</span>
-        <h3>Kwartaalcijfers die zichzelf samenstellen</h3>
-        <p class="voor">Cijfers uit drie systemen, elk kwartaal met de hand samengevoegd en gecontroleerd.</p>
-        <p class="na">Nu: één overzicht, altijd actueel.</p>
-      </div>
-      <div class="case">
-        <span class="label">documentsortering</span>
-        <h3>Een inbox die zichzelf opruimt</h3>
-        <p class="voor">Elk bestand dat binnenkomt wordt herkend en op de juiste plek in de mappenstructuur gezet.</p>
-        <p class="na">Nu: nul keer slepen.</p>
-      </div>
-      <div class="case">
-        <span class="label">intake</span>
-        <h3>Dossiers gecontroleerd bij binnenkomst</h3>
-        <p class="voor">Aangeleverde stukken worden gelezen, gekoppeld aan het dossier en getoetst op volledigheid.</p>
-        <p class="na">Nu: gesignaleerd vóór iemand het opent.</p>
-      </div>
-      <div class="case">
-        <span class="label">boekhouding</span>
-        <h3>Jaarcijfers die klaarstaan</h3>
-        <p class="voor">Mutaties per entiteit, doorlopend geboekt, gecontroleerd en aangesloten volgens één stramien.</p>
-        <p class="na">Nu: concept gereed, heel het jaar.</p>
-      </div>
-    </div>
-    </div>
-    <p class="cases-note">Elke oplossing draait waar hij hoort: soms in de cloud, soms op een machine bij u op kantoor. Dat bepaalt de situatie — niet ons assortiment.</p>
-    <p style="margin-top:1.6rem;"><a href="/portfolio.html" style="color:var(--ink); font-weight:600; text-decoration:none;">Bekijk het volledige portfolio &rarr;</a></p>
-  </div>
-</section>
-
-<div class="oerwoud-track" id="oerwoud">
-  <div class="oerwoud-sticky">
-    <div class="oerwoud-box" id="oerwoudBox">
-      <div class="oerwoud-content">
-        <div class="kicker mono" style="color: var(--creme-faint)">het oerwoud</div>
-        <h2>Wat wel en niet werkt.</h2>
-        <p class="lede">Elke week nieuwe tools, elke maand een nieuwe belofte. Wij hakken erdoorheen — en zeggen er ook bij waar u níét in moet stappen.</p>
-        <div class="tiles">
-          <div class="tile">
-            <span class="label pos">wel doen</span>
-            <h3>Documenten die zichzelf verwerken</h3>
-            <p><strong>Voor een bedrijf van twintig man:</strong> bankafschriften, facturen en contracten die niet meer overgetypt hoeven te worden.</p>
-          </div>
-          <div class="tile">
-            <span class="label">hype</span>
-            <h3>Elke week een nieuwe AI-tool erbij</h3>
-            <p><strong>Voor een bedrijf van twintig man:</strong> tien losse abonnementen die niemand echt gebruikt maken het werk moeilijker, niet makkelijker. E&eacute;n systeem dat past wint van tien tools die botsen.</p>
-          </div>
-          <div class="tile">
-            <span class="label">niet doen</span>
-            <h3>Vertrouwelijke dossiers in gratis chatbots</h3>
-            <p><strong>Voor een bedrijf van twintig man:</strong> één gelekt dossier kost meer dan tien jaar aan licenties.</p>
-          </div>
-        </div>
-        <div class="oerwoud-meta">
-          <span class="auto"><span class="dot"></span>Dit overzicht wordt dagelijks automatisch samengesteld door een systeem dat wij hebben gebouwd. Wij keuren alleen goed.</span>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="mnav" id="mnav" aria-hidden="true">
+  <a href="#platform">Platform <span>01</span></a>
+  <a href="#oplossingen">Oplossingen <span>02</span></a>
+  <a href="#werkwijze">Werkwijze <span>03</span></a>
+  <a href="#over">Over ons <span>04</span></a>
+  <a class="btn" href="#contact">Plan een gesprek</a>
 </div>
 
-<section class="light" id="nieuws">
-  <div class="wrap">
-    <div class="kicker mono">ai-nieuws</div>
-    <h2>Wat er buiten gebeurt.</h2>
-    <p class="lede">De doorbraken gaan hard — de blunders ook. Wij volgen beide, zodat u niet hoeft bij te benen wat er elke week verandert.</p>
-    <div class="nieuws-grid">
-      <div class="nieuws">
-        <div class="kop-rij"><span class="label">blunder</span><span class="bron">consultancy</span></div>
-        <h3>Big Four-kantoor betaalt overheidsrapport terug: bronnen bleken door AI verzonnen</h3>
-        <p><strong>Ons oordeel:</strong> AI zonder controlelaag is een aansprakelijkheidsrisico. Daarom toetsen wij elke uitkomst voordat hij uw administratie in gaat.</p>
-      </div>
-      <div class="nieuws">
-        <div class="kop-rij"><span class="label">blunder</span><span class="bron">klantenservice</span></div>
-        <h3>Luchtvaartmaatschappij moet korting uitbetalen die haar chatbot ter plekke verzon</h3>
-        <p><strong>Ons oordeel:</strong> precies waarom wij geen website-chatbots bouwen. Wat namens u spreekt, moet u kunnen vertrouwen.</p>
-      </div>
-      <div class="nieuws">
-        <div class="kop-rij"><span class="label pos">doorbraak</span><span class="bron">wetenschap</span></div>
-        <h3>AI die eiwitstructuren voorspelt wint de Nobelprijs en versnelt medicijnonderzoek wereldwijd</h3>
-        <p><strong>Ons oordeel:</strong> dezelfde techniek die eiwitten leest, leest uw facturen en contracten. Dit is geen experiment meer.</p>
-      </div>
-      <div class="nieuws">
-        <div class="kop-rij"><span class="label pos">doorbraak</span><span class="bron">dienstverlening</span></div>
-        <h3>Fintech laat AI het werk van honderden servicemedewerkers doen — en zet mensen weer op het maatwerk</h3>
-        <p><strong>Ons oordeel:</strong> automatiseer het repetitieve, houd mensen op het oordeel. Dat is exact de grens die wij bewaken.</p>
-      </div>
-    </div>
-    <div class="nieuws-meta">
-      <span class="auto"><span class="dot"></span>Dagelijks automatisch verzameld uit tientallen bronnen door een systeem dat wij hebben gebouwd. Wij keuren alleen goed.</span>
-    </div>
-  </div>
-</section>
-
-<section class="light" id="werkwijze">
-  <div class="wrap">
-    <div class="kicker mono">hoe het werkt</div>
-    <h2>Behapbaar. Persoonlijk. In vier stappen.</h2>
-    <div class="steps">
-      <div class="step">
-        <span class="num">/01</span>
-        <h3>Kennismaking</h3>
-        <p>U vertelt wat er speelt. Wij zeggen eerlijk of wij iets voor u kunnen betekenen.</p>
-        <div class="note">45 min &middot; gratis &middot; geen verplichtingen</div>
-      </div>
-      <div class="step">
-        <span class="num">/02</span>
-        <h3>Analyse op locatie</h3>
-        <p>Wij komen langs en kijken mee met het echte werk. Waar lekken de uren weg — en wat kunt u beter laten liggen?</p>
-      </div>
-      <div class="step">
-        <span class="num">/03</span>
-        <h3>Bouwen &amp; opleveren</h3>
-        <p>Van bouw tot implementatie: wij zetten de oplossing werkend neer, ingepast in hoe uw team al werkt.</p>
-      </div>
-      <div class="step">
-        <span class="num">/04</span>
-        <h3>Doorontwikkelen</h3>
-        <p>Het werk verandert, de systemen veranderen mee. U krijgt geen ticketsysteem — u krijgt ons nummer.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="dark" id="zekerheid">
-  <div class="wrap">
-    <div class="kicker mono">privacy &amp; zekerheid</div>
-    <h2>Als het écht niet naar buiten mag, kan dat ook.</h2>
-    <p class="lede">Voor het zwaarste werk bouwen wij systemen die volledig binnen uw muren draaien, op een AI-machine (NVIDIA DGX Spark) die van u is — uw data verlaat het pand niet, ook niet tijdens de verwerking. Niet als dogma, maar als bewijs dat wij het hele spectrum aankunnen. AVG-proof by design: omdat de machine bij u staat, niet omdat wij het beloven.</p>
-    <div class="garantie-kop mono" style="color: var(--creme-faint)">zo is het geregeld</div>
-    <div class="garanties">
-      <div class="garantie">
-        <span class="num">/01</span>
-        <p>U houdt een eeuwigdurende gebruikslicentie op de code van uw systemen.</p>
-      </div>
-      <div class="garantie">
-        <span class="num">/02</span>
-        <p>De machine in uw pand is uw eigendom.</p>
-      </div>
-      <div class="garantie">
-        <span class="num">/03</span>
-        <p>De code blijft beschikbaar en bruikbaar — wat er ook met Systemly gebeurt.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="light" id="wie">
-  <div class="wrap">
-    <div class="kicker mono">wie er langskomt</div>
-    <h2>U krijgt geen accountmanager. U krijgt ons.</h2>
-    <div class="profielen">
-      <div class="profiel">
-        <div class="foto">P</div>
-        <div>
-          <h3>Pieter Wellens</h3>
-          <div class="rol">co-founder &middot; developer</div>
+<main id="top">
+  <!-- ================= HERO ================= -->
+  <section id="hero" aria-label="Introductie">
+    <div class="stage" id="stage">
+      <div class="scrim" id="scrim" aria-hidden="true"></div>
+      <div class="hud" id="hud" aria-hidden="true">
+        <div class="scan"></div>
+        <i class="corner c-tl"></i><i class="corner c-tr"></i><i class="corner c-bl"></i><i class="corner c-br"></i>
+        <div class="hud-tl mono"><div class="sys" id="sysLabel">SYS/01 . GLOBAL DEPLOYMENT</div><div class="sub" id="sysSub">TRACKING . 14 NODES ACTIEF</div></div>
+        <div class="hud-tr mono"><div class="z" id="zulu">0000 HRS ZULU</div><div class="k2" id="coord">52.0907 N . 005.1214 E</div></div>
+        <div class="hud-bl mono"><span id="frame">FRM 000000</span><span>ALT 35786 KM</span><span id="az">AZ 000.0</span></div>
+        <div class="hud-br mono"><span class="blip"></span><span id="statusTxt">LINK STABIEL</span></div>
+        <div class="reticle" id="reticle">
+          <svg viewBox="-100 -100 200 200" fill="none" stroke="currentColor" style="color:rgba(242,237,226,.5)">
+            <circle r="100" stroke-width=".5" opacity=".55"/>
+            <g class="spin"><circle r="92" stroke-width=".6" stroke-dasharray="1 5.2" opacity=".9"/></g>
+            <g class="spin2"><path d="M0 -108 V-100 M0 100 V108 M-108 0 H-100 M100 0 H108" stroke-width="1"/></g>
+            <path d="M-6 0 H6 M0 -6 V6" stroke-width=".8"/>
+          </svg>
         </div>
-        <p>Bouwt de systemen en zet ze werkend neer. En loopt in de analyse mee met Guus — want wie bouwt, ziet wat er te automatiseren valt.</p>
+        <div class="tag mono" data-node="2"><i></i><span>NODE.01 . 52.08N 04.30E</span></div>
+        <div class="tag mono" data-node="0"><i></i><span>NODE.02 . 38.90N 77.04W</span></div>
+        <div class="tag mono" data-node="5"><i></i><span>NODE.03 . 01.35N 103.8E</span></div>
+        <div class="tag mono" data-node="7"><i></i><span>NODE.04 . 01.29S 36.82E</span></div>
+        <div class="tag mono" data-node="4"><i></i><span>NODE.05 . 35.68N 139.7E</span></div>
       </div>
-      <div class="profiel">
-        <div class="foto">G</div>
-        <div>
-          <h3>Guus van der Graaf</h3>
-          <div class="rol">co-founder &middot; proces &amp; analyse</div>
-        </div>
-        <p>Herkent waar de uren weglekken en vertaalt uw processen naar de route die past. En bouwt mee zodra het systeem vorm krijgt.</p>
-      </div>
-    </div>
-    <p class="yinyang">De een bouwt wat de ander vindt — en andersom.</p>
-  </div>
-</section>
 
-<section class="light slot" id="contact">
-  <div class="wrap">
-    <div class="kicker mono">contact</div>
-    <h2>Plan een kennismaking.</h2>
-    <p class="lede">45 minuten, bij u op locatie of online. Kosteloos en zonder verplichtingen. U hoort binnen één werkdag van ons.</p>
-    <div class="grid">
-      <form id="contactForm" novalidate>
-        <div class="field"><label for="fNaam">Naam</label><input id="fNaam" name="naam" type="text" placeholder="Uw naam" required></div>
-        <div class="field"><label for="fBedrijf">Bedrijf</label><input id="fBedrijf" name="bedrijf" type="text" placeholder="Uw bedrijf" required></div>
-        <div class="field"><label for="fEmail">E-mail</label><input id="fEmail" name="email" type="email" placeholder="naam@bedrijf.nl" required></div>
-        <div class="field"><label for="watSpeeltEr">Wat speelt er?</label><textarea id="watSpeeltEr" name="bericht" placeholder="Bijvoorbeeld: " required></textarea></div>
-        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button class="btn btn-dark" type="submit">Verstuur — wij reageren binnen één werkdag &rarr;</button>
-        <p class="form-status" id="formStatus" hidden></p>
-      </form>
-      <div class="contact-side">
-        <p>Liever direct mailen? Ook goed — u krijgt geen accountmanager, u krijgt ons.</p>
-        <div class="direct">
-          <a href="mailto:admin@systemlysolutions.onmicrosoft.com" style="font-size:1.05rem; word-break:break-all;">admin@systemlysolutions.onmicrosoft.com</a>
+      <div class="beats">
+        <div class="beat b0" id="b0">
+          <div class="kick mono"><span class="tri"></span><span>[+] SYS/01 . GLOBAL DEPLOYMENT</span></div>
+          <h1 class="h-hero"><span class="ln"><span>De technologie</span></span><span class="ln"><span>waarmee overheden</span></span><span class="ln"><span><em>wereldwijd</em> sturen.</span></span><span class="h-sub"><span class="ln"><span>Nu op maat gebouwd</span></span><span class="ln"><span>voor <span class="u" id="heroU">uw bedrijf.</span></span></span></span></h1>
         </div>
-        <p class="price-note">Wij zijn geen goedkope oplossing, en wat een traject kost verschilt sterk per situatie. Daarom vindt u hier geen prijslijst — de oplossing verschilt namelijk ook.</p>
+        <div class="beat" id="b1">
+          <div class="kick mono"><span class="tri"></span><span>[+] SYS/02 . INVENTARIS</span></div>
+          <h2 class="h-beat">Uw organisatie draait op data. <span class="dim">Verspreid over systemen, mappen en inboxen.</span></h2>
+          <div class="status warn mono">STATUS: <b>ONGESTRUCTUREERD</b></div>
+        </div>
+        <div class="beat" id="b2">
+          <div class="kick mono"><span class="tri"></span><span>[+] SYS/03 . ONTOLOGIE</span></div>
+          <h2 class="h-beat">Overheden brengen al hun informatie samen in <span class="redact" id="red1">één model<span class="bar"></span><span class="mk"></span></span> van de werkelijkheid. <span class="dim">Mensen, objecten, gebeurtenissen: <span class="redact" id="red2">alles verbonden.<span class="bar"></span><span class="mk"></span></span></span></h2>
+          <div class="status mono">STATUS: <b>GEMODELLEERD</b></div>
+        </div>
+        <div class="beat" id="b3">
+          <div class="kick mono"><span class="tri"></span><span>[+] SYS/04 . ATLANTICUS</span></div>
+          <h2 class="h-beat">Systemly brengt die aanpak naar uw bedrijf. <span class="dim">Gebouwd op ons eigen platform, Atlanticus.</span></h2>
+          <div class="status mono">STATUS: <b>OPERATIONEEL</b></div>
+        </div>
+      </div>
+
+      <div class="hint mono" id="hint"><span class="ln2"></span><span>Scroll om te beginnen</span></div>
+
+      <div class="prog" id="prog" aria-hidden="true">
+        <div class="cnt" id="cnt">01<span>/04</span></div>
+        <div class="track"><div class="fill" id="pfill"></div>
+          <i class="mkr on" style="top:0%"></i><i class="mkr" style="top:33.3%"></i><i class="mkr" style="top:66.6%"></i><i class="mkr" style="top:100%"></i>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
+  <!-- ================= INTRO + PIJLERS ================= -->
+  <section class="sec" id="platform" style="margin-top:-55vh;padding-top:clamp(40px,6vw,80px)">
+    <div class="wrap">
+      <div class="label mono rv"><b>[+] 02 . WAT WIJ DOEN</b><span class="rule"></span><span>ATLANTICUS . NL</span></div>
+      <p class="statement split">Geen standaardpakket. Een systeem dat werkt zoals <em>uw organisatie</em> werkt.</p>
+      <div class="intro-meta">
+        <div class="rv"><div class="mono">REF 02.1 . DATA</div><p>We beginnen bij uw data, niet bij een pakket. Wat er is, waar het staat en hoe het samenhangt.</p></div>
+        <div class="rv"><div class="mono">REF 02.2 . MODEL</div><p>Daarop bouwen we een model van uw organisatie, zoals overheden dat doen voor hun hele werkelijkheid.</p></div>
+        <div class="rv"><div class="mono">REF 02.3 . SYSTEEM</div><p>Software en AI werken vervolgens op dat model. Eén bron van waarheid, overal hetzelfde beeld.</p></div>
+      </div>
+
+      <div class="pillars">
+        <article class="card rv">
+          <span class="edge"></span>
+          <div class="top mono"><span>01 / ONTOLOGIE</span><span class="pm" data-pm>[+]</span></div>
+          <svg class="ic" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+            <circle cx="32" cy="12" r="4"/><circle cx="12" cy="44" r="4"/><circle cx="52" cy="44" r="4"/><circle cx="32" cy="34" r="5" stroke="#c4693f"/>
+            <path d="M32 16v13M28.5 37.5 15 41.5M35.5 37.5 49 41.5M16 44h32M30 15.5 14 41M34 15.5 50 41" opacity=".75"/>
+            <path d="M4 58h56" stroke-dasharray="2 3" opacity=".5"/>
+          </svg>
+          <h3>Data-ontologie</h3>
+          <p>Al uw data in één samenhangend model, van klant tot contract. Gebouwd op Atlanticus.</p>
+          <div class="foot mono"><span>OBJECTEN . RELATIES . GEBEURTENISSEN</span></div>
+        </article>
+        <article class="card rv">
+          <span class="edge"></span>
+          <div class="top mono"><span>02 / AUTOMATISERING</span><span class="pm" data-pm>[+]</span></div>
+          <svg class="ic" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+            <path d="M10 8h24l10 10v38H10z"/><path d="M34 8v10h10"/>
+            <path d="M16 26h20M16 32h22M16 38h14" opacity=".6"/>
+            <circle cx="44" cy="44" r="10" stroke="#c4693f"/><path d="M39.5 44l3 3 6-6" stroke="#c4693f"/>
+            <path d="M6 20h-2M6 32H2M6 44H4" opacity=".5"/>
+          </svg>
+          <h3>AI-automatisering</h3>
+          <p>AI die documenten leest, sorteert, controleert en processen afhandelt. Met de mens aan het roer.</p>
+          <div class="foot mono"><span>LEZEN . SORTEREN . CONTROLEREN</span></div>
+        </article>
+        <article class="card rv">
+          <span class="edge"></span>
+          <div class="top mono"><span>03 / MAATWERK</span><span class="pm" data-pm>[+]</span></div>
+          <svg class="ic" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+            <rect x="6" y="10" width="52" height="40"/><path d="M6 18h52"/><circle cx="10.5" cy="14" r=".8" fill="currentColor"/><circle cx="14.5" cy="14" r=".8" fill="currentColor"/>
+            <rect x="12" y="24" width="16" height="20" opacity=".6"/><path d="M34 26h18M34 32h12M34 38h16" opacity=".6"/>
+            <path d="M34 44h10" stroke="#c4693f"/><path d="M22 56h20M32 50v6"/>
+          </svg>
+          <h3>Software op maat</h3>
+          <p>Portals, dashboards en koppelingen die precies passen bij uw werkwijze en systemen.</p>
+          <div class="foot mono"><span>PORTALS . DASHBOARDS . KOPPELINGEN</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LIVE (dark band) ================= -->
+  <section class="dark" id="live" data-dark>
+    <div class="wrap">
+      <div class="label mono rv"><b>[+] 03 . LIVE SYSTEEM</b><span class="rule"></span><span>DOCUMENTSTROOM</span></div>
+      <div class="live-head">
+        <h2 class="split">Van chaos naar orde, in realtime.</h2>
+        <p class="rv">Binnenkomende documenten worden gelezen, herkend, gecontroleerd en op de juiste plek in het model gezet. Twijfelgevallen gaan naar een mens.</p>
+      </div>
+
+      <div class="panel rv" id="panel">
+        <i class="cn a"></i><i class="cn b"></i><i class="cn c"></i><i class="cn d"></i>
+        <div class="panel-bar mono">
+          <div class="l"><span>ATLANTICUS . DOCUMENTSTROOM</span><span id="pClock">00:00:00 UTC</span></div>
+          <span class="demo">DEMO-VISUALISATIE</span>
+        </div>
+        <div class="cols">
+          <div class="col">
+            <div class="col-h mono"><b>01 . INKOMEND</b><span id="qCount">WACHTRIJ 0</span></div>
+            <div class="queue" id="queue"></div>
+          </div>
+          <div class="col">
+            <div class="col-h mono"><b>02 . ANALYSE</b><span id="aState">GEREED</span></div>
+            <div class="scanbox">
+              <div class="pg" id="pg"><div class="sl" id="sl"></div><div class="hl" id="hl1" style="left:14px;top:40px;width:42%;height:14px"></div><div class="hl" id="hl2" style="right:14px;top:96px;width:30%;height:14px"></div></div>
+              <div class="kv">
+                <span>BESTAND</span><span class="dots"></span><span class="v" id="kFile">...</span>
+                <span>TYPE</span><span class="dots"></span><span class="v" id="kType">...</span>
+                <span>ZEKERHEID</span><span class="dots"></span><span class="v" id="kConf">...</span>
+                <span>CONTROLE</span><span class="dots"></span><span class="v" id="kChk">...</span>
+              </div>
+              <div class="bar-p" style="margin-top:18px"><i id="pBar"></i></div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="col-h mono"><b>03 . GESORTEERD</b><span>MODEL</span></div>
+            <div class="bins" id="bins"></div>
+            <div class="log" id="log"></div>
+          </div>
+        </div>
+        <div class="panel-foot mono">
+          <div class="stat"><div class="k">VERWERKT</div><div class="v" id="sDone">000000</div></div>
+          <div class="stat"><div class="k">AUTOMATISCH</div><div class="v" id="sAuto">00.0%</div></div>
+          <div class="stat"><div class="k">NAAR MENS</div><div class="v" id="sMan">000</div></div>
+          <div class="stat"><div class="k">DOORVOER</div><svg id="spark" viewBox="0 0 120 34" preserveAspectRatio="none"></svg></div>
+        </div>
+      </div>
+      <p class="note mono">Illustratieve demo. Geen echte klantgegevens of resultaten.</p>
+    </div>
+  </section>
+
+  <!-- ================= WERKWIJZE ================= -->
+  <section class="sec" id="werkwijze">
+    <div class="wrap">
+      <div class="label mono rv"><b>[+] 04 . WERKWIJZE</b><span class="rule"></span><span>4 FASEN</span></div>
+      <div class="steps-h">
+        <h2 class="split">Van verkenning tot een systeem dat blijft werken.</h2>
+        <p class="rv">Korte iteraties, zichtbaar resultaat. U ziet elke stap wat er gebouwd wordt en waarom.</p>
+      </div>
+      <div class="timeline" id="timeline">
+        <div class="tl-line"><i id="tlFill"></i></div>
+        <div class="step rv"><span class="tri"></span><div class="n mono">01 . FASE</div><h3>Verkennen</h3><p>We brengen uw data, processen en knelpunten in kaart.</p><div class="t mono">T+0 . INVENTARIS</div></div>
+        <div class="step rv"><span class="tri"></span><div class="n mono">02 . FASE</div><h3>Modelleren</h3><p>We bouwen het model van uw organisatie in Atlanticus.</p><div class="t mono">T+1 . ONTOLOGIE</div></div>
+        <div class="step rv"><span class="tri"></span><div class="n mono">03 . FASE</div><h3>Bouwen</h3><p>Software en AI-agents op dat model, in korte iteraties.</p><div class="t mono">T+2 . ITERATIES</div></div>
+        <div class="step rv"><span class="tri"></span><div class="n mono">04 . FASE</div><h3>Beheren</h3><p>We blijven betrokken, monitoren en verbeteren.</p><div class="t mono">T+N . DOORLOPEND</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTOREN ================= -->
+  <section class="sec" id="oplossingen" style="padding-top:0">
+    <div class="wrap">
+      <div class="label mono rv"><b>[+] 05 . TOEPASSINGEN</b><span class="rule"></span><span>SECTOREN</span></div>
+      <div class="steps-h">
+        <h2 class="split">Gebouwd voor organisaties waar informatie het werk is.</h2>
+      </div>
+      <div class="sectors">
+        <a class="row rv" href="#contact"><span class="tg mono"><b>FIN.01</b></span><h3>Financiële dienstverlening</h3><p>Klantdossiers, rapportages en processen in één overzicht.</p><span class="pm" data-pm>[+]</span></a>
+        <a class="row rv" href="#contact"><span class="tg mono"><b>FND.02</b></span><h3>Fondsadministratie</h3><p>Beleggers, posities en rapportages verbonden in één model.</p><span class="pm" data-pm>[+]</span></a>
+        <a class="row rv" href="#contact"><span class="tg mono"><b>AML.03</b></span><h3>Compliance en AML</h3><p>Automatische controles op klanten, documenten en transacties.</p><span class="pm" data-pm>[+]</span></a>
+        <a class="row rv" href="#contact"><span class="tg mono"><b>VGD.04</b></span><h3>Vastgoed</h3><p>Objecten, huurders en contracten gekoppeld en altijd actueel.</p><span class="pm" data-pm>[+]</span></a>
+        <a class="row rv" href="#contact"><span class="tg mono"><b>ZKD.05</b></span><h3>Zakelijke dienstverlening</h3><p>Van intake tot factuur: minder handwerk, meer grip.</p><span class="pm" data-pm>[+]</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WAAROM ================= -->
+  <section class="sec" id="over" style="padding-top:0">
+    <div class="wrap">
+      <div class="label mono rv"><b>[+] 06 . WAAROM SYSTEMLY</b><span class="rule"></span><span>OVER ONS</span></div>
+      <div class="steps-h">
+        <h2 class="split">Technologie van wereldniveau, met een team dat u kent.</h2>
+      </div>
+      <div class="why">
+        <div class="it rv"><div class="big"><span>A</span><span>[+]</span></div><h3>Eigen platform, geen black box</h3><p>Wij bouwen op Atlanticus, ons eigen platform. U weet hoe uw systeem werkt en waarom het doet wat het doet.</p></div>
+        <div class="it rv"><div class="big"><span>B</span><span>[+]</span></div><h3>Uw data blijft van u</h3><p>U houdt de regie over waar uw gegevens staan en wie erbij kan. Geen verborgen afhankelijkheden.</p></div>
+        <div class="it rv"><div class="big"><span>C</span><span>[+]</span></div><h3>Klein team, directe lijnen</h3><p>U spreekt direct met de mensen die uw systeem bouwen. Korte lijnen, snelle beslissingen.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact" class="contact dark" data-dark>
+    <div class="ct-bg" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="label mono rv"><b>[+] 07 . CONTACT</b><span class="rule"></span><span id="ctChan">KANAAL OPEN</span></div>
+      <div class="ct-grid">
+        <div class="ct-left">
+          <h2 class="split">Benieuwd wat dit voor uw bedrijf betekent?</h2>
+          <p class="ct-lead rv">Vertel kort wat er speelt. Wij reageren binnen één werkdag met een voorstel voor een eerste gesprek.</p>
+          <div class="ct-net rv" aria-hidden="true">
+            <svg id="ctNet" viewBox="0 0 360 200" fill="none">
+              <g class="ct-links" stroke="rgba(242,237,226,.22)" stroke-width="1">
+                <path d="M180 100 L58 46"/><path d="M180 100 L60 156"/><path d="M180 100 L300 40"/><path d="M180 100 L306 150"/><path d="M180 100 L180 22"/><path d="M180 100 L180 182"/>
+                <path d="M58 46 L180 22 L300 40" stroke-dasharray="2 4"/><path d="M60 156 L180 182 L306 150" stroke-dasharray="2 4"/>
+              </g>
+              <g class="ct-sats" fill="#171310" stroke="rgba(242,237,226,.6)">
+                <circle cx="58" cy="46" r="4"/><circle cx="60" cy="156" r="4"/><circle cx="300" cy="40" r="4"/><circle cx="306" cy="150" r="4"/><circle cx="180" cy="22" r="3"/><circle cx="180" cy="182" r="3"/>
+              </g>
+              <g font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(242,237,226,.45)" letter-spacing=".08em">
+                <text x="20" y="34">DATA</text><text x="22" y="176">MODEL</text><text x="312" y="34">AI</text><text x="316" y="168">PORTAL</text>
+              </g>
+              <circle class="ct-pulse" cx="180" cy="100" r="16" stroke="#c4693f" stroke-width="1"/>
+              <circle id="ctCore" cx="180" cy="100" r="9" fill="#c4693f"/>
+              <text x="198" y="124" font-family="JetBrains Mono, monospace" font-size="8" fill="#f2ede2" letter-spacing=".1em">SYSTEMLY</text>
+            </svg>
+          </div>
+          <dl class="ct-meta mono rv">
+            <div><dt>E-MAIL</dt><dd><a href="mailto:admin@systemly.nl">admin@systemly.nl</a></dd></div>
+            <div><dt>REACTIE</dt><dd>BINNEN 1 WERKDAG</dd></div>
+            <div><dt>LOCATIE</dt><dd>NEDERLAND</dd></div>
+          </dl>
+        </div>
+
+        <form class="ct-form rv" id="ctForm" novalidate>
+          <div class="ct-fields" id="ctFields">
+            <fieldset class="ct-chips">
+              <legend class="mono">00 . WAAR KUNNEN WE MEE HELPEN</legend>
+              <div class="chips">
+                <button type="button" class="chip mono" aria-pressed="false" data-v="Data-ontologie"><i>[+]</i> Data-ontologie</button>
+                <button type="button" class="chip mono" aria-pressed="false" data-v="AI-automatisering"><i>[+]</i> AI-automatisering</button>
+                <button type="button" class="chip mono" aria-pressed="false" data-v="Software op maat"><i>[+]</i> Software op maat</button>
+                <button type="button" class="chip mono" aria-pressed="false" data-v="Anders"><i>[+]</i> Anders</button>
+              </div>
+            </fieldset>
+            <div class="ct-row">
+              <label class="fld"><span class="mono">01 . NAAM *</span><input name="naam" autocomplete="name" required maxlength="120"><em class="msg mono"></em></label>
+              <label class="fld"><span class="mono">02 . BEDRIJF *</span><input name="bedrijf" autocomplete="organization" required maxlength="160"><em class="msg mono"></em></label>
+            </div>
+            <div class="ct-row">
+              <label class="fld"><span class="mono">03 . E-MAIL *</span><input name="email" type="email" autocomplete="email" required maxlength="200"><em class="msg mono"></em></label>
+              <label class="fld"><span class="mono">04 . TELEFOON <small>(OPTIONEEL)</small></span><input name="telefoon" type="tel" autocomplete="tel" maxlength="40"><em class="msg mono"></em></label>
+            </div>
+            <label class="fld"><span class="mono">05 . WAT SPEELT ER? *</span><textarea name="bericht" rows="4" required maxlength="4000"></textarea><em class="msg mono"></em></label>
+            <div class="hp" aria-hidden="true"><label>Laat dit veld leeg <input name="_honey" tabindex="-1" autocomplete="off"></label></div>
+            <div class="ct-act">
+              <button class="btn btn-solid ct-send" id="ctSend" type="submit"><span class="t">Verstuur bericht</span> <span class="br">[+]</span><i class="bar"></i></button>
+              <span class="ct-note mono">NAAR ADMIN@SYSTEMLY.NL . GUUS@SYSTEMLY.NL</span>
+            </div>
+          </div>
+          <div class="ct-done" id="ctDone" hidden>
+            <div class="mono ct-ref" id="ctRef">REF SYS-0000</div>
+            <h3>Bericht ontvangen.</h3>
+            <p id="ctThanks">Dank u. Wij reageren binnen één werkdag.</p>
+            <button type="button" class="lk mono" id="ctAgain">[+] NIEUW BERICHT</button>
+          </div>
+          <div class="ct-term mono" id="ctTerm" aria-live="polite"><div class="ln0">&gt; KANAAL GEREED . WACHT OP INVOER<b class="cur"></b></div></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer data-dark>
   <div class="wrap">
-    <div style="max-width: 48ch;">
-      <div class="word">Systemly</div>
-      <div class="mono" style="margin-top:0.5rem">onafhankelijk ai-advies &amp; uitvoering</div>
-      <p style="margin-top:1.2rem; font-size:0.82rem; line-height:1.6;">Onafhankelijke AI-consultancy en -implementatie voor het MKB: AI-advies, automatisering en software op maat, in heel Nederland — van documentverwerking tot lokale AI in uw eigen pand.</p>
+    <div class="f-grid">
+      <div class="f-cell f-brand">
+        <h4 class="mono"><span>[+] 00</span> SYSTEMLY</h4>
+        <p>Data-ontologie, AI-automatisering en software op maat. Gebouwd op Atlanticus.</p>
+      </div>
+      <nav class="f-cell" aria-label="Platform"><h4 class="mono"><span>[+] 01</span> PLATFORM</h4><a href="#platform">Atlanticus</a><a href="#platform">Data-ontologie</a><a href="#platform">AI-automatisering</a><a href="#platform">Software op maat</a></nav>
+      <nav class="f-cell" aria-label="Bedrijf"><h4 class="mono"><span>[+] 02</span> BEDRIJF</h4><a href="#werkwijze">Werkwijze</a><a href="#oplossingen">Oplossingen</a><a href="#over">Over ons</a></nav>
+      <div class="f-cell"><h4 class="mono"><span>[+] 03</span> CONTACT</h4><a href="mailto:admin@systemly.nl">admin@systemly.nl</a><a href="#contact">Plan een gesprek</a><span class="f-plain">Nederland</span></div>
     </div>
-    <div style="display:flex; gap:2rem; flex-wrap:wrap;">
-      <a href="mailto:admin@systemlysolutions.onmicrosoft.com">admin@systemlysolutions.onmicrosoft.com</a>
-      <a href="/privacy.html">Privacy</a>
-      <a href="/beeldcredits.html">Beeldcredits</a>
-    </div>
+    <div class="f-big" aria-hidden="true"><span class="w">Systemly<i>.</i></span><div class="f-side mono"><span>AS A SOLUTION</span><span>[+] DATA . MODEL . AI</span><span>GEBOUWD OP ATLANTICUS</span></div></div>
+    <div class="f-bot mono"><span>&copy; 2026 Systemly</span><a href="mailto:admin@systemly.nl">ADMIN@SYSTEMLY.NL</a><span id="fz">SYS/STATUS . ALLE SYSTEMEN OPERATIONEEL . 0000 HRS ZULU</span></div>
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-/* ---------- Oerwoud: box groeit naar full-bleed (alleen desktop) ---------- */
-(() => {
-  const track = document.getElementById('oerwoud');
-  const box = document.getElementById('oerwoudBox');
-  const mq = matchMedia('(min-width: 900px) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
-  const clamp01 = (v) => Math.max(0, Math.min(1, v));
-  const ease = (p) => 1 - Math.pow(1 - p, 3);
+(function(){
+"use strict";
+var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+var root = document.documentElement;
+if (reduce) root.classList.add('reduced');
+var hasGSAP = !!(window.gsap && window.ScrollTrigger);
+if (hasGSAP){ gsap.registerPlugin(ScrollTrigger); ScrollTrigger.config({ ignoreMobileResize: true }); }
+var MOBILE = window.innerWidth < 768;
 
-  function update() {
-    if (!mq.matches) { box.style.margin = ''; box.style.borderRadius = ''; box.style.minHeight = ''; return; }
-    const rect = track.getBoundingClientRect();
-    const vh = innerHeight;
-    const total = rect.height - vh;
-    const p = clamp01(-rect.top / (total * 0.55));
-    const e = ease(p);
-    box.style.margin = `0 ${5 * (1 - e)}vw`;
-    box.style.borderRadius = `${28 * (1 - e)}px`;
-    box.style.minHeight = `${84 + 16 * e}vh`;
+/* ---------------- utils ---------------- */
+var seed = 1337;
+function rand(){ seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
+function gauss(){ var u = 0, v = 0; while(!u) u = rand(); while(!v) v = rand(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
+function clamp(x,a,b){ return Math.max(a, Math.min(b, x)); }
+function pad(n, l){ n = String(n); while (n.length < l) n = '0' + n; return n; }
+function $(s){ return document.querySelector(s); }
+function $$(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); }
+
+/* ---------------- world data (coarse) ---------------- */
+var LAND = [
+ [[-168,66],[-162,70],[-140,70],[-125,70],[-110,73],[-95,72],[-85,70],[-80,63],[-90,57],[-82,52],[-78,55],[-77,62],[-65,60],[-60,55],[-56,52],[-60,47],[-66,44],[-70,41],[-76,35],[-81,31],[-80,25],[-83,29],[-90,30],[-97,27],[-97,21],[-92,18],[-88,21],[-87,16],[-83,10],[-79,8],[-85,11],[-92,14],[-105,20],[-110,23],[-112,30],[-118,34],[-124,40],[-124,48],[-132,55],[-140,60],[-150,60],[-158,57],[-165,60]],
+ [[-55,60],[-43,60],[-35,66],[-22,70],[-18,77],[-20,82],[-40,83],[-60,82],[-70,78],[-58,75],[-52,68]],
+ [[-80,8],[-72,12],[-62,11],[-52,5],[-50,0],[-35,-5],[-38,-13],[-40,-22],[-48,-26],[-53,-34],[-58,-38],[-65,-42],[-66,-48],[-69,-52],[-72,-54],[-75,-50],[-73,-40],[-71,-30],[-70,-18],[-76,-14],[-81,-5],[-80,0],[-78,3]],
+ [[-10,36],[-9,43],[-2,44],[-4,48],[2,51],[8,54],[8,57],[5,59],[5,62],[12,66],[20,70],[30,71],[42,67],[45,68],[60,69],[70,73],[80,73],[95,76],[110,77],[120,73],[140,72],[160,70],[170,70],[180,68],[180,65],[175,62],[163,60],[160,54],[156,51],[155,57],[142,59],[138,54],[140,48],[133,43],[129,41],[128,35],[126,37],[122,40],[121,32],[120,26],[113,22],[108,21],[106,17],[109,12],[105,9],[103,10],[100,13],[100,8],[103,1],[100,4],[98,9],[98,16],[94,17],[92,22],[88,22],[85,20],[80,15],[78,8],[76,10],[73,18],[72,21],[67,24],[62,25],[57,26],[56,24],[59,22],[55,17],[52,16],[45,13],[43,14],[39,20],[35,28],[34,31],[36,36],[30,36],[27,37],[26,40],[23,38],[22,37],[20,40],[19,42],[14,45],[12,44],[16,41],[16,38],[12,38],[10,44],[7,43],[3,43],[0,39],[-2,37],[-6,36]],
+ [[-17,21],[-16,28],[-10,30],[-6,35],[10,37],[11,33],[20,31],[30,31],[33,31],[35,24],[38,18],[43,12],[51,12],[51,10],[44,2],[40,-3],[40,-10],[40,-15],[35,-20],[35,-24],[32,-28],[27,-34],[20,-35],[18,-32],[15,-26],[12,-17],[14,-11],[12,-5],[9,-1],[9,4],[5,5],[-2,5],[-8,4],[-13,8],[-17,14]],
+ [[44,-25],[47,-25],[50,-15],[49,-12],[44,-17]],
+ [[114,-22],[114,-34],[118,-35],[124,-33],[131,-31],[138,-35],[141,-38],[147,-38],[150,-37],[153,-28],[153,-25],[146,-19],[142,-11],[141,-17],[136,-12],[132,-11],[129,-15],[122,-17]],
+ [[-5,50],[1,51],[2,53],[-1,55],[-2,57],[-5,58],[-6,56],[-3,54],[-5,52]],
+ [[-10,52],[-6,52],[-6,55],[-10,54]],
+ [[130,31],[132,34],[135,34],[140,35],[141,38],[142,42],[145,44],[141,45],[140,41],[136,37],[133,35]],
+ [[95,5],[98,4],[106,-6],[104,-6],[100,-1]],
+ [[109,1],[111,-3],[116,-4],[119,1],[117,7],[113,3]],
+ [[105,-6],[114,-7],[114,-8.5],[106,-7.5]],
+ [[131,-1],[141,-2],[148,-6],[150,-10],[143,-9],[138,-8],[134,-4]],
+ [[120,18],[122,18],[124,12],[126,7],[122,7],[120,14]],
+ [[172,-34],[178,-38],[175,-41],[171,-46],[167,-46],[170,-42]],
+ [[-24,64],[-14,64],[-14,66],[-22,66]],
+ [[-85,22],[-80,23],[-74,20],[-78,20]],
+ [[119,-1],[125,1],[123,-5],[120,-5]],
+ [[80,6],[82,7],[81,10],[79,9]]
+];
+// capital-ish nodes (accent): lon, lat
+var CAPS = [[-77.04,38.9],[-0.13,51.5],[4.3,52.08],[149.1,-35.3],[139.7,35.68],[103.8,1.35],[-75.7,45.4],[36.82,-1.29],[-47.9,-15.8],[13.4,52.5],[54.4,24.5],[-68.9,12.1],[77.2,28.6],[174.8,-41.3]];
+var ARCS = [[0,1],[1,2],[2,9],[0,6],[0,11],[11,8],[1,7],[2,10],[10,12],[12,5],[5,4],[5,3],[3,13],[4,0],[9,10]];
+
+function inPoly(x, y, poly){
+  var inside = false;
+  for (var i = 0, j = poly.length - 1; i < poly.length; j = i++){
+    var xi = poly[i][0], yi = poly[i][1], xj = poly[j][0], yj = poly[j][1];
+    if (((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi)) inside = !inside;
   }
-  addEventListener('scroll', update, { passive: true });
-  addEventListener('resize', update);
-  mq.addEventListener?.('change', update);
-  update();
-})();
+  return inside;
+}
+function isLand(lon, lat){
+  if (lat < -72) return true;
+  for (var k = 0; k < LAND.length; k++) if (inPoly(lon, lat, LAND[k])) return true;
+  return false;
+}
+function ll(lon, lat, r){
+  var p = lat * Math.PI / 180, l = lon * Math.PI / 180;
+  return [r * Math.cos(p) * Math.sin(l), r * Math.sin(p), r * Math.cos(p) * Math.cos(l)];
+}
 
-/* ---------- Herkenning: uitklapbare tabjes ---------- */
-(() => {
-  const symptoms = [...document.querySelectorAll('.symptom')];
-  symptoms.forEach((s) => s.addEventListener('click', () => {
-    const wasOpen = s.classList.contains('open');
-    symptoms.forEach((x) => x.classList.remove('open'));
-    if (!wasOpen) s.classList.add('open');
-  }));
-  // eerste tabje klapt open zodra de sectie in beeld komt
-  new IntersectionObserver((entries, io) => {
-    if (entries[0].isIntersecting) {
-      symptoms[0].classList.add('open');
-      io.disconnect();
-    }
-  }, { threshold: 0.4 }).observe(document.getElementById('symptoms'));
-})();
+/* ---------------- formations ---------------- */
+var N = MOBILE ? 5200 : 11000;
+var K = CAPS.length * (MOBILE ? 8 : 12);   // accent points
+var GR = 1.6;                              // globe radius
+var SX = MOBILE ? 0.52 : 1;                // horizontal squeeze on mobile
 
-/* ---------- Bewijs: lopende band (elke 5 s één kaart; de linkerkaart
-   sluit achteraan weer aan — geen reset) ---------- */
-(() => {
-  const strip = document.getElementById('cases');
-  const viewport = document.getElementById('casesViewport');
-  let pauze = false;
-  let bezig = false;
-
-  function stap() {
-    if (pauze || bezig || document.hidden || matchMedia('(max-width: 899px), (pointer: coarse)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const eerste = strip.children[0];
-    const gap = parseFloat(getComputedStyle(strip).gap) || 0;
-    const afstand = eerste.getBoundingClientRect().width + gap;
-    bezig = true;
-
-    function rondmaken() {
-      if (!bezig) return;
-      strip.style.transition = 'none';
-      strip.appendChild(eerste);           // linkerkaart achteraan aansluiten
-      strip.style.transform = 'translateX(0)';
-      void strip.offsetWidth;              // reflow vóór transitie weer aan
-      strip.style.transition = '';
-      bezig = false;
-    }
-    strip.addEventListener('transitionend', rondmaken, { once: true });
-    setTimeout(rondmaken, 1200);           // vangnet als transitionend niet vuurt
-
-    strip.style.transform = `translateX(${-afstand}px)`;
+function genGlobe(){
+  var out = new Float32Array(N * 3), alpha = new Float32Array(N);
+  var per = K / CAPS.length;
+  for (var i = 0; i < K; i++){
+    var c = CAPS[Math.floor(i / per)];
+    var q = i % per;
+    var a = q / per * Math.PI * 2, rr = q === 0 ? 0 : 0.5 + (q % 3) * 0.55;
+    var v = ll(c[0] + Math.cos(a) * rr, c[1] + Math.sin(a) * rr, GR * 1.008);
+    out.set(v, i * 3); alpha[i] = 1;
   }
-
-  viewport.addEventListener('mouseenter', () => { pauze = true; });
-  viewport.addEventListener('mouseleave', () => { pauze = false; });
-  viewport.addEventListener('touchstart', () => { pauze = true; }, { passive: true });
-  viewport.addEventListener('touchend', () => { setTimeout(() => { pauze = false; }, 6000); }, { passive: true });
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(stap, 5000);
-})();
-
-/* ---------- Formulier: werkende verzending via FormSubmit (zelfde alias als oude site) ---------- */
-(() => {
-  const FORMSUBMIT_ID = 'b6a1f4d663aa1ada9d07f6711fdb2b1b'; // gekoppeld aan admin@systemlysolutions.onmicrosoft.com
-  const form = document.getElementById('contactForm');
-  const status = document.getElementById('formStatus');
-  const btn = form.querySelector('button[type="submit"]');
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (form._honey.value) return; // spam-bot
-    if (!form.naam.value.trim() || !form.bedrijf.value.trim() || !form.email.value.includes('@') || !form.bericht.value.trim()) {
-      status.hidden = false;
-      status.className = 'form-status err';
-      status.textContent = 'Vult u alstublieft alle velden in — dan weten wij wie wij mogen terugmailen.';
-      return;
+  var nGrat = Math.floor(N * 0.09);
+  var nLand = N - K - nGrat;
+  // fibonacci candidates, adapt count to land ratio
+  function fib(M){
+    var res = [], ga = Math.PI * (3 - Math.sqrt(5));
+    for (var i = 0; i < M; i++){
+      var y = 1 - (i + .5) / M * 2, r = Math.sqrt(1 - y * y), th = ga * i;
+      var x = Math.cos(th) * r, z = Math.sin(th) * r;
+      var lat = Math.asin(y) * 180 / Math.PI, lon = Math.atan2(x, z) * 180 / Math.PI;
+      if (isLand(lon, lat)) res.push([x * GR, y * GR, z * GR]);
     }
-    btn.disabled = true;
-    btn.textContent = 'Versturen…';
-    try {
-      const res = await fetch('https://formsubmit.co/ajax/' + FORMSUBMIT_ID, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          naam: form.naam.value,
-          bedrijf: form.bedrijf.value,
-          email: form.email.value,
-          bericht: form.bericht.value,
-          _subject: 'Nieuw bericht via systemly.nl',
-        }),
+    return res;
+  }
+  var M = Math.round(nLand / 0.3), L = fib(M);
+  M = Math.round(M * nLand / Math.max(1, L.length)); L = fib(M);
+  var idx = K;
+  for (var j = 0; j < nLand; j++){
+    var p = L[j % L.length];
+    var jit = j >= L.length ? 0.006 : 0;
+    out[idx*3] = p[0] + (rand()-.5)*jit; out[idx*3+1] = p[1] + (rand()-.5)*jit; out[idx*3+2] = p[2] + (rand()-.5)*jit;
+    alpha[idx] = 1; idx++;
+  }
+  // graticule
+  var lines = [], tot = 0;
+  [-60,-30,0,30,60].forEach(function(lat){ var len = Math.cos(lat*Math.PI/180); lines.push({t:'lat', v:lat, w:len}); tot += len; });
+  for (var lo = -180; lo < 180; lo += 30){ lines.push({t:'lon', v:lo, w:0.5}); tot += 0.5; }
+  for (var g = 0; g < nGrat; g++){
+    var pick = rand() * tot, s = 0, ln = lines[0];
+    for (var m = 0; m < lines.length; m++){ s += lines[m].w; if (pick <= s){ ln = lines[m]; break; } }
+    var t = (g * 0.618034) % 1;
+    var vv = ln.t === 'lat' ? ll(-180 + t * 360, ln.v, GR * 0.995) : ll(ln.v, -80 + t * 160, GR * 0.995);
+    out.set(vv, idx * 3); alpha[idx] = 0.28; idx++;
+  }
+  return { pos: out, alpha: alpha };
+}
+
+function genChaos(){
+  var out = new Float32Array(N * 3), cl = [];
+  for (var c = 0; c < 8; c++) cl.push([(rand()*2-1)*3.4*SX, (rand()*2-1)*1.9, (rand()*2-1)*1.4, 0.18 + rand()*0.35]);
+  for (var i = 0; i < N; i++){
+    var x, y, z;
+    if (rand() < 0.5){
+      var k = cl[Math.floor(rand()*cl.length)];
+      x = k[0] + gauss()*k[3]*SX; y = k[1] + gauss()*k[3]; z = k[2] + gauss()*k[3];
+    } else {
+      var u = rand()*2-1, th = rand()*Math.PI*2, r = Math.cbrt(rand());
+      var s = Math.sqrt(1-u*u);
+      x = s*Math.cos(th)*r*4.4*SX; y = u*r*2.7; z = s*Math.sin(th)*r*2.4;
+    }
+    out[i*3] = x; out[i*3+1] = y; out[i*3+2] = z;
+  }
+  return out;
+}
+
+function genLattice(){
+  var out = new Float32Array(N * 3), s = 0.62, nodes = [];
+  for (var gx = -6; gx <= 6; gx++) for (var gy = -4; gy <= 4; gy++) for (var gz = -3; gz <= 3; gz++){
+    var x = gx*s*0.82, y = gy*s*0.8, z = gz*s*0.9;
+    var e = (x*x)/(2.7*2.7) + (y*y)/(1.85*1.85) + (z*z)/(1.6*1.6);
+    if (e < 1 && rand() < 0.42 * (1.2 - e)) nodes.push([x*SX + (rand()-.5)*0.08, y + (rand()-.5)*0.08, z]);
+  }
+  var edges = [], seen = {};
+  nodes.forEach(function(a, i){
+    var d = nodes.map(function(b, j){ var dx=a[0]-b[0], dy=a[1]-b[1], dz=a[2]-b[2]; return [dx*dx+dy*dy+dz*dz, j]; })
+      .filter(function(q){ return q[1] !== i; }).sort(function(p, q){ return p[0]-q[0]; });
+    for (var k = 0; k < 3 && k < d.length; k++){
+      var j = d[k][1], key = i < j ? i+'_'+j : j+'_'+i;
+      if (!seen[key] && d[k][0] < 1.1){ seen[key] = 1; edges.push([i, j, Math.sqrt(d[k][0])]); }
+    }
+  });
+  var totLen = edges.reduce(function(a, e){ return a + e[2]; }, 0);
+  var hub = []; for (var h = 0; h < CAPS.length; h++) hub.push(nodes[Math.floor(rand()*nodes.length)]);
+  var per = K / CAPS.length;
+  for (var i = 0; i < N; i++){
+    var p;
+    if (i < K){
+      var hb = hub[Math.floor(i/per)], a = (i%per)/per*Math.PI*2;
+      p = [hb[0] + Math.cos(a)*0.05, hb[1] + Math.sin(a)*0.05, hb[2]];
+    } else if (rand() < 0.2){
+      var n = nodes[Math.floor(rand()*nodes.length)];
+      p = [n[0] + gauss()*0.022, n[1] + gauss()*0.022, n[2] + gauss()*0.022];
+    } else {
+      var pick = rand()*totLen, acc = 0, e = edges[0];
+      for (var q = 0; q < edges.length; q++){ acc += edges[q][2]; if (pick <= acc){ e = edges[q]; break; } }
+      var A = nodes[e[0]], B = nodes[e[1]], t = rand();
+      p = [A[0]+(B[0]-A[0])*t, A[1]+(B[1]-A[1])*t, A[2]+(B[2]-A[2])*t];
+    }
+    out[i*3] = p[0]; out[i*3+1] = p[1]; out[i*3+2] = p[2];
+  }
+  return out;
+}
+
+function genCore(){
+  var out = new Float32Array(N * 3), R = 1.15, LAY = 7;
+  for (var i = 0; i < N; i++){
+    var x, y, z, r, a = rand()*Math.PI*2;
+    if (i < K){ r = R*1.04; y = 0; }
+    else {
+      var u = rand();
+      if (u < 0.8){
+        var l = Math.floor(rand()*LAY); y = -0.96 + l * (1.92/(LAY-1));
+        var ring = Math.floor(Math.sqrt(rand())*6); r = R*(0.22 + 0.78*ring/5);
+        if (l === 0 || l === LAY-1) r *= 0.9;
+      } else if (u < 0.92){
+        var col = Math.floor(rand()*16); a = col/16*Math.PI*2; r = R; y = -0.96 + rand()*1.92;
+      } else {
+        r = 0.04 + rand()*0.03; y = -1.25 + rand()*2.5;
+      }
+    }
+    x = Math.cos(a)*r; z = Math.sin(a)*r;
+    out[i*3] = x; out[i*3+1] = y; out[i*3+2] = z;
+  }
+  return out;
+}
+
+/* ---------------- three.js scene ---------------- */
+var S = { m: 0, cam: MOBILE ? 11.2 : 6.2, off: 1, reveal: 0, hud: 1 };
+var CAM0 = S.cam, CAM1 = 0.6, FIELDZ = -4.2;
+var gl = null, scene, camera, pts, mat, lineMat, arcs, fieldInfo = { H: 1, ppu: 100 };
+var rot = { g: -0.55, c: 0, l: 0.3, k: 0 };
+var TILT = 0.38;
+var mouse = { x: 0, y: 0, sx: 0, sy: 0, lx: 9, ly: 9 };
+var W = window.innerWidth, H = window.innerHeight, DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+function webglOK(){
+  try { var c = document.createElement('canvas'); return !!(window.WebGLRenderingContext && (c.getContext('webgl') || c.getContext('experimental-webgl'))); } catch(e){ return false; }
+}
+
+var VERT = [
+'attribute vec3 p1; attribute vec3 p2; attribute vec3 p3; attribute vec3 p4;',
+'attribute float aRnd; attribute float aSize; attribute float aAcc; attribute float aAlpha; attribute float aFA;',
+'uniform float uMorph, uTime, uR0, uR1, uR2, uR3, uSize, uDpr, uFieldOff, uFieldH, uTilt, uAspect, uHud;',
+'uniform vec2 uMouse;',
+'varying float vA; varying float vAcc; varying float vField; varying float vLens;',
+'mat3 rY(float a){ float c=cos(a), s=sin(a); return mat3(c,0.,-s, 0.,1.,0., s,0.,c); }',
+'mat3 rX(float a){ float c=cos(a), s=sin(a); return mat3(1.,0.,0., 0.,c,s, 0.,-s,c); }',
+'void main(){',
+'  vec3 g = rX(uTilt) * (rY(uR0) * position);',
+'  vec3 ch = rY(uR1) * (p1 + 0.09*vec3(sin(uTime*.35+aRnd*61.), cos(uTime*.3+aRnd*37.), sin(uTime*.25+aRnd*19.)));',
+'  vec3 la = rX(0.18) * (rY(uR2) * p2);',
+'  vec3 co = rX(0.42) * (rY(uR3) * p3);',
+'  vec3 fi = p4;',
+'  fi.y = mod(fi.y + uFieldOff + uFieldH*.5, uFieldH) - uFieldH*.5;',
+'  fi.z += sin(fi.x*1.3 + uTime*.5)*cos(fi.y*1.1 + uTime*.35)*0.06;',
+'  float seg = floor(uMorph); float f = uMorph - seg;',
+'  float d = aRnd*0.4; float t = clamp((f - d)/0.6, 0., 1.); t = t*t*(3.-2.*t);',
+'  vec3 A = g, B = ch; float w0 = 0., w4 = 0.;',
+'  if (seg < 0.5){ A = g; B = ch; w0 = 1.-t; }',
+'  else if (seg < 1.5){ A = ch; B = la; }',
+'  else if (seg < 2.5){ A = la; B = co; }',
+'  else if (seg < 3.5){ A = co; B = fi; w4 = t; }',
+'  else { A = fi; B = fi; w4 = 1.; t = 0.; }',
+'  vec3 pos = mix(A, B, t);',
+'  float sw = sin(t*3.14159);',
+'  pos += vec3(sin(aRnd*40.+uTime), cos(aRnd*30.+uTime*1.3), sin(aRnd*20.+uTime*.7)) * sw * 0.22 * (1.-w4*0.6);',
+'  vec4 mv = modelViewMatrix * vec4(pos, 1.0);',
+'  gl_Position = projectionMatrix * mv;',
+'  float dz = -mv.z;',
+'  float front = mix(1., 0.22 + 0.78*smoothstep(-0.7, 0.55, g.z/1.6), w0);',
+'  float a = mix(1., aAlpha, w0) * front;',
+'  a *= mix(1., aFA, w4);',
+'  a *= smoothstep(0.08, 0.9, dz);',
+'  vec2 ndc = gl_Position.xy / max(gl_Position.w, 0.0001);',
+'  float md = distance(ndc*vec2(uAspect,1.), uMouse*vec2(uAspect,1.));',
+'  float lens = (1. - smoothstep(0.0, 0.32, md)) * w4;',
+'  float sz = uSize * aSize * mix(1., 0.8, w4) * (1. + lens*1.2);',
+'  if (aAcc > .5){ a *= 0.78 + 0.22*sin(uTime*2.2 + aRnd*6.28); sz *= mix(1., 0.6, w4); a *= mix(1., 0.55, w4); }',
+'  gl_PointSize = clamp(sz * uDpr * (6.0 / max(dz, 0.05)), 0., 56.*uDpr);',
+'  vA = a; vAcc = aAcc; vField = w4; vLens = lens;',
+'}'
+].join('\n');
+var FRAG = [
+'precision highp float;',
+'uniform vec2 uCenter; uniform float uRev; uniform vec3 uCreme, uInk, uTerra;',
+'varying float vA; varying float vAcc; varying float vField; varying float vLens;',
+'void main(){',
+'  vec2 c = gl_PointCoord - .5; float d = length(c);',
+'  if (d > .5) discard;',
+'  float a = smoothstep(.5, .32, d) * vA;',
+'  float inside = step(length(gl_FragCoord.xy - uCenter), uRev);',
+'  vec3 col = mix(uCreme, uInk, inside);',
+'  a *= mix(1., mix(0.85, 0.34 + vLens*0.5, vField), inside);',
+'  col = mix(col, uTerra, vAcc);',
+'  gl_FragColor = vec4(col, a);',
+'}'
+].join('\n');
+
+function buildField(geo){
+  // grid of dots at FIELDZ covering the view from CAM1, with extra rows for wrap
+  var dist = CAM1 - FIELDZ;
+  var visH = 2 * dist * Math.tan(camera.fov * Math.PI / 360);
+  var visW = visH * (W / H);
+  var ppu = H / visH; // css px per world unit at field depth
+  var spacingPx = MOBILE ? 26 : 34;
+  var sp = spacingPx / ppu;
+  var cols = Math.ceil(visW * 1.25 / sp) + 1, rows = Math.ceil(visH * 1.5 / sp) + 1;
+  var Hh = rows * sp;
+  var arr = geo.attributes.p4.array, fa = geo.attributes.aFA.array;
+  var slots = cols * rows, order = [];
+  for (var s = 0; s < slots; s++) order.push(s);
+  for (var i = order.length - 1; i > 0; i--){ var j = Math.floor(rand() * (i + 1)); var tmp = order[i]; order[i] = order[j]; order[j] = tmp; }
+  for (var p = 0; p < N; p++){
+    var sl = order[p % slots];
+    var cx = sl % cols, cy = Math.floor(sl / cols);
+    arr[p*3] = (cx - (cols-1)/2) * sp;
+    arr[p*3+1] = (cy - (rows-1)/2) * sp;
+    arr[p*3+2] = FIELDZ;
+    fa[p] = p < slots ? 1 : 0;
+  }
+  geo.attributes.p4.needsUpdate = true; geo.attributes.aFA.needsUpdate = true;
+  fieldInfo.H = Hh; fieldInfo.ppu = ppu;
+  mat.uniforms.uFieldH.value = Hh;
+}
+
+function initGL(){
+  if (!window.THREE || !webglOK()) return false;
+  var canvas = $('#gl');
+  try {
+    gl = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+  } catch(e){ return false; }
+  gl.setPixelRatio(DPR);
+  gl.setSize(W, H, false);
+  gl.setClearColor(0x000000, 0);
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(40, W / H, 0.05, 100);
+  camera.position.set(0, 0, S.cam);
+
+  var globe = genGlobe();
+  var geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(globe.pos, 3));
+  geo.setAttribute('p1', new THREE.BufferAttribute(genChaos(), 3));
+  geo.setAttribute('p2', new THREE.BufferAttribute(genLattice(), 3));
+  geo.setAttribute('p3', new THREE.BufferAttribute(genCore(), 3));
+  geo.setAttribute('p4', new THREE.BufferAttribute(new Float32Array(N * 3), 3));
+  var rnd = new Float32Array(N), size = new Float32Array(N), acc = new Float32Array(N), fa = new Float32Array(N);
+  for (var i = 0; i < N; i++){
+    rnd[i] = rand();
+    acc[i] = i < K ? 1 : 0;
+    size[i] = i < K ? 2.0 : (0.75 + rand() * 0.5);
+  }
+  geo.setAttribute('aRnd', new THREE.BufferAttribute(rnd, 1));
+  geo.setAttribute('aSize', new THREE.BufferAttribute(size, 1));
+  geo.setAttribute('aAcc', new THREE.BufferAttribute(acc, 1));
+  geo.setAttribute('aAlpha', new THREE.BufferAttribute(globe.alpha, 1));
+  geo.setAttribute('aFA', new THREE.BufferAttribute(fa, 1));
+  geo.boundingSphere = new THREE.Sphere(new THREE.Vector3(), 50);
+
+  mat = new THREE.ShaderMaterial({
+    vertexShader: VERT, fragmentShader: FRAG, transparent: true, depthWrite: false, depthTest: false,
+    uniforms: {
+      uMorph: { value: 0 }, uTime: { value: 0 }, uR0: { value: 0 }, uR1: { value: 0 }, uR2: { value: 0 }, uR3: { value: 0 },
+      uSize: { value: MOBILE ? 2.3 : 1.9 }, uDpr: { value: DPR }, uFieldOff: { value: 0 }, uFieldH: { value: 1 },
+      uTilt: { value: TILT }, uAspect: { value: W / H }, uMouse: { value: new THREE.Vector2(9, 9) },
+      uCenter: { value: new THREE.Vector2(W * DPR / 2, H * DPR / 2) }, uRev: { value: 0 },
+      uCreme: { value: new THREE.Color('#f2ede2') }, uInk: { value: new THREE.Color('#171310') }, uTerra: { value: new THREE.Color('#c4693f') }
+    }
+  });
+  pts = new THREE.Points(geo, mat);
+  pts.frustumCulled = false;
+  scene.add(pts);
+  buildField(geo);
+
+  // arcs between nodes
+  var ap = [], at = [], ao = [];
+  ARCS.forEach(function(pr, ai){
+    var a = new THREE.Vector3().fromArray(ll(CAPS[pr[0]][0], CAPS[pr[0]][1], 1));
+    var b = new THREE.Vector3().fromArray(ll(CAPS[pr[1]][0], CAPS[pr[1]][1], 1));
+    var ang = a.angleTo(b), SEG = 64, prev = null;
+    for (var s = 0; s <= SEG; s++){
+      var t = s / SEG;
+      var v = new THREE.Vector3().copy(a).multiplyScalar(Math.sin((1-t)*ang)/Math.sin(ang)).add(new THREE.Vector3().copy(b).multiplyScalar(Math.sin(t*ang)/Math.sin(ang)));
+      v.multiplyScalar(GR * (1.01 + Math.sin(Math.PI * t) * (0.06 + 0.22 * ang / Math.PI)));
+      if (prev){ ap.push(prev.v.x, prev.v.y, prev.v.z, v.x, v.y, v.z); at.push(prev.t, t); ao.push(ai * 0.137, ai * 0.137); }
+      prev = { v: v, t: t };
+    }
+  });
+  var lg = new THREE.BufferGeometry();
+  lg.setAttribute('position', new THREE.Float32BufferAttribute(ap, 3));
+  lg.setAttribute('aT', new THREE.Float32BufferAttribute(at, 1));
+  lg.setAttribute('aO', new THREE.Float32BufferAttribute(ao, 1));
+  lineMat = new THREE.ShaderMaterial({
+    transparent: true, depthWrite: false, depthTest: false,
+    uniforms: { uTime: { value: 0 }, uOp: { value: 1 }, uTerra: { value: new THREE.Color('#c4693f') }, uCreme: { value: new THREE.Color('#f2ede2') } },
+    vertexShader: 'attribute float aT; attribute float aO; varying float vT; varying float vO; varying float vF; void main(){ vT=aT; vO=aO; vec4 w = modelMatrix*vec4(position,1.); vF = smoothstep(-0.6,0.7,w.z/1.6); gl_Position = projectionMatrix*viewMatrix*w; }',
+    fragmentShader: 'precision highp float; uniform float uTime, uOp; uniform vec3 uTerra, uCreme; varying float vT; varying float vO; varying float vF; void main(){ float h = fract(uTime*0.18 + vO); float p = smoothstep(0.14,0.0,abs(vT-h)); float edge = smoothstep(0.0,0.06,vT)*smoothstep(1.0,0.94,vT); vec3 col = mix(uTerra, uCreme, p*0.8); gl_FragColor = vec4(col, (0.26 + p*0.74) * vF * uOp * edge); }'
+  });
+  arcs = new THREE.LineSegments(lg, lineMat);
+  arcs.frustumCulled = false;
+  scene.add(arcs);
+  return true;
+}
+
+/* ---------------- HUD ---------------- */
+for (var r = 0; r < 84; r++) rand(); // keep the seeded sequence identical for the point formations
+var zEl = $('#zulu'), cEl = $('#coord'), frEl = $('#frame'), azEl = $('#az'), fz = $('#fz'), pClock = $('#pClock');
+var frame = 0, lat0 = 52.0907, lon0 = 5.1214;
+function zulu(){
+  var d = new Date();
+  return pad(d.getUTCHours(),2) + pad(d.getUTCMinutes(),2) + ' HRS ZULU';
+}
+function tickHud(){
+  var d = new Date();
+  zEl.textContent = zulu() + ' . ' + pad(d.getUTCSeconds(),2) + 'S';
+  var la = lat0 + (rand()-.5)*0.002, lo = lon0 + (rand()-.5)*0.002;
+  cEl.textContent = la.toFixed(4) + ' N . ' + pad(lo.toFixed(4), 8) + ' E';
+  fz.textContent = 'SYS/STATUS . ALLE SYSTEMEN OPERATIONEEL . ' + zulu();
+  pClock.textContent = pad(d.getUTCHours(),2) + ':' + pad(d.getUTCMinutes(),2) + ':' + pad(d.getUTCSeconds(),2) + ' UTC';
+}
+tickHud();
+if (!reduce){
+  setInterval(tickHud, 250);
+}
+
+/* ---------------- intro + story timeline ---------------- */
+var beats = [$('#b0'), $('#b1'), $('#b2'), $('#b3')];
+var sysLabel = $('#sysLabel'), sysSub = $('#sysSub'), statusTxt = $('#statusTxt');
+var LABELS = [
+  ['SYS/01 . GLOBAL DEPLOYMENT', 'TRACKING . 14 NODES ACTIEF', 'LINK STABIEL'],
+  ['SYS/02 . INVENTARIS', 'BRONNEN . ONGEKOPPELD', 'SIGNAAL VERSPREID'],
+  ['SYS/03 . ONTOLOGIE', 'OBJECTEN . RELATIES . GEBEURTENISSEN', 'MODEL ACTIEF'],
+  ['SYS/04 . ATLANTICUS', 'KERN . 7 LAGEN', 'KERN GEREED']
+];
+var chapter = -1, markers = $$('.prog .mkr'), cnt = $('#cnt'), pfill = $('#pfill');
+function setChapter(c){
+  if (c === chapter) return; chapter = c;
+  var L = LABELS[c];
+  sysLabel.textContent = L[0]; sysSub.textContent = L[1]; statusTxt.textContent = L[2];
+  cnt.innerHTML = pad(c+1,2) + '<span>/04</span>';
+  markers.forEach(function(m, i){ m.classList.toggle('on', i <= c); });
+}
+setChapter(0);
+
+var scrim = $('#scrim'), hud = $('#hud'), hint = $('#hint'), prog = $('#prog'), ring = $('#ring'), darkbg = $('#darkbg');
+var stageEl = $('#stage');
+
+/* ---------- scroll-linked story: one continuous progress value ----------
+   p  = raw scroll progress through the pinned hero (0..1)
+   sp = damped progress that follows p in the render loop (frame-rate independent)
+   Every visual of the story (morph, camera, reveal, texts, HUD) is a pure function of sp,
+   so there is no second animation system that can lag, stall or jump. */
+var TOUCH = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+var story = { p: 0, sp: 0, t: 0, ready: false };
+var I = { k: reduce ? 1 : 0 };            // intro (load) animation 0..1
+var DAMP = TOUCH ? 10 : 6.5;              // higher = tighter follow; touch already has native momentum
+
+function lin(t, a, b){ return clamp((t - a) / (b - a), 0, 1); }
+function track(keys){
+  return function(t){
+    if (t <= keys[0][0]) return keys[0][1];
+    for (var i = 1; i < keys.length; i++){
+      if (t <= keys[i][0]){ var a = keys[i-1], b = keys[i]; return a[1] + (b[1] - a[1]) * (t - a[0]) / (b[0] - a[0]); }
+    }
+    return keys[keys.length - 1][1];
+  };
+}
+// story time t runs 0..10 over the pinned hero. Rest moments are short (0.35) and still carry
+// scroll-linked rotation + camera dolly, so every scrolled pixel moves something.
+var trM   = track([[0,0],[0.3,0],[1.8,1],[2.1,1],[3.8,2],[4.6,2],[6.2,3],[7.5,3],[8.9,4],[10,4]]);
+var trCam = track([[0,0],[6.9,0.7],[8.4,1],[10,1]]);   // 0..0.7 gentle dolly, 0.7..1 fly-through
+var trOff = track([[0,1],[6.9,1],[7.9,0],[10,0]]);
+var trRev = track([[0,0],[8.15,0],[9.25,1],[10,1]]);
+var trHud = track([[0,1],[6.9,1],[7.45,0],[10,0]]);
+// The shader staggers each point (delay d in [0,0.4], smoothstep over 0.6). With a linear morph value
+// that makes the aggregate motion bunch up mid-transition. CINV pre-warps the morph value so the
+// AVERAGE point displacement grows linearly with scroll inside each transition.
+var CINV = (function(){
+  var n = 256, C = new Float32Array(n + 1), inv = new Float32Array(n + 1), i, j;
+  for (i = 0; i <= n; i++){
+    var f = i / n, acc = 0;
+    for (j = 0; j < 64; j++){ var d = (j + .5) / 64 * 0.4, t = clamp((f - d) / 0.6, 0, 1); acc += t * t * (3 - 2 * t); }
+    C[i] = acc / 64;
+  }
+  for (i = 0, j = 0; i <= n; i++){
+    var u = i / n * C[n];
+    while (j < n && C[j + 1] < u) j++;
+    var c0 = C[j], c1 = C[Math.min(n, j + 1)];
+    inv[i] = (j + (c1 > c0 ? (u - c0) / (c1 - c0) : 0)) / n;
+  }
+  return function(u){ var x = clamp(u, 0, 1) * n, k = Math.floor(x), fr = x - k; return k >= n ? inv[n] : inv[k] + (inv[k + 1] - inv[k]) * fr; };
+})();
+var BEATS = [[-9,-8,0.6,1.3],[1.2,1.8,3.2,3.7],[3.5,4.0,5.4,5.9],[5.8,6.3,7.2,7.7]];
+
+function css(el, prop, val){
+  var c = el._c || (el._c = {});
+  if (c[prop] === val) return;
+  c[prop] = val;
+  if (prop.charAt(0) === '-') el.style.setProperty(prop, val); else el.style[prop] = val;
+}
+function r3(x){ return Math.round(x * 1000) / 1000; }
+
+var red = { b1: $('#red1 .bar'), m1: $('#red1 .mk'), b2: $('#red2 .bar'), m2: $('#red2 .mk') };
+function applyStory(t){
+  var mr = trM(t), ms = Math.floor(mr); S.m = ms >= 4 ? 4 : ms + CINV(mr - ms);
+  var c = trCam(t);
+  S.cam = c <= 0.7 ? CAM0 - (c / 0.7) * (MOBILE ? 0.9 : 0.6) : (CAM0 - (MOBILE ? 0.9 : 0.6)) + (CAM1 - CAM0 + (MOBILE ? 0.9 : 0.6)) * (c - 0.7) / 0.3;
+  S.off = trOff(t); S.reveal = trRev(t); S.hud = trHud(t);
+  if (reduce) return;
+  // beats: crossfade + translate, fully continuous
+  for (var i = 0; i < 4; i++){
+    var B = BEATS[i], inA = i === 0 ? 1 : lin(t, B[0], B[1]), outA = lin(t, B[2], B[3]);
+    var a = inA * (1 - outA), y = (1 - inA) * 36 - outA * 36;
+    css(beats[i], 'opacity', String(r3(a)));
+    css(beats[i], 'visibility', a > 0.002 ? 'visible' : 'hidden');
+    css(beats[i], 'transform', 'translate3d(0,' + r3(y) + 'px,0)');
+  }
+  // redaction bars
+  css(red.b1, 'clipPath', 'inset(0% 0% 0% ' + r3(lin(t, 3.95, 4.45) * 100) + '%)');
+  css(red.m1, 'opacity', String(r3(lin(t, 4.4, 4.6))));
+  var s2 = lin(t, 4.6, 4.85), e2 = lin(t, 4.85, 5.2);
+  css(red.b2, 'clipPath', 'inset(0% ' + r3((1 - s2) * 100) + '% 0% ' + r3(e2 * 100) + '%)');
+  css(red.m2, 'opacity', String(r3(lin(t, 5.1, 5.3))));
+  css(hint, 'opacity', String(r3((1 - lin(t, 0, 0.45)) * I.k)));
+  var hv = S.hud * I.k;
+  css(hud, 'opacity', String(r3(S.hud)));
+  css(hud, 'visibility', S.hud > 0.002 ? 'visible' : 'hidden');
+  css(prog, 'opacity', String(r3(hv)));
+  css(scrim, 'opacity', String(r3(S.off)));
+  setChapter(t < 1.5 ? 0 : t < 3.6 ? 1 : t < 5.85 ? 2 : 3);
+  css(pfill, 'transform', 'scaleY(' + r3(clamp(t / 7, 0, 1)) + ')');
+}
+
+function intro(){
+  var tli = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  tli.from('#b0 .h-hero .ln > span', { yPercent: 110, duration: 1.0, stagger: 0.08 }, 0.05)
+     .from('#b0 .kick', { autoAlpha: 0, x: -12, duration: 0.6 }, 0.1)
+     .from('.corner', { autoAlpha: 0, scale: 0.6, duration: 0.6, stagger: 0.05 }, 0)
+     .from('.hud-tl, .hud-tr, .hud-bl, .hud-br', { autoAlpha: 0, duration: 0.8, stagger: 0.04 }, 0.2)
+     .to(I, { k: 1, duration: 1.3, ease: 'power3.out' }, 0)
+     .call(function(){ $('#heroU').classList.add('on'); }, null, 0.9);
+}
+
+/* ---------------- render loop ---------------- */
+var reticle = $('#reticle'), tags = $$('.tag');
+var tmpV = typeof THREE !== 'undefined' ? new THREE.Vector3() : null;
+var tmpC = typeof THREE !== 'undefined' ? new THREE.Vector3() : null;
+var AX_Y = typeof THREE !== 'undefined' ? new THREE.Vector3(0,1,0) : null, AX_X = typeof THREE !== 'undefined' ? new THREE.Vector3(1,0,0) : null;
+var heroEl = $('#hero');
+var heroTop = 0, heroRange = 1, heroEnd = 0, darkRanges = [], heroBottom = 0;
+function measure(){
+  var y = window.scrollY;
+  heroTop = heroEl.getBoundingClientRect().top + y;
+  heroRange = Math.max(1, heroEl.offsetHeight - stageEl.offsetHeight);
+  heroEnd = heroTop + heroRange;
+  heroBottom = heroTop + heroEl.offsetHeight;
+  darkRanges = darkSecs.map(function(el){ var r = el.getBoundingClientRect(); return [r.top + y, r.bottom + y]; });
+}
+
+if ('ResizeObserver' in window) new ResizeObserver(function(){ measure(); }).observe(document.body);
+
+function projectGlobePoint(lon, lat, r, rg){
+  var v = ll(lon, lat, r);
+  tmpV.set(v[0], v[1], v[2]);
+  tmpV.applyAxisAngle(AX_Y, rg);
+  tmpV.applyAxisAngle(AX_X, TILT);
+  var z = tmpV.z;
+  tmpV.project(camera);
+  return { x: (tmpV.x * .5 + .5) * W, y: (-tmpV.y * .5 + .5) * H, z: z };
+}
+
+var last = performance.now(), time = 0, scrollRot = 0;
+function frameLoop(now){
+  var dt = Math.min(0.05, Math.max(0, (now - last) / 1000)); last = now; time += dt;
+  frame++;
+  var sy = window.scrollY;
+  story.p = clamp((sy - heroTop) / heroRange, 0, 1);
+  if (!story.ready){ story.sp = story.p; story.ready = true; }
+  else story.sp += (story.p - story.sp) * (1 - Math.exp(-DAMP * dt));
+  if (Math.abs(story.p - story.sp) < 1e-5) story.sp = story.p;
+  story.t = story.sp * 10;
+  applyStory(story.t);
+  scrollRot = story.t * 0.42;            // scroll-linked spin: motion even during rest moments
+  if (frame % 4 === 0 && S.hud > 0.01){ frEl.textContent = 'FRM ' + pad(frame, 6); azEl.textContent = 'AZ ' + pad(((((rot.g + scrollRot) * 180 / Math.PI) % 360 + 360) % 360).toFixed(1), 5); }
+  mouse.sx += (mouse.x - mouse.sx) * (1 - Math.exp(-3 * dt)); mouse.sy += (mouse.y - mouse.sy) * (1 - Math.exp(-3 * dt));
+  rot.g += dt * 0.09; rot.c += dt * 0.025; rot.l += dt * 0.05; rot.k += dt * 0.16;
+  var rg = rot.g + scrollRot;
+  if (gl){
+    var u = mat.uniforms;
+    u.uTime.value = time; u.uMorph.value = S.m;
+    u.uR0.value = rg; u.uR1.value = rot.c + scrollRot * 0.5; u.uR2.value = rot.l + scrollRot * 0.6; u.uR3.value = rot.k + scrollRot;
+    u.uFieldOff.value = Math.max(0, sy - heroEnd) / fieldInfo.ppu * 0.35;
+    var par = TOUCH ? 0 : 1;
+    var camZ = S.cam + (1 - I.k) * 2.2;
+    camera.position.x = mouse.sx * 0.35 * par * (0.4 + 0.6 * S.off);
+    camera.position.y = -mouse.sy * 0.22 * par * (0.4 + 0.6 * S.off);
+    camera.position.z = camZ;
+    camera.lookAt(camera.position.x * 0.6, camera.position.y * 0.6, camZ - 6);
+    var ox = MOBILE ? 0 : -W * 0.2 * S.off, oy = MOBILE ? H * 0.2 * S.off : 0;
+    camera.setViewOffset(W, H, ox, oy, W, H);
+    var R = S.reveal * Math.hypot(W, H) * 0.56;
+    u.uRev.value = R * DPR;
+    u.uCenter.value.set(W * DPR / 2, H * DPR / 2);
+    u.uMouse.value.set(mouse.lx, -mouse.ly);
+    lineMat.uniforms.uTime.value = time;
+    var gw = clamp(1 - S.m * 1.6, 0, 1);
+    lineMat.uniforms.uOp.value = gw;
+    arcs.rotation.set(TILT, rg, 0, 'XYZ');
+    gl.render(scene, camera);
+
+    // DOM overlay synced to scene (transforms only, no layout)
+    if (gw > 0.001 && S.hud > 0.001){
+      camera.updateMatrixWorld();
+      tmpV.set(0, GR, 0).project(camera);
+      tmpC.set(0, 0, 0).project(camera);
+      var cx = (tmpC.x * .5 + .5) * W, cy = (-tmpC.y * .5 + .5) * H;
+      var rr = Math.abs(((tmpV.y - tmpC.y) * .5) * H) * 1.16;
+      css(reticle, 'transform', 'translate3d(' + (cx - 50).toFixed(1) + 'px,' + (cy - 50).toFixed(1) + 'px,0) scale(' + (rr / 50).toFixed(4) + ')');
+      css(reticle, 'opacity', String(r3(gw * 0.9)));
+      if (!MOBILE) tags.forEach(function(tg){
+        var n = CAPS[+tg.getAttribute('data-node')];
+        var p = projectGlobePoint(n[0], n[1], GR * 1.01, rg);
+        var vis = clamp((p.z / GR - 0.25) * 3, 0, 1) * gw * I.k * clamp((W - 120 - (p.x + 210)) / 60, 0, 1) * clamp((p.y - 150) / 40, 0, 1);
+        css(tg, 'opacity', String(r3(vis)));
+        css(tg, 'transform', 'translate3d(' + p.x.toFixed(1) + 'px,' + p.y.toFixed(1) + 'px,0)');
       });
-      if (!res.ok) throw new Error('http ' + res.status);
-      form.querySelectorAll('.field, button').forEach((el) => (el.style.display = 'none'));
-      status.hidden = false;
-      status.className = 'form-status ok';
-      status.textContent = 'Dank u — uw bericht is ontvangen. U hoort binnen één werkdag van ons.';
-    } catch {
-      btn.disabled = false;
-      btn.innerHTML = 'Verstuur — wij reageren binnen één werkdag &rarr;';
-      status.hidden = false;
-      status.className = 'form-status err';
-      status.textContent = 'Versturen lukte even niet. Mail ons direct: admin@systemlysolutions.onmicrosoft.com';
+    } else {
+      css(reticle, 'opacity', '0');
+      tags.forEach(function(tg){ css(tg, 'opacity', '0'); });
     }
+  }
+  var rpx = S.reveal * Math.hypot(window.innerWidth, window.innerHeight) * 0.56;
+  css(darkbg, '--r', rpx.toFixed(1) + 'px');
+  css(darkbg, 'visibility', S.reveal > 0.999 ? 'hidden' : 'visible');
+  css(ring, 'width', (rpx * 2).toFixed(1) + 'px'); css(ring, 'height', (rpx * 2).toFixed(1) + 'px');
+  css(ring, 'opacity', String(S.reveal > 0.001 && S.reveal < 0.98 ? r3(0.8 * (1 - S.reveal)) : 0));
+  updateNav(sy);
+  if (!reduce) requestAnimationFrame(frameLoop);
+}
+
+/* ---------------- nav (no layout reads per frame) ---------------- */
+var nav = $('#nav'), darkSecs = $$('[data-dark]'), navState = '';
+function updateNav(sy){
+  if (sy === undefined) sy = window.scrollY;
+  var y = sy + 38, dark = false;
+  var inHero = y < heroBottom && S.reveal < 0.5;
+  if (inHero) dark = true;
+  for (var i = 0; i < darkRanges.length && !dark; i++) if (darkRanges[i][0] <= y && darkRanges[i][1] >= y) dark = true;
+  var st = (dark ? 1 : 0) + '' + (inHero ? 1 : 0) + (!inHero && sy > 10 ? 1 : 0) + (mnav && mnav.classList.contains('open') ? 1 : 0);
+  if (st === navState) return; navState = st;
+  nav.classList.toggle('on-dark', dark || !!(mnav && mnav.classList.contains('open')));
+  nav.classList.toggle('in-hero', inHero);
+  nav.classList.toggle('scrolled', !inHero && sy > 10);
+}
+window.addEventListener('scroll', function(){ if (reduce) updateNav(); }, { passive: true });
+
+var menuBtn = $('#menuBtn'), mnav = $('#mnav');
+menuBtn.addEventListener('click', function(){
+  var o = !mnav.classList.contains('open');
+  mnav.classList.toggle('open', o); menuBtn.setAttribute('aria-expanded', o); mnav.setAttribute('aria-hidden', !o);
+  menuBtn.textContent = o ? 'SLUIT [−]' : 'MENU [+]';
+  nav.classList.toggle('on-dark', true);
+});
+$$('#mnav a').forEach(function(a){ a.addEventListener('click', function(){ mnav.classList.remove('open'); menuBtn.textContent = 'MENU [+]'; menuBtn.setAttribute('aria-expanded', false); mnav.setAttribute('aria-hidden', true); document.body.style.overflow = ''; navState = ''; }); });
+
+window.addEventListener('mousemove', function(e){ mouse.x = mouse.lx = e.clientX / W * 2 - 1; mouse.y = mouse.ly = e.clientY / H * 2 - 1; }, { passive: true });
+
+/* ---------------- [+] / [-] hover ---------------- */
+$$('.card, .row').forEach(function(el){
+  var pm = el.querySelector('[data-pm]'); if (!pm) return;
+  el.addEventListener('mouseenter', function(){ pm.textContent = '[−]'; });
+  el.addEventListener('mouseleave', function(){ pm.textContent = '[+]'; });
+});
+
+/* ---------------- section reveals ---------------- */
+function splitWords(el){
+  var walk = function(node){
+    var out = [];
+    node.childNodes.forEach(function(ch){
+      if (ch.nodeType === 3){
+        ch.textContent.split(/(\s+)/).forEach(function(part){
+          if (!part) return;
+          if (/^\s+$/.test(part)) out.push(document.createTextNode(' '));
+          else { var w = document.createElement('span'); w.className = 'w'; var i = document.createElement('span'); i.textContent = part; w.appendChild(i); out.push(w); }
+        });
+      } else if (ch.nodeType === 1){
+        var clone = ch.cloneNode(false);
+        walk(ch).forEach(function(n){ clone.appendChild(n); });
+        out.push(clone);
+      }
+    });
+    return out;
+  };
+  var parts = walk(el); el.innerHTML = ''; parts.forEach(function(n){ el.appendChild(n); });
+}
+function reveals(){
+  $$('.split').forEach(function(el){
+    splitWords(el);
+    gsap.from(el.querySelectorAll('.w > span'), { yPercent: 110, duration: 0.9, ease: 'power3.out', stagger: 0.022, scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
+  });
+  $$('.rv').forEach(function(el){
+    gsap.from(el, { autoAlpha: 0, y: 28, duration: 0.9, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
+  });
+  $$('.label .rule').forEach(function(el){
+    gsap.from(el, { scaleX: 0, duration: 1.2, ease: 'power3.inOut', scrollTrigger: { trigger: el, start: 'top 92%', once: true } });
+  });
+  var tlF = $('#tlFill'), vert = window.innerWidth <= 900;
+  gsap.fromTo(tlF, vert ? { scaleY: 0 } : { scaleX: 0 }, Object.assign(vert ? { scaleY: 1 } : { scaleX: 1 }, { ease: 'none', scrollTrigger: { trigger: '#timeline', start: 'top 80%', end: 'bottom 55%', scrub: 0.6 } }));
+  $$('.pillars .card').forEach(function(c, i){ gsap.from(c.querySelector('.ic'), { autoAlpha: 0, scale: 0.85, duration: 1, delay: 0.15 + i * 0.1, ease: 'power3.out', scrollTrigger: { trigger: c, start: 'top 88%', once: true } }); });
+}
+
+/* ---------------- live dashboard demo ---------------- */
+var TYPES = [
+  { k: 'KYC . ID-BEWIJS', f: ['paspoort_scan', 'id_kaart_vz', 'id_kaart_az'] },
+  { k: 'KYC . ADRESBEWIJS', f: ['nutsrekening', 'bankafschrift', 'uittreksel_gba'] },
+  { k: 'FACTUUR', f: ['factuur', 'inv', 'creditnota'] },
+  { k: 'CONTRACT', f: ['overeenkomst', 'addendum', 'mandaat'] },
+  { k: 'CORRESPONDENTIE', f: ['brief', 'mail_bijlage', 'notitie'] }
+];
+var bins = $('#bins'), queueEl = $('#queue'), logEl = $('#log');
+var counts = [0,0,0,0,0], manual = 0, done = 0, spark = [];
+TYPES.forEach(function(t, i){
+  var d = document.createElement('div'); d.className = 'bin'; d.innerHTML = '<span>' + t.k + '</span><span class="n">000</span><span class="meter"><i></i></span>'; bins.appendChild(d);
+});
+var manBin = document.createElement('div'); manBin.className = 'bin man'; manBin.innerHTML = '<span>HANDMATIGE CONTROLE</span><span class="n">000</span><span class="meter"><i></i></span>'; bins.appendChild(manBin);
+var binEls = $$('#bins .bin');
+var DOCSVG = '<svg viewBox="0 0 14 17" fill="none" stroke="currentColor" stroke-width="1"><path d="M.5.5h9l4 4v12H.5z"/><path d="M9.5.5v4h4"/></svg>';
+var queue = [];
+function mkDoc(){
+  var ti = Math.floor(rand() * TYPES.length), t = TYPES[ti];
+  var name = t.f[Math.floor(rand()*t.f.length)] + '_' + pad(Math.floor(rand()*9999),4) + (rand() < .8 ? '.pdf' : '.jpg');
+  return { t: ti, name: name, size: (40 + Math.floor(rand()*900)) + ' KB', conf: 0.78 + rand() * 0.215 };
+}
+function renderQueue(){
+  $('#qCount').textContent = 'WACHTRIJ ' + queue.length;
+}
+function pushDoc(){
+  if (queue.length >= 7) return;
+  var d = mkDoc(); queue.push(d);
+  var el = document.createElement('div'); el.className = 'doc'; el.innerHTML = DOCSVG + '<span>' + d.name + '</span><span class="sz">' + d.size + '</span>';
+  d.el = el; queueEl.insertBefore(el, queueEl.firstChild);
+  renderQueue();
+}
+var busy = false;
+function processNext(){
+  if (busy || !queue.length) return;
+  busy = true;
+  var d = queue.shift(); d.el.classList.add('out');
+  setTimeout(function(){ if (d.el.parentNode) d.el.parentNode.removeChild(d.el); }, 450);
+  renderQueue();
+  $('#aState').textContent = 'ANALYSEREN';
+  $('#kFile').textContent = d.name.length > 18 ? d.name.slice(0, 17) + '.' : d.name;
+  $('#kType').textContent = '...'; $('#kConf').textContent = '...'; $('#kChk').textContent = '...';
+  $('#kChk').className = 'v'; $('#hl1').style.opacity = 0; $('#hl2').style.opacity = 0;
+  gsap.fromTo('#sl', { top: -30 }, { top: 150, duration: 1.1, ease: 'none' });
+  gsap.fromTo('#pBar', { width: '0%' }, { width: '100%', duration: 1.5, ease: 'power1.inOut' });
+  setTimeout(function(){ $('#hl1').style.opacity = 1; $('#kType').textContent = TYPES[d.t].k; }, 600);
+  setTimeout(function(){ $('#hl2').style.opacity = 1; $('#kConf').textContent = d.conf.toFixed(2); }, 950);
+  setTimeout(function(){
+    var man = d.conf < 0.86;
+    var kc = $('#kChk'); kc.textContent = man ? 'NAAR MENS' : 'OK'; kc.className = 'v ' + (man ? 'chk' : 'ok');
+    $('#aState').textContent = 'GEREED';
+    done++;
+    var bi = man ? 5 : d.t;
+    if (man) manual++; else counts[d.t]++;
+    var be = binEls[bi]; be.querySelector('.n').textContent = pad(man ? manual : counts[d.t], 3);
+    be.classList.add('flash'); setTimeout(function(){ be.classList.remove('flash'); }, 500);
+    var mx = Math.max.apply(null, counts.concat([manual, 1]));
+    binEls.forEach(function(b, i){ var v = i === 5 ? manual : counts[i]; b.querySelector('.meter i').style.width = (v / mx * 100) + '%'; });
+    var line = document.createElement('div'); line.className = man ? 'mn' : 'ok';
+    line.textContent = zulu().slice(0,4) + ' ' + (man ? '[!] ' : '[+] ') + d.name + ' > ' + (man ? 'HANDMATIG' : TYPES[d.t].k);
+    logEl.insertBefore(line, logEl.firstChild); while (logEl.children.length > 4) logEl.removeChild(logEl.lastChild);
+    $('#sDone').textContent = pad(done, 6);
+    $('#sAuto').textContent = pad(((done - manual) / done * 100).toFixed(1), 4) + '%';
+    $('#sMan').textContent = pad(manual, 3);
+    busy = false;
+  }, 1500);
+}
+function drawSpark(){
+  spark.push(2 + Math.floor(rand() * 6) + queue.length);
+  if (spark.length > 24) spark.shift();
+  var svg = $('#spark'), w = 120 / 24, html = '';
+  spark.forEach(function(v, i){ var h = Math.min(32, v * 2.6); html += '<rect x="' + (i * w + .5) + '" y="' + (34 - h) + '" width="' + (w - 1.5) + '" height="' + h + '" fill="' + (i === spark.length - 1 ? '#c4693f' : 'rgba(242,237,226,.55)') + '"/>'; });
+  svg.innerHTML = html;
+}
+for (var q0 = 0; q0 < 4; q0++) pushDoc();
+for (var s0 = 0; s0 < 24; s0++) drawSpark();
+var liveTimers = [];
+function startLive(){
+  if (liveTimers.length || reduce) return;
+  liveTimers.push(setInterval(function(){ if (rand() < 0.75) pushDoc(); }, 900));
+  liveTimers.push(setInterval(processNext, 1750));
+  liveTimers.push(setInterval(drawSpark, 700));
+  processNext();
+}
+function stopLive(){ liveTimers.forEach(clearInterval); liveTimers = []; }
+if ('IntersectionObserver' in window){
+  new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting ? startLive() : stopLive(); }); }, { threshold: 0.05 }).observe($('#panel'));
+}
+if (reduce){
+  // static, meaningful snapshot
+  for (var r0 = 0; r0 < 6; r0++){ counts[r0 % 5] += 3 + r0; }
+  binEls.forEach(function(b, i){ var v = i === 5 ? 2 : counts[i]; b.querySelector('.n').textContent = pad(v, 3); b.querySelector('.meter i').style.width = (v / 14 * 100) + '%'; });
+  $('#kFile').textContent = 'factuur_0412.pdf'; $('#kType').textContent = 'FACTUUR'; $('#kConf').textContent = '0.97'; $('#kChk').textContent = 'OK';
+}
+
+/* ---------------- contact form ---------------- */
+/* CONFIG: waar het formulier naartoe gaat.
+   endpoint: FormSubmit AJAX-endpoint. De hoofdontvanger staat in de URL, extra ontvangers in _cc.
+   Let op: FormSubmit stuurt bij het allereerste bericht een activatiemail naar de hoofdontvanger
+   (admin@systemly.nl). Pas na klikken op de activatielink worden berichten echt afgeleverd. */
+var CONTACT = {
+  endpoint: 'https://formsubmit.co/ajax/1f51d894e281327715a95cdb4df81c25',
+  cc: ['Guus@systemly.nl'],
+  subject: 'Nieuw bericht via systemly.nl',
+  minAnim: 1400            // ms: de verzendanimatie duurt minimaal zo lang, ook bij een snelle server
+};
+(function(){
+  var form = $('#ctForm'); if (!form) return;
+  var fields = $('#ctFields'), done = $('#ctDone'), term = $('#ctTerm'), send = $('#ctSend'), net = $('.ct-net'), core = $('#ctCore'), chan = $('#ctChan');
+  var chips = $$('.chip');
+  chips.forEach(function(c){ c.addEventListener('click', function(){
+    var on = c.getAttribute('aria-pressed') !== 'true';
+    c.setAttribute('aria-pressed', on); c.querySelector('i').textContent = on ? '[−]' : '[+]';
+  }); });
+
+  function line(txt, cls, keepCursor){
+    $$('#ctTerm .cur').forEach(function(c){ c.remove(); });
+    var d = document.createElement('div'); if (cls) d.className = cls;
+    d.textContent = '> ' + txt;
+    if (keepCursor !== false){ var b = document.createElement('b'); b.className = 'cur'; d.appendChild(b); }
+    term.appendChild(d);
+    while (term.children.length > 5) term.removeChild(term.firstChild);
+  }
+  function resetTerm(txt){ term.innerHTML = ''; line(txt || 'KANAAL GEREED . WACHT OP INVOER'); }
+
+  var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  var RULES = {
+    naam: function(v){ return v.length >= 2 ? '' : 'VUL UW NAAM IN'; },
+    bedrijf: function(v){ return v.length >= 2 ? '' : 'VUL UW BEDRIJFSNAAM IN'; },
+    email: function(v){ return EMAIL.test(v) ? '' : 'VUL EEN GELDIG E-MAILADRES IN'; },
+    telefoon: function(v){ return !v || /^[+()\d\s.-]{6,}$/.test(v) ? '' : 'CONTROLEER HET TELEFOONNUMMER'; },
+    bericht: function(v){ return v.length >= 10 ? '' : 'VERTEL KORT WAT ER SPEELT (MIN. 10 TEKENS)'; }
+  };
+  function check(name){
+    var el = form.elements[name], f = el.closest('.fld'), msg = RULES[name](el.value.trim());
+    f.classList.toggle('err', !!msg); f.querySelector('.msg').textContent = msg;
+    el.setAttribute('aria-invalid', msg ? 'true' : 'false');
+    return !msg;
+  }
+  Object.keys(RULES).forEach(function(n){
+    var el = form.elements[n];
+    el.addEventListener('blur', function(){ if (el.value) check(n); });
+    el.addEventListener('input', function(){ if (el.closest('.fld').classList.contains('err')) check(n); });
+  });
+
+  // particles + lines from the fields to the SYSTEMLY node
+  function fly(){
+    if (reduce || !window.gsap) return;
+    var target = core.getBoundingClientRect(), tx = target.left + target.width / 2, ty = target.top + target.height / 2;
+    var layer = document.createElement('div'); layer.className = 'fly-layer';
+    var svgNS = 'http://www.w3.org/2000/svg', svg = document.createElementNS(svgNS, 'svg'); layer.appendChild(svg);
+    document.body.appendChild(layer);
+    var srcs = $$('#ctFields input:not([name=_honey]), #ctFields textarea, #ctFields .chip[aria-pressed=true]');
+    srcs.forEach(function(el, i){
+      var r = el.getBoundingClientRect(); if (r.width === 0) return;
+      var sx = r.left + Math.min(r.width, 60), sy = r.top + r.height / 2;
+      var p = document.createElementNS(svgNS, 'path');
+      var mx = (sx + tx) / 2, my = Math.min(sy, ty) - 60 - i * 6;
+      p.setAttribute('d', 'M' + sx + ' ' + sy + ' Q' + mx + ' ' + my + ' ' + tx + ' ' + ty);
+      p.setAttribute('fill', 'none'); p.setAttribute('stroke', i % 3 === 0 ? 'rgba(196,105,63,.8)' : 'rgba(242,237,226,.45)'); p.setAttribute('stroke-width', '1');
+      svg.appendChild(p);
+      var len = p.getTotalLength();
+      gsap.fromTo(p, { strokeDasharray: len, strokeDashoffset: len }, { strokeDashoffset: 0, duration: 0.7, delay: i * 0.05, ease: 'power2.inOut' });
+      gsap.to(p, { opacity: 0, duration: 0.5, delay: 1.1 + i * 0.03 });
+      for (var k = 0; k < 5; k++){
+        var d = document.createElement('i'); d.className = 'fly-dot' + (k === 0 && i % 2 === 0 ? ' t' : '');
+        layer.appendChild(d);
+        var x0 = r.left + Math.random() * r.width, y0 = r.top + Math.random() * r.height;
+        var obj = { u: 0 };
+        (function(d, x0, y0, obj){
+          gsap.set(d, { x: x0, y: y0 });
+          gsap.to(obj, { u: 1, duration: 0.85 + Math.random() * 0.35, delay: 0.15 + i * 0.05 + k * 0.04, ease: 'power2.in',
+            onUpdate: function(){ var u = obj.u, cx = (x0 + tx) / 2, cy = Math.min(y0, ty) - 80;
+              var x = (1-u)*(1-u)*x0 + 2*(1-u)*u*cx + u*u*tx, y = (1-u)*(1-u)*y0 + 2*(1-u)*u*cy + u*u*ty;
+              d.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0) scale(' + (1 - u * 0.5) + ')'; },
+            onComplete: function(){ d.remove(); } });
+        })(d, x0, y0, obj);
+      }
+    });
+    net.classList.add('hot');
+    gsap.fromTo(core, { scale: 1 }, { scale: 1.8, duration: 0.25, delay: 1.0, yoyo: true, repeat: 3, ease: 'power1.inOut', transformOrigin: '50% 50%' });
+    setTimeout(function(){ layer.remove(); }, 2600);
+  }
+
+  var busy = false;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (busy) return;
+    var ok = true, first = null;
+    Object.keys(RULES).forEach(function(n){ if (!check(n)){ ok = false; if (!first) first = form.elements[n]; } });
+    if (!ok){ first.focus(); line('VALIDATIE . CONTROLEER DE GEMARKEERDE VELDEN', 'bad'); return; }
+    var v = function(n){ return form.elements[n].value.trim(); };
+    var interest = chips.filter(function(c){ return c.getAttribute('aria-pressed') === 'true'; }).map(function(c){ return c.getAttribute('data-v'); });
+    busy = true; send.disabled = true; send.querySelector('.t').textContent = 'Verzenden';
+    form.setAttribute('aria-busy', 'true'); chan.textContent = 'VERZENDEN';
+    term.innerHTML = '';
+    line('VERBINDING MAKEN MET SYSTEMLY.NL ...');
+    var t0 = Date.now();
+    fly();
+    setTimeout(function(){ if (busy) line('VERZENDEN . ' + (5 + (v('telefoon') ? 1 : 0)) + ' VELDEN . ' + (1 + CONTACT.cc.length) + ' ONTVANGERS'); }, 450);
+    setTimeout(function(){ if (busy) line('WACHTEN OP BEVESTIGING ...'); }, 1000);
+
+    var payload = {
+      naam: v('naam'), bedrijf: v('bedrijf'), email: v('email'), telefoon: v('telefoon') || '-',
+      onderwerp: interest.length ? interest.join(', ') : '-', bericht: v('bericht'),
+      _subject: CONTACT.subject + ' . ' + v('bedrijf'), _cc: CONTACT.cc.join(','), _replyto: v('email'),
+      _template: 'table', _captcha: 'false', _honey: form.elements._honey.value
+    };
+    var request;
+    if (payload._honey){ request = Promise.resolve({ ok: true, json: function(){ return { success: 'true' }; } }); } // bot: doe alsof
+    else request = fetch(CONTACT.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(payload) });
+
+    request.then(function(res){
+      return Promise.resolve(res.json ? res.json() : {}).catch(function(){ return {}; }).then(function(data){ return { res: res, data: data || {} }; });
+    }).then(function(r){
+      var good = r.res.ok && (r.data.success === true || r.data.success === 'true');
+      if (!good) throw { code: r.res.status, msg: r.data.message };
+      finish(true);
+    }).catch(function(err){ finish(false, err); });
+
+    function finish(success, err){
+      var wait = Math.max(0, CONTACT.minAnim - (Date.now() - t0));
+      setTimeout(function(){
+        busy = false; send.disabled = false; send.querySelector('.t').textContent = 'Verstuur bericht';
+        form.removeAttribute('aria-busy'); net.classList.remove('hot');
+        if (success){
+          var ref = 'SYS-' + Math.random().toString(16).slice(2, 6).toUpperCase();
+          $('#ctRef').textContent = 'REF ' + ref + ' . ' + zulu();
+          $('#ctThanks').textContent = 'Dank u, ' + v('naam').split(' ')[0] + '. Wij reageren binnen één werkdag op ' + v('email') + '.';
+          fields.hidden = true; done.hidden = false; chan.textContent = 'ONTVANGEN';
+          line('ONTVANGEN . ' + ref + ' . ' + zulu(), 'ok', false);
+          line('BEVESTIGD . VERBINDING GESLOTEN', 'ok');
+          if (window.gsap && !reduce) gsap.from(done.children, { autoAlpha: 0, y: 14, duration: 0.6, stagger: 0.08, ease: 'power2.out' });
+        } else {
+          chan.textContent = 'FOUT';
+          var why = err && err.code ? 'HTTP ' + err.code : 'GEEN VERBINDING';
+          line('FOUT . VERZENDEN MISLUKT (' + why + ')', 'bad', false);
+          line('PROBEER HET OPNIEUW OF MAIL NAAR ADMIN@SYSTEMLY.NL', 'bad');
+        }
+      }, wait);
+    }
+  });
+  $('#ctAgain').addEventListener('click', function(){
+    form.reset(); chips.forEach(function(c){ c.setAttribute('aria-pressed', 'false'); c.querySelector('i').textContent = '[+]'; });
+    $$('#ctForm .fld').forEach(function(f){ f.classList.remove('err'); });
+    done.hidden = true; fields.hidden = false; chan.textContent = 'KANAAL OPEN'; resetTerm();
+    form.elements.naam.focus();
   });
 })();
 
-/* ---------- Formulier: typewriter-placeholder (zelfde als oude site) ---------- */
-(() => {
-  const ta = document.getElementById('watSpeeltEr');
-  const PREFIX = 'Bijvoorbeeld: ';
-  const ZINNEN = [
-    'wij zijn wekelijks uren kwijt aan het verwerken van facturen…',
-    'onze maandrapportage kost drie dagen handwerk…',
-    'wij typen gegevens over van PDF naar Excel…',
-    'hetzelfde dossier gaat bij ons door vier paar handen…',
-  ];
-  const HOLD_MS = 4000, TYPE_MS = 38, ERASE_MS = 14;
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    ta.placeholder = PREFIX + ZINNEN[0];
-    return;
+/* ---------------- resize ---------------- */
+// Mobile browsers fire resize when the address bar slides in/out. Only a WIDTH change is a real
+// layout change; height-only changes are ignored so the pinned scene never jumps.
+var rT, lastW = window.innerWidth;
+function viewH(){
+  var pr = document.createElement('div');
+  pr.style.cssText = 'position:fixed;left:0;top:0;width:1px;height:100vh;height:100lvh;visibility:hidden;pointer-events:none';
+  document.body.appendChild(pr); var h = pr.offsetHeight; document.body.removeChild(pr);
+  return h || window.innerHeight;
+}
+window.addEventListener('resize', function(){
+  clearTimeout(rT);
+  rT = setTimeout(function(){
+    var nw = window.innerWidth;
+    if (TOUCH && nw === lastW){ measure(); return; }
+    lastW = nw;
+    W = nw; H = viewH();
+    if (gl){
+      gl.setSize(W, H, false); camera.aspect = W / H; camera.updateProjectionMatrix();
+      mat.uniforms.uAspect.value = W / H;
+      buildField(pts.geometry);
+      if (reduce) gl.render(scene, camera);
+    }
+    if (hasGSAP) ScrollTrigger.refresh();
+    measure();
+  }, 150);
+});
+
+/* ---------------- boot ---------------- */
+H = viewH();
+var ok = initGL();
+measure();
+if (!ok){ $('#gl').style.display = 'none'; }
+if (reduce){
+  if (ok){ var st = $('#stage'); st.insertBefore($('#gl'), st.firstChild); }
+  if (ok){
+    camera.position.z = CAM0; camera.setViewOffset(W, H, MOBILE ? 0 : -W * 0.2, MOBILE ? H * 0.17 : 0, W, H);
+    frameLoop(performance.now());
   }
-  let zin = 0;
-  function typeZin(done) {
-    const s = ZINNEN[zin];
-    let c = 0;
-    const t = setInterval(() => {
-      c++;
-      ta.placeholder = PREFIX + s.slice(0, c);
-      if (c >= s.length) { clearInterval(t); done(); }
-    }, TYPE_MS);
-  }
-  function eraseZin(done) {
-    const t = setInterval(() => {
-      const cur = ta.placeholder.slice(PREFIX.length);
-      if (!cur.length) { clearInterval(t); done(); }
-      else ta.placeholder = PREFIX + cur.slice(0, -1);
-    }, ERASE_MS);
-  }
-  (function cycle() {
-    typeZin(() => setTimeout(() => eraseZin(() => {
-      zin = (zin + 1) % ZINNEN.length;
-      cycle();
-    }), HOLD_MS));
-  })();
+  updateNav();
+} else if (hasGSAP){
+  intro();
+  reveals();
+  requestAnimationFrame(frameLoop);
+} else {
+  I.k = 1;
+  requestAnimationFrame(frameLoop);
+}
+window.addEventListener('load', function(){ if (hasGSAP) ScrollTrigger.refresh(); measure(); });
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ if (hasGSAP) ScrollTrigger.refresh(); measure(); });
+if (hasGSAP) ScrollTrigger.addEventListener('refresh', measure);
+if (/[?&]debug/.test(location.search)) window.__dbg = { story: story, S: S, get geo(){ return pts && pts.geometry; }, get camera(){ return camera; }, get scrollRot(){ return scrollRot; } };
 })();
 </script>
 </body>
