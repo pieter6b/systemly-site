@@ -1,83 +1,221 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="nl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Privacyverklaring — Systemly</title>
-<meta name="description" content="Privacyverklaring van Systemly: welke gegevens wij verwerken, waarom, en welke rechten u hebt. Geen cookies, geen tracking.">
-<meta name="robots" content="noindex, follow">
-<link rel="canonical" href="https://systemly.nl/privacy.html">
+<title>Privacyverklaring . Systemly</title>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="description" content="Privacyverklaring van Systemly: welke gegevens wij verwerken via deze website, waarom, en wat uw rechten zijn.">
+<meta name="theme-color" content="#f2ede2">
+<link rel="canonical" href="https://systemly.nl/privacy.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500;600&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Poppins:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --black: #0C0B09;
-    --creme: #EDE7DB;
-    --creme-bright: #F2EAD9;
-    --ink: #1A1512;
-    --ink-soft: #5F574D;
-    --line-light: rgba(26, 21, 18, 0.14);
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: "Inter", sans-serif; background: var(--creme); color: var(--ink); -webkit-font-smoothing: antialiased; }
-  .mono { font-family: "Space Mono", monospace; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; }
-  nav { display: flex; align-items: baseline; justify-content: space-between; padding: 1.3rem clamp(1.2rem, 4vw, 3rem); border-bottom: 1px solid var(--line-light); }
-  nav .word { font-family: "Fraunces", serif; font-size: 1.45rem; font-weight: 500; color: var(--ink); text-decoration: none; }
-  nav a.terug { color: var(--ink-soft); text-decoration: none; font-size: 0.92rem; font-weight: 500; }
-  nav a.terug:hover { color: var(--ink); }
-  main { max-width: 720px; margin: 0 auto; padding: clamp(3rem, 7vw, 5rem) 1.4rem 5rem; }
-  h1 { font-family: "Fraunces", serif; font-weight: 500; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 0.8rem; }
-  .datum { color: var(--ink-soft); font-size: 0.9rem; margin-bottom: 3rem; }
-  h2 { font-family: "Fraunces", serif; font-weight: 500; font-size: 1.4rem; margin: 2.6rem 0 0.8rem; }
-  p, li { color: var(--ink-soft); line-height: 1.75; font-size: 0.98rem; }
-  p strong { color: var(--ink); font-weight: 600; }
-  ul { padding-left: 1.2rem; margin: 0.6rem 0; }
-  a { color: var(--ink); }
-  footer { border-top: 1px solid var(--line-light); padding: 2.4rem clamp(1.2rem, 4vw, 3rem); color: var(--ink-soft); font-size: 0.85rem; }
-  p, a { overflow-wrap: anywhere; }
-  nav { gap: 1rem; flex-wrap: wrap; }
+:root{
+  --creme:#f2ede2;--ink:#171310;--terra:#c4693f;--grey:#76716b;--line:#dcd5c6;
+  --ink-60:rgba(23,19,16,.6);--ink-75:rgba(23,19,16,.78);
+  --creme-70:rgba(242,237,226,.7);--creme-45:rgba(242,237,226,.45);--creme-10:rgba(242,237,226,.1);
+  --serif:"Lora",Georgia,"Times New Roman",serif;
+  --sans:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono","IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --gut:clamp(16px,4vw,56px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;color:var(--ink);font-family:var(--sans);font-weight:300;font-size:16.5px;line-height:1.7;
+  background-color:var(--creme);
+  background-image:linear-gradient(rgba(220,213,198,.55) 1px,transparent 1px),linear-gradient(90deg,rgba(220,213,198,.55) 1px,transparent 1px);
+  background-size:28px 28px;
+  overflow-x:clip;-webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+::selection{background:var(--terra);color:var(--creme)}
+.mono{font-family:var(--mono);font-weight:400;letter-spacing:.06em;text-transform:uppercase;font-size:11px;line-height:1.5}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:10;background:rgba(242,237,226,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:76px;padding:0 var(--gut);max-width:1600px;margin:0 auto}
+.wm{display:inline-flex;flex-direction:column;line-height:1;text-decoration:none}
+.wm b{font-family:var(--serif);font-weight:600;font-size:25px;letter-spacing:-.015em}
+.wm b i{font-style:normal;color:var(--terra)}
+.wm small{font-family:var(--sans);font-weight:500;font-size:7.5px;letter-spacing:.42em;margin-top:5px;opacity:.75;padding-left:1px}
+.back{display:inline-flex;align-items:center;gap:10px;height:40px;padding:0 16px;border:1px solid var(--ink);text-decoration:none;transition:background .25s,color .25s}
+.back:hover{background:var(--ink);color:var(--creme)}
+
+/* document */
+main{padding:clamp(56px,8vw,110px) var(--gut) clamp(64px,8vw,110px)}
+.doc{max-width:720px;margin:0 auto}
+.kicker{display:flex;align-items:center;gap:12px;color:var(--grey)}
+.kicker b{font-weight:500;color:var(--ink)}
+.kicker .rule{flex:1;height:1px;background:var(--line)}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6vw,72px);line-height:1.04;letter-spacing:-.028em;margin:28px 0 0}
+.intro{font-size:clamp(17px,1.5vw,19px);color:var(--ink-75);margin:24px 0 0;max-width:36em}
+.meta{display:flex;flex-wrap:wrap;gap:8px 24px;margin:28px 0 0;padding:12px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--line);color:var(--grey)}
+.meta b{font-weight:500;color:var(--ink)}
+section{margin-top:clamp(44px,5vw,64px)}
+section .lbl{display:flex;align-items:center;gap:10px;color:var(--grey);margin-bottom:12px}
+section .lbl .tri{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid var(--terra)}
+h2{font-family:var(--serif);font-weight:500;font-size:clamp(24px,2.6vw,30px);line-height:1.2;letter-spacing:-.012em;margin:0 0 12px}
+p{margin:0 0 14px;color:var(--ink-75)}
+ul{margin:0 0 14px;padding:0;list-style:none;border-top:1px solid var(--line)}
+li{position:relative;padding:11px 0 11px 26px;border-bottom:1px solid var(--line);color:var(--ink-75)}
+li::before{content:"[+]";position:absolute;left:0;top:13px;font-family:var(--mono);font-size:10px;color:var(--grey)}
+li b,p b{font-weight:500;color:var(--ink)}
+.doc a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--terra);transition:color .2s}
+.doc a:hover{color:var(--terra)}
+.contact-box{margin-top:18px;padding:18px 20px;border:1px solid var(--ink);background:rgba(242,237,226,.7);display:grid;grid-template-columns:auto 1fr;gap:6px 22px}
+.contact-box dt{color:var(--grey)}
+.contact-box dd{margin:0;color:var(--ink)}
+
+/* footer */
+footer{background:var(--ink);color:var(--creme);padding:0 var(--gut) 26px}
+.f-in{max-width:1320px;margin:0 auto}
+.f-top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding:34px 0 26px;border-bottom:1px solid var(--creme-10)}
+.f-top .wm{color:var(--creme)}
+.f-top p{margin:12px 0 0;color:var(--creme-45);font-size:14.5px;max-width:34ch}
+.f-links{display:flex;gap:22px;flex-wrap:wrap}
+.f-links a{color:var(--creme-70);text-decoration:none;transition:color .2s}
+.f-links a:hover{color:var(--terra)}
+.f-bot{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;padding-top:18px;color:var(--creme-45);font-size:10.5px}
+.f-bot a{color:var(--creme-70);text-decoration:none;transition:color .2s}
+.f-bot a:hover{color:var(--terra)}
+.f-bot .c{justify-self:center}
+.f-bot .r{justify-self:end;text-align:right}
+
+@media (max-width:700px){
+  .nav-in{height:64px}
+  .wm b{font-size:22px}
+  .back span.long{display:none}
+  .contact-box{grid-template-columns:1fr;gap:2px}
+  .contact-box dd{margin-bottom:10px}
+  .f-top{flex-direction:column;align-items:flex-start}
+  .f-bot{grid-template-columns:1fr;gap:6px}
+  .f-bot .c,.f-bot .r{justify-self:start;text-align:left}
+}
 </style>
 </head>
 <body>
-<nav>
-  <a class="word" href="/">Systemly</a>
-  <a class="terug" href="/">&larr; Terug naar de site</a>
-</nav>
+
+<header class="nav">
+  <div class="nav-in">
+    <a href="/" class="wm" aria-label="Systemly, naar de homepage"><b>Systemly<i>.</i></b><small>AS A SOLUTION</small></a>
+    <a class="back mono" href="/"><span aria-hidden="true">[&larr;]</span> <span class="long">TERUG NAAR</span> HOME</a>
+  </div>
+</header>
+
 <main>
-  <h1>Privacyverklaring</h1>
-  <p class="datum">Laatst bijgewerkt: augustus 2026</p>
+  <article class="doc">
+    <div class="kicker mono"><b>[+] PRIVACY</b><span class="rule"></span><span>AVG</span></div>
+    <h1>Privacyverklaring</h1>
+    <p class="intro">Wij bouwen systemen waarin data van onze klanten in goede handen blijft. Dezelfde houding geldt voor deze website: wij verwerken zo min mogelijk persoonsgegevens, en alleen met een duidelijk doel.</p>
+    <div class="meta mono"><span>LAATST BIJGEWERKT: <b>13 OKTOBER 2026</b></span><span>GELDT VOOR: <b>SYSTEMLY.NL</b></span></div>
 
-  <p>Systemly bouwt systemen waarbij data binnen de muren van onze klanten blijft. Diezelfde houding geldt voor deze website: wij verzamelen zo min mogelijk, en niets stiekem.</p>
+    <section id="wie">
+      <div class="lbl mono"><span class="tri"></span>[+] 01 . WIE WIJ ZIJN</div>
+      <h2>Verantwoordelijke</h2>
+      <p>Systemly VOF is verantwoordelijk voor de verwerking van persoonsgegevens via deze website. Systemly is een Nederlands bedrijf dat data-ontologie, AI-automatisering en software op maat bouwt.</p>
+      <!-- PLACEHOLDER: KvK-nummer en vestigingsadres toevoegen zodra bekend (staan niet in de oude privacyverklaring). -->
+      <dl class="contact-box mono">
+        <dt>NAAM</dt><dd>Systemly VOF</dd>
+        <dt>E-MAIL</dt><dd><a href="mailto:admin@systemly.nl">admin@systemly.nl</a></dd>
+        <dt>LAND</dt><dd>Nederland</dd>
+      </dl>
+    </section>
 
-  <h2>Wie we zijn</h2>
-  <p>Systemly is een Nederlands bedrijf dat onafhankelijk AI-advies levert en AI-oplossingen bouwt voor het MKB. Vragen over privacy? Mail naar <a href="mailto:admin@systemlysolutions.onmicrosoft.com">admin@systemlysolutions.onmicrosoft.com</a>.</p>
+    <section id="gegevens">
+      <div class="lbl mono"><span class="tri"></span>[+] 02 . WELKE GEGEVENS</div>
+      <h2>Wat wij van u verwerken</h2>
+      <p>Wij verwerken alleen wat u ons zelf stuurt via het contactformulier:</p>
+      <ul>
+        <li>uw naam en de naam van uw bedrijf;</li>
+        <li>uw e-mailadres en, als u dat invult, uw telefoonnummer;</li>
+        <li>uw bericht en de onderwerpen die u aanklikt (bijvoorbeeld AI-automatisering).</li>
+      </ul>
+      <p>Daarnaast worden bij elk bezoek technische gegevens zoals uw IP-adres verwerkt door de partijen die de site en de lettertypen leveren (zie onder 04).</p>
+    </section>
 
-  <h2>Welke gegevens we verwerken</h2>
-  <p>Alleen wat u ons zelf stuurt via het contactformulier: uw naam, bedrijfsnaam, e-mailadres en uw bericht. Wij gebruiken die gegevens uitsluitend om contact met u op te nemen over uw vraag. Wij verkopen of delen deze gegevens niet met derden voor marketing.</p>
+    <section id="doel">
+      <div class="lbl mono"><span class="tri"></span>[+] 03 . DOEL EN GRONDSLAG</div>
+      <h2>Waarom wij dat doen</h2>
+      <p>Wij gebruiken uw gegevens uitsluitend om uw vraag te beantwoorden en, als u dat wilt, een gesprek met u te plannen.</p>
+      <p>De grondslag is uw <b>toestemming</b>, die u geeft door het formulier te verzenden, en ons <b>gerechtvaardigd belang</b> om uw verzoek goed te kunnen beantwoorden. Wij verkopen uw gegevens niet en gebruiken ze niet voor marketing.</p>
+    </section>
 
-  <h2>Geen cookies, geen tracking</h2>
-  <p>Deze website gebruikt <strong>geen cookies, geen analytics en geen advertentietracking</strong>. Er is dus ook geen cookiebanner — er valt niets te accepteren.</p>
+    <section id="ontvangers">
+      <div class="lbl mono"><span class="tri"></span>[+] 04 . ONTVANGERS</div>
+      <h2>Diensten die wij gebruiken</h2>
+      <ul>
+        <li><b>FormSubmit</b> (formsubmit.co) stuurt het ingevulde formulier per e-mail door naar ons. Uw formuliergegevens gaan daarvoor via hun servers.</li>
+        <li><b>Microsoft 365</b> host onze e-mail. Uw bericht komt daar binnen.</li>
+        <li><b>GitHub Pages</b> host deze website. Zoals bij elke webserver worden bezoeken technisch verwerkt, waaronder uw IP-adres in serverlogs.</li>
+        <li><b>Google Fonts</b> en <b>cdnjs</b> (Cloudflare) leveren lettertypen en programmabibliotheken die bij het laden van de site worden opgehaald. Uw IP-adres wordt daarbij aan die partijen doorgegeven.</li>
+      </ul>
+      <p>Een aantal van deze partijen is gevestigd in de Verenigde Staten. Daardoor kunnen gegevens buiten de Europese Unie worden verwerkt. Voor die doorgifte gelden de waarborgen die deze partijen zelf hanteren, zoals het EU-VS Data Privacy Framework of standaardcontractbepalingen van de Europese Commissie.</p>
+    </section>
 
-  <h2>Diensten die we gebruiken</h2>
-  <ul>
-    <li><strong>FormSubmit</strong> (formsubmit.co) bezorgt formulierberichten in onze mailbox. Uw formuliergegevens passeren hun servers voor bezorging.</li>
-    <li><strong>Microsoft 365</strong> host onze e-mail; uw bericht komt daar aan.</li>
-    <li><strong>GitHub Pages</strong> host deze website. Zoals bij elke webserver worden bezoeken technisch verwerkt (IP-adres) om de site te kunnen leveren.</li>
-    <li><strong>Google Fonts</strong> levert de lettertypen; daarbij wordt uw IP-adres technisch bekend bij Google. De 3D-beelden en bijbehorende texturen hosten we zelf.</li>
-  </ul>
+    <section id="bewaren">
+      <div class="lbl mono"><span class="tri"></span>[+] 05 . BEWAARTERMIJN</div>
+      <h2>Hoe lang wij gegevens bewaren</h2>
+      <p>Contactberichten bewaren wij maximaal 12 maanden nadat het contact is afgerond. Ontstaat er een klantrelatie, dan bewaren wij de gegevens zolang dat voor die relatie nodig is en de wet dat vraagt.</p>
+    </section>
 
-  <h2>Hoe lang we gegevens bewaren</h2>
-  <p>Berichten via het formulier bewaren wij zo lang dat nodig is om uw vraag te beantwoorden en, als er een samenwerking ontstaat, de relatie te onderhouden. Wilt u dat wij uw gegevens verwijderen? Eén bericht is genoeg.</p>
+    <section id="cookies">
+      <div class="lbl mono"><span class="tri"></span>[+] 06 . COOKIES</div>
+      <h2>Geen cookies, geen tracking</h2>
+      <p>Deze website plaatst geen tracking- of analytics-cookies en gebruikt geen advertentietracking. Daarom is er ook geen cookiebanner.</p>
+    </section>
 
-  <h2>Uw rechten</h2>
-  <p>Onder de AVG hebt u recht op inzage, correctie en verwijdering van uw gegevens, en het recht om bezwaar te maken tegen verwerking. Mail ons en wij regelen het binnen een werkweek. Vindt u dat wij tekortschieten, dan kunt u een klacht indienen bij de <a href="https://autoriteitpersoonsgegevens.nl" rel="noopener">Autoriteit Persoonsgegevens</a>.</p>
+    <section id="rechten">
+      <div class="lbl mono"><span class="tri"></span>[+] 07 . UW RECHTEN</div>
+      <h2>Wat u kunt vragen</h2>
+      <p>Op grond van de AVG hebt u de volgende rechten:</p>
+      <ul>
+        <li>inzage in de gegevens die wij van u hebben;</li>
+        <li>correctie of verwijdering van uw gegevens;</li>
+        <li>bezwaar tegen de verwerking;</li>
+        <li>overdraagbaarheid van uw gegevens;</li>
+        <li>het intrekken van uw toestemming, op elk moment.</li>
+      </ul>
+      <p>Stuur hiervoor een e-mail naar <a href="mailto:admin@systemly.nl">admin@systemly.nl</a>. Vindt u dat wij tekortschieten, dan kunt u een klacht indienen bij de <a href="https://www.autoriteitpersoonsgegevens.nl" rel="noopener">Autoriteit Persoonsgegevens</a>.</p>
+    </section>
+
+    <section id="beveiliging">
+      <div class="lbl mono"><span class="tri"></span>[+] 08 . BEVEILIGING</div>
+      <h2>Hoe wij uw gegevens beschermen</h2>
+      <p>De website en het contactformulier werken uitsluitend via een versleutelde verbinding (HTTPS). Formulierberichten komen alleen terecht in de mailboxen van Systemly.</p>
+    </section>
+
+    <section id="wijzigingen">
+      <div class="lbl mono"><span class="tri"></span>[+] 09 . WIJZIGINGEN</div>
+      <h2>Aanpassingen van deze verklaring</h2>
+      <p>Wij kunnen deze privacyverklaring aanpassen, bijvoorbeeld als onze website of de diensten die wij gebruiken veranderen. De actuele versie staat altijd op deze pagina.</p>
+      <p class="mono" style="color:var(--grey);margin-top:20px">LAATST BIJGEWERKT: 13 OKTOBER 2026</p>
+    </section>
+  </article>
 </main>
+
 <footer>
-  <span class="mono">systemly &middot; onafhankelijk ai-advies &amp; uitvoering</span>
+  <div class="f-in">
+    <div class="f-top">
+      <div>
+        <a href="/" class="wm"><b>Systemly<i>.</i></b><small>AS A SOLUTION</small></a>
+        <p>Data-ontologie, AI-automatisering en software op maat. Gebouwd op Atlanticus.</p>
+      </div>
+      <nav class="f-links mono" aria-label="Footer">
+        <a href="/">[+] HOME</a><a href="/#contact">[+] CONTACT</a><a href="mailto:admin@systemly.nl">[+] ADMIN@SYSTEMLY.NL</a>
+      </nav>
+    </div>
+    <div class="f-bot mono">
+      <span>&copy; 2026 Systemly . <a href="/privacy.html" aria-current="page">PRIVACY</a></span>
+      <a class="c" href="mailto:admin@systemly.nl">ADMIN@SYSTEMLY.NL</a>
+      <span class="r">SYS/STATUS . ALLE SYSTEMEN OPERATIONEEL</span>
+    </div>
+  </div>
 </footer>
+
 </body>
 </html>
